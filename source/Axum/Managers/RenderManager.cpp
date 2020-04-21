@@ -26,3 +26,11 @@ void RenderManager::SetRenderEngine(RenderEngine *engine) {
 void RenderManager::RegisterEngine(RenderEngine engine) {
 
 }
+
+void RenderManager::Startup(){
+
+}
+
+void RenderManager::Shutdown(){
+    
+}
