@@ -23,6 +23,8 @@ void Startup();
 
 void Shutdown();
 
+void ShowMainWindow();
+
 private: 
 	std::vector<Window> windows;
 	MainWindow* MainWin;
