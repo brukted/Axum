@@ -26,11 +26,9 @@ void MApplication::on_activate(){
     while(gtk_events_pending()){
         gtk_main_iteration();
     }
-    while(1){}
-    /*
-    this->mContext = new MContext();
+    this->mContext = MContext();
     this->context = &(this->mContext);
-    */
+    
 
 }
 
