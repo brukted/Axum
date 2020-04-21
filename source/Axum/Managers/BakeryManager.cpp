@@ -10,3 +10,10 @@
  * BakeryManager implementation
  */
 
+void BakeryManager::Startup(){
+
+}
+
+void BakeryManager::Shutdown(){
+
+}
