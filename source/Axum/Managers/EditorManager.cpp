@@ -9,3 +9,11 @@
 /**
  * EditorManager implementation
  */
+
+void EditorManager::Startup(){
+
+}
+
+void EditorManager::Shutdown(){
+    
+}
