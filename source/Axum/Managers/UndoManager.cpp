@@ -29,3 +29,11 @@ void UndoManager::Redo() {
 void UndoManager::Repeat() {
 
 }
+
+void UndoManager::Startup(){
+
+}
+
+void UndoManager::Shutdown(){
+    
+}
