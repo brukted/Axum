@@ -12,30 +12,30 @@
 
 
 class UndoManager {
-public: 
+private: 
 	/**
- * Circular Array to contain recent actions.
- */
-boost::circular_buffer<Operator> RecentOperations;
+	 * Circular Array to contain recent actions.
+ 	*/
+	boost::circular_buffer<Operator> RecentOperations;
 	/**
- * Position of the last operation.
- */
-int Position;
-
-void Startup();
-
-void Shutdown();
-
-/**
- * @param mOperator
- */
-void AddOperation(Operator mOperator);
+ 	* Position of the last operation.
+ 	*/
+	int Position;
+	/**
+ 	* @param mOperator
+ 	*/
+	void AddOperation(Operator mOperator);
 	
-void Undo();
+	void Undo();
 	
-void Redo();
+	void Redo();
 	
-void Repeat();
+	void Repeat();
+public:
+	void Startup();
+
+	void Shutdown();
+
 };
 
 #endif //_UNDOMANAGER_H
