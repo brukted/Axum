@@ -29,3 +29,11 @@ void PackageManager::LoadProject(const Glib::RefPtr<Gio::File> &file) {
 void PackageManager::SavePackage() {
 
 }
+
+void PackageManager::Startup(){
+
+}
+
+void PackageManager::Shutdown(){
+    
+}
