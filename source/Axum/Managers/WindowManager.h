@@ -27,7 +27,7 @@ void ShowMainWindow();
 
 private: 
 	std::vector<Window> windows;
-	MainWindow* MainWin;
+	MainWindow MainWin;
 };
 
 #endif //_WINDOWMANAGER_H
