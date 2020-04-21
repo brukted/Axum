@@ -14,3 +14,11 @@
 void AddonManager::Refresh() {
 
 }
+
+void AddonManager::Startup(){
+
+}
+
+void AddonManager::Shutdown(){
+    
+}
