@@ -19,3 +19,11 @@
 void WindowManager::AddWindow(Window window) {
 
 }
+
+void WindowManager::Startup(){
+
+}
+
+void WindowManager::Shutdown(){
+    
+}
