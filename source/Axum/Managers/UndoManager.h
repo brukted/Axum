@@ -24,6 +24,7 @@ private:
 	/**
  	* @param mOperator
  	*/
+public:
 	void AddOperation(Operator mOperator);
 	
 	void Undo();
@@ -31,7 +32,7 @@ private:
 	void Redo();
 	
 	void Repeat();
-public:
+
 	void Startup();
 
 	void Shutdown();
