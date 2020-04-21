@@ -20,7 +20,7 @@ private:
 	/**
  	* Position of the last operation.
  	*/
-	int Position;
+	int Position = -1;
 	/**
  	* @param mOperator
  	*/
