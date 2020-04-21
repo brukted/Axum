@@ -38,25 +38,25 @@ public:
      *@param value value of the prefence to put 
     **/
     template<typename T>
-    void putPreference(std::string path,T value);
+    inline void putPreference(std::string path,T value);
     /**
      *@param path relative path to put the preference e.g: 3dview.HDRIpaths
      *@param values values of the prefence to put 
     **/
     template<typename T>
-    void putPreferenceArray(std::string path,std::vector<T> values);
+    inline void putPreferenceArray(std::string path,std::vector<T> values);
     /**
      *@param path relative path to put the preference e.g: bakery.useGPU
      *@return value of the preference
     **/
     template<typename T>
-    T getPreference(std::string path,T defaultValue);
+    inline T getPreference(std::string path,T defaultValue);
     /**
      *@param path relative path to put the preference e.g: 3dview.HDRIpaths
      *@param return array of values of the preference
     **/
     template<typename T>
-    std::vector<T> getPreferenceArray(std::string path);
+    inline std::vector<T> getPreferenceArray(std::string path);
 };
 
 #endif //_PREFERENCEMANAGER_H
