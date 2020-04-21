@@ -11,6 +11,8 @@
  * MApplication implementation
  */
 
+MContext* MApplication::context;
+
 MApplication::MApplication():Gtk::Application("com.bruk.tedla.Axum", Gio::APPLICATION_HANDLES_OPEN){
     
 }
