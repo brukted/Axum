@@ -27,3 +27,7 @@ void WindowManager::Startup(){
 void WindowManager::Shutdown(){
     
 }
+
+void WindowManager::ShowMainWindow(){
+    
+}
