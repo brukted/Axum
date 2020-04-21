@@ -1,0 +1,9 @@
+*.so
+*.dylib
+*.dll
+*.a
+build/*
+data/*
+resources/*
+embededresources/*
+*.DS_Store

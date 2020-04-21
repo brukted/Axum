@@ -1,0 +1,31 @@
+/**
+ * Project Material Lab
+ * @author Bruk Tedla
+ */
+
+
+#include "PackageManager.h"
+
+/**
+ * PackageManager implementation
+ * 
+ * ProjectManager holds the project that is currently opened and provides access to it
+ */
+
+
+/**
+ * @param Path
+ */
+void PackageManager::LoadProject(std::string &Path) {
+
+}
+/**
+ * @param file
+ */
+void PackageManager::LoadProject(const Glib::RefPtr<Gio::File> &file) {
+
+}
+
+void PackageManager::SavePackage() {
+
+}
