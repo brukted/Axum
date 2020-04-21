@@ -27,7 +27,14 @@
         pt::write_json(filename,this->tree);
     }
     void PreferenceManager::load(const std::string filename){
-        pt::read_json(filename,this->tree);
+        try{
+            pt::read_json(filename,this->tree);
+        }
+        //handle exception that will be thrown if the file does not exist
+        //set the property tree to blank tree
+        catch(std::exception){
+            this->tree = pt::ptree();
+        }
     }
 
     /**
