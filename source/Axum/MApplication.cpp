@@ -30,6 +30,21 @@ void MApplication::on_activate(){
     this->context = &(this->mContext);
     //Start the Prefernce Manager first as it does not depend on anything
     this->mContext.PrefMan.Startup();
+    //Starts Undo Manager
+    this->mContext.UndoMan.Startup();
+    //Starts the manager and intilizes package related stufffs
+    this->mContext.PackageMan.Startup();
+    //Starts the manager and intilize render engines 
+    this->mContext.RenderMan.Startup();
+    //Starts the manager and initilizes bakery and it's bakers
+    this->mContext.BakeryMan.Startup();
+    //Starts the manager and intilizes editors 
+    this->mContext.EditorMan.Startup();
+    //Starts the manager and initilizes the main window but won't show it
+    this->mContext.WinMan.Startup();
+    //Addon Manager is started at last because it has reference to all aspects of the software
+    this->mContext.AddonMan.Startup();
+    this->mContext.WinMan.ShowMainWindow();
 }
 
 void MApplication::on_open(const Gio::Application::type_vec_files& files,const Glib::ustring& hint){
