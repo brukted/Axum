@@ -28,8 +28,8 @@ void MApplication::on_activate(){
     }
     this->mContext = MContext();
     this->context = &(this->mContext);
-    
-
+    //Start the Prefernce Manager first as it does not depend on anything
+    this->mContext.PrefMan.Startup();
 }
 
 void MApplication::on_open(const Gio::Application::type_vec_files& files,const Glib::ustring& hint){
