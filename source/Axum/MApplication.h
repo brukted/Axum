@@ -10,6 +10,7 @@
 #include "MContext.h"
 #include "gtkmm-3.0/gtkmm.h"
 #include "UI/SplashWindow.h"
+#include "boost/foreach.hpp"
 
 class MApplication:public Gtk::Application {
 protected:
