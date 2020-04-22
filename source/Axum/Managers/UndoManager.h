@@ -31,8 +31,6 @@ public:
 	
 	void Redo();
 	
-	void Repeat();
-
 	void Startup();
 
 	void Shutdown();
