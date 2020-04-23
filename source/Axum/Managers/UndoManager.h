@@ -7,15 +7,20 @@
 #ifndef _UNDOMANAGER_H
 #define _UNDOMANAGER_H
 
-#include"../MApplication.h"
+#include "PreferenceManager.h"
 #include"boost/circular_buffer.hpp"
 #include"../Operators/Operator.h"
 
 //a special iterator for RecentOpreations
 typedef boost::circular_buffer<Operator>::iterator uiterator;
-
 class UndoManager {
-private: 
+public:
+	static UndoManager& getInstance(){
+		static UndoManager instance;
+		return instance;
+	}
+private:
+	UndoManager(){};
 	/**
 	 * Circular Array to contain recent actions.
  	*/
@@ -30,6 +35,8 @@ private:
 	bool canUndoFurther = false;
 
 public:
+	UndoManager(UndoManager const&) = delete;
+	void operator=(UndoManager const&) = delete;
 	/**
  	* @param mOperator
  	*/
