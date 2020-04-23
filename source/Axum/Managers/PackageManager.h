@@ -12,7 +12,17 @@
 #include "gtkmm-3.0/gtkmm.h"
 
 class PackageManager {
-public: 
+public:
+	static PackageManager& getInstance(){
+		static PackageManager instance;
+		return instance;
+	}
+private:
+	PackageManager(){};
+public:
+	PackageManager(PackageManager const&) = delete;
+	void operator=(PackageManager const&) = delete;
+	
 	std::vector<Package> mPackages;
 	
 	void Startup();
