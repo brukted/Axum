@@ -27,28 +27,26 @@ void MApplication::on_activate(){
     while(gtk_events_pending()){
         gtk_main_iteration();
     }
-    this->mContext = MContext();
-    this->context = &(this->mContext);
     //Start the Prefernce Manager first as it does not depend on anything
-    this->mContext.PrefMan.Startup();
+    PreferenceManager::getInstance().Startup();
     //Starts Undo Manager
-    this->mContext.UndoMan.Startup();
+    UndoManager::getInstance().Startup();
     //Starts the manager and intilizes package related stufffs
-    this->mContext.PackageMan.Startup();
+    PackageManager::getInstance().Startup();
     //Starts the manager and intilize render engines 
-    this->mContext.RenderMan.Startup();
+    RenderManager::getInstance().Startup();
     //Starts the manager and initilizes bakery and it's bakers
-    this->mContext.BakeryMan.Startup();
+    BakeryManager::getInstance().Startup();
     //Starts the manager and intilizes editors 
-    this->mContext.EditorMan.Startup();
+    EditorManager::getInstance().Startup();
     //Starts the manager and initilizes the main window but won't show it
-    this->mContext.WinMan.Startup();
+    WindowManager::getInstance().Startup();
     //Addon Manager is started at last because it has reference to all aspects of the software
-    this->mContext.AddonMan.Startup();
-    this->mContext.WinMan.ShowMainWindow();
+    AddonManager::getInstance().Startup();
+    WindowManager::getInstance().ShowMainWindow();
 }
 
 void MApplication::on_open(const Gio::Application::type_vec_files& files,const Glib::ustring& hint){
     BOOST_FOREACH(Glib::RefPtr<Gio::File> f,files)
-    this->mContext.PackageMan.LoadProject(f);
+    PackageManager::getInstance().LoadProject(f);
 }
