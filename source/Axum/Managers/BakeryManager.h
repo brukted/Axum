@@ -10,7 +10,16 @@
 #include"../Bakery/Bakery.h"
 
 class BakeryManager {
-public: 
+public:
+	static BakeryManager& getInstance(){
+		static BakeryManager instance;
+		return instance;
+	}
+private:
+	BakeryManager(){};
+public:
+	BakeryManager(BakeryManager const&) = delete;
+	void operator=(BakeryManager const&) = delete;
 	Bakery mBakery;
 	void Startup();
 	void Shutdown();
