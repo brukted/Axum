@@ -8,3 +8,4 @@ resources/*
 embededresources/*
 *.DS_Store
 .vscode/*
+*.clangtidy
