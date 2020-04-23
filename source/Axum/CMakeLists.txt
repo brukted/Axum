@@ -32,8 +32,6 @@ list(APPEND sources
     main.cpp
     MApplication.h
     MApplication.cpp
-    MContext.h
-    MContext.cpp
     Addon/Addon.h
     Addon/Addon.cpp
     Bakery/Baker.h
