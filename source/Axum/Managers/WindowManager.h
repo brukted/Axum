@@ -13,7 +13,15 @@
 
 class WindowManager {
 public: 
-	
+	static WindowManager& getInstance(){
+		static WindowManager instance;
+		return instance;
+	}
+private:
+	WindowManager(){};
+public:
+	WindowManager(WindowManager const&) = delete;
+	void operator=(WindowManager const&) = delete;
 /**
  * @param window
  */
