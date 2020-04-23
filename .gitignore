@@ -7,3 +7,4 @@ data/*
 resources/*
 embededresources/*
 *.DS_Store
+.vscode/*
