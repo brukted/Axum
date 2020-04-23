@@ -11,7 +11,16 @@
 #include"../Editor/Editor.h"
 
 class EditorManager {
-public: 
+public:
+	static EditorManager& getInstance(){
+		static EditorManager instance;
+		return instance;
+	}
+private:
+	EditorManager(){};
+public:
+	EditorManager(EditorManager const&) = delete;
+	void operator=(EditorManager const&) = delete;
 	std::vector<Editor> Editors;
 	
 	void Startup();
