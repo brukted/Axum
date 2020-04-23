@@ -20,14 +20,20 @@
 namespace pt = boost::property_tree;
 
 class PreferenceManager {
+public:
+    static PreferenceManager& getInstance(){
+        static PreferenceManager instance;
+        return instance;
+    }
 private:
     pt::ptree tree;
     void load(const std::string filename);
     void save(const std::string filename);
-public:
     PreferenceManager(){};
     ~PreferenceManager(){};
-    
+public:
+    PreferenceManager(PreferenceManager const&) = delete;
+    void operator=(PreferenceManager const&) = delete;
     void Startup();
 
     void Shutdown();
