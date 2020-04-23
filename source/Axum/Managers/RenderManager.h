@@ -12,6 +12,16 @@
 
 class RenderManager {
 public: 
+	static RenderManager& getInstance(){
+		static RenderManager instance;
+		return instance;
+	}
+private:
+	RenderManager(){};
+public:
+	RenderManager(RenderManager const&) = delete;
+	void operator=(RenderManager const&) = delete;
+	
 	RenderEngine *CurrentEngine;
 	std::vector<RenderEngine> mRenderEngines;
 	
