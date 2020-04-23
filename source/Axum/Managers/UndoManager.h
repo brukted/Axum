@@ -7,9 +7,12 @@
 #ifndef _UNDOMANAGER_H
 #define _UNDOMANAGER_H
 
+#include"../MApplication.h"
 #include"boost/circular_buffer.hpp"
 #include"../Operators/Operator.h"
 
+//a special iterator for RecentOpreations
+typedef boost::circular_buffer<Operator>::iterator uiterator;
 
 class UndoManager {
 private: 
@@ -20,11 +23,16 @@ private:
 	/**
  	* Position of the last operation.
  	*/
-	int Position = -1;
+	uiterator nextUndo;
+	/*
+	*true if the first operation is not undone and false if it is undone
+	*/
+	bool canUndoFurther = false;
+
+public:
 	/**
  	* @param mOperator
  	*/
-public:
 	void AddOperation(Operator mOperator);
 	
 	void Undo();
