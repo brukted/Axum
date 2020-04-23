@@ -77,7 +77,8 @@ void UndoManager::Redo() {
 
 
 void UndoManager::Startup(){
-    this->RecentOperations = boost::circular_buffer<Operator> ((*MApplication::context).PrefMan.getPreference<int>("system.undo_steps",50));
+    int undoSteps = (MApplication::context)->PrefMan.getPreference<int>("system.undo_steps",50);
+    this->RecentOperations = boost::circular_buffer<Operator> (undoSteps);
 }
 
 void UndoManager::Shutdown(){
