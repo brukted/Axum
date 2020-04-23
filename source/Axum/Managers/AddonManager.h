@@ -11,7 +11,17 @@
 #include"../Addon/Addon.h"
 
 class AddonManager {
-public: 
+public:
+	static AddonManager& getInstance(){
+		static AddonManager instance;
+		return instance;
+	}
+private:
+	AddonManager(){};
+public:
+	AddonManager(AddonManager const&) = delete;
+	void operator=(AddonManager const&) = delete;
+	
 	std::vector<Addon> Addons;
 	
 	void Startup();
