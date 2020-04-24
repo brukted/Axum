@@ -21,7 +21,7 @@ public:
 	/**
 	 * unique id 
 	**/
-	unsigned long uid;
+	unsigned int uid;
 	/**
 	 *Name of the node to be displayed on ui
 	 **/
