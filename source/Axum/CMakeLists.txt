@@ -241,7 +241,6 @@ list(APPEND sources
     Utils/Serialization/Connection.h
     Utils/Serialization/Connection.cpp
     Utils/Serialization/GUIInfo.h
-    Utils/Serialization/GUIInfo.cpp
 )
 
 if(OPTION_WITH_CYCLES)
