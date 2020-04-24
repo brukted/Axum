@@ -15,6 +15,13 @@
  * @param mOperator
  */
 void UndoManager::AddOperation(Operator mOperator) {
+    if(this->RecentOperations.size() == 0){
+        //append the opreator at the end of the list
+         this->RecentOperations.push_back(mOperator);
+         this->nextUndo = this->RecentOperations.begin();
+         this->canUndoFurther = true;
+         return;
+    }
      //check if there are no redo operation
      if (this->nextUndo == this->RecentOperations.end())
      {
