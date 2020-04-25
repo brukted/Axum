@@ -19,7 +19,7 @@ public:
  	*/
 	GraphParam mParms;
 	std::vector<Node> mNodes;
-	
+	unsigned int uid;
 /**
  * @param Identifier
  */
