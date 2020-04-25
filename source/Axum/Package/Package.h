@@ -23,12 +23,12 @@ void AddGraph(Graph graph);
 /**
  * @param UUID
  */
-void DeleteGraph(int UUID);
+void DeleteGraph(unsigned int UUID);
 	
 /**
  * @param UUID
  */
-Resource* GetResource(int UUID);
+Resource* GetResource(unsigned int UUID);
 };
 
 #endif //_PACKAGE_H
