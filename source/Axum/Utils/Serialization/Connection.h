@@ -12,19 +12,19 @@ public:
 	/**
  * UID of the source node
  */
-long FromNode;
+unsigned int FromNode;
 	/**
  * UID of the source socket in the source node
  */
-long FromSocket;
+unsigned int FromSocket;
 	/**
  * UID of the destination(sink) node
  */
-long ToNode;
+unsigned int ToNode;
 	/**
  * UID of the destination(Sink)  socket.
  */
-long ToSocket;
+unsigned int ToSocket;
 };
 
 #endif //_CONNECTION_H
