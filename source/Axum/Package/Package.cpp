@@ -23,7 +23,7 @@ void Package::AddGraph(Graph graph) {
 /**
  * @param UUID
  */
-void Package::DeleteGraph(int UUID) {
+void Package::DeleteGraph(unsigned int UUID) {
 
 }
 
@@ -31,6 +31,6 @@ void Package::DeleteGraph(int UUID) {
  * @param UUID
  * @return *Resource
  */
-Resource* Package::GetResource(int UUID) {
+Resource* Package::GetResource(unsigned int UUID) {
     return nullptr;
 }
