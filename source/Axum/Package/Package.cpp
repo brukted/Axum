@@ -14,20 +14,6 @@
 
 
 /**
- * @param graph
- */
-void Package::AddGraph(Graph graph) {
-
-}
-
-/**
- * @param UUID
- */
-void Package::DeleteGraph(unsigned int UUID) {
-
-}
-
-/**
  * @param UUID
  * @return *Resource
  */

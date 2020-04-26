@@ -19,15 +19,6 @@ friend class boost::serialization::access;
 public: 
 	std::vector<Resource> Resources;
 	unsigned int uid;
-/**
- * @param graph
- */
-void AddGraph(Graph graph);
-	
-/**
- * @param UUID
- */
-void DeleteGraph(unsigned int UUID);
 	
 /**
  * @param UUID
