@@ -23,7 +23,7 @@ public:
 /**
  * @param UUID
  */
-Resource* GetResource(unsigned int UUID);
+Resource& GetResource(unsigned int UUID);
 private: 
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const
