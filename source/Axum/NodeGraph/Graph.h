@@ -27,7 +27,7 @@ public:
 /**
  * @param Identifier
  */
-Node* GetNode(unsigned int uid);
+Node& GetNode(unsigned int identifier);
 	
 void SetupCache();
 	

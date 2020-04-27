@@ -14,8 +14,11 @@
 /**
  * @param identifier
  */
-Node* Graph::GetNode(unsigned int identifier) {
-
+Node& Graph::GetNode(unsigned int identifier) {
+for(auto &var : this->mNodes)
+{
+    if(var.uid == identifier) return var;
+}
 }
 
 void Graph::SetupCache() {
