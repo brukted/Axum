@@ -20,7 +20,7 @@ public:
  * Path to the resource if it is linked type.
  */
 	std::string mPath;
-	int UUID;
+	unsigned int UUID;
 	PathType mPathType;
 	
 /**
