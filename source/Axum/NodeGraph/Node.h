@@ -24,7 +24,7 @@ public:
 	/**
  	* Name of the node to be displayed on the ui.
  	*/
-	std::string UIName;
+	char16_t UIName[30];
 	/**
 	 * Unique identifer of the node in the graph
 	**/
