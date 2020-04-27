@@ -14,12 +14,18 @@
 #include"../UI/Widgets/NodeUI.h"
 #include"OutputSocket.h"
 #include"InputSocket.h"
+#include "boost/serialization/access.hpp"
+#include "boost/serialization/array.hpp"
+#include "boost/serialization/split_member.hpp"
+#include "boost/serialization/vector.hpp"
+#include "boost/serialization/version.hpp"
 
 class InputSocket;
 class OutputSocket;
 class NodeUI;
 
 class Node {
+friend class boost::serialization::access;
 public: 
 	/**
  	* Name of the node to be displayed on the ui.
@@ -59,6 +65,22 @@ virtual NodeUI GetUI();
 
 private: 
 	bool NeedUpdate = true;
-};
+template<class Archive>
+void save(Archive & ar, const unsigned int version) const
+{
+	ar &uid;
+    ar &mNodeParams;
+	ar &mGUIInfo;
+}
 
+template<class Archive>
+void load(Archive & ar, const unsigned int version)
+{
+	ar &uid;
+    ar &mNodeParams;
+	ar &mGUIInfo;
+}
+BOOST_SERIALIZATION_SPLIT_MEMBER()
+};
+BOOST_CLASS_VERSION(Node,1)
 #endif //_NODE_H
