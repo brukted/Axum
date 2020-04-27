@@ -29,16 +29,6 @@ public:
  */
 Node* GetNode(unsigned int uid);
 	
-/**
- * @param node
- */
-void AddNode(Node node);
-	
-/**
- * @param identifier
- */
-void DeleteNode(unsigned int uid);
-	
 void SetupCache();
 	
 void ClearCache();

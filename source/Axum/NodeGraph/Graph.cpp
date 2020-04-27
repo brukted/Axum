@@ -18,20 +18,6 @@ Node* Graph::GetNode(unsigned int identifier) {
 
 }
 
-/**
- * @param node
- */
-void Graph::AddNode(Node node) {
-
-}
-
-/**
- * @param identifier
- */
-void Graph::DeleteNode(unsigned int identifier) {
-
-}
-
 void Graph::SetupCache() {
 
 }
