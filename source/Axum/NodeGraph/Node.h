@@ -9,7 +9,7 @@
 
 #include<string>
 #include<vector>
-#include"NodeParams.h"
+#include"../Parameter/ParamCollection.h"
 #include"../Utils/Serialization/GUIInfo.h"
 #include"../UI/Widgets/NodeUI.h"
 #include"OutputSocket.h"
@@ -40,7 +40,7 @@ public:
 	/**
 	 * 
 	**/
-	NodeParams mNodeParams;
+	ParamCollection mNodeParams;
 	/**
 	 * Contains the GUI information of the node
 	**/

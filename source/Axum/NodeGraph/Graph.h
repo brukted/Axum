@@ -10,7 +10,7 @@
 #include<vector>
 #include "../Resources/Resource.h"
 #include "Node.h"
-#include "../Parameter/GraphParam.h"
+#include "../Parameter/ParamCollection.h"
 #include "boost/serialization/access.hpp"
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/version.hpp"
@@ -21,7 +21,7 @@ public:
 	/**
 	 * List of parameters that nodes in the node tree can refer to.
  	*/
-	GraphParam mParms;
+	ParamCollection mParms;
 	std::vector<Node> mNodes;
 	unsigned int uid;
 /**

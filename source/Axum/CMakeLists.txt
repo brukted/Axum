@@ -87,8 +87,6 @@ list(APPEND sources
     Managers/WindowManager.cpp
     NodeGraph/FunctionGraph.h
     NodeGraph/FunctionGraph.cpp
-    NodeGraph/FunctionNodeParams.h
-    NodeGraph/FunctionNodeParams.cpp
     NodeGraph/Graph.h
     NodeGraph/Graph.cpp
     NodeGraph/InputSocket.h
@@ -97,8 +95,6 @@ list(APPEND sources
     NodeGraph/MaterialGraph.cpp
     NodeGraph/Node.h
     NodeGraph/Node.cpp
-    NodeGraph/NodeParams.h
-    NodeGraph/NodeParams.cpp
     NodeGraph/OutputSocket.h
     NodeGraph/OutputSocket.cpp
     NodeGraph/InputSockets/FunctionInSocket.h
@@ -117,8 +113,6 @@ list(APPEND sources
     NodeGraph/Nodes/MaterialGraphInstanceNode.cpp
     NodeGraph/Nodes/MaterialNode.h
     NodeGraph/Nodes/MaterialNode.cpp
-    NodeGraph/Nodes/MaterialNodeParams.h
-    NodeGraph/Nodes/MaterialNodeParams.cpp
     NodeGraph/OutputSockets/FunctionOutSocket.h
     NodeGraph/OutputSockets/FunctionOutSocket.cpp
     NodeGraph/OutputSockets/MaterialOutSocket.h
@@ -139,10 +133,6 @@ list(APPEND sources
     Parameter/Float4Param.cpp
     Parameter/FloatParam.h
     Parameter/FloatParam.cpp
-    Parameter/FunctionGraphParam.h
-    Parameter/FunctionGraphParam.cpp
-    Parameter/GraphParam.h
-    Parameter/GraphParam.cpp
     Parameter/Integer2Param.h
     Parameter/Integer2Param.cpp
     Parameter/Integer3Param.h
@@ -151,8 +141,6 @@ list(APPEND sources
     Parameter/Integer4Param.cpp
     Parameter/IntegerParam.h
     Parameter/IntegerParam.cpp
-    Parameter/MaterialGraphParam.h
-    Parameter/MaterialGraphParam.cpp
     Parameter/Param.h
     Parameter/Param.cpp
     Parameter/ParamCollection.h
