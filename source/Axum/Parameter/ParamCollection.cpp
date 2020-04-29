@@ -17,8 +17,8 @@
  * @param id
  * @return *Param
  */
-Param* ParamCollection::GetParameter(unsigned int uid) {
-    return NULL;
+Param& ParamCollection::GetParameter(unsigned int uid) {
+
 }
 
 /**

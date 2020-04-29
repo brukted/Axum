@@ -24,7 +24,7 @@ public:
  * @return a pointer to a sub parameter
  * 
  */
-Param* GetParameter(unsigned int uid);
+Param& GetParameter(unsigned int uid);
 	
 /**
  * @param Parameter
