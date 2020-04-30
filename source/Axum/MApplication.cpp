@@ -47,6 +47,8 @@ void MApplication::on_activate(){
 }
 
 void MApplication::on_open(const Gio::Application::type_vec_files& files,const Glib::ustring& hint){
-    BOOST_FOREACH(Glib::RefPtr<Gio::File> f,files)
-    PackageManager::getInstance().LoadProject(f);
+    for(auto f : files)
+    {
+        PackageManager::getInstance().LoadProject(f);
+    }
 }

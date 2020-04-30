@@ -9,7 +9,6 @@
 
 #include "gtkmm-3.0/gtkmm.h"
 #include "UI/SplashWindow.h"
-#include "boost/foreach.hpp"
 #include "Managers/PreferenceManager.h"
 #include "Managers/UndoManager.h"
 #include "Managers/PackageManager.h"
