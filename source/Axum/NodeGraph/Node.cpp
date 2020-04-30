@@ -36,8 +36,11 @@ OutputSocket& Node::GetOutputSocket(unsigned int uid) {
  * @param IdName
  * @return InputSocket
  */
-InputSocket* Node::GetInputSocket(unsigned int uid) {
-    return NULL;
+InputSocket& Node::GetInputSocket(unsigned int uid) {
+    for(auto &var : this->mInputSockets)
+    {
+        if(var.uid == uid) return var;
+    }
 }
 
 /**

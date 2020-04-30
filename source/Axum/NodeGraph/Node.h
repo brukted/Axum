@@ -59,7 +59,7 @@ OutputSocket& GetOutputSocket(unsigned int uid);
 /**
  * @param uid
  */
-InputSocket* GetInputSocket(unsigned int uid);
+InputSocket& GetInputSocket(unsigned int uid);
 	
 virtual NodeUI GetUI();
 
