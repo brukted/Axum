@@ -12,11 +12,11 @@ public:
 	char16_t Name;
 	char16_t IdName;
 	
-void Excute();
+virtual void Excute();
 	
-void Undo();
+virtual void Undo();
 	
-void Redo();
+virtual void Redo();
 };
 
 #endif //_OPERATOR_H
