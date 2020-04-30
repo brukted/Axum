@@ -40,7 +40,7 @@ void MApplication::on_activate(){
     //Starts the manager and intilizes editors 
     EditorManager::getInstance().Startup();
     //Starts the manager and initilizes the main window but won't show it
-    WindowManager::getInstance().Startup();
+    WindowManager::getInstance(this).Startup();
     //Addon Manager is started at last because it has reference to all aspects of the software
     AddonManager::getInstance().Startup();
     WindowManager::getInstance().ShowMainWindow();

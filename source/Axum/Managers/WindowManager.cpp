@@ -29,5 +29,8 @@ void WindowManager::Shutdown(){
 }
 
 void WindowManager::ShowMainWindow(){
-    
+    auto win = new MainWindow();
+    this->MainWin = win;
+    this->app->add_window(*win);
+    this->MainWin->present();
 }

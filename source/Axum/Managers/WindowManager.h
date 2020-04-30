@@ -13,10 +13,12 @@
 
 class WindowManager {
 public: 
-	static WindowManager& getInstance(){
+	static WindowManager& getInstance(Gtk::Application *app = nullptr){
 		static WindowManager instance;
+		if(app != nullptr) instance.app = app;
 		return instance;
 	}
+	Gtk::Application *app;
 private:
 	WindowManager(){};
 public:
@@ -35,7 +37,7 @@ void ShowMainWindow();
 
 private: 
 	std::vector<Window> windows;
-	MainWindow* MainWin;
+	MainWindow *MainWin;
 };
 
 #endif //_WINDOWMANAGER_H
