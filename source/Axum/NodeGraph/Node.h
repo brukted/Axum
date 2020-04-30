@@ -54,7 +54,7 @@ void Invalidate();
 /**
  * @param uid unique identifier of the socket
  */
-OutputSocket* GetOutputSocket(unsigned int uid);
+OutputSocket& GetOutputSocket(unsigned int uid);
 	
 /**
  * @param uid

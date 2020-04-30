@@ -25,8 +25,11 @@ void Node::Invalidate() {
  * @param IdName
  * @return OutputSocket
  */
-OutputSocket* Node::GetOutputSocket(unsigned int uid) {
-    return NULL;
+OutputSocket& Node::GetOutputSocket(unsigned int uid) {
+    for(auto &var : this->mOutputSockets)
+    {
+        if(var.uid == uid) return var;
+    }
 }
 
 /**
