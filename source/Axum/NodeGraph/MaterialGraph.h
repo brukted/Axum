@@ -11,6 +11,10 @@
 
 
 class MaterialGraph: public Graph {
+public:
+virtual void SetupCache() override;
+virtual void ClearCache() override;
+virtual void DeleteCache() override;
 };
 
 #endif //_MATERIALGRAPH_H

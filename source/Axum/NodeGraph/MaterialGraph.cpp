@@ -9,3 +9,13 @@
 /**
  * MaterialGraph implementation
  */
+
+void MaterialGraph::SetupCache(){
+
+}
+void MaterialGraph::ClearCache(){
+
+}
+void MaterialGraph::DeleteCache(){
+    
+}
