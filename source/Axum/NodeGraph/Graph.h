@@ -29,11 +29,11 @@ public:
  */
 Node& GetNode(unsigned int identifier);
 	
-void SetupCache();
+virtual void SetupCache();
 	
-void ClearCache();
+virtual void ClearCache();
 	
-void DeleteCache();
+virtual void DeleteCache();
 private: 
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const
