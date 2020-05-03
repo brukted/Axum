@@ -116,6 +116,10 @@ void SetNeedUpdate(bool NeedUpdate) {
 	NeedUpdate = NeedUpdate;
 }
 
+bool GetUID() const {
+	return uid;
+}
+
 BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
 BOOST_CLASS_VERSION(Node,1)

@@ -17,7 +17,7 @@
 Node& Graph::GetNode(unsigned int identifier) {
 for(auto &var : this->mNodes)
 {
-    if(var.uid == identifier) return var;
+    if(var.GetUID() == identifier) return var;
 }
 }
 
