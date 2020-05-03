@@ -17,9 +17,9 @@
  * @param UUID
  * @return *Resource
  */
-Resource& Package::GetResource(unsigned int UUID) {
+Resource& Package::GetResource(unsigned int uid) {
 for(auto &var : this->Resources)
 {
-    if(var.UUID == UUID) return var;
+    if(var.uid == uid) return var;
 }
 }

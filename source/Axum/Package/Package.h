@@ -21,9 +21,9 @@ public:
 	unsigned int uid;
 	
 /**
- * @param UUID
+ * @param uid
  */
-Resource& GetResource(unsigned int UUID);
+Resource& GetResource(unsigned int uid);
 private: 
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const
