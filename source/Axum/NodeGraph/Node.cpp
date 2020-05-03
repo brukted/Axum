@@ -49,3 +49,24 @@ InputSocket& Node::GetInputSocket(unsigned int uid) {
 NodeUI Node::GetUI() {
     return NodeUI();
 }
+
+void Node::SetupCache(){
+    for(auto &socket : mOutputSockets)
+    {
+        socket.SetupCache();
+    }
+}
+
+void Node::ClearCache(){
+    for(auto &socket : mOutputSockets)
+    {
+        socket.ClearCache();
+    }
+}
+
+void Node::DeleteCache(){
+    for(auto &socket : mOutputSockets)
+    {
+        socket.DeleteCache();
+    }
+}
