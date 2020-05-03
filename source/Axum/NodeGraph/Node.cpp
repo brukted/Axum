@@ -15,7 +15,7 @@
 
 
 /**
- * Invalidate makes the current cache invalide and all  nodes based upon it.
+ * Invalidate makes the current cache invalid and all  nodes based upon it.
  */
 void Node::Invalidate() {
 
