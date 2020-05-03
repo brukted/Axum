@@ -23,6 +23,7 @@
 class InputSocket;
 class OutputSocket;
 class NodeUI;
+class Graph;
 
 class Node {
 friend class boost::serialization::access;
@@ -74,8 +75,19 @@ virtual void ClearCache();
 //Deletes cache data
 virtual void DeleteCache();
 
+//Excutes the node
+//Drived Nodes should implement this as it's empty
+virtual void Excute(ParamCollection &GraphParams){return;};
+
+//Excute the node and nodes connected to it's output sockets
+virtual void ExcuteForward(ParamCollection &GraphParams);
+
+//Excute the node and nodes connected to it's input sockets
+virtual void ExcuteBackWard(ParamCollection &GraphParams);
+
 private: 
-	bool NeedUpdate = true;
+bool NeedUpdate = true;
+
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const
 {
@@ -91,6 +103,17 @@ void load(Archive & ar, const unsigned int version)
     ar &mNodeParams;
 	ar &mGUIInfo;
 }
+
+//Getter and setters
+public:
+bool GetNeedUpdate() const {
+	return NeedUpdate;
+}
+
+void SetNeedUpdate(bool NeedUpdate) {
+	NeedUpdate = NeedUpdate;
+}
+
 BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
 BOOST_CLASS_VERSION(Node,1)

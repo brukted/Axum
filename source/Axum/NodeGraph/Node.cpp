@@ -78,3 +78,22 @@ void Node::DeleteCache(){
         socket.DeleteCache();
     }
 }
+
+void Node::ExcuteForward(ParamCollection &GraphParams){
+    this->Excute(GraphParams);
+    for(auto &outSocket : this->mOutputSockets)
+    {
+        for(auto &inSocket : outSocket.LinkedSockets)
+        {
+            inSocket->ParentNode->ExcuteForward(GraphParams);
+        }
+    }
+}
+
+void Node::ExcuteBackWard(ParamCollection &GraphParams){
+    this->Excute(GraphParams);
+    for(auto &inSocket : this->mInputSockets)
+    {
+        inSocket.LinkedSocket->ParentNode->ExcuteBackWard(GraphParams);
+    }
+}
