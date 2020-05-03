@@ -7,7 +7,6 @@
 #ifndef _INPUTSOCKET_H
 #define _INPUTSOCKET_H
 #include <string>
-#include <vector>
 #include "Node.h"
 #include "OutputSocket.h"
 
@@ -16,7 +15,7 @@ class OutputSocket;
 
 class InputSocket {
 public: 
-	std::vector<OutputSocket*> LinkedSockets;
+	OutputSocket* LinkedSocket;
 	Node *ParentNode;
 	/**
 	 * unique id 
