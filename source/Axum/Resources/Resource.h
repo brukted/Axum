@@ -9,6 +9,7 @@
 
 #include<string>
 #include"../UI/Widgets/ExplorerItemUI.h"
+#include "../Parameter/ParamCollection.h"
 #include "boost/serialization/access.hpp"
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/string.hpp"
@@ -27,6 +28,7 @@ public:
 	std::string mPath;
 	unsigned int uid;
 	PathType mPathType;
+	ParamCollection mParams;
 	
 /**
  * Opens the resource in the appropirate editor.
@@ -46,6 +48,7 @@ void save(Archive & ar, const unsigned int version) const
 	ar &mPath;
 	ar &uid;
 	ar &mPathType;
+	ar &mParams;
 }
 
 template<class Archive>
@@ -56,6 +59,7 @@ void load(Archive & ar, const unsigned int version)
 	ar &mPath;
 	ar &uid;
 	ar &mPathType;
+	ar &mParams;
 }
 BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
