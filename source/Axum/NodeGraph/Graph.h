@@ -12,6 +12,7 @@
 #include "Node.h"
 #include "../Parameter/ParamCollection.h"
 #include "boost/serialization/access.hpp"
+#include "boost/serialization/base_object.hpp"
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/version.hpp"
 #include "boost/serialization/vector.hpp"
@@ -41,6 +42,7 @@ private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const
 {
+	ar &boost::serialization::base_object<Resource>(*this;)
 	ar &uid;
     ar &mParms;
 	ar &mNodes;
@@ -49,6 +51,7 @@ void save(Archive & ar, const unsigned int version) const
 template<class Archive>
 void load(Archive & ar, const unsigned int version)
 {
+	ar &boost::serialization::base_object<Resource>(*this;)
 	ar &uid;
     ar &mParms;
 	ar &mNodes;
