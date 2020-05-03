@@ -10,12 +10,15 @@
  * MaterialGraph implementation
  */
 
-void MaterialGraph::SetupCache(){
-
+void MaterialGraph::SetupCache()
+{
+    this->::Graph::SetupCache();
 }
-void MaterialGraph::ClearCache(){
-
+void MaterialGraph::ClearCache()
+{
+    this->::Graph::ClearCache();
 }
-void MaterialGraph::DeleteCache(){
-    
+void MaterialGraph::DeleteCache()
+{
+    this->Graph::DeleteCache();
 }
