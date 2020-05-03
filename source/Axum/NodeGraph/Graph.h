@@ -38,7 +38,7 @@ private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const
 {
-	ar &boost::serialization::base_object<Resource>(*this;)
+	ar &boost::serialization::base_object<Resource>(*this);
 	ar &uid;
 	ar &mNodes;
 }
@@ -46,7 +46,7 @@ void save(Archive & ar, const unsigned int version) const
 template<class Archive>
 void load(Archive & ar, const unsigned int version)
 {
-	ar &boost::serialization::base_object<Resource>(*this;)
+	ar &boost::serialization::base_object<Resource>(*this);
 	ar &uid;
 	ar &mNodes;
 }

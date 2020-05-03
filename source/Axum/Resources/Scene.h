@@ -33,7 +33,7 @@ void save(Archive & ar, const unsigned int version) const
 	ar &Vertices;
 	ar &Normals;
 	ar &Indices;
-	ar &SubMeshs
+	ar &SubMeshs;
 	ar &MaterialId;
 }
 template<class Archive>
@@ -42,7 +42,7 @@ void load(Archive & ar, const unsigned int version)
 	ar &Vertices;
 	ar &Normals;
 	ar &Indices;
-	ar &SubMeshs
+	ar &SubMeshs;
 	ar &MaterialId;
 }
 BOOST_SERIALIZATION_SPLIT_MEMBER()
