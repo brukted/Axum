@@ -22,13 +22,22 @@ for(auto &var : this->mNodes)
 }
 
 void Graph::SetupCache() {
-
+    for(auto &node : mNodes)
+    {
+        node.SetupCache();
+    }
 }
 
 void Graph::ClearCache() {
-
+    for(auto &node : mNodes)
+    {
+        node.ClearCache();
+    }
 }
 
 void Graph::DeleteCache() {
-
+    for(auto &node : mNodes)
+    {
+        node.DeleteCache();
+    }
 }
