@@ -32,6 +32,15 @@ public:
  * @param *Socket
  */
 void LinkTo(OutputSocket *Socket);
+
+//Initilizes data for live preview
+virtual void SetupCache();
+
+//Resets cache data
+virtual void ClearCache();
+
+//Deletes cache data
+virtual void DeleteCache();
 };
 
 #endif //_OUTPUTSOCKET_H
