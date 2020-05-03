@@ -45,6 +45,8 @@ public:
 	 * Contains the GUI information of the node
 	**/
 	GUIInfo mGUIInfo;
+	//Pointer to parent graph
+	Graph *parentGraph;
 	
 /**
  * Invalidate makes the current cache invalid and all  nodes based upon it.
