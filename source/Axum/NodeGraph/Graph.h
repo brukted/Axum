@@ -28,11 +28,14 @@ public:
  * @param Identifier
  */
 Node& GetNode(unsigned int identifier);
-	
+public:
+//Initilizes data for live preview
 virtual void SetupCache();
-	
+
+//Resets cache data
 virtual void ClearCache();
-	
+
+//Deletes cache data
 virtual void DeleteCache();
 private: 
 template<class Archive>
