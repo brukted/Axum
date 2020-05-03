@@ -18,7 +18,15 @@
  * Invalidate makes the current cache invalid and all  nodes based upon it.
  */
 void Node::Invalidate() {
-
+    this->SetNeedUpdate(true);
+    //Invalidates each nodes connected to the output sockets
+    for(auto &outSocket : this->mOutputSockets)
+    {
+        for(auto &inSocket : outSocket.LinkedSockets)
+        {
+            inSocket->ParentNode->Invalidate();
+        }
+    }
 }
 
 /**
