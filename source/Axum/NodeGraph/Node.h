@@ -32,10 +32,6 @@ public:
  	* Name of the node to be displayed on the ui.
  	*/
 	char16_t UIName[30];
-	/**
-	 * Unique identifer of the node in the graph
-	**/
-	unsigned int uid;
 	std::vector<InputSocket> mInputSockets;
 	std::vector<OutputSocket> mOutputSockets;
 	/**
@@ -48,7 +44,15 @@ public:
 	GUIInfo mGUIInfo;
 	//Pointer to parent graph
 	Graph *parentGraph;
-	
+
+private: 
+bool NeedUpdate = true;
+/**
+* Unique identifer of the node in the graph
+**/
+unsigned int uid;
+
+public:
 /**
  * Invalidate makes the current cache invalid and all  nodes based upon it.
  */
@@ -85,9 +89,7 @@ virtual void ExcuteForward(ParamCollection &GraphParams);
 //Excute the node and nodes connected to it's input sockets
 virtual void ExcuteBackWard(ParamCollection &GraphParams);
 
-private: 
-bool NeedUpdate = true;
-
+private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const
 {
