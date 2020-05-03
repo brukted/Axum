@@ -7,22 +7,18 @@
 #ifndef _GRAPH_H
 #define _GRAPH_H
 
-#include<vector>
+#include <vector>
 #include "../Resources/Resource.h"
 #include "Node.h"
-#include "../Parameter/ParamCollection.h"
 #include "boost/serialization/access.hpp"
 #include "boost/serialization/base_object.hpp"
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/version.hpp"
 #include "boost/serialization/vector.hpp"
+
 class Graph: public Resource {
 friend class boost::serialization::access;
-public: 
-	/**
-	 * List of parameters that nodes in the node tree can refer to.
- 	*/
-	ParamCollection mParms;
+public:
 	std::vector<Node> mNodes;
 	unsigned int uid;
 /**
@@ -44,7 +40,6 @@ void save(Archive & ar, const unsigned int version) const
 {
 	ar &boost::serialization::base_object<Resource>(*this;)
 	ar &uid;
-    ar &mParms;
 	ar &mNodes;
 }
 
@@ -53,7 +48,6 @@ void load(Archive & ar, const unsigned int version)
 {
 	ar &boost::serialization::base_object<Resource>(*this;)
 	ar &uid;
-    ar &mParms;
 	ar &mNodes;
 }
 BOOST_SERIALIZATION_SPLIT_MEMBER()
