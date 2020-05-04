@@ -9,7 +9,7 @@
 /**
  * Param implementation
  * 
- * GUI editable attribute of an object.Holds the data and method to show the attribuite to the user.
+ * GUI editable attribute of an object.Holds the data and method to show the attribute to the user.
  */
 
 
