@@ -10,6 +10,10 @@
  * MaterialGraph implementation
  */
 
+MaterialGraph::MaterialGraph(){
+
+}
+
 void MaterialGraph::SetupCache()
 {
     this->::Graph::SetupCache();

@@ -12,6 +12,7 @@
 
 class MaterialGraph: public Graph {
 public:
+MaterialGraph();
 virtual void SetupCache() override;
 virtual void ClearCache() override;
 virtual void DeleteCache() override;
