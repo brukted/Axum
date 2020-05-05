@@ -30,6 +30,8 @@ public:
  * @param *Socket
  */
 void LinkTo(OutputSocket*);
+
+void Unlink();
 };
 
 #endif //_INPUTSOCKET_H

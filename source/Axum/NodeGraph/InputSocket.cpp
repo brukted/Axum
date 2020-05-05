@@ -19,3 +19,7 @@
 void InputSocket::LinkTo(OutputSocket *socket) {
     this->LinkedSocket = socket;
 }
+
+void InputSocket::Unlink(){
+    this->LinkedSocket = nullptr;
+}
