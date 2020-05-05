@@ -33,6 +33,10 @@ public:
  */
 void LinkTo(InputSocket*);
 
+void UnlinkFrom(unsigned int uid);
+
+void UnlinkFrom(InputSocket*);
+
 //Initializes data for live preview
 virtual void SetupCache();
 
