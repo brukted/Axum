@@ -9,3 +9,11 @@
 /**
  * IntegerParam implementation
  */
+
+int IntegerParam::GetValue() const {
+    return this->value;
+}
+
+void IntegerParam::SetValue(int value) {
+    this->value = value;
+}

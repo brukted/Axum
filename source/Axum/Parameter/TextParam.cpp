@@ -9,3 +9,11 @@
 /**
  * TextParam implementation
  */
+
+std::string& TextParam::GetValue() {
+	return this->value;
+}
+
+void TextParam::SetValue(std::string &value) {
+	this->value = value;
+}

@@ -18,7 +18,13 @@
 class Float4Param: public Param {
 friend class boost::serialization::access;
 private:
-	float value[4];
+std::array<float,4> value;
+	
+public:
+std::array<float,4> GetValue() const;
+
+void SetValue(std::array<float,4>);
+
 private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const

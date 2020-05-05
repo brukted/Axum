@@ -16,7 +16,13 @@
 class FloatParam: public Param {
 friend class boost::serialization::access;
 private:
-	float value;
+float value;
+
+public:
+float GetValue() const ;
+
+void SetValue(float value);
+
 private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const

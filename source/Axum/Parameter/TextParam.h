@@ -17,8 +17,14 @@
 
 class TextParam: public Param {
 friend class boost::serialization::access;
-public: 
-	std::string value;
+private: 
+std::string value;
+
+public:
+std::string& GetValue();
+
+void SetValue(std::string &value);
+
 private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const

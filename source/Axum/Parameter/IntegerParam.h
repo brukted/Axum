@@ -15,8 +15,14 @@
 
 class IntegerParam: public Param {
 friend class boost::serialization::access;
-public: 
-	int value;
+private: 
+int value;
+
+public:
+int GetValue() const;
+
+void SetValue(int value);
+
 private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const

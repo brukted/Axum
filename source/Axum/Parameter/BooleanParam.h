@@ -15,6 +15,12 @@
 class BooleanParam: public Param {
 private:
 bool value;
+
+public:
+bool GetValue() const;
+
+void SetValue(bool value);
+
 private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const

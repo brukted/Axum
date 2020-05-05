@@ -16,7 +16,13 @@
 class Integer3Param: public Param {
 friend class boost::serialization::access;
 private:
-    int value[3];
+std::array<int,3> value;
+
+public:
+std::array<int,3> GetValue() const;
+
+void SetValue(std::array<int,3>);
+
 private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const

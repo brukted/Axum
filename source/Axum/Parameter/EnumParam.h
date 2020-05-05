@@ -24,6 +24,14 @@ private:
 std::map<int,std::string> enums;
 int value;
 
+public:
+int GetKey() const;
+
+void SetKey(int key);
+
+std::string& ToValue(int key);
+
+private:
 template<class Archive>
 void save(Archive & ar, const unsigned int version) const
 {
