@@ -15,7 +15,7 @@ public:
 	int X = 0;
 	int Y = 0;
 	bool isHidden = false;
-//serilization
+//serialization
 private:
 friend class boost::serialization::access;
 template<class Archive>
