@@ -31,7 +31,7 @@ public:
 /**
  * @param *Socket
  */
-void LinkTo(OutputSocket *Socket);
+void LinkTo(InputSocket*);
 
 //Initializes data for live preview
 virtual void SetupCache();

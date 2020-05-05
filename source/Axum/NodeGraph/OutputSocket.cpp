@@ -16,8 +16,8 @@
 /**
  * @param *Socket
  */
-void OutputSocket::LinkTo(OutputSocket *Socket) {
-
+void OutputSocket::LinkTo(InputSocket *socket) {
+    this->LinkedSockets.push_back(socket);
 }
 
 void OutputSocket::SetupCache(){return;}

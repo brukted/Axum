@@ -16,6 +16,6 @@
 /**
  * @param *Socket
  */
-void InputSocket::LinkTo(OutputSocket *Socket) {
-
+void InputSocket::LinkTo(OutputSocket *socket) {
+    this->LinkedSocket = socket;
 }

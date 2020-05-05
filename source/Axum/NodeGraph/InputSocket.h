@@ -29,7 +29,7 @@ public:
 /**
  * @param *Socket
  */
-void LinkTo(OutputSocket* Socket);
+void LinkTo(OutputSocket*);
 };
 
 #endif //_INPUTSOCKET_H
