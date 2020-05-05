@@ -9,7 +9,7 @@
 /**
  * RenderManager implementation
  * 
- * Manages avilabele render engines and holds a pointer to the current render engine.
+ * Manages available render engines and holds a pointer to the current render engine.
  */
 
 

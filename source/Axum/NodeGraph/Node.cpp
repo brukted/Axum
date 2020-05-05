@@ -10,7 +10,7 @@
  * Node implementation
  * 
  * Generic node class.Node class defines basic common aspects of all kinds nodes.
- * Note:If you want to create new type of node graph system you should create drived node class from this as well as a speciliazied node tree,graph and sockets.
+ * Note:If you want to create new type of node graph system you should create derived node class from this as well as a specialized node tree,graph and sockets.
  */
 
 

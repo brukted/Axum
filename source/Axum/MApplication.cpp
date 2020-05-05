@@ -27,19 +27,19 @@ void MApplication::on_activate(){
     while(gtk_events_pending()){
         gtk_main_iteration();
     }
-    //Start the Prefernce Manager first as it does not depend on anything
+    //Start the Preference Manager first as it does not depend on anything
     PreferenceManager::getInstance().Startup();
     //Starts Undo Manager
     UndoManager::getInstance().Startup();
-    //Starts the manager and intilizes package related stufffs
+    //Starts the manager and initializes package related stuffs
     PackageManager::getInstance().Startup();
-    //Starts the manager and intilize render engines 
+    //Starts the manager and initialize render engines 
     RenderManager::getInstance().Startup();
-    //Starts the manager and initilizes bakery and it's bakers
+    //Starts the manager and initializes bakery and it's bakers
     BakeryManager::getInstance().Startup();
-    //Starts the manager and intilizes editors 
+    //Starts the manager and initializes editors 
     EditorManager::getInstance().Startup();
-    //Starts the manager and initilizes the main window but won't show it
+    //Starts the manager and initializes the main window but won't show it
     WindowManager::getInstance(this).Startup();
     //Addon Manager is started at last because it has reference to all aspects of the software
     AddonManager::getInstance().Startup();

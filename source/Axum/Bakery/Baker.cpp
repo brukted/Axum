@@ -9,7 +9,7 @@
 /**
  * Baker implementation
  * 
- * A base class for all bakers.Bakers are objects which specifie a spcifiec type of bake and contain all the kernel for the bake.
+ * A base class for all bakers.Bakers are objects which specified a specific type of bake and contain all the kernel for the bake.
  */
 
 

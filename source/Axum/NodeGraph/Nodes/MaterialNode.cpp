@@ -9,7 +9,7 @@
 /**
  * MaterialNode implementation
  * 
- * A base class for all material nodes such as teture,normal etc.
+ * A base class for all material nodes such as texture,normal etc.
  */
 
 

@@ -9,5 +9,5 @@
 /**
  * DockablePanel implementation
  * 
- * Base class for all wigets that can be docked on the editor.
+ * Base class for all widgets that can be docked on the editor.
  */

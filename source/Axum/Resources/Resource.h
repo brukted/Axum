@@ -31,7 +31,7 @@ public:
 	ParamCollection mParams;
 	
 /**
- * Opens the resource in the appropirate editor.
+ * Opens the resource in the appropriate editor.
  */
 virtual void Open();
 	

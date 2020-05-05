@@ -9,7 +9,7 @@
 /**
  * Package implementation
  * 
- * Easily Seriliazible Data Type containg all infos about the currrent session
+ * Easily Serializable Data Type containing all infos about the current session
  */
 
 

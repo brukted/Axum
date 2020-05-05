@@ -9,7 +9,7 @@
 /**
  * EditorUI implementation
  * 
- * A basic space on the ui with common functionalites such as stacking,resizing e.t.c.
+ * A basic space on the ui with common functionalities such as stacking,resizing e.t.c.
  */
 
 

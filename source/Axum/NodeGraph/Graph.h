@@ -26,7 +26,7 @@ public:
  */
 Node& GetNode(unsigned int identifier);
 public:
-//Initilizes data for live preview
+//Initializes data for live preview
 virtual void SetupCache();
 
 //Resets cache data

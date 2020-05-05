@@ -70,7 +70,7 @@ InputSocket& GetInputSocket(unsigned int uid);
 	
 virtual NodeUI GetUI();
 
-//Initilizes data for live preview
+//Initializes data for live preview
 virtual void SetupCache();
 
 //Resets cache data
@@ -80,7 +80,7 @@ virtual void ClearCache();
 virtual void DeleteCache();
 
 //Excutes the node
-//Drived Nodes should implement this as it's empty
+//Derived Nodes should implement this as it's empty
 virtual void Excute(ParamCollection &GraphParams){return;};
 
 //Excute the node and nodes connected to it's output sockets
