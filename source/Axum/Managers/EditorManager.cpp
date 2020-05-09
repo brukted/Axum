@@ -3,17 +3,16 @@
  * @author Bruk Tedla
  */
 
-
 #include "EditorManager.h"
 
 /**
  * EditorManager implementation
  */
 
-void EditorManager::Startup(){
-
+void EditorManager::Startup()
+{
 }
 
-void EditorManager::Shutdown(){
-    
+void EditorManager::Shutdown()
+{
 }

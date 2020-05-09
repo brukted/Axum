@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #include "MApplication.h"
 #include <iostream>
 
@@ -11,20 +10,22 @@
  * MApplication implementation
  */
 
-
-MApplication::MApplication():Gtk::Application("com.bruk.tedla.Axum", Gio::APPLICATION_HANDLES_OPEN){
-    
+MApplication::MApplication() : Gtk::Application("com.bruk.tedla.Axum", Gio::APPLICATION_HANDLES_OPEN)
+{
 }
 
-Glib::RefPtr<MApplication> MApplication::create(){
-    return Glib::RefPtr<MApplication> (new MApplication());
+Glib::RefPtr<MApplication> MApplication::create()
+{
+    return Glib::RefPtr<MApplication>(new MApplication());
 }
 
-void MApplication::on_activate(){
-    auto splashScreen = SplashWindow(500,500);
+void MApplication::on_activate()
+{
+    auto splashScreen = SplashWindow(500, 500);
     this->add_window(splashScreen);
     splashScreen.present();
-    while(gtk_events_pending()){
+    while (gtk_events_pending())
+    {
         gtk_main_iteration();
     }
     //Start the Preference Manager first as it does not depend on anything
@@ -33,11 +34,11 @@ void MApplication::on_activate(){
     UndoManager::getInstance().Startup();
     //Starts the manager and initializes package related stuffs
     PackageManager::getInstance().Startup();
-    //Starts the manager and initialize render engines 
+    //Starts the manager and initialize render engines
     RenderManager::getInstance().Startup();
     //Starts the manager and initializes bakery and it's bakers
     BakeryManager::getInstance().Startup();
-    //Starts the manager and initializes editors 
+    //Starts the manager and initializes editors
     EditorManager::getInstance().Startup();
     //Starts the manager and initializes the main window but won't show it
     WindowManager::getInstance(this).Startup();
@@ -46,8 +47,9 @@ void MApplication::on_activate(){
     WindowManager::getInstance().ShowMainWindow();
 }
 
-void MApplication::on_open(const Gio::Application::type_vec_files& files,const Glib::ustring& hint){
-    for(auto f : files)
+void MApplication::on_open(const Gio::Application::type_vec_files &files, const Glib::ustring &hint)
+{
+    for (auto f : files)
     {
         PackageManager::getInstance().LoadProject(f);
     }

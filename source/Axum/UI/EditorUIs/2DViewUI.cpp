@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #include "2DViewUI.h"
 
 /**

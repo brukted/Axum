@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _OUTPUTSOCKET_H
 #define _OUTPUTSOCKET_H
 
@@ -15,9 +14,10 @@
 class Node;
 class InputSocket;
 
-class OutputSocket {
-public: 
-	std::vector<InputSocket*> LinkedSockets;
+class OutputSocket
+{
+public:
+	std::vector<InputSocket *> LinkedSockets;
 	Node *ParentNode;
 	/**
 	 * unique id 
@@ -27,24 +27,24 @@ public:
 	 *Name of the node to be displayed on ui
 	 **/
 	std::string UIName;
-	
-/**
+
+	/**
  * @param *Socket
  */
-void LinkTo(InputSocket*);
+	void LinkTo(InputSocket *);
 
-void UnlinkFrom(unsigned int uid);
+	void UnlinkFrom(unsigned int uid);
 
-void UnlinkFrom(InputSocket*);
+	void UnlinkFrom(InputSocket *);
 
-//Initializes data for live preview
-virtual void SetupCache();
+	//Initializes data for live preview
+	virtual void SetupCache();
 
-//Resets cache data
-virtual void ClearCache();
+	//Resets cache data
+	virtual void ClearCache();
 
-//Deletes cache data
-virtual void DeleteCache();
+	//Deletes cache data
+	virtual void DeleteCache();
 };
 
 #endif //_OUTPUTSOCKET_H

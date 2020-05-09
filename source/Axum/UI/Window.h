@@ -3,15 +3,15 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _WINDOW_H
 #define _WINDOW_H
 
-#include<vector>
-#include"EditorUI.h"
+#include <vector>
+#include "EditorUI.h"
 
-class Window {
-public: 
+class Window
+{
+public:
 	std::vector<EditorUI> EditorUIs;
 };
 

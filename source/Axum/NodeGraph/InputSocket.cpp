@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #include "InputSocket.h"
 
 /**
@@ -12,14 +11,15 @@
  * Generic Input Socket.Defines common and basic aspects of all input socket types.
  */
 
-
 /**
  * @param *Socket
  */
-void InputSocket::LinkTo(OutputSocket *socket) {
+void InputSocket::LinkTo(OutputSocket *socket)
+{
     this->LinkedSocket = socket;
 }
 
-void InputSocket::Unlink(){
+void InputSocket::Unlink()
+{
     this->LinkedSocket = nullptr;
 }

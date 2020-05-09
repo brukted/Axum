@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _BAKERY_H
 #define _BAKERY_H
 
@@ -11,20 +10,21 @@
 #include "BakerParams.h"
 #include "Baker.h"
 
-class Bakery {
-public: 
+class Bakery
+{
+public:
 	BakeryParams Parms;
 	std::vector<Baker> Bakers;
-	
-/**
+
+	/**
  * Calls bake on all bakers.
  */
-void Bake();
-	
-/**
+	void Bake();
+
+	/**
  * @param baker
  */
-void AddBaker(Baker baker);
+	void AddBaker(Baker baker);
 };
 
 #endif //_BAKERY_H

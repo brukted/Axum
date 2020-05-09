@@ -3,30 +3,29 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _EDITORUI_H
 #define _EDITORUI_H
 
-#include<string>
+#include <string>
 #include "../Editor/Editor.h"
 #include "DockablePanel.h"
 
-
-class EditorUI: public DockablePanel {
-public: 
+class EditorUI : public DockablePanel
+{
+public:
 	Editor *editor = nullptr;
-	
-/**
+
+	/**
  * Returns a pointer to Gtk container where more UI can be added.
  */
-void GetSpace();
-	
-/**
+	void GetSpace();
+
+	/**
  * @param title
  */
-void SetTitle(std::string title);
-	
-void SetIcon();
+	void SetTitle(std::string title);
+
+	void SetIcon();
 };
 
 #endif //_EDITORUI_H

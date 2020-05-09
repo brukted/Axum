@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #include "Node.h"
 
 /**
@@ -13,16 +12,16 @@
  * Note:If you want to create new type of node graph system you should create derived node class from this as well as a specialized node tree,graph and sockets.
  */
 
-
 /**
  * Invalidate makes the current cache invalid and all  nodes based upon it.
  */
-void Node::Invalidate() {
+void Node::Invalidate()
+{
     this->SetNeedUpdate(true);
     //Invalidates each nodes connected to the output sockets
-    for(auto &outSocket : this->mOutputSockets)
+    for (auto &outSocket : this->mOutputSockets)
     {
-        for(auto &inSocket : outSocket.LinkedSockets)
+        for (auto &inSocket : outSocket.LinkedSockets)
         {
             inSocket->ParentNode->Invalidate();
         }
@@ -33,10 +32,12 @@ void Node::Invalidate() {
  * @param IdName
  * @return OutputSocket
  */
-OutputSocket& Node::GetOutputSocket(unsigned int uid) {
-    for(auto &var : this->mOutputSockets)
+OutputSocket &Node::GetOutputSocket(unsigned int uid)
+{
+    for (auto &var : this->mOutputSockets)
     {
-        if(var.uid == uid) return var;
+        if (var.uid == uid)
+            return var;
     }
 }
 
@@ -44,55 +45,63 @@ OutputSocket& Node::GetOutputSocket(unsigned int uid) {
  * @param IdName
  * @return InputSocket
  */
-InputSocket& Node::GetInputSocket(unsigned int uid) {
-    for(auto &var : this->mInputSockets)
+InputSocket &Node::GetInputSocket(unsigned int uid)
+{
+    for (auto &var : this->mInputSockets)
     {
-        if(var.uid == uid) return var;
+        if (var.uid == uid)
+            return var;
     }
 }
 
 /**
  * @return NodeUI
 */
-NodeUI Node::GetUI() {
+NodeUI Node::GetUI()
+{
     return NodeUI();
 }
 
-void Node::SetupCache(){
-    for(auto &socket : mOutputSockets)
+void Node::SetupCache()
+{
+    for (auto &socket : mOutputSockets)
     {
         socket.SetupCache();
     }
 }
 
-void Node::ClearCache(){
-    for(auto &socket : mOutputSockets)
+void Node::ClearCache()
+{
+    for (auto &socket : mOutputSockets)
     {
         socket.ClearCache();
     }
 }
 
-void Node::DeleteCache(){
-    for(auto &socket : mOutputSockets)
+void Node::DeleteCache()
+{
+    for (auto &socket : mOutputSockets)
     {
         socket.DeleteCache();
     }
 }
 
-void Node::ExcuteForward(ParamCollection &GraphParams){
+void Node::ExcuteForward(ParamCollection &GraphParams)
+{
     this->Excute(GraphParams);
-    for(auto &outSocket : this->mOutputSockets)
+    for (auto &outSocket : this->mOutputSockets)
     {
-        for(auto &inSocket : outSocket.LinkedSockets)
+        for (auto &inSocket : outSocket.LinkedSockets)
         {
             inSocket->ParentNode->ExcuteForward(GraphParams);
         }
     }
 }
 
-void Node::ExcuteBackWard(ParamCollection &GraphParams){
+void Node::ExcuteBackWard(ParamCollection &GraphParams)
+{
     this->Excute(GraphParams);
-    for(auto &inSocket : this->mInputSockets)
+    for (auto &inSocket : this->mInputSockets)
     {
         inSocket.LinkedSocket->ParentNode->ExcuteBackWard(GraphParams);
     }

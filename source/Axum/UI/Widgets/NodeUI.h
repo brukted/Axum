@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _NODEUI_H
 #define _NODEUI_H
 
@@ -16,8 +15,9 @@ class Node;
 class OutputSocketUI;
 class InputSocketUI;
 
-class NodeUI {
-public: 
+class NodeUI
+{
+public:
 	std::vector<OutputSocketUI> mOutputSockts;
 	std::vector<InputSocketUI> mInputSockets;
 	Node *mNode;

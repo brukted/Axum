@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _MAPPLICATION_H
 #define _MAPPLICATION_H
 
@@ -18,17 +17,18 @@
 #include "Managers/WindowManager.h"
 #include "Managers/AddonManager.h"
 
-class MApplication:public Gtk::Application {
+class MApplication : public Gtk::Application
+{
 protected:
 	MApplication();
 
 public:
-	constexpr static const unsigned int ApplicationVersion[3] = {1,0,0};
+	constexpr static const unsigned int ApplicationVersion[3] = {1, 0, 0};
 	static Glib::RefPtr<MApplication> create();
-	
+
 protected:
 	void on_activate() override;
-	void on_open(const Gio::Application::type_vec_files& files,const Glib::ustring& hint) override;
+	void on_open(const Gio::Application::type_vec_files &files, const Glib::ustring &hint) override;
 };
 
 #endif //_MAPPLICATION_H

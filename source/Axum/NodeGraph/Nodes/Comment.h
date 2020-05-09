@@ -5,7 +5,7 @@
 #include "../Node.h"
 #include <string>
 
-class Comment:public Node 
+class Comment : public Node
 {
 private:
     std::string commentText;
@@ -13,11 +13,13 @@ private:
 public:
     Comment(/* args */);
     ~Comment();
-    std::string& getCommentText() {
-    	return this->commentText;
+    std::string &getCommentText()
+    {
+        return this->commentText;
     }
-    void setCommentText(std::string &commentText) {
-    	this->commentText = commentText;
+    void setCommentText(std::string &commentText)
+    {
+        this->commentText = commentText;
     }
 };
 

@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #include "PackageManager.h"
 
 /**
@@ -12,28 +11,27 @@
  * ProjectManager holds the project that is currently opened and provides access to it
  */
 
-
 /**
  * @param Path
  */
-void PackageManager::LoadProject(std::string &Path) {
-
+void PackageManager::LoadProject(std::string &Path)
+{
 }
 /**
  * @param file
  */
-void PackageManager::LoadProject(const Glib::RefPtr<Gio::File> &file) {
-
+void PackageManager::LoadProject(const Glib::RefPtr<Gio::File> &file)
+{
 }
 
-void PackageManager::SavePackage() {
-
+void PackageManager::SavePackage()
+{
 }
 
-void PackageManager::Startup(){
-
+void PackageManager::Startup()
+{
 }
 
-void PackageManager::Shutdown(){
-    
+void PackageManager::Shutdown()
+{
 }

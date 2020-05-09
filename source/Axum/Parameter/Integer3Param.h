@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _INTEGER3PARAM_H
 #define _INTEGER3PARAM_H
 
@@ -13,31 +12,33 @@
 #include "boost/serialization/array.hpp"
 #include "boost/serialization/version.hpp"
 
-class Integer3Param: public Param {
-friend class boost::serialization::access;
+class Integer3Param : public Param
+{
+	friend class boost::serialization::access;
+
 private:
-std::array<int,3> value;
+	std::array<int, 3> value;
 
 public:
-std::array<int,3> GetValue() const;
+	std::array<int, 3> GetValue() const;
 
-void SetValue(std::array<int,3>);
+	void SetValue(std::array<int, 3>);
 
 private:
-template<class Archive>
-void save(Archive & ar, const unsigned int version) const
-{
-	ar &boost::serialization::base_object<Param>(*this);
-	ar &value;
-}
+	template <class Archive>
+	void save(Archive &ar, const unsigned int version) const
+	{
+		ar &boost::serialization::base_object<Param>(*this);
+		ar &value;
+	}
 
-template<class Archive>
-void load(Archive & ar, const unsigned int version)
-{
-	ar &boost::serialization::base_object<Param>(*this);
-	ar &value;
-}
-BOOST_SERIALIZATION_SPLIT_MEMBER()
+	template <class Archive>
+	void load(Archive &ar, const unsigned int version)
+	{
+		ar &boost::serialization::base_object<Param>(*this);
+		ar &value;
+	}
+	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
-BOOST_CLASS_VERSION(Integer3Param,1)
+BOOST_CLASS_VERSION(Integer3Param, 1)
 #endif //_INTEGER3PARAM_H

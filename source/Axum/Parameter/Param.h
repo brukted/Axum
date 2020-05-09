@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _PARAM_H
 #define _PARAM_H
 
@@ -16,38 +15,46 @@
 #include "boost/serialization/vector.hpp"
 #include "boost/serialization/version.hpp"
 
-enum UIType { Slider, Angle, Color };
-class Param {
-friend class boost::serialization::access;
-public: 
+enum UIType
+{
+	Slider,
+	Angle,
+	Color
+};
+class Param
+{
+	friend class boost::serialization::access;
+
+public:
 	std::string Name;
 	unsigned int uid;
 	UIType mUIType;
 	std::vector<UIType> SupportedTypes;
-	
-/**
+
+	/**
  * Displays the data to the ui.
  */
-virtual ParamUI GetEditUI();
-	
-virtual ParamUI GetDisplayUI();
-private:
-template<class Archive>
-void save(Archive & ar, const unsigned int version) const
-{
-	ar &uid;
-    ar &Name;
-	ar &mUIType;
-}
+	virtual ParamUI GetEditUI();
 
-template<class Archive>
-void load(Archive & ar, const unsigned int version)
-{
-	ar &uid;
-    ar &Name;
-	ar &mUIType;
-}
-BOOST_SERIALIZATION_SPLIT_MEMBER()
+	virtual ParamUI GetDisplayUI();
+
+private:
+	template <class Archive>
+	void save(Archive &ar, const unsigned int version) const
+	{
+		ar &uid;
+		ar &Name;
+		ar &mUIType;
+	}
+
+	template <class Archive>
+	void load(Archive &ar, const unsigned int version)
+	{
+		ar &uid;
+		ar &Name;
+		ar &mUIType;
+	}
+	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
-BOOST_CLASS_VERSION(Param,1)
+BOOST_CLASS_VERSION(Param, 1)
 #endif //_PARAM_H

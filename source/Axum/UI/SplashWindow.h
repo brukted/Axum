@@ -8,10 +8,11 @@
 
 #include "gtkmm-3.0\gtkmm.h"
 
-class SplashWindow:public Gtk::Window{
-    public: SplashWindow();
-    public: SplashWindow(int width,int height);
+class SplashWindow : public Gtk::Window
+{
+public:
+    SplashWindow();
+    SplashWindow(int width, int height);
 };
-
 
 #endif /*SPLASHWIDOW_H*/

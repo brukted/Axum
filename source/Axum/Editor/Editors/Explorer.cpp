@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #include "Explorer.h"
 
 /**

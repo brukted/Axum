@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #include "WindowManager.h"
 
 /**
@@ -12,23 +11,23 @@
  * Manages Windows and editors layout also can be used to add  new editor into the specified window.
  */
 
-
 /**
  * @param window
  */
-void WindowManager::AddWindow(Window window) {
-
+void WindowManager::AddWindow(Window window)
+{
 }
 
-void WindowManager::Startup(){
-
+void WindowManager::Startup()
+{
 }
 
-void WindowManager::Shutdown(){
-    
+void WindowManager::Shutdown()
+{
 }
 
-void WindowManager::ShowMainWindow(){
+void WindowManager::ShowMainWindow()
+{
     auto win = new MainWindow();
     this->MainWin = win;
     this->app->add_window(*win);

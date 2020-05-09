@@ -3,12 +3,11 @@
  * @author Bruk Tedla
  */
 
-
 #include "AtomicNodes.h"
 
 /**
  * AtomicNodes implementation
-*/ 
+*/
 
 /**
  * All atomic nodes are implemented here
@@ -61,7 +60,7 @@
 /**
  * PixProNode implementation
  * 
- * Pixle Processor Node
+ * Pixel Processor Node
  */
 
 /**

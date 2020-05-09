@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _INPUTSOCKET_H
 #define _INPUTSOCKET_H
 #include <string>
@@ -13,9 +12,10 @@
 class Node;
 class OutputSocket;
 
-class InputSocket {
-public: 
-	OutputSocket* LinkedSocket;
+class InputSocket
+{
+public:
+	OutputSocket *LinkedSocket;
 	Node *ParentNode;
 	/**
 	 * unique id 
@@ -25,13 +25,13 @@ public:
 	 *Name of the node to be displayed on ui
 	 **/
 	std::string UIName;
-	
-/**
+
+	/**
  * @param *Socket
  */
-void LinkTo(OutputSocket*);
+	void LinkTo(OutputSocket *);
 
-void Unlink();
+	void Unlink();
 };
 
 #endif //_INPUTSOCKET_H

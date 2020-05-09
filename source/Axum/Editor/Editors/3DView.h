@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _3DVIEW_H
 #define _3DVIEW_H
 
@@ -11,20 +10,20 @@
 #include "../../NodeGraph/MaterialGraph.h"
 #include "../../Resources/Scene.h"
 
-class _3DView: public Editor {
-public: 
-	
-/**
+class _3DView : public Editor
+{
+public:
+    /**
  * @param *graph
  */
-void Display(MaterialGraph *graph);
-	
-/**
+    void Display(MaterialGraph *graph);
+
+    /**
  * @param *scene
  */
-void UpdateScene(Scene *scene);
-	
-void Update();
+    void UpdateScene(Scene *scene);
+
+    void Update();
 };
 
 #endif //_3DVIEW_H

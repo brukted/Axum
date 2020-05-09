@@ -1,8 +1,8 @@
 #include <iostream>
-#include"MApplication.h"
+#include "MApplication.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-auto application = MApplication::create();
-return application->run(argc, argv);
+    auto application = MApplication::create();
+    return application->run(argc, argv);
 }

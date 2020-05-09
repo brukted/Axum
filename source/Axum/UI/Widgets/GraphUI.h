@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _GRAPHUI_H
 #define _GRAPHUI_H
 
@@ -12,8 +11,9 @@
 #include "NodeLinkUI.h"
 #include "../../NodeGraph/Graph.h"
 
-class GraphUI {
-public: 
+class GraphUI
+{
+public:
 	std::vector<NodeUI> UINodes;
 	std::vector<NodeLinkUI> UILinks;
 	Graph *mGraph;

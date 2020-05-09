@@ -3,17 +3,19 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _BITMAP_H
 #define _BITMAP_H
 
-#include<vector>
+#include <vector>
 #include "Resource.h"
 
+class Bitmap : public Resource
+{
+	enum Format
+	{
+	};
 
-class Bitmap: public Resource {
-	enum Format {  };
-public: 
+public:
 	std::vector<unsigned char> Data;
 	Format mFormat;
 };

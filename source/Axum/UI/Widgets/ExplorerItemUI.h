@@ -3,11 +3,11 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _EXPLORERITEMUI_H
 #define _EXPLORERITEMUI_H
 
-class ExplorerItemUI {
+class ExplorerItemUI
+{
 };
 
 #endif //_EXPLORERITEMUI_H

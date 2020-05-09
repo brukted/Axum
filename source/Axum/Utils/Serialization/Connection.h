@@ -3,28 +3,28 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _CONNECTION_H
 #define _CONNECTION_H
 
-class Connection {
-public: 
+class Connection
+{
+public:
 	/**
  * UID of the source node
  */
-unsigned int FromNode;
+	unsigned int FromNode;
 	/**
  * UID of the source socket in the source node
  */
-unsigned int FromSocket;
+	unsigned int FromSocket;
 	/**
  * UID of the destination(sink) node
  */
-unsigned int ToNode;
+	unsigned int ToNode;
 	/**
  * UID of the destination(Sink)  socket.
  */
-unsigned int ToSocket;
+	unsigned int ToSocket;
 };
 
 #endif //_CONNECTION_H

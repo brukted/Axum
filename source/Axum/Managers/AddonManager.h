@@ -3,30 +3,33 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _ADDONMANAGER_H
 #define _ADDONMANAGER_H
 
-#include<vector>
-#include"../Addon/Addon.h"
+#include <vector>
+#include "../Addon/Addon.h"
 
-class AddonManager {
+class AddonManager
+{
 public:
-	static AddonManager& getInstance(){
+	static AddonManager &getInstance()
+	{
 		static AddonManager instance;
 		return instance;
 	}
+
 private:
 	AddonManager(){};
+
 public:
-	AddonManager(AddonManager const&) = delete;
-	void operator=(AddonManager const&) = delete;
-	
+	AddonManager(AddonManager const &) = delete;
+	void operator=(AddonManager const &) = delete;
+
 	std::vector<Addon> Addons;
-	
+
 	void Startup();
 
-    void Shutdown();
+	void Shutdown();
 
 	void Refresh();
 };

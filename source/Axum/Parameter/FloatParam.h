@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _FLOATPARAM_H
 #define _FLOATPARAM_H
 
@@ -12,32 +11,33 @@
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/version.hpp"
 
+class FloatParam : public Param
+{
+	friend class boost::serialization::access;
 
-class FloatParam: public Param {
-friend class boost::serialization::access;
 private:
-float value;
+	float value;
 
 public:
-float GetValue() const ;
+	float GetValue() const;
 
-void SetValue(float value);
+	void SetValue(float value);
 
 private:
-template<class Archive>
-void save(Archive & ar, const unsigned int version) const
-{
-	ar &boost::serialization::base_object<Param>(*this);
-	ar &value;
-}
+	template <class Archive>
+	void save(Archive &ar, const unsigned int version) const
+	{
+		ar &boost::serialization::base_object<Param>(*this);
+		ar &value;
+	}
 
-template<class Archive>
-void load(Archive & ar, const unsigned int version)
-{
-	ar &boost::serialization::base_object<Param>(*this);
-	ar &value;
-}
-BOOST_SERIALIZATION_SPLIT_MEMBER()
+	template <class Archive>
+	void load(Archive &ar, const unsigned int version)
+	{
+		ar &boost::serialization::base_object<Param>(*this);
+		ar &value;
+	}
+	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
-BOOST_CLASS_VERSION(FloatParam,1)
+BOOST_CLASS_VERSION(FloatParam, 1)
 #endif //_FLOATPARAM_H

@@ -3,22 +3,24 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _UNDOMANAGER_H
 #define _UNDOMANAGER_H
 
 #include "PreferenceManager.h"
-#include"boost/circular_buffer.hpp"
-#include"../Operators/Operator.h"
+#include "boost/circular_buffer.hpp"
+#include "../Operators/Operator.h"
 
 //a special iterator for RecentOpreations
 typedef boost::circular_buffer<Operator>::iterator uiterator;
-class UndoManager {
+class UndoManager
+{
 public:
-	static UndoManager& getInstance(){
+	static UndoManager &getInstance()
+	{
 		static UndoManager instance;
 		return instance;
 	}
+
 private:
 	UndoManager(){};
 	/**
@@ -35,21 +37,20 @@ private:
 	bool canUndoFurther = false;
 
 public:
-	UndoManager(UndoManager const&) = delete;
-	void operator=(UndoManager const&) = delete;
+	UndoManager(UndoManager const &) = delete;
+	void operator=(UndoManager const &) = delete;
 	/**
  	* @param mOperator
  	*/
 	void AddOperation(Operator mOperator);
-	
+
 	void Undo();
-	
+
 	void Redo();
-	
+
 	void Startup();
 
 	void Shutdown();
-
 };
 
 #endif //_UNDOMANAGER_H

@@ -3,15 +3,14 @@
  * @author Bruk Tedla
  */
 
-
 #include "MaterialGraph.h"
 
 /**
  * MaterialGraph implementation
  */
 
-MaterialGraph::MaterialGraph(){
-
+MaterialGraph::MaterialGraph()
+{
 }
 
 void MaterialGraph::SetupCache()

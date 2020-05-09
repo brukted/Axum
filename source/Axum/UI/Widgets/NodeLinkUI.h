@@ -3,15 +3,15 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _NODELINKUI_H
 #define _NODELINKUI_H
 
-#include"../../NodeGraph/OutputSocket.h"
-#include"../../NodeGraph/InputSocket.h"
+#include "../../NodeGraph/OutputSocket.h"
+#include "../../NodeGraph/InputSocket.h"
 
-class NodeLinkUI {
-public: 
+class NodeLinkUI
+{
+public:
 	OutputSocket *From;
 	InputSocket *To;
 };

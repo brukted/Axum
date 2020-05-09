@@ -3,13 +3,13 @@
  * @author Bruk Tedla
  */
 
-
 #ifndef _ADDON_H
 #define _ADDON_H
 
-#include<string>
+#include <string>
 
-class Addon {
+class Addon
+{
     std::string name;
 };
 

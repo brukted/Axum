@@ -3,7 +3,6 @@
  * @author Bruk Tedla
  */
 
-
 #include "Library.h"
 
 /**
@@ -14,14 +13,13 @@
  * ThumbnailBuilder implementation
  */
 
-
-void Library::ThumbnailBuilder::RebuildChache() {
-
+void Library::ThumbnailBuilder::RebuildChache()
+{
 }
 
 /**
  * @param path
  */
-void Library::ThumbnailBuilder::GetThumbnail(std::string path) {
-
+void Library::ThumbnailBuilder::GetThumbnail(std::string path)
+{
 }

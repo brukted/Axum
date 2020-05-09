@@ -3,19 +3,17 @@
  * @author Bruk Tedla
  */
 
-
 #include "Resource.h"
 
 /**
  * Resource implementation
  */
 
-
 /**
  * Opens the resource in the appropriate editor.
  */
-void Resource::Open() {
-
+void Resource::Open()
+{
 }
 
 /**
@@ -23,7 +21,8 @@ void Resource::Open() {
  * 
  * @return ExplorerItemUI
  */
-ExplorerItemUI Resource::GetUI() {
+ExplorerItemUI Resource::GetUI()
+{
     //TODO:
     return ExplorerItemUI();
 }

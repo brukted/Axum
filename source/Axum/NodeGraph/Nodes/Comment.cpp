@@ -9,9 +9,11 @@ Comment::~Comment()
 {
 }
 
-std::string& Comment::getCommentText() {
-    	return (this->commentText);
-    }
-void Comment::setCommentText(std::string &commentText) {
+std::string &Comment::getCommentText()
+{
+    return (this->commentText);
+}
+void Comment::setCommentText(std::string &commentText)
+{
     this->commentText = commentText;
 }
