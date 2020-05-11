@@ -4,8 +4,9 @@
 # 
 
 find_package(PkgConfig REQUIRED QUIET)
-find_package(Boost 1.72.0 REQUIRED COMPONENTS filesystem serialization log)
+find_package(Boost 1.72.0 REQUIRED COMPONENTS filesystem serialization)
 find_package(GTKMM)
+pkg_search_module (SPD_LOG REQUIRED IMPORTED_TARGET spdlog)
 
 # 
 # Executable name and options
@@ -229,6 +230,9 @@ list(APPEND sources
     Utils/Serialization/Connection.h
     Utils/Serialization/Connection.cpp
     Utils/Serialization/GUIInfo.h
+    #Logging Utilities
+    Utils/Log/Log.h
+    Utils/Log/Log.cpp
 )
 
 if(OPTION_WITH_CYCLES)
@@ -285,7 +289,7 @@ target_link_libraries(${target}
     ${META_PROJECT_NAME}::ABaker
     Boost::filesystem
     Boost::serialization
-    Boost::log
+    PkgConfig::SPD_LOG
     GTKMM
 )
 
