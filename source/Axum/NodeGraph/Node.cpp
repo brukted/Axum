@@ -62,47 +62,12 @@ NodeUI Node::GetUI()
     return NodeUI();
 }
 
-void Node::SetupCache()
+std::vector<OutputSocket> &Node::GetOutputSockets()
 {
-    for (auto &socket : mOutputSockets)
-    {
-        socket.SetupCache();
-    }
+    return Node::mOutputSockets;
 }
 
-void Node::ClearCache()
+std::vector<InputSocket> &Node::GetInputSockets()
 {
-    for (auto &socket : mOutputSockets)
-    {
-        socket.ClearCache();
-    }
-}
-
-void Node::DeleteCache()
-{
-    for (auto &socket : mOutputSockets)
-    {
-        socket.DeleteCache();
-    }
-}
-
-void Node::ExcuteForward(ParamCollection &GraphParams)
-{
-    this->Excute(GraphParams);
-    for (auto &outSocket : this->mOutputSockets)
-    {
-        for (auto &inSocket : outSocket.LinkedSockets)
-        {
-            inSocket->ParentNode->ExcuteForward(GraphParams);
-        }
-    }
-}
-
-void Node::ExcuteBackWard(ParamCollection &GraphParams)
-{
-    this->Excute(GraphParams);
-    for (auto &inSocket : this->mInputSockets)
-    {
-        inSocket.LinkedSocket->ParentNode->ExcuteBackWard(GraphParams);
-    }
+    return Node::mInputSockets;
 }

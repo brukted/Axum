@@ -29,15 +29,7 @@ class Node
 	friend class boost::serialization::access;
 
 public:
-	/**
- 	* Name of the node to be displayed on the ui.
- 	*/
-	char16_t UIName[30];
-	std::vector<InputSocket> mInputSockets;
-	std::vector<OutputSocket> mOutputSockets;
-	/**
-	 * 
-	**/
+	bool isVisited = false;
 	ParamCollection mNodeParams;
 	/**
 	 * Contains the GUI information of the node
@@ -46,7 +38,13 @@ public:
 	//Pointer to parent graph
 	Graph *parentGraph;
 
-private:
+protected:
+	/**
+ 	* Name of the node to be displayed on the ui.
+ 	*/
+	char16_t UIName[30];
+	std::vector<InputSocket> mInputSockets;
+	std::vector<OutputSocket> mOutputSockets;
 	bool NeedUpdate = true;
 	/**
 * Unique identifer of the node in the graph
@@ -69,26 +67,11 @@ public:
  */
 	InputSocket &GetInputSocket(unsigned int uid);
 
+	std::vector<OutputSocket> &GetOutputSockets();
+
+	std::vector<InputSocket> &GetInputSockets();
+
 	virtual NodeUI GetUI();
-
-	//Initializes data for live preview
-	virtual void SetupCache();
-
-	//Resets cache data
-	virtual void ClearCache();
-
-	//Deletes cache data
-	virtual void DeleteCache();
-
-	//Excutes the node
-	//Derived Nodes should implement this as it's empty
-	virtual void Excute(ParamCollection &GraphParams) { return; };
-
-	//Excute the node and nodes connected to it's output sockets
-	virtual void ExcuteForward(ParamCollection &GraphParams);
-
-	//Excute the node and nodes connected to it's input sockets
-	virtual void ExcuteBackWard(ParamCollection &GraphParams);
 
 private:
 	template <class Archive>
