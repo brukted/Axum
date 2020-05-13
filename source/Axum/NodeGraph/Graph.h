@@ -7,6 +7,8 @@
 #define _GRAPH_H
 
 #include <vector>
+#include <list>
+#include <deque>
 #include "../Resources/Resource.h"
 #include "Node.h"
 #include "boost/serialization/access.hpp"
@@ -19,13 +21,9 @@ class Graph : public Resource
 {
 	friend class boost::serialization::access;
 
-public:
-	std::vector<Node> mNodes;
+protected:
+	std::list<Node> mNodes;
 	unsigned int uid;
-	/**
- * @param Identifier
- */
-	Node &GetNode(unsigned int identifier);
 
 public:
 	//Initializes data for live preview
@@ -36,6 +34,21 @@ public:
 
 	//Deletes cache data
 	virtual void DeleteCache();
+	/**
+ * @param Identifier
+ */
+	Node &GetNode(unsigned int identifier);
+
+	std::list<Node>::iterator GetNodeIterator(unsigned int uid);
+
+	void AddNode(Node n);
+
+	void DeleteNode(unsigned int uid);
+
+	/* 
+	* @return node list in transversal order
+	*/
+	std::vector<Node *> transverse();
 
 private:
 	template <class Archive>
