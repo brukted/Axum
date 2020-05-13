@@ -19,12 +19,6 @@ void OutputSocket::LinkTo(InputSocket *socket)
     this->LinkedSockets.push_back(socket);
 }
 
-void OutputSocket::SetupCache() { return; }
-
-void OutputSocket::ClearCache() { return; }
-
-void OutputSocket::DeleteCache() { return; }
-
 void OutputSocket::UnlinkFrom(unsigned int uid)
 {
     for (auto i = this->LinkedSockets.begin(); i < this->LinkedSockets.end(); i++)
