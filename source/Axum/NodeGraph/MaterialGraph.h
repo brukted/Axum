@@ -12,9 +12,9 @@ class MaterialGraph : public Graph
 {
 public:
     MaterialGraph();
-    virtual void SetupCache() override;
-    virtual void ClearCache() override;
-    virtual void DeleteCache() override;
+    void SetupCache();
+    void ClearCache();
+    void DeleteCache();
 };
 
 #endif //_MATERIALGRAPH_H
