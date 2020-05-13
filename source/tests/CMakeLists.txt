@@ -56,6 +56,8 @@ set(gtest_hide_internal_symbols OFF CACHE BOOL "")
 
 add_subdirectory(googletest)
 add_subdirectory(undo-test)
+add_subdirectory(transversal)
+
 
 # Create interface library to link against gmock
 add_library(gmock-dev INTERFACE)
