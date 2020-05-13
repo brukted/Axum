@@ -17,9 +17,10 @@ class ParamCollection : public Param
 {
 	friend class boost::serialization::access;
 
-public:
+protected:
 	std::vector<Param> Params;
 
+public:
 	/**
  * @param uid unique identifer of the parameter
  * @return a pointer to a sub parameter
