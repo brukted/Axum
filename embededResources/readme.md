@@ -1,0 +1,2 @@
+* Resources that will be embedded to the executable are located here.
+* Don't put heavy resources(>2MB) or resources with license issues(Licensed under copy left licenses) instead put them in ../data directory.

@@ -3,9 +3,7 @@
 *.dll
 *.a
 build/*
-data/*
 resources/*
-embededresources/*
 *.DS_Store
 .vscode/*
 *.clangtidy
