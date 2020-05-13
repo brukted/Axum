@@ -9,6 +9,7 @@
 #include <vector>
 #include <list>
 #include <deque>
+#include <memory>
 #include "../Resources/Resource.h"
 #include "Node.h"
 #include "boost/serialization/access.hpp"
@@ -26,14 +27,6 @@ protected:
 	unsigned int uid;
 
 public:
-	//Initializes data for live preview
-	virtual void SetupCache();
-
-	//Resets cache data
-	virtual void ClearCache();
-
-	//Deletes cache data
-	virtual void DeleteCache();
 	/**
  * @param Identifier
  */

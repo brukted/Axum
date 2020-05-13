@@ -33,30 +33,6 @@ std::list<Node>::iterator Graph::GetNodeIterator(unsigned int uid)
     } while (i != mNodes.cend());
 }
 
-void Graph::SetupCache()
-{
-    for (auto &node : mNodes)
-    {
-        node.SetupCache();
-    }
-}
-
-void Graph::ClearCache()
-{
-    for (auto &node : mNodes)
-    {
-        node.ClearCache();
-    }
-}
-
-void Graph::DeleteCache()
-{
-    for (auto &node : mNodes)
-    {
-        node.DeleteCache();
-    }
-}
-
 void Graph::AddNode(Node n)
 {
     Graph::mNodes.push_back(std::move(n));
