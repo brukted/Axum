@@ -18,3 +18,8 @@ void TextParam::SetValue(std::string &value)
 {
 	this->value = value;
 }
+
+void TextParam::setValue(const char *name)
+{
+	this->value.assign(name);
+}

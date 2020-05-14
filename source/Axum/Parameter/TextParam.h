@@ -25,6 +25,8 @@ public:
 
 	void SetValue(std::string &value);
 
+	void setValue(const char *name);
+
 private:
 	template <class Archive>
 	void save(Archive &ar, const unsigned int version) const
