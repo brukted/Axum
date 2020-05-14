@@ -27,3 +27,23 @@ ParamUI Param::GetDisplayUI()
 {
     return ParamUI();
 }
+
+std::string &Param::getName()
+{
+    return name;
+}
+
+void Param::setName(std::string &name)
+{
+    this->name = name;
+}
+
+void Param::setName(const char *name)
+{
+    this->name.assign(name);
+}
+
+unsigned int Param::getUid()
+{
+    return uid;
+}

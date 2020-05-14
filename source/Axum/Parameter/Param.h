@@ -26,7 +26,7 @@ class Param
 	friend class boost::serialization::access;
 
 protected:
-	std::string Name;
+	std::string name;
 	unsigned int uid;
 	UIType mUIType;
 	std::vector<UIType> SupportedTypes;
@@ -39,12 +39,20 @@ public:
 
 	virtual ParamUI GetDisplayUI();
 
+	std::string &getName();
+
+	void setName(std::string &name);
+
+	void setName(const char *name);
+
+	unsigned int getUid();
+
 private:
 	template <class Archive>
 	void save(Archive &ar, const unsigned int version) const
 	{
 		ar &uid;
-		ar &Name;
+		ar &name;
 		ar &mUIType;
 	}
 
@@ -52,7 +60,7 @@ private:
 	void load(Archive &ar, const unsigned int version)
 	{
 		ar &uid;
-		ar &Name;
+		ar &name;
 		ar &mUIType;
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
