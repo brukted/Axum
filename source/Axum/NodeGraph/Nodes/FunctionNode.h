@@ -13,10 +13,12 @@ class FunctionNode : public Node
 {
 public:
     /**
- * Add your code here.
- * @param *SourceCode The compiled shader code will be returned to here.
+ * @brief Concrete function nodes add their specific code to the source code here.
+ * 
+ * @param code Source code output.
+ * @param GraphParams Paramaters of the parent graph.
  */
-    virtual void Compile(std::string &SourceCode);
+    virtual void Compile(std::shared_ptr<std::string> &code, ParamCollection &GraphParams);
 };
 
 #endif //_FUNCTIONNODE_H
