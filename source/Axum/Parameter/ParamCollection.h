@@ -28,6 +28,9 @@ public:
  */
 	Param &GetParameter(unsigned int uid);
 
+	Param &GetParameter(std::string &name);
+
+	Param &GetParameter(const char *name);
 	/**
  * @param Parameter
  */
