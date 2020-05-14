@@ -14,6 +14,7 @@
 #include "boost/serialization/string.hpp"
 #include "boost/serialization/version.hpp"
 #include "boost/serialization/vector.hpp"
+#include "../Parameter/TextParam.h"
 
 class Resource
 {
@@ -29,14 +30,14 @@ class Resource
 	};
 
 public:
-	std::string Name;
+	Resource();
 	ResourceType mType;
+	unsigned int uid;
+	PathType mPathType;
 	/**
  * Path to the resource if it is linked type.
  */
 	std::string mPath;
-	unsigned int uid;
-	PathType mPathType;
 	ParamCollection mParams;
 
 	/**
@@ -53,7 +54,6 @@ private:
 	template <class Archive>
 	void save(Archive &ar, const unsigned int version) const
 	{
-		ar &Name;
 		ar &mType;
 		ar &mPath;
 		ar &uid;
@@ -64,7 +64,6 @@ private:
 	template <class Archive>
 	void load(Archive &ar, const unsigned int version)
 	{
-		ar &Name;
 		ar &mType;
 		ar &mPath;
 		ar &uid;

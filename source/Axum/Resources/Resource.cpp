@@ -9,6 +9,17 @@
  * Resource implementation
  */
 
+Resource::Resource()
+{
+    ParamCollection resourceParams;
+    resourceParams.setName("Resource");
+    TextParam name;
+    name.setName("Name");
+    name.setValue("unknown");
+    resourceParams.AddParameter(std::move(name));
+    mParams.AddParameter(std::move(resourceParams));
+}
+
 /**
  * Opens the resource in the appropriate editor.
  */
