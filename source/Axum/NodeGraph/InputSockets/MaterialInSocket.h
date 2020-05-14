@@ -8,7 +8,7 @@
 
 #include "../InputSocket.h"
 
-enum DataType
+enum class Channel
 {
 	RGBA,
 	RGB,
@@ -21,7 +21,7 @@ enum DataType
 class MaterialInSocket : public InputSocket
 {
 public:
-	DataType channels;
+	Channel dataType = Channel::RGB;
 };
 
 #endif //_MATERIALINSOCKET_H

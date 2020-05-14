@@ -18,7 +18,7 @@ private:
 	unsigned int GPUtexture = 0;
 
 public:
-	DataType channels;
+	Channel channels;
 };
 
 #endif //_MATERIALOUTSOCKET_H
