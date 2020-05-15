@@ -90,3 +90,8 @@ std::shared_ptr<std::string> LogicGraph::compileGL()
         "}");
     return code;
 }
+
+//TODO: add implementation
+std::shared_ptr<std::string> LogicGraph::compilePy()
+{
+}
