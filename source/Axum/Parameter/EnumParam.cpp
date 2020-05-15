@@ -20,7 +20,7 @@ int EnumParam::GetKey() const
 
 void EnumParam::SetKey(int key)
 {
-    this->value = value;
+    this->value = key;
 }
 
 std::string &EnumParam::ToValue(int key)
