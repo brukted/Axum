@@ -10,7 +10,10 @@
  */
 
 /**
- * @param identifier
+ * @brief Searchs for the node with the specified uid.
+ * 
+ * @param identifier unique identifier of the node. 
+ * @return Node& reference to the node with uid is identifer. 
  */
 Node &Graph::GetNode(unsigned int identifier)
 {

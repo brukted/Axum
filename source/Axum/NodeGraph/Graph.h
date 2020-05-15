@@ -38,9 +38,11 @@ public:
 
 	void DeleteNode(unsigned int uid);
 
-	/* 
-	* @return node list in transversal order
-	*/
+	/**
+	 * @brief Transverses the node graph into a sequence.
+	 * 
+	 * @return std::vector<Node *> the node graph transversed into sequence.
+	 */
 	std::vector<Node *> transverse();
 
 private:
