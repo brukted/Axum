@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#ifndef _FUNCTIONINSOCKET_H
-#define _FUNCTIONINSOCKET_H
+#ifndef _LOGICSOCKET_H_
+#define _LOGICSOCKET_H_
 
 #include "../InputSocket.h"
 
@@ -22,7 +22,7 @@ enum class DataType
     text
 };
 
-class FunctionInSocket : public InputSocket
+class LogicInSocket : public InputSocket
 {
 private:
     DataType type = DataType::int1;
@@ -33,4 +33,4 @@ public:
     void SetType(DataType type);
 };
 
-#endif //_FUNCTIONINSOCKET_H
+#endif //_LOGICSOCKET_H_

@@ -86,8 +86,8 @@ list(APPEND sources
     Managers/UndoManager.cpp
     Managers/WindowManager.h
     Managers/WindowManager.cpp
-    NodeGraph/FunctionGraph.h
-    NodeGraph/FunctionGraph.cpp
+    NodeGraph/LogicGraph.h
+    NodeGraph/LogicGraph.cpp
     NodeGraph/Graph.h
     NodeGraph/Graph.cpp
     NodeGraph/InputSocket.h
@@ -98,24 +98,24 @@ list(APPEND sources
     NodeGraph/Node.cpp
     NodeGraph/OutputSocket.h
     NodeGraph/OutputSocket.cpp
-    NodeGraph/InputSockets/FunctionInSocket.h
-    NodeGraph/InputSockets/FunctionInSocket.cpp
+    NodeGraph/InputSockets/LogicInSocket.h
+    NodeGraph/InputSockets/LogicInSocket.cpp
     NodeGraph/InputSockets/MaterialInSocket.h
     NodeGraph/InputSockets/MaterialInSocket.cpp
     NodeGraph/Nodes/AtomicNodes.h
     NodeGraph/Nodes/AtomicNodes.cpp
-    NodeGraph/Nodes/FunctionNode.h
-    NodeGraph/Nodes/FunctionNode.cpp
-    NodeGraph/Nodes/FunctionNodes.h
-    NodeGraph/Nodes/FunctionNodes.cpp
-    NodeGraph/Nodes/FunGraphInstanceNode.h
-    NodeGraph/Nodes/FunGraphInstanceNode.cpp
+    NodeGraph/Nodes/LogicNode.h
+    NodeGraph/Nodes/LogicNode.cpp
+    NodeGraph/Nodes/LogicNodes.h
+    NodeGraph/Nodes/LogicNodes.cpp
+    NodeGraph/Nodes/LogicGraphNode.h
+    NodeGraph/Nodes/LogicGraphNode.cpp
     NodeGraph/Nodes/MaterialGraphInstanceNode.h
     NodeGraph/Nodes/MaterialGraphInstanceNode.cpp
     NodeGraph/Nodes/MaterialNode.h
     NodeGraph/Nodes/MaterialNode.cpp
-    NodeGraph/OutputSockets/FunctionOutSocket.h
-    NodeGraph/OutputSockets/FunctionOutSocket.cpp
+    NodeGraph/OutputSockets/LogicOutSocket.h
+    NodeGraph/OutputSockets/LogicOutSocket.cpp
     NodeGraph/OutputSockets/MaterialOutSocket.h
     NodeGraph/OutputSockets/MaterialOutSocket.cpp
     Operators/Operator.h

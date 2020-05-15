@@ -3,14 +3,14 @@
  * @author Bruk Tedla
  */
 
-#include "FunctionNodes.h"
+#include "LogicNodes.h"
 
 /**
- * All basic function nodes are implemented here
+ * All basic logic nodes are implemented here
 **/
 
 /**
- * FunctionNodes implementation
+ * LogicNodes implementation
  */
 
 /**
