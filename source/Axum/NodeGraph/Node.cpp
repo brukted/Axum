@@ -71,3 +71,53 @@ std::vector<InputSocket> &Node::GetInputSockets()
 {
     return Node::mInputSockets;
 }
+
+bool Node::isInputsVisited()
+{
+    for (auto &i : mInputSockets)
+    {
+        if (i.LinkedSocket->ParentNode->isVisited == false)
+            return false;
+    }
+    return true;
+}
+
+bool Node::isEndNode()
+{
+    //The node has no output socket so return true
+    if (mOutputSockets.size() == 0)
+    {
+        return true;
+    }
+    //The node has output socket so check if they are connected
+    else
+    {
+        for (auto &out : mOutputSockets)
+        {
+            //One of the output sockets has link so return false
+            if (out.isLinked())
+                return false;
+        }
+    }
+    //Default
+    return true;
+}
+
+bool Node::isStartNode()
+{
+    //The node has no input sockets so return true
+    if (mInputSockets.size() == 0)
+    {
+        return true;
+    }
+    //The node has input socket so check if they has link
+    else
+    {
+        for (auto &in : mInputSockets)
+        {
+            if (in.isLinked())
+                return false;
+        }
+    }
+    return true;
+}

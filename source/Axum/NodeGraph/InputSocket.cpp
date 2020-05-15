@@ -23,3 +23,15 @@ void InputSocket::Unlink()
 {
     this->LinkedSocket = nullptr;
 }
+
+bool InputSocket::isLinked()
+{
+    if (LinkedSocket == nullptr)
+    {
+        false;
+    }
+    else
+    {
+        return true;
+    }
+}

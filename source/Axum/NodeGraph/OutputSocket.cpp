@@ -38,3 +38,15 @@ void OutputSocket::UnlinkFrom(InputSocket *socket)
             break;
     }
 }
+
+bool OutputSocket::isLinked()
+{
+    if (LinkedSockets.size() == 0)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}

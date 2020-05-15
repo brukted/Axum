@@ -61,7 +61,7 @@ std::vector<Node *> Graph::transverse()
     //add the first layer which is nodes with no inputs
     for (auto &n : mNodes)
     {
-        if (n.GetInputSockets().size() == 0)
+        if (n.isStartNode())
         {
             nodes.push_back(&n);
             currentNodes.push_back(&n);
@@ -77,45 +77,15 @@ std::vector<Node *> Graph::transverse()
             {
                 for (auto inSocket : outSocket.LinkedSockets)
                 {
-                    (inSocket->ParentNode)->isVisited = true;
-                    nextNodes.push_back((inSocket->ParentNode));
+                    if (inSocket->ParentNode->isInputsVisited())
+                    {
+                        inSocket->ParentNode->isVisited = true;
+                        nextNodes.push_back(inSocket->ParentNode);
+                    }
                 }
             }
         }
         currentNodes.clear();
-        //transverse uncought nodes
-        {
-            auto currentUncought = std::vector<Node *>();
-            auto nextUncought = std::vector<Node *>();
-            for (auto node : nextNodes)
-            {
-                for (auto &in : node->GetInputSockets())
-                {
-                    if (in.ParentNode->isVisited != true)
-                    {
-                        currentUncought.push_back(in.ParentNode);
-                        nextNodes.push_front(in.ParentNode);
-                    }
-                }
-            }
-            do
-            {
-                for (auto node : currentUncought)
-                {
-                    for (auto &in : node->GetInputSockets())
-                    {
-                        if (in.ParentNode->isVisited != true)
-                        {
-                            nextUncought.push_back(in.ParentNode);
-                            nextNodes.push_front(in.ParentNode);
-                        }
-                    }
-                }
-                currentUncought.clear();
-                currentUncought = nextUncought;
-                nextUncought.clear();
-            } while (currentUncought.size() != 0);
-        }
         //append the next layer to nodes and assign it as current layer
         for (auto node : nextNodes)
         {

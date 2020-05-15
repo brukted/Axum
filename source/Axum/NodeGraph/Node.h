@@ -27,6 +27,7 @@ class Graph;
 class Node
 {
 	friend class boost::serialization::access;
+	friend class Graph;
 
 public:
 	bool isVisited = false;
@@ -89,6 +90,28 @@ private:
 		ar &mNodeParams;
 		ar &mGUIInfo;
 	}
+	/**
+	 * @brief Returns whether inputs are visited.
+	 * 
+	 * @return true All input providing nodes are visited. 
+	 * @return false Some input providing nodes are not visited.
+	 */
+	bool isInputsVisited();
+	/**
+	 * @brief Returns whether the node relays on ther nodes output or not.
+	 * 
+	 * @return true The node can excute on it's ownself.
+	 * @return false The node requires other nodes output.
+	 */
+	bool isStartNode();
+
+	/**
+	 * @brief Returns whether the node has output reqired by other nodes.
+	 * 
+	 * @return true The node has output sockets connected to other nodes.
+	 * @return false The node has no output sockets or they are not connected to other nodes.
+	 */
+	bool isEndNode();
 
 	//Getter and setters
 public:

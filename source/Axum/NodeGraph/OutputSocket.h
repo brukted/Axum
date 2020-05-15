@@ -36,6 +36,8 @@ public:
 	void UnlinkFrom(unsigned int uid);
 
 	void UnlinkFrom(InputSocket *);
+
+	bool isLinked();
 };
 
 #endif //_OUTPUTSOCKET_H

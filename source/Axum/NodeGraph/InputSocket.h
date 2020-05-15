@@ -15,8 +15,8 @@ class OutputSocket;
 class InputSocket
 {
 public:
-	OutputSocket *LinkedSocket;
-	Node *ParentNode;
+	OutputSocket *LinkedSocket = nullptr;
+	Node *ParentNode = nullptr;
 	/**
 	 * unique id 
 	**/
@@ -32,6 +32,8 @@ public:
 	void LinkTo(OutputSocket *);
 
 	void Unlink();
+
+	bool isLinked();
 };
 
 #endif //_INPUTSOCKET_H
