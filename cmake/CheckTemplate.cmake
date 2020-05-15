@@ -12,7 +12,8 @@ file(READ
     CMAKE_INIT_INFO
 )
 
-string(REGEX MATCH
+string(REGEX
+    MATCH
     "\"sha\": \"([0-9a-f]+)\","
     CMAKE_INIT_SHA
     ${CMAKE_INIT_INFO})
