@@ -12,7 +12,9 @@
  */
 
 /**
- * @param Path
+ * @brief Loads the package and adds it to packages list.
+ * 
+ * @param Path Path to the project file including the file name.
  */
 void PackageManager::LoadProject(std::string &Path)
 {
