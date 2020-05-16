@@ -29,7 +29,7 @@ protected:
 	std::string name;
 	unsigned int uid;
 	UIType mUIType;
-	std::vector<UIType> SupportedTypes;
+	std::vector<UIType> SupportedTypes = std::vector<UIType>(5);
 
 public:
 	/**
