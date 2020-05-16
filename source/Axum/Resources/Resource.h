@@ -31,9 +31,9 @@ class Resource
 
 public:
 	Resource();
-	ResourceType mType;
+	ResourceType mType = ResourceType::Linked;
 	unsigned int uid;
-	PathType mPathType;
+	PathType mPathType = PathType::Absolute;
 	/**
  * Path to the resource if it is linked type.
  */
