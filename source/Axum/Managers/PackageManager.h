@@ -9,6 +9,7 @@
 #include <string>
 #include "../Package/Package.h"
 #include "gtkmm-3.0/gtkmm.h"
+#include <list>
 
 class PackageManager
 {
@@ -26,7 +27,7 @@ public:
 	PackageManager(PackageManager const &) = delete;
 	void operator=(PackageManager const &) = delete;
 
-	std::vector<Package> mPackages;
+	std::list<Package> mPackages;
 
 	void Startup();
 
