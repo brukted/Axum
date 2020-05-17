@@ -11,6 +11,7 @@
 EnumParam::EnumParam(std::map<int, std::string> enums)
 {
     this->enums = std::move(enums);
+    value = enums.begin()->first;
 }
 
 int EnumParam::SetValue() const
