@@ -8,9 +8,10 @@
 /**
  * EnumParam implementation
  */
-EnumParam::EnumParam(std::map<int, std::string> _enums)
+EnumParam::EnumParam(std::map<int, std::string> _enums, unsigned int _uid)
 {
     this->enums = std::move(_enums);
+    this->uid = _uid;
     value = enums.begin()->first;
 }
 

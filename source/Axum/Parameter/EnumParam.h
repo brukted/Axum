@@ -16,11 +16,13 @@
 
 class EnumParam : public Param
 {
+	friend class boost::serialization::access;
+
 public:
-	EnumParam(std::map<int, std::string> _enums);
-	EnumParam(){};
+	EnumParam(std::map<int, std::string> _enums, unsigned int _uid);
 
 private:
+	EnumParam(){};
 	std::map<int, std::string> enums;
 	int value;
 
