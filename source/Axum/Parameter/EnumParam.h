@@ -25,9 +25,9 @@ private:
 	int value;
 
 public:
-	int GetKey() const;
+	int SetValue() const;
 
-	void SetKey(int key);
+	void SetValue(int key);
 
 	std::string &ToValue(int key);
 

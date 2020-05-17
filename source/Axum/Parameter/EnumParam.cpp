@@ -13,12 +13,12 @@ EnumParam::EnumParam(std::map<int, std::string> enums)
     this->enums = std::move(enums);
 }
 
-int EnumParam::GetKey() const
+int EnumParam::SetValue() const
 {
     return this->value;
 }
 
-void EnumParam::SetKey(int key)
+void EnumParam::SetValue(int key)
 {
     this->value = key;
 }
