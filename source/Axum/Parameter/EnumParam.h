@@ -18,6 +18,7 @@ class EnumParam : public Param
 {
 public:
 	EnumParam(std::map<int, std::string> enums);
+	EnumParam(){};
 
 private:
 	std::map<int, std::string> enums;
