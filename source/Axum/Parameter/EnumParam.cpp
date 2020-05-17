@@ -8,9 +8,9 @@
 /**
  * EnumParam implementation
  */
-EnumParam::EnumParam(std::map<int, std::string> enums)
+EnumParam::EnumParam(std::map<int, std::string> _enums)
 {
-    this->enums = std::move(enums);
+    this->enums = std::move(_enums);
     value = enums.begin()->first;
 }
 
