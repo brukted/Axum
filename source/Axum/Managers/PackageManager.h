@@ -7,9 +7,14 @@
 #define _PACKAGEMANAGER_H
 
 #include <string>
+#include <fstream>
+#include "boost/archive/text_iarchive.hpp"
+#include "boost/archive/text_oarchive.hpp"
 #include "../Package/Package.h"
 #include "gtkmm-3.0/gtkmm.h"
 #include <list>
+#include <boost/filesystem.hpp>
+#include "../Utils/Log/Log.h"
 
 class PackageManager
 {
@@ -29,19 +34,21 @@ public:
 
 	std::list<Package> mPackages;
 
-	void Startup();
+	void Startup() noexcept;
 
-	void Shutdown();
+	void Shutdown() noexcept;
 	/**
- * @param Path
- */
-	void LoadProject(std::string &Path);
+	 * @brief Loads the package at the specified path.This is blocking call.
+	 * 
+	 * @param Path 
+	 */
+	void LoadPackage(std::string &Path);
 	/**
  * @param file
  */
-	void LoadProject(const Glib::RefPtr<Gio::File> &file);
+	void LoadPackage(const Glib::RefPtr<Gio::File> &file);
 
-	void SavePackage();
+	void SavePackage(Package &pkg);
 };
 
 #endif //_PACKAGEMANAGER_H
