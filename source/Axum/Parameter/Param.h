@@ -26,7 +26,13 @@ class Param
 	friend class boost::serialization::access;
 
 protected:
+	/**
+	 * @brief Construct a new Param object with uid is equal to 0.
+	 * Don't use if it's going to be added to Param Collection.
+	 * 
+	 */
 	Param(){};
+
 	std::string name;
 	unsigned int uid;
 	UIType mUIType;
