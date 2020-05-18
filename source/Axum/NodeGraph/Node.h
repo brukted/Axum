@@ -30,6 +30,8 @@ class Node
 	friend class Graph;
 
 public:
+	Node();
+	Node(unsigned int uid);
 	bool isVisited = false;
 	ParamCollection mNodeParams;
 	/**

@@ -12,6 +12,15 @@
  * Note:If you want to create new type of node graph system you should create derived node class from this as well as a specialized node tree,graph and sockets.
  */
 
+Node::Node()
+{
+}
+
+Node::Node(unsigned int _uid)
+{
+    uid = _uid;
+}
+
 /**
  * Invalidate makes the current cache invalid and all  nodes based upon it.
  */
