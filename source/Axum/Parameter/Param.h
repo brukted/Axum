@@ -26,12 +26,14 @@ class Param
 	friend class boost::serialization::access;
 
 protected:
+	Param(){};
 	std::string name;
 	unsigned int uid;
 	UIType mUIType;
 	std::vector<UIType> SupportedTypes = std::vector<UIType>(5);
 
 public:
+	Param(unsigned int uid);
 	/**
  * Displays the data to the ui.
  */

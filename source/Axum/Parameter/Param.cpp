@@ -11,6 +11,11 @@
  * GUI editable attribute of an object.Holds the data and method to show the attribute to the user.
  */
 
+Param::Param(unsigned int _uid)
+{
+    this->uid = _uid;
+}
+
 /**
  * Displays the data to the ui.
  * @return ParamUI
