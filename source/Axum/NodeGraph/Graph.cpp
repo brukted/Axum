@@ -17,27 +17,26 @@
  */
 Node &Graph::GetNode(unsigned int identifier)
 {
-    for (auto &var : this->mNodes)
+    auto i = std::find_if(mNodes.begin(), mNodes.end(), [&](const Node &val) { return val.GetUID() == uid; });
+    if (i != std::end(mNodes))
+        return *i;
+    else
     {
-        if (var.GetUID() == identifier)
-            return var;
+        AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = %i .", uid));
+        std::__throw_runtime_error("Node with the specified identifer does not exist.");
     }
-    AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = %i .", uid));
-    std::__throw_runtime_error("Node with the specified identifer does not exist.");
 }
 
 std::list<Node>::iterator Graph::GetNodeIterator(unsigned int uid)
 {
-    auto i = mNodes.begin();
-    do
+    auto i = std::find_if(mNodes.begin(), mNodes.end(), [&](const Node &val) { return val.GetUID() == uid; });
+    if (i != std::end(mNodes))
+        return i;
+    else
     {
-        if (i->GetUID() == uid)
-            return i;
-        i++;
-
-    } while (i != mNodes.cend());
-    AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = %i .", uid));
-    std::__throw_runtime_error("Node with the specified identifer does not exist.");
+        AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = %i .", uid));
+        std::__throw_runtime_error("Node with the specified identifer does not exist.");
+    }
 }
 
 void Graph::AddNode(Node n)
