@@ -30,18 +30,18 @@ class Node
 	friend class Graph;
 
 public:
-	Node();
 	Node(unsigned int uid);
 	bool isVisited = false;
 	ParamCollection mNodeParams;
 	/**
 	 * Contains the GUI information of the node
 	**/
-	GUIInfo mGUIInfo;
+	GUIInfo mGUIInfo();
 	//Pointer to parent graph
-	Graph *parentGraph;
+	Graph *parentGraph = nullptr;
 
 protected:
+	Node();
 	/**
  	* Name of the node to be displayed on the ui.
  	*/
