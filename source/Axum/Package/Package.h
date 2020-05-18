@@ -10,26 +10,31 @@
 #include "../NodeGraph/Graph.h"
 #include "../Resources/Resource.h"
 #include "boost/serialization/access.hpp"
+#include "boost/serialization/base_object.hpp"
 #include "boost/serialization/vector.hpp"
 #include "boost/serialization/version.hpp"
 #include "boost/serialization/split_member.hpp"
-class Package
+#include "boost/serialization/list.hpp"
+class Package : public Resource
 {
 	friend class boost::serialization::access;
 
 public:
-	std::vector<Resource> Resources;
-	unsigned int uid;
+	std::list<Resource> Resources;
 
 	/**
- * @param uid
- */
+	 * @brief Get the Resource with the specified uid.
+	 * 
+	 * @param uid Unique identifier of the resource.
+	 * @return Resource& reference to the resource by uid.
+	 */
 	Resource &GetResource(unsigned int uid);
 
 private:
 	template <class Archive>
 	void save(Archive &ar, const unsigned int version) const
 	{
+		ar &boost::serialization::base_object<Resource>(*this);
 		ar &uid;
 		ar &Resources;
 	}
@@ -37,6 +42,7 @@ private:
 	template <class Archive>
 	void load(Archive &ar, const unsigned int version)
 	{
+		ar &boost::serialization::base_object<Resource>(*this);
 		ar &uid;
 		ar &Resources;
 	}
