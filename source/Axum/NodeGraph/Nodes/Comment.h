@@ -9,18 +9,13 @@ class Comment : public Node
 {
 private:
     std::string commentText;
-    /* data */
+
 public:
-    Comment(/* args */);
-    ~Comment();
-    std::string &getCommentText()
-    {
-        return this->commentText;
-    }
-    void setCommentText(std::string &commentText)
-    {
-        this->commentText = commentText;
-    }
+    Comment(unsigned int _uid);
+
+    std::string &getCommentText();
+
+    void setCommentText(std::string &commentText);
 };
 
 #endif //__COMMENT_H

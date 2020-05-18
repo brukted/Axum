@@ -1,12 +1,9 @@
 
 #include "Comment.h"
 
-Comment::Comment(/* args */)
+Comment::Comment(unsigned int _uid)
 {
-}
-
-Comment::~Comment()
-{
+    uid = _uid;
 }
 
 std::string &Comment::getCommentText()
