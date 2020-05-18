@@ -11,6 +11,11 @@
  * List of parameters.
  */
 
+ParamCollection::ParamCollection(unsigned int _uid)
+{
+    this->uid = _uid;
+}
+
 /**
  * @param id
  * @return *Param
@@ -46,4 +51,9 @@ Param &ParamCollection::GetParameter(const char *name)
 void ParamCollection::AddParameter(Param Parameter)
 {
     this->Params.push_back(Parameter);
+}
+
+unsigned int ParamCollection::GenerateUid()
+{
+    return ++lastUid;
 }

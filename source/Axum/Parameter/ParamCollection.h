@@ -19,8 +19,12 @@ class ParamCollection : public Param
 
 protected:
 	std::vector<Param> Params;
+	unsigned int lastUid = 0;
+	ParamCollection(){};
 
 public:
+	ParamCollection(unsigned int _uid);
+
 	/**
  * @param uid unique identifer of the parameter
  * @return a pointer to a sub parameter
@@ -36,12 +40,15 @@ public:
  */
 	void AddParameter(Param Parameter);
 
+	unsigned int GenerateUid();
+
 private:
 	template <class Archive>
 	void save(Archive &ar, const unsigned int version) const
 	{
 		ar &boost::serialization::base_object<Param>(*this);
 		ar &Params;
+		ar &lastUid;
 	}
 
 	template <class Archive>
@@ -49,6 +56,7 @@ private:
 	{
 		ar &boost::serialization::base_object<Param>(*this);
 		ar &Params;
+		ar &lastUid;
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
