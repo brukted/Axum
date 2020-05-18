@@ -28,7 +28,7 @@ bool InputSocket::isLinked()
 {
     if (LinkedSocket == nullptr)
     {
-        false;
+        return false;
     }
     else
     {
