@@ -11,11 +11,6 @@
 class MaterialNode : public Node
 {
 public:
-    /**
- * Submit your procssing kernel and arguments to the flow graph here.Material Nodes should override this.
- * @param *flowGraph
- */
-    virtual void AddToFlowGraph();
 };
 
 #endif //_MATERIALNODE_H
