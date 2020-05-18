@@ -6,19 +6,20 @@
 #ifndef _FOLDER_H
 #define _FOLDER_H
 
-#include <vector>
+#include <list>
 #include "Resource.h"
 #include "boost/serialization/access.hpp"
 #include "boost/serialization/version.hpp"
-#include "boost/serialization/vector.hpp"
+#include "boost/serialization/list.hpp"
 #include "boost/serialization/split_free.hpp"
 #include "boost/serialization/base_object.hpp"
+
 class Folder : public Resource
 {
 	friend class boost::serialization::access;
 
 public:
-	std::vector<Resource> mResources;
+	std::list<Resource> mResources;
 
 private:
 	template <class Archive>
