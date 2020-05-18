@@ -12,8 +12,8 @@
 class GUIInfo
 {
 public:
-	int X = 0;
-	int Y = 0;
+	float X = 0;
+	float Y = 0;
 	bool isHidden = false;
 	//serialization
 private:
@@ -35,6 +35,7 @@ private:
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 public:
 	GUIInfo();
+	GUIInfo(float x, float y, bool _isHidden);
 };
 BOOST_CLASS_VERSION(GUIInfo, 1)
 #endif //_GUIINFO_H
