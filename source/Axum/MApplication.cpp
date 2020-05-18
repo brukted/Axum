@@ -51,6 +51,6 @@ void MApplication::on_open(const Gio::Application::type_vec_files &files, const 
 {
     for (auto f : files)
     {
-        PackageManager::getInstance().LoadProject(f);
+        PackageManager::getInstance().LoadPackage(f);
     }
 }
