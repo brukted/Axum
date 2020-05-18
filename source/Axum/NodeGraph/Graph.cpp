@@ -22,6 +22,8 @@ Node &Graph::GetNode(unsigned int identifier)
         if (var.GetUID() == identifier)
             return var;
     }
+    AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = %i .", uid));
+    std::__throw_runtime_error("Node with the specified identifer does not exist.");
 }
 
 std::list<Node>::iterator Graph::GetNodeIterator(unsigned int uid)
@@ -34,6 +36,8 @@ std::list<Node>::iterator Graph::GetNodeIterator(unsigned int uid)
         i++;
 
     } while (i != mNodes.cend());
+    AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = %i .", uid));
+    std::__throw_runtime_error("Node with the specified identifer does not exist.");
 }
 
 void Graph::AddNode(Node n)
