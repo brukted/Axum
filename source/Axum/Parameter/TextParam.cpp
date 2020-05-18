@@ -9,6 +9,11 @@
  * TextParam implementation
  */
 
+TextParam::TextParam(unsigned int _uid)
+{
+	this->uid = _uid;
+}
+
 std::string &TextParam::GetValue()
 {
 	return this->value;

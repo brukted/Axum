@@ -21,6 +21,7 @@ private:
 	std::string value;
 
 public:
+	TextParam(unsigned int);
 	std::string &GetValue();
 
 	void SetValue(std::string &value);
