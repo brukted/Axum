@@ -20,6 +20,7 @@ private:
 	std::array<int, 2> value;
 
 public:
+	Integer2Param(unsigned int _uid);
 	std::array<int, 2> GetValue() const;
 
 	void SetValue(std::array<int, 2>);

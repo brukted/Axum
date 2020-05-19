@@ -19,6 +19,7 @@ private:
 	int value;
 
 public:
+	IntegerParam(unsigned int _uid);
 	int GetValue() const;
 
 	void SetValue(int value);

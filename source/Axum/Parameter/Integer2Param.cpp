@@ -9,6 +9,11 @@
  * Integer2Param implementation
  */
 
+Integer2Param::Integer2Param(unsigned int _uid)
+{
+   uid = _uid;
+}
+
 std::array<int, 2> Integer2Param::GetValue() const
 {
    return this->value;

@@ -9,6 +9,11 @@
  * IntegerParam implementation
  */
 
+IntegerParam::IntegerParam(unsigned int _uid)
+{
+    uid = _uid;
+}
+
 int IntegerParam::GetValue() const
 {
     return this->value;
