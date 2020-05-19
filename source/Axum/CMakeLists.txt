@@ -7,6 +7,7 @@ find_package(PkgConfig REQUIRED QUIET)
 find_package(Boost 1.72.0 REQUIRED COMPONENTS filesystem serialization)
 find_package(GTKMM)
 pkg_search_module (SPD_LOG REQUIRED IMPORTED_TARGET spdlog)
+pkg_search_module (EPOXY REQUIRED IMPORTED_TARGET libepoxy epoxy)
 
 # 
 # Executable name and options
