@@ -93,6 +93,7 @@ list(APPEND sources
     NodeGraph/Graph.cpp
     NodeGraph/InputSocket.h
     NodeGraph/InputSocket.cpp
+    NodeGraph/Material.h
     NodeGraph/MaterialGraph.h
     NodeGraph/MaterialGraph.cpp
     NodeGraph/Node.h
