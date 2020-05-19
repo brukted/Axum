@@ -18,7 +18,7 @@ class ParamCollection : public Param
 	friend class boost::serialization::access;
 
 protected:
-	std::vector<Param> Params;
+	std::vector<Param *> Params;
 	unsigned int lastUid = 0;
 	ParamCollection(){};
 
@@ -38,7 +38,7 @@ public:
 	/**
  * @param Parameter
  */
-	void AddParameter(Param Parameter);
+	void AddParameter(Param *parameter);
 
 	unsigned int GenerateUid();
 
