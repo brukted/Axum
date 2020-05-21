@@ -1,3 +1,6 @@
+#ifndef _MATERIAL_H_
+#define _MATERIAL_H_
+
 enum class Channel
 {
     RGBA,
@@ -15,3 +18,5 @@ enum ImageFormat
     SIXTEEN_BIT_FLOAT,
     THIRTY_TWO_BIT_FLOAT
 };
+
+#endif
