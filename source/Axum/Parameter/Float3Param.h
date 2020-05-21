@@ -20,6 +20,10 @@ private:
 	std::array<float, 3> value;
 
 public:
+	Float3Param(unsigned int _uid, std::string &_name, std::array<float, 3> _value);
+
+	Float3Param(unsigned int _uid, const char *_name, std::array<float, 3> _value);
+
 	std::array<float, 3> GetValue() const;
 
 	void SetValue(std::array<float, 3>);

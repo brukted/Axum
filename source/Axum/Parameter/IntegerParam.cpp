@@ -9,10 +9,9 @@
  * IntegerParam implementation
  */
 
-IntegerParam::IntegerParam(unsigned int _uid)
-{
-    uid = _uid;
-}
+IntegerParam::IntegerParam(unsigned int _uid, std::string &_name, int _value) : value(_value), Param(_uid, _name) {}
+
+IntegerParam::IntegerParam(unsigned int _uid, const char *_name, int _value) : value(_value), Param(_uid, _name) {}
 
 int IntegerParam::GetValue() const
 {

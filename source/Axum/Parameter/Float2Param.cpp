@@ -8,6 +8,9 @@
 /**
  * Float2Param implementation
  */
+Float2Param::Float2Param(unsigned int _uid, std::string &_name, std::array<float, 2> _value) : value(_value), Param(_uid, _name) {}
+
+Float2Param::Float2Param(unsigned int _uid, const char *_name, std::array<float, 2> _value) : value(_value), Param(_uid, _name) {}
 
 std::array<float, 2> Float2Param::GetValue() const
 {

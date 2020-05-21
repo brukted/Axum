@@ -21,7 +21,10 @@ private:
 	std::string value;
 
 public:
-	TextParam(unsigned int);
+	TextParam(unsigned int _uid, std::string &_name, std::string &_value);
+
+	TextParam(unsigned int _uid, const char *_name, const char *_value);
+
 	std::string &GetValue();
 
 	void SetValue(std::string &value);

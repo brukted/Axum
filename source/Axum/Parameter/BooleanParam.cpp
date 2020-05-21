@@ -8,6 +8,9 @@
 /**
  * BooleanParam implementation
  */
+BooleanParam::BooleanParam(unsigned int _uid, std::string &_name, bool _value) : value(_value), Param(_uid, _name) {}
+
+BooleanParam::BooleanParam(unsigned int _uid, const char *_name, bool _value) : value(_value), Param(_uid, _name) {}
 
 bool BooleanParam::GetValue() const
 {

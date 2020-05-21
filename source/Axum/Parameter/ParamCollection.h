@@ -20,9 +20,15 @@ class ParamCollection : public Param
 protected:
 	std::vector<Param *> Params;
 	unsigned int lastUid = 0;
-	ParamCollection(){};
 
 public:
+	/**
+	 * @brief Construct a new Param Collection object
+	 *  use only for root parameter
+	 * 
+	 */
+	ParamCollection(){};
+
 	ParamCollection(unsigned int _uid, const char *_name);
 
 	ParamCollection(unsigned int _uid, std::string &_name);

@@ -11,10 +11,15 @@
  * GUI editable attribute of an object.Holds the data and method to show the attribute to the user.
  */
 
-Param::Param(unsigned int _uid)
-{
-    this->uid = _uid;
-}
+Param::Param(unsigned int _uid) : uid(_uid) {}
+
+Param::Param(unsigned int _uid, std::string &_name) : uid(_uid), name(_name) {}
+
+Param::Param(unsigned int _uid, const char *_name) : uid(_uid), name(_name) {}
+
+Param::Param(std::string &_name) : name(_name) {}
+
+Param::Param(const char *_name) : name(_name) {}
 
 /**
  * Displays the data to the ui.

@@ -8,6 +8,9 @@
 /**
  * Float3Param implementation
  */
+Float3Param::Float3Param(unsigned int _uid, std::string &_name, std::array<float, 3> _value) : value(_value), Param(_uid, _name) {}
+
+Float3Param::Float3Param(unsigned int _uid, const char *_name, std::array<float, 3> _value) : value(_value), Param(_uid, _name) {}
 
 std::array<float, 3> Float3Param::GetValue() const
 {

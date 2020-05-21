@@ -19,7 +19,23 @@ class EnumParam : public Param
 	friend class boost::serialization::access;
 
 public:
-	EnumParam(std::map<int, std::string> _enums, unsigned int _uid);
+	/**
+	 * @brief Construct a new Enum Param object
+	 * 
+	 * @param _enums 
+	 * @param _uid unique identifer for the parameter
+	 * @param value default value of the parameter
+	 */
+	EnumParam(unsigned int _uid, std::string &name, std::map<int, std::string> _enums, int value);
+
+	/**
+	 * @brief Construct a new Enum Param object
+	 * 
+	 * @param _enums 
+	 * @param _uid unique identifer for the parameter
+	 * @param value default value of the parameter
+	 */
+	EnumParam(unsigned int _uid, const char *name, std::map<int, std::string> _enums, int value);
 
 private:
 	EnumParam(){};
@@ -31,7 +47,7 @@ public:
 
 	void SetValue(int key);
 
-	std::string &ToValue(int key);
+	std::string &ToString(int key);
 
 private:
 	template <class Archive>

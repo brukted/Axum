@@ -8,6 +8,9 @@
 /**
  * Integer4Param implementation
  */
+Integer4Param::Integer4Param(unsigned int _uid, std::string &_name, std::array<int, 4> _value) : value(_value), Param(_uid, _name) {}
+
+Integer4Param::Integer4Param(unsigned int _uid, const char *_name, std::array<int, 4> _value) : value(_value), Param(_uid, _name) {}
 
 std::array<int, 4> Integer4Param::GetValue() const
 {

@@ -19,7 +19,10 @@ private:
 	int value;
 
 public:
-	IntegerParam(unsigned int _uid);
+	IntegerParam(unsigned int _uid, std::string &_name, int _value);
+
+	IntegerParam(unsigned int _uid, const char *_name, int _value);
+
 	int GetValue() const;
 
 	void SetValue(int value);

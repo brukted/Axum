@@ -19,6 +19,10 @@ private:
 	float value;
 
 public:
+	FloatParam(unsigned int _uid, std::string &_name, float _value);
+
+	FloatParam(unsigned int _uid, const char *_name, float _value);
+
 	float GetValue() const;
 
 	void SetValue(float value);

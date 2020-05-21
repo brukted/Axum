@@ -17,6 +17,10 @@ private:
 	bool value;
 
 public:
+	BooleanParam(unsigned int _uid, std::string &_name, bool _value);
+
+	BooleanParam(unsigned int _uid, const char *_name, bool _value);
+
 	bool GetValue() const;
 
 	void SetValue(bool value);

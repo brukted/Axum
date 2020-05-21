@@ -8,24 +8,22 @@
 /**
  * EnumParam implementation
  */
-EnumParam::EnumParam(std::map<int, std::string> _enums, unsigned int _uid)
-{
-    this->enums = std::move(_enums);
-    this->uid = _uid;
-    value = enums.begin()->first;
-}
+
+EnumParam::EnumParam(unsigned int _uid, std::string &_name, std::map<int, std::string> _enums, int _value) : enums(_enums), value(_value), Param(_name) {}
+
+EnumParam::EnumParam(unsigned int _uid, const char *_name, std::map<int, std::string> _enums, int _value) : enums(_enums), value(_value), Param(_name) {}
 
 int EnumParam::SetValue() const
 {
-    return this->value;
+	return this->value;
 }
 
 void EnumParam::SetValue(int key)
 {
-    this->value = key;
+	this->value = key;
 }
 
-std::string &EnumParam::ToValue(int key)
+std::string &EnumParam::ToString(int key)
 {
-    return this->enums[key];
+	return this->enums[key];
 }

@@ -40,6 +40,15 @@ protected:
 
 public:
 	Param(unsigned int uid);
+
+	Param(unsigned int uid, std::string &_name);
+
+	Param(unsigned int uid, const char *_name);
+
+	Param(std::string &_name);
+
+	Param(const char *_name);
+
 	/**
  * Displays the data to the ui.
  */
