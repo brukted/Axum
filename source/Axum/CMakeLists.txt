@@ -293,6 +293,7 @@ target_link_libraries(${target}
     Boost::serialization
     PkgConfig::SPD_LOG
     GTKMM
+    PkgConfig::EPOXY
 )
 
 
