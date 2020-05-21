@@ -32,23 +32,23 @@ class Resource
 		Absolute
 	};
 
-private:
-	PathType mPathType = PathType::Absolute;
-
 public:
 	Resource();
 	ResourceType mType = ResourceType::Linked;
 	unsigned int uid;
 
 	/**
- * @brief Path to the resource if it is linked type.
- */
+ 	* @brief Path to the resource if it is linked type.
+ 	*/
 	std::string mPath;
 	ParamCollection mParams;
+	ParamCollection resourceParams{mParams.GenerateUid(), "Resource"};
+	TextParam name{resourceParams.GenerateUid(), "Name", "unknown"};
+	EnumParam pathType{resourceParams.GenerateUid(), "Path type", std::map<int, std::string>{{PathType::Relative, "Relative"}, {PathType::Absolute, "Absolute"}}, PathType::Absolute};
 
 	/**
- * @brief Opens the resource in the appropriate editor.
- */
+ 	* @brief Opens the resource in the appropriate editor.
+ 	*/
 	virtual void Open();
 
 	/**
@@ -57,6 +57,7 @@ public:
 	 * @return ExplorerItemUI 
 	 */
 	ExplorerItemUI GetUI();
+
 	void setPath(char const *);
 
 	/**
@@ -81,8 +82,10 @@ private:
 		ar &mType;
 		ar &mPath;
 		ar &uid;
-		ar &mPathType;
 		ar &mParams;
+		ar &resourceParams;
+		ar &name;
+		ar &pathType;
 	}
 
 	template <class Archive>
@@ -91,8 +94,10 @@ private:
 		ar &mType;
 		ar &mPath;
 		ar &uid;
-		ar &mPathType;
 		ar &mParams;
+		ar &resourceParams;
+		ar &name;
+		ar &pathType;
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
