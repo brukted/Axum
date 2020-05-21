@@ -23,7 +23,9 @@ protected:
 	ParamCollection(){};
 
 public:
-	ParamCollection(unsigned int _uid);
+	ParamCollection(unsigned int _uid, const char *_name);
+
+	ParamCollection(unsigned int _uid, std::string &_name);
 
 	/**
  * @param uid unique identifer of the parameter

@@ -11,10 +11,9 @@
  * List of parameters.
  */
 
-ParamCollection::ParamCollection(unsigned int _uid)
-{
-    this->uid = _uid;
-}
+ParamCollection::ParamCollection(unsigned int _uid, const char *_name) : Param(_uid, _name) {}
+
+ParamCollection::ParamCollection(unsigned int _uid, std::string &_name) : Param(_uid, _name) {}
 
 /**
  * @param id
