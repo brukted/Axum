@@ -8,6 +8,7 @@
 
 #include "../OutputSocket.h"
 #include "../InputSockets/MaterialInSocket.h"
+#include "../Material.h"
 
 class MaterialOutSocket : public OutputSocket
 {

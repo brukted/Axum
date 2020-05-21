@@ -7,16 +7,7 @@
 #define _MATERIALINSOCKET_H
 
 #include "../InputSocket.h"
-
-enum class Channel
-{
-	RGBA,
-	RGB,
-	R,
-	G,
-	B,
-	A
-};
+#include "../Material.h"
 
 class MaterialInSocket : public InputSocket
 {
