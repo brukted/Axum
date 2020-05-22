@@ -1,5 +1,5 @@
 #include "MApplication.h"
-#include "Utils/Log/Log.h"
+#include "Log.h"
 
 int main(int argc, char *argv[])
 {
