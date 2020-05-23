@@ -7,7 +7,7 @@
 #define _LOGICGRAPH_H
 
 #include "Graph.h"
-#include "../Utils/Log/Log.h"
+#include "Log.h"
 #include <string>
 #include "fmt/format.h"
 #include "Nodes/LogicNode.h"

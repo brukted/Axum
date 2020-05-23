@@ -18,7 +18,7 @@
 #include "boost/serialization/version.hpp"
 #include "boost/serialization/vector.hpp"
 #include "boost/serialization/list.hpp"
-#include "../Utils/Log/Log.h"
+#include "Log.h"
 
 class Graph : public Resource
 {

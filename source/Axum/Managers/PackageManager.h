@@ -14,7 +14,7 @@
 #include "gtkmm-3.0/gtkmm.h"
 #include <list>
 #include <boost/filesystem.hpp>
-#include "../Utils/Log/Log.h"
+#include "Log.h"
 
 class PackageManager
 {
