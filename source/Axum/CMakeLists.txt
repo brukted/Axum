@@ -148,6 +148,8 @@ list(APPEND sources
     Parameter/Param.cpp
     Parameter/ParamCollection.h
     Parameter/ParamCollection.cpp
+    Parameter/ProxyParam.h
+    Parameter/ProxyParam.cpp
     Parameter/TextParam.h
     Parameter/TextParam.cpp
     Resources/Bitmap.h
