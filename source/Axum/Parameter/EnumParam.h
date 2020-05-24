@@ -45,6 +45,8 @@ private:
 public:
 	int SetValue() const;
 
+	int GetValue() const;
+
 	void SetValue(int key);
 
 	std::string &ToString(int key);

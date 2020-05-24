@@ -18,6 +18,11 @@ int EnumParam::SetValue() const
 	return this->value;
 }
 
+int EnumParam::GetValue() const
+{
+	return value;
+}
+
 void EnumParam::SetValue(int key)
 {
 	this->value = key;
