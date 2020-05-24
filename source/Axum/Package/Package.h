@@ -35,7 +35,6 @@ private:
 	void save(Archive &ar, const unsigned int version) const
 	{
 		ar &boost::serialization::base_object<Resource>(*this);
-		ar &uid;
 		ar &Resources;
 	}
 
@@ -43,7 +42,6 @@ private:
 	void load(Archive &ar, const unsigned int version)
 	{
 		ar &boost::serialization::base_object<Resource>(*this);
-		ar &uid;
 		ar &Resources;
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
