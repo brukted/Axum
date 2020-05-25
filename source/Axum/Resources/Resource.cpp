@@ -11,9 +11,16 @@
 
 Resource::Resource()
 {
-    resourceParams.AddParameter(&name);
-    resourceParams.AddParameter(&pathType);
-    mParams.AddParameter(&resourceParams);
+    attributes.AddParameter(&name);
+    attributes.AddParameter(&description);
+    attributes.AddParameter(&category);
+    attributes.AddParameter(&label);
+    attributes.AddParameter(&author);
+    attributes.AddParameter(&authorUrl);
+    attributes.AddParameter(&tags);
+    attributes.AddParameter(&showInManager);
+    attributes.AddParameter(&pathType);
+    mParams.AddParameter(&attributes);
 }
 
 /**
@@ -30,7 +37,6 @@ void Resource::Open()
  */
 ExplorerItemUI Resource::GetUI()
 {
-    //TODO:
     return ExplorerItemUI();
 }
 void Resource::makeAbsolute(std::string &pkgPath)

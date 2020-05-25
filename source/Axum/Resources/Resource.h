@@ -16,6 +16,7 @@
 #include "boost/serialization/vector.hpp"
 #include "../Parameter/TextParam.h"
 #include "../Parameter/EnumParam.h"
+#include "../Parameter/BooleanParam.h"
 #include <boost/filesystem.hpp>
 
 class Resource
@@ -42,9 +43,16 @@ public:
  	*/
 	std::string mPath;
 	ParamCollection mParams;
-	ParamCollection resourceParams{mParams.GenerateUid(), "Resource"};
-	TextParam name{resourceParams.GenerateUid(), "Name", "unknown"};
-	EnumParam pathType{resourceParams.GenerateUid(), "Path type", std::map<int, std::string>{{PathType::Relative, "Relative"}, {PathType::Absolute, "Absolute"}}, PathType::Absolute};
+	ParamCollection attributes{mParams.GenerateUid(), "Attributes"};
+	TextParam name{attributes.GenerateUid(), "Name", "unknown"};
+	TextParam description{attributes.GenerateUid(), "Description", ""};
+	TextParam category{attributes.GenerateUid(), "category", ""};
+	TextParam label{attributes.GenerateUid(), "Label", ""};
+	TextParam author{attributes.GenerateUid(), "Author", ""};
+	TextParam authorUrl{attributes.GenerateUid(), "Author URL", ""};
+	TextParam tags{attributes.GenerateUid(), "Tags", ""};
+	BooleanParam showInManager{attributes.GenerateUid(), "Show in library", true};
+	EnumParam pathType{attributes.GenerateUid(), "Path type", std::map<int, std::string>{{PathType::Relative, "Relative"}, {PathType::Absolute, "Absolute"}}, PathType::Absolute};
 
 	/**
  	* @brief Opens the resource in the appropriate editor.
@@ -79,25 +87,15 @@ private:
 	template <class Archive>
 	void save(Archive &ar, const unsigned int version) const
 	{
-		ar &mType;
-		ar &mPath;
-		ar &uid;
-		ar &mParams;
-		ar &resourceParams;
-		ar &name;
-		ar &pathType;
+		ar &mType, &uid, &mPath, &name, &description, &category, &label, &author, &authorUrl, &tags, &showInManager, &pathType;
+		ar &mParams, &attributes;
 	}
 
 	template <class Archive>
 	void load(Archive &ar, const unsigned int version)
 	{
-		ar &mType;
-		ar &mPath;
-		ar &uid;
-		ar &mParams;
-		ar &resourceParams;
-		ar &name;
-		ar &pathType;
+		ar &mType, &uid, &mPath, &name, &description, &category, &label, &author, &authorUrl, &tags, &showInManager, &pathType;
+		ar &mParams, &attributes;
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
