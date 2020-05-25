@@ -3,12 +3,9 @@
 
 enum class Channel
 {
-    RGBA,
-    RGB,
-    R,
-    G,
-    B,
-    A
+    Color,
+    Grayscale,
+    Normal
 };
 
 enum ImageFormat
