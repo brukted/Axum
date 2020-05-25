@@ -28,6 +28,10 @@ public:
 	 **/
 	std::string UIName;
 
+	OutputSocket(std::string &_name, unsigned int _uid);
+
+	OutputSocket(const char *_name, unsigned int _uid);
+
 	/**
  * @param *Socket
  */

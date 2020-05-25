@@ -50,3 +50,6 @@ bool OutputSocket::isLinked()
         return true;
     }
 }
+OutputSocket::OutputSocket(const char *_name, unsigned int _uid) : UIName(_name), uid(_uid) {}
+
+OutputSocket::OutputSocket(std::string &_name, unsigned int _uid) : UIName(_name), uid(_uid) {}
