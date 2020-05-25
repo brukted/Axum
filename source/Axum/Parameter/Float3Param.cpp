@@ -20,4 +20,5 @@ std::array<float, 3> Float3Param::GetValue() const
 void Float3Param::SetValue(std::array<float, 3> value)
 {
    this->value = value;
+   this->OnValueChanged.emit();
 }

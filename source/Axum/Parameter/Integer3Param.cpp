@@ -20,4 +20,5 @@ std::array<int, 3> Integer3Param::GetValue() const
 void Integer3Param::SetValue(std::array<int, 3> value)
 {
    this->value = value;
+   this->OnValueChanged.emit();
 }

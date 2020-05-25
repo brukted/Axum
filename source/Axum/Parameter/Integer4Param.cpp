@@ -20,4 +20,5 @@ std::array<int, 4> Integer4Param::GetValue() const
 void Integer4Param::SetValue(std::array<int, 4> value)
 {
     this->value = value;
+    this->OnValueChanged.emit();
 }

@@ -21,4 +21,5 @@ std::array<int, 2> Integer2Param::GetValue() const
 void Integer2Param::SetValue(std::array<int, 2> value)
 {
    this->value = value;
+   this->OnValueChanged.emit();
 }

@@ -21,4 +21,5 @@ int IntegerParam::GetValue() const
 void IntegerParam::SetValue(int value)
 {
     this->value = value;
+    this->OnValueChanged.emit();
 }

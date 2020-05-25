@@ -20,4 +20,5 @@ float FloatParam::GetValue() const
 void FloatParam::SetValue(float value)
 {
    this->value = value;
+   this->OnValueChanged.emit();
 }

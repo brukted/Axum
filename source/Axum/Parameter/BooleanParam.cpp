@@ -20,4 +20,5 @@ bool BooleanParam::GetValue() const
 void BooleanParam::SetValue(bool value)
 {
     this->value = value;
+    this->OnValueChanged.emit();
 }

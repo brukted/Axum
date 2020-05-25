@@ -20,4 +20,5 @@ std::array<float, 4> Float4Param::GetValue() const
 void Float4Param::SetValue(std::array<float, 4> value)
 {
    this->value = value;
+   this->OnValueChanged.emit();
 }

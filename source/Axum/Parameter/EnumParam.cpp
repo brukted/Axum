@@ -26,6 +26,7 @@ int EnumParam::GetValue() const
 void EnumParam::SetValue(int key)
 {
 	this->value = key;
+	this->OnValueChanged.emit();
 }
 
 std::string &EnumParam::ToString(int key)

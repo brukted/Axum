@@ -25,4 +25,5 @@ void TextParam::SetValue(std::string &value)
 void TextParam::setValue(const char *name)
 {
 	this->value.assign(name);
+	this->OnValueChanged.emit();
 }

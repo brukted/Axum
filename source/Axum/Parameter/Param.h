@@ -14,6 +14,7 @@
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/vector.hpp"
 #include "boost/serialization/version.hpp"
+#include "sigc++/sigc++.h"
 
 enum UIType
 {
@@ -39,6 +40,8 @@ protected:
 	std::vector<UIType> SupportedTypes = std::vector<UIType>(5);
 
 public:
+	sigc::signal<void> OnValueChanged;
+
 	Param(unsigned int uid);
 
 	Param(unsigned int uid, std::string &_name);
