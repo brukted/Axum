@@ -13,10 +13,14 @@
 #include "Nodes/LogicNode.h"
 #include "OutputSockets/LogicOutSocket.h"
 #include "InputSockets/LogicInSocket.h"
+#include <array>
+#include <functional>
 
 class LogicGraph : public Graph
 {
 private:
+    static std::array<char, 52> firstVariableLetters;
+    static std::array<char, 63> secondaryVariableLetters;
     /**
      * @brief Pointer to the node assigned as output for this graph.
      * 

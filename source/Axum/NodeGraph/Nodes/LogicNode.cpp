@@ -20,6 +20,6 @@ LogicNode::LogicNode(unsigned int _uid)
     uid = _uid;
 }
 
-void LogicNode::getHeaderPart(std::shared_ptr<std::string> &code, ParamCollection &GraphParams) { return; }
+void LogicNode::getHeaderPart(std::shared_ptr<std::string> &code, std::function<std::string()> generator) { return; }
 
-void LogicNode::getFunctionPart(std::shared_ptr<std::string> &code, ParamCollection &GraphParams) { return; }
+void LogicNode::getFunctionPart(std::shared_ptr<std::string> &code, std::function<std::string()> generator) { return; }

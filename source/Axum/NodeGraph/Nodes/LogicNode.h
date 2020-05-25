@@ -8,6 +8,7 @@
 
 #include <string>
 #include "../Node.h"
+#include <functional>
 
 class LogicNode : public Node
 {
@@ -23,7 +24,7 @@ public:
  * @param code Source code output.
  * @param GraphParams Parameters of the parent graph.
  */
-  virtual void getHeaderPart(std::shared_ptr<std::string> &code, ParamCollection &GraphParams);
+  virtual void getHeaderPart(std::shared_ptr<std::string> &code, std::function<std::string()>);
 
   /**
  * @brief Concrete function nodes add their specific code to the source code here.
@@ -31,7 +32,7 @@ public:
  * @param code Source code output.
  * @param GraphParams Paramaters of the parent graph.
  */
-  virtual void getFunctionPart(std::shared_ptr<std::string> &code, ParamCollection &GraphParams);
+  virtual void getFunctionPart(std::shared_ptr<std::string> &code, std::function<std::string()>);
 };
 
 #endif //_LOGIC_NODE_H_
