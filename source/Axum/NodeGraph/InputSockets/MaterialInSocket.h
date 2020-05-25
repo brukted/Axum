@@ -12,7 +12,7 @@
 class MaterialInSocket : public InputSocket
 {
 public:
-	Channel dataType = Channel::RGB;
+	Channel channel = Channel::Color;
 };
 
 #endif //_MATERIALINSOCKET_H
