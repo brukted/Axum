@@ -39,8 +39,9 @@ public:
 	unsigned int uid;
 
 	/**
- 	* @brief Path to the resource if it is linked type.
- 	*/
+	 * @brief Location of the resource including the filename and extension.
+	 * 
+	 */
 	std::string mPath;
 	ParamCollection mParams;
 	ParamCollection attributes{mParams.GenerateUid(), "Attributes"};
