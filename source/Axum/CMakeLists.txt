@@ -18,13 +18,26 @@ pkg_search_module (LIB_SIGNAL REQUIRED IMPORTED_TARGET libsigc++)
 set(target Axum)
 
 # Exit here if required dependencies are not met
+if (NOT PkgConfig_FOUND )
+   message(STATUS "${target} skipped: PkgConfig  not found")
+    return()
+else()
+    message(STATUS "${target} : PkgConfig found")
+endif()
 
-#if (NOT BOOST_FOUND || NOT PkgConfig_FOUND || NOT )
-#   message(STATUS "Example ${target} skipped: Qt5 not found")
-#    return()
-#else()
-#    message(STATUS "Example ${target}")
-#endif()
+if (NOT BOOST_FOUND )
+   message(STATUS "${target} skipped: Boost  not found")
+    return()
+else()
+    message(STATUS "${target} : Boost found")
+endif()
+
+if (NOT GTKMM_FOUND )
+   message(STATUS "${target} skipped: Gtkmm  not found")
+    return()
+else()
+    message(STATUS "${target} : Gtkmm found")
+endif()
 
 
 # 
