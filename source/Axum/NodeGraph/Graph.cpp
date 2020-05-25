@@ -9,6 +9,8 @@
  * Graph implementation
  */
 
+Graph::Graph(unsigned int _uid) : uid(_uid) {}
+
 /**
  * @brief Searchs for the node with the specified uid.
  * 

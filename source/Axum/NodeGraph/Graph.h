@@ -29,9 +29,11 @@ protected:
 	unsigned int uid;
 
 public:
+	Graph(unsigned int _uid);
+
 	/**
- * @param Identifier
- */
+ 	* @param Identifier
+ 	*/
 	Node &GetNode(unsigned int identifier);
 
 	std::list<Node>::iterator GetNodeIterator(unsigned int uid);
