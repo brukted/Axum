@@ -3,13 +3,13 @@
  * @author Bruk Tedla
  */
 
-#ifndef _LIBRARY_H
-#define _LIBRARY_H
+#ifndef _ASSETMANAGER_H_
+#define _ASSETMANAGER_H_
 
 #include <string>
 #include "../Editor.h"
 
-class Library : public Editor
+class AssetManager : public Editor
 {
 	class ThumbnailBuilder
 	{
@@ -27,4 +27,4 @@ public:
 	ThumbnailBuilder mThumbnailBuilder;
 };
 
-#endif //_LIBRARY_H
+#endif //_ASSETMANAGER_H_

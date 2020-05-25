@@ -81,8 +81,8 @@ list(APPEND sources
     Editor/Editors/2DView.cpp
     Editor/Editors/3DView.h
     Editor/Editors/3DView.cpp
-    Editor/Editors/Library.h
-    Editor/Editors/Library.cpp
+    Editor/Editors/AssetManager.h
+    Editor/Editors/AssetManager.cpp
     Editor/Editors/FunGraphEditor.h
     Editor/Editors/FunGraphEditor.cpp
     Managers/AddonManager.h
