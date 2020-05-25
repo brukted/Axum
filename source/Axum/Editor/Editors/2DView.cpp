@@ -26,6 +26,6 @@ void _2DView::Display(MaterialInSocket *socket)
 /**
  * @param *texture
  */
-void _2DView::Display(Bitmap *texture)
+void _2DView::Display(ImageTexture *texture)
 {
 }

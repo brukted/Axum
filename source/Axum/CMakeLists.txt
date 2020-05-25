@@ -166,8 +166,8 @@ list(APPEND sources
     Parameter/ProxyParam.cpp
     Parameter/TextParam.h
     Parameter/TextParam.cpp
-    Resources/Bitmap.h
-    Resources/Bitmap.cpp
+    Resources/ImageTexture.h
+    Resources/ImageTexture.cpp
     Resources/Folder.h
     Resources/Folder.cpp
     Resources/Font.h

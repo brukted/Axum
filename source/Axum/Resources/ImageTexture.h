@@ -3,13 +3,13 @@
  * @author Bruk Tedla
  */
 
-#ifndef _BITMAP_H
-#define _BITMAP_H
+#ifndef _IMAGETEXTURE_H_
+#define _IMAGETEXTURE_H_
 
 #include <vector>
 #include "Resource.h"
 
-class Bitmap : public Resource
+class ImageTexture : public Resource
 {
 	enum Format
 	{
@@ -20,4 +20,4 @@ public:
 	Format mFormat;
 };
 
-#endif //_BITMAP_H
+#endif //_IMAGETEXTURE_H_

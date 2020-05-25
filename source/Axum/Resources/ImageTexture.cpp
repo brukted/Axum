@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#include "Bitmap.h"
+#include "ImageTexture.h"
 
 /**
- * Bitmap implementation
+ * ImageTexture implementation
  */

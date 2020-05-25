@@ -7,27 +7,27 @@
 #define _2DVIEW_H
 
 #include "../Editor.h"
-#include "../../Resources/Bitmap.h"
+#include "../../Resources/ImageTexture.h"
 #include "../../NodeGraph/InputSockets/MaterialInSocket.h"
 #include "../../NodeGraph/OutputSockets/MaterialOutSocket.h"
 
 class _2DView : public Editor
 {
 public:
-    /**
+   /**
  * @param *socket
  */
-    void Display(MaterialOutSocket *socket);
+   void Display(MaterialOutSocket *socket);
 
-    /**
+   /**
  * @param *socket
  */
-    void Display(MaterialInSocket *socket);
+   void Display(MaterialInSocket *socket);
 
-    /**
+   /**
  * @param *texture
  */
-    void Display(Bitmap *texture);
+   void Display(ImageTexture *texture);
 };
 
 #endif //_2DVIEW_H
