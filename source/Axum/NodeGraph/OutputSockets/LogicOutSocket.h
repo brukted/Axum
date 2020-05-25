@@ -16,7 +16,7 @@ private:
      * @brief Name of the variable output is stored in 
      * 
      */
-    char variableName[2] = "a";
+    std::string variableName{"  ", 2};
     DataType type = DataType::int1;
 
 public:
