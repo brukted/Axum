@@ -45,7 +45,7 @@ protected:
 	/**
  	* Name of the node to be displayed on the ui.
  	*/
-	char16_t UIName[30];
+	std::string UIName;
 	std::vector<InputSocket> mInputSockets;
 	std::vector<OutputSocket> mOutputSockets;
 	bool NeedUpdate = true;
