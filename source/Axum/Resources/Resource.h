@@ -22,6 +22,8 @@
 class Resource
 {
 	friend class boost::serialization::access;
+
+public:
 	enum ResourceType
 	{
 		Linked,
@@ -33,9 +35,16 @@ class Resource
 		Absolute
 	};
 
-public:
-	Resource();
-	ResourceType mType = ResourceType::Linked;
+	/**
+	 * @brief Construct a new Resource object
+	 * 
+	 * @param _resourceType type of the resource embedded or linked deafult is embedded 
+	 * @param _path path to the resource if linked
+	 * @param _pathType path type of the resource if linked
+	 */
+	Resource(ResourceType _resourceType = ResourceType::Embedded, const char *_path = "", PathType _pathType = PathType::Absolute);
+
+	ResourceType resourceType;
 	unsigned int uid;
 
 	/**
@@ -84,18 +93,24 @@ public:
 	 */
 	void makeAbsolute(std::string &pkgPath);
 
+	/**
+	 * @brief Reloads the resource if linked type
+	 * 
+	 */
+	void virtual Reload();
+
 private:
 	template <class Archive>
 	void save(Archive &ar, const unsigned int version) const
 	{
-		ar &mType, &uid, &mPath, &name, &description, &category, &label, &author, &authorUrl, &tags, &showInManager, &pathType;
+		ar &resourceType, &uid, &mPath, &name, &description, &category, &label, &author, &authorUrl, &tags, &showInManager, &pathType;
 		ar &mParams, &attributes;
 	}
 
 	template <class Archive>
 	void load(Archive &ar, const unsigned int version)
 	{
-		ar &mType, &uid, &mPath, &name, &description, &category, &label, &author, &authorUrl, &tags, &showInManager, &pathType;
+		ar &resourceType, &uid, &mPath, &name, &description, &category, &label, &author, &authorUrl, &tags, &showInManager, &pathType;
 		ar &mParams, &attributes;
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()

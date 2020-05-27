@@ -9,8 +9,11 @@
  * Resource implementation
  */
 
-Resource::Resource()
+Resource::Resource(ResourceType _resourceType, const char *_path, PathType _pathType)
 {
+    resourceType = _resourceType;
+    mPath.assign(_path);
+    pathType.SetValue(_pathType);
     attributes.AddParameter(&name);
     attributes.AddParameter(&description);
     attributes.AddParameter(&category);
@@ -41,7 +44,7 @@ ExplorerItemUI Resource::GetUI()
 }
 void Resource::makeAbsolute(std::string &pkgPath)
 {
-    if (mType == ResourceType::Linked)
+    if (resourceType == ResourceType::Linked)
     {
 
         //get absolute path and set it to path
@@ -54,9 +57,13 @@ void Resource::makeAbsolute(std::string &pkgPath)
     }
 }
 
+void Resource::Reload()
+{
+}
+
 void Resource::makeRelative(std::string &pkgPath)
 {
-    if (mType == ResourceType::Linked)
+    if (resourceType == ResourceType::Linked)
     {
         //get relative path and set it to path
         boost::filesystem::path pkg(pkgPath);
