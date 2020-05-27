@@ -9,6 +9,7 @@ find_package(GTKMM)
 pkg_search_module (SPD_LOG REQUIRED IMPORTED_TARGET spdlog)
 pkg_search_module (EPOXY REQUIRED IMPORTED_TARGET libepoxy epoxy)
 pkg_search_module (LIB_SIGNAL REQUIRED IMPORTED_TARGET libsigc++>=3.0 sigc++>=3.0)
+pkg_search_module (OIIO REQUIRED IMPORTED_TARGET OpenImageIO>=2.1)
 
 # 
 # Executable name and options
@@ -312,6 +313,7 @@ target_link_libraries(${target}
     GTKMM
     PkgConfig::EPOXY
     PkgConfig::LIB_SIGNAL
+    PkgConfig::OIIO
 )
 
 
