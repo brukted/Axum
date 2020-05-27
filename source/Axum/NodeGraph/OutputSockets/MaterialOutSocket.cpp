@@ -87,3 +87,11 @@ GLuint MaterialOutSocket::GetGPUTexture()
 {
     return GTextureId;
 }
+
+MaterialOutSocket::~MaterialOutSocket()
+{
+    if (GTextureId != 0)
+    {
+        glDeleteTextures(1, &GTextureId);
+    }
+}

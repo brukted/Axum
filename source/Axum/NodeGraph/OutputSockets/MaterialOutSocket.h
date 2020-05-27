@@ -39,6 +39,7 @@ public:
 	 * @return GLuint ID of the texture on the GPU
 	 */
 	GLuint GetGPUTexture();
+	~MaterialOutSocket();
 };
 
 #endif //_MATERIALOUTSOCKET_H
