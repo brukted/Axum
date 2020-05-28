@@ -4,7 +4,6 @@
  */
 
 #include "MApplication.h"
-#include <iostream>
 
 /**
  * MApplication implementation
