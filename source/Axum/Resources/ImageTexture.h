@@ -40,8 +40,6 @@ public:
 
   std::vector<unsigned char> data;
 
-  ImageFormat mFormat;
-
   int channels;
 
   unsigned int width, height;
@@ -55,14 +53,14 @@ private:
     {
       ar &data;
     }
-    ar &mFormat, &channels, &width, &height;
+    ar &channels, &width, &height;
   }
 
   template <class Archive>
   void load(Archive &ar, const unsigned int version)
   {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &mFormat, &channels, &width, &height;
+    ar &channels, &width, &height;
     //* If the texture is embedded load data otherwise load from file
     if (this->resourceType == ResourceType::Embedded)
     {
