@@ -5,10 +5,10 @@
 #include <boost/filesystem.hpp>
 #include "Axum/Axum-version.h"
 
-#ifdef WIN32
+#ifdef _WIN32
 #include <windows.h>
 #include <shlobj.h>
-#endif // WIN32
+#endif // _WIN32
 
 /**
  *@file Path utils contains various utilities used to get different paths at runtime like user specific path 
