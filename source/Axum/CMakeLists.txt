@@ -252,6 +252,8 @@ list(APPEND sources
     #Logging Utilities
     Utils/Log/Log.h
     Utils/Log/Log.cpp
+    #Runtime path utilities
+    Utils/pathUtils.h
 )
 
 if(OPTION_WITH_CYCLES)
@@ -296,6 +298,7 @@ target_include_directories(${target}
     ${CMAKE_CURRENT_BINARY_DIR}
     ${PROJECT_BINARY_DIR}/source/include
     Utils/Log
+    Utils
 )
 
 
