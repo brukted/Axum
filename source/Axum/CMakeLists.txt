@@ -255,6 +255,7 @@ list(APPEND sources
     Utils/Log/Log.cpp
     #Runtime path utilities
     Utils/pathUtils.h
+    Utils/pathUtils.cpp
 )
 
 if(OPTION_WITH_CYCLES)
