@@ -10,6 +10,7 @@ pkg_search_module (SPD_LOG REQUIRED IMPORTED_TARGET spdlog)
 pkg_search_module (EPOXY REQUIRED IMPORTED_TARGET libepoxy epoxy)
 pkg_search_module (LIB_SIGNAL REQUIRED IMPORTED_TARGET sigc++-3.0)
 pkg_search_module (OIIO REQUIRED IMPORTED_TARGET OpenImageIO>=2.1)
+pkg_search_module (FMT REQUIRED IMPORTED_TARGET fmt>=6.2)
 
 # 
 # Executable name and options
