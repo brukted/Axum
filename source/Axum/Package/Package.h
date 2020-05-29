@@ -15,6 +15,10 @@
 #include "boost/serialization/version.hpp"
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/list.hpp"
+#include "boost/archive/text_iarchive.hpp"
+#include <fstream>
+#include "pathUtils.h"
+
 class Package : public Resource
 {
 	friend class boost::serialization::access;
@@ -35,14 +39,32 @@ private:
 	void save(Archive &ar, const unsigned int version) const
 	{
 		ar &boost::serialization::base_object<Resource>(*this);
-		ar &Resources;
+		if (this->resourceType == ResourceType::Embedded)
+			ar &Resources;
 	}
 
 	template <class Archive>
 	void load(Archive &ar, const unsigned int version)
 	{
 		ar &boost::serialization::base_object<Resource>(*this);
-		ar &Resources;
+		if (this->resourceType == ResourceType::Embedded)
+		{
+			ar &Resources;
+		}
+		else
+		{
+			/**
+			 * @brief Path replaced internal dependency uri with proper path eg: AX://test.pkg -> "$resourcesPath"/packages/test.pkg
+			 * 
+			 */
+			std::string formattedPath = mPath;
+			std::size_t i = formattedPath.find("AX://");
+			if (i != formattedPath.npos)
+				formattedPath.replace(, 5, (PathUtils::resourcesPath + "/"));
+			std::ifstream ifs(std::move(formattedPath));
+			boost::archive::text_iarchive ia(ifs);
+			ia >> *this;
+		}
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
