@@ -18,6 +18,18 @@ Glib::RefPtr<MApplication> MApplication::create()
     return Glib::RefPtr<MApplication>(new MApplication());
 }
 
+MApplication::~MApplication()
+{
+    //TODO: Currently shutdown sequence is  a reverse of startup sequence consider adjusting the order.
+    WindowManager::getInstance(this).Shutdown();
+    EditorManager::getInstance().Shutdown();
+    BakeryManager::getInstance().Shutdown();
+    RenderManager::getInstance().Shutdown();
+    PackageManager::getInstance().Shutdown();
+    UndoManager::getInstance().Shutdown();
+    PreferenceManager::getInstance().Shutdown();
+}
+
 void MApplication::on_activate()
 {
     auto splashScreen = SplashWindow(500, 500);
