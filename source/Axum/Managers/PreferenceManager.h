@@ -6,15 +6,17 @@
 #ifndef _PREFERENCEMANAGER_H
 #define _PREFERENCEMANAGER_H
 
-#define PREF_FILE_NAME "placeholder"
+#define PREF_FILE_NAME "preferences.json"
 
 #include <string>
 #include <vector>
 #include <exception>
 #include "boost/property_tree/ptree.hpp"
 #include "boost/property_tree/json_parser.hpp"
-#include "boost/foreach.hpp"
-#include <boost/lexical_cast.hpp>
+#include <fstream>
+#include <fmt/format.h>
+#include "pathUtils.h"
+#include "Log.h"
 
 namespace pt = boost::property_tree;
 
@@ -29,19 +31,24 @@ public:
 
 private:
     pt::ptree tree;
-    void load(const std::string filename);
-    void save(const std::string filename);
     PreferenceManager(){};
     ~PreferenceManager(){};
 
 public:
+    std::string preferencesPath = fmt::format("{}{}{}", PathUtils::userPathS, "/", PREF_FILE_NAME);
+
     PreferenceManager(PreferenceManager const &) = delete;
+
     void operator=(PreferenceManager const &) = delete;
+
     void Startup();
 
     void Shutdown();
 
     void save();
+
+    void load();
+
     /**
      *@param path relative path to put the preference e.g: bakery.useGPU
      *@param value value of the prefence to put 
@@ -58,8 +65,10 @@ public:
     template <typename T>
     void putPreferenceArray(std::string path, std::vector<T> values)
     {
-        BOOST_FOREACH (const std::string &name, values)
+        for (const std::string &name : values)
+        {
             this->tree.add(path + ".item", name);
+        }
     }
     /**
      *@param path relative path to put the preference e.g: bakery.useGPU
@@ -72,17 +81,18 @@ public:
         return this->tree.get<T>(path, defaultValue);
     }
     /**
+     * @brief Returns a preference at @param path.Returns zero sized vector if the parameter doesn't exist.
+     * 
      *@param path relative path to put the preference e.g: 3dview.HDRIpaths
      *@param return array of values of the preference
-     *@throw (May be)exception if the preference does not exist
     **/
     template <typename T>
     std::vector<T> getPreferenceArray(std::string path)
     {
         std::vector<T> values;
-        BOOST_FOREACH (pt::ptree::value_type &v, this->tree.get_child(path))
+        for (pt::ptree::value_type &v : this->tree.get_child(path))
         {
-            values.insert(boost::lexical_cast<T>(&v.second.data()));
+            values.insert(static_cast<T>(&v.second.data()));
         }
         return values;
     }
