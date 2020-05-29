@@ -19,7 +19,7 @@
 void PackageManager::LoadPackage(std::string &Path)
 {
     auto start = std::chrono::steady_clock::now();
-    AX_LOG_EDITOR_INFO(fmt::format("Opening a package at %s", Path))
+    AX_LOG_EDITOR_INFO(fmt::format("Opening a package at {0}", Path))
     std::ifstream ifs(Path);
     if (ifs.good())
     {
@@ -35,13 +35,13 @@ void PackageManager::LoadPackage(std::string &Path)
         return;
     }
     auto end = std::chrono::steady_clock::now();
-    AX_LOG_EDITOR_INFO(fmt::format("Loaded package %s in : %i milliseconds", mPackages.back().name.GetValue(), std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()))
+    AX_LOG_EDITOR_INFO(fmt::format("Loaded package {0} in : {1:d} milliseconds", mPackages.back().name.GetValue(), std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()))
 }
 
 void PackageManager::LoadPackage(const Glib::RefPtr<Gio::File> &file)
 {
     auto start = std::chrono::steady_clock::now();
-    AX_LOG_EDITOR_INFO(fmt::format("Opening a package at %s", file->get_path()))
+    AX_LOG_EDITOR_INFO(fmt::format("Opening a package at {0}", file->get_path()))
     std::ifstream ifs(file->get_path().c_str());
     if (ifs.good())
     {
@@ -57,7 +57,7 @@ void PackageManager::LoadPackage(const Glib::RefPtr<Gio::File> &file)
         return;
     }
     auto end = std::chrono::steady_clock::now();
-    AX_LOG_EDITOR_INFO(fmt::format("Loaded package %s in : %i milliseconds", mPackages.back().name.GetValue(), std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()))
+    AX_LOG_EDITOR_INFO(fmt::format("Loaded package {0} in : {1:d} milliseconds", mPackages.back().name.GetValue(), std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()))
 }
 
 void PackageManager::SavePackage(Package &pkg)
@@ -67,7 +67,7 @@ void PackageManager::SavePackage(Package &pkg)
     boost::archive::text_oarchive oa(ofs);
     oa << pkg;
     auto end = std::chrono::steady_clock::now();
-    AX_LOG_EDITOR_INFO(fmt::format("Saved package %s in : %i milliseconds", mPackages.back().name.GetValue(), std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()))
+    AX_LOG_EDITOR_INFO(fmt::format("Saved package {0} in : {1:d} milliseconds", mPackages.back().name.GetValue(), std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()))
 }
 
 void PackageManager::Startup() noexcept

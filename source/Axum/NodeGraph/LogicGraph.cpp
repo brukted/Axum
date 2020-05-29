@@ -218,7 +218,7 @@ std::shared_ptr<std::string> LogicGraph::compileGL()
     }
     code->append("\n");
     //return function name open bracket
-    code->append(fmt::format("%s %s(){\n", DataTypeToGLSL(returnType), functionName));
+    code->append(fmt::format("{0} {1}(){\n", DataTypeToGLSL(returnType), functionName));
     for (Node *node : nodes)
     {
         static_cast<LogicNode &>(*node).getFunctionPart(code, std::function{GenerateName});
