@@ -33,4 +33,9 @@ void PathUtils::getPaths(char *argv0)
 
 #endif // UNIX
 #endif // APPLE
+    boost::filesystem::path p(userPathS);
+    if (!(boost::filesystem::exists(p.parent_path())))
+        boost::filesystem::create_directory(p.parent_path());
+    if (!(boost::filesystem::exists(p)))
+        boost::filesystem::create_directory(p);
 }
