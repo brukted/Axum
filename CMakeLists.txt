@@ -184,7 +184,6 @@ endif()
 # Project modules
 # 
 
-add_subdirectory("resources")
 add_subdirectory(source)
 add_subdirectory(docs)
 add_subdirectory(deploy)

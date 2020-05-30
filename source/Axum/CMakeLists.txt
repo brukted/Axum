@@ -1,3 +1,27 @@
+#
+# Resource embedding
+#
+
+# Include the extension module.
+list(APPEND CMAKE_MODULE_PATH
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake/GCR")
+
+include(GlibCompileResourcesSupport)
+
+# Set the resources to bundle.
+set(RESOURCE_LIST
+    TOPIXDATA COMPRESS "${CMAKE_SOURCE_DIR}/resources/splash.png")
+
+# Compile the resources.
+compile_gresources(RESOURCE_FILE
+                   XML_OUT
+                   TYPE EMBED_C
+                   TARGET "embedded-resources.h"
+                   RESOURCES ${RESOURCE_LIST})
+add_custom_target(resource ALL DEPENDS ${RESOURCE_FILE})
+
+message(STATUS "${XML_OUT}")
+
 
 # 
 # External dependencies
@@ -256,6 +280,7 @@ list(APPEND sources
     #Runtime path utilities
     Utils/pathUtils.h
     Utils/pathUtils.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/embedded-resources.h
 )
 
 if(OPTION_WITH_CYCLES)
