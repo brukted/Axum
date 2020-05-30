@@ -12,13 +12,13 @@
 
 void PreferenceManager::Startup()
 {
-    AX_LOG_EDITOR_TRACE(fmt::format("Loading preference from {}", preferencesPath))
+    AX_LOG_EDITOR_TRACE(fmt::format("Loading preferences from {}", preferencesPath))
     load();
 }
 
 void PreferenceManager::Shutdown()
 {
-    AX_LOG_EDITOR_TRACE(fmt::format("Writing preference to {}", preferencesPath))
+    AX_LOG_EDITOR_TRACE(fmt::format("Writing preferences to {}", preferencesPath))
     save();
 }
 
