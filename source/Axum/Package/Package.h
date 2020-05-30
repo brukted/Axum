@@ -15,10 +15,6 @@
 #include "boost/serialization/version.hpp"
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/list.hpp"
-#include "boost/archive/text_iarchive.hpp"
-#include <fstream>
-#include "pathUtils.h"
-
 class Package : public Resource
 {
 	friend class boost::serialization::access;
@@ -39,8 +35,7 @@ private:
 	void save(Archive &ar, const unsigned int version) const
 	{
 		ar &boost::serialization::base_object<Resource>(*this);
-		if (this->resourceType == ResourceType::Embedded)
-			ar &Resources;
+		ar &Resources;
 	}
 
 	template <class Archive>
