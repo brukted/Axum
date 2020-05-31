@@ -231,4 +231,5 @@ std::shared_ptr<std::string> LogicGraph::compileGL()
 //TODO: add implementation
 std::shared_ptr<std::string> LogicGraph::compilePy()
 {
+    return nullptr;
 }

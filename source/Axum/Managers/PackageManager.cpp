@@ -31,7 +31,7 @@ void PackageManager::LoadPackage(std::string &Path)
     else
     {
         AX_LOG_EDITOR_WARN("Input file stream is bad maybe the file doesn't exist.")
-        std::__throw_runtime_error("Bad input file stream");
+        throw "Bad input file stream";
         return;
     }
     auto end = std::chrono::steady_clock::now();
@@ -53,7 +53,7 @@ void PackageManager::LoadPackage(const Glib::RefPtr<Gio::File> &file)
     else
     {
         AX_LOG_EDITOR_WARN("Input file stream is bad maybe the file doesn't exist.")
-        std::__throw_runtime_error("Bad input file stream");
+        throw "Bad input file stream";
         return;
     }
     auto end = std::chrono::steady_clock::now();

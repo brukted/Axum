@@ -122,9 +122,9 @@ public:
 		return NeedUpdate;
 	}
 
-	void SetNeedUpdate(bool NeedUpdate)
+	void SetNeedUpdate(bool _NeedUpdate)
 	{
-		NeedUpdate = NeedUpdate;
+		this->NeedUpdate = _NeedUpdate;
 	}
 
 	bool GetUID() const
