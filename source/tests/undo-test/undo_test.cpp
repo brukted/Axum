@@ -1,11 +1,7 @@
 
 #include <gmock/gmock.h>
 
-
-#include <UndoManager.h>
-#include "PreferenceManager.h"
-
-class undo_test: public testing::Test
+class undo_test : public testing::Test
 {
 public:
 };

@@ -55,8 +55,7 @@ set(gtest_force_shared_crt      ON  CACHE BOOL "")
 set(gtest_hide_internal_symbols OFF CACHE BOOL "")
 
 add_subdirectory(googletest)
-add_subdirectory(undo-test)
-add_subdirectory(transversal)
+
 
 
 # Create interface library to link against gmock
@@ -87,3 +86,4 @@ set_target_properties(test PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD 1)
 # 
 
 add_test_without_ctest(undo-test)
+add_test_without_ctest(transversal)
