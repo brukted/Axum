@@ -18,7 +18,7 @@ Node &Graph::GetNode(unsigned int _uid)
         return *i;
     else
     {
-        AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = {0:d} .", _uid));
+        AX_LOG_CORE_CRITICAL("Tried to get node that doesn't exist uid = {0:d} .", _uid);
         throw "Node with the specified identifer does not exist.";
     }
 }
@@ -30,7 +30,7 @@ std::list<Node>::iterator Graph::GetNodeIterator(unsigned int _uid)
         return i;
     else
     {
-        AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = {0:d} .", _uid));
+        AX_LOG_CORE_CRITICAL("Tried to get node that doesn't exist uid = {0:d} .", _uid);
         throw "Node with the specified identifer does not exist.";
     }
 }

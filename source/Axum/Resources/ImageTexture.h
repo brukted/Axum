@@ -72,7 +72,7 @@ private:
       auto input = OIIO::ImageInput::open(mPath);
       if (!input)
       {
-        AX_LOG_CORE_WARN(fmt::format("Can't load linked image texture {0}.", name.getName()))
+        AX_LOG_CORE_WARN("Can't load linked image texture {0}.", name.getName())
         //TODO: Fill the data with pinky stuff like blender does
         std::fill(data.begin(), data.end(), 125);
       }

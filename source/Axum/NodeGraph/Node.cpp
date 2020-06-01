@@ -43,7 +43,7 @@ OutputSocket &Node::GetOutputSocket(unsigned int _uid)
         if (var.GetUID() == _uid)
             return var;
     }
-    AX_LOG_CORE_CRITICAL(fmt::format("Requested an output socket that doesn't exist with uid = {0:d}", _uid))
+    AX_LOG_CORE_CRITICAL("Requested an output socket that doesn't exist with uid = {0:d}", _uid)
     throw "Output socket doesn't exist";
 }
 
@@ -58,7 +58,7 @@ InputSocket &Node::GetInputSocket(unsigned int _uid)
         if (var.GetUID() == _uid)
             return var;
     }
-    AX_LOG_CORE_CRITICAL(fmt::format("Requested an input socket that doesn't exist with uid = {0:d}", _uid))
+    AX_LOG_CORE_CRITICAL("Requested an input socket that doesn't exist with uid = {0:d}", _uid)
     throw "Input socket doesn't exist";
 }
 
