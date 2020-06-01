@@ -40,7 +40,7 @@ OutputSocket &Node::GetOutputSocket(unsigned int uid)
 {
     for (auto &var : this->mOutputSockets)
     {
-        if (var.uid == uid)
+        if (var.GetUID() == uid)
             return var;
     }
 }
@@ -53,7 +53,7 @@ InputSocket &Node::GetInputSocket(unsigned int uid)
 {
     for (auto &var : this->mInputSockets)
     {
-        if (var.uid == uid)
+        if (var.GetUID() == uid)
             return var;
     }
 }

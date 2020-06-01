@@ -23,7 +23,7 @@ void OutputSocket::UnlinkFrom(unsigned int uid)
 {
     for (auto i = this->LinkedSockets.begin(); i < this->LinkedSockets.end(); i++)
     {
-        if ((*i)->uid == uid)
+        if ((*i)->GetUID() == uid)
             this->LinkedSockets.erase(i);
     }
 }
@@ -32,7 +32,7 @@ void OutputSocket::UnlinkFrom(InputSocket *socket)
 {
     for (auto i = this->LinkedSockets.begin(); i < this->LinkedSockets.end(); i++)
     {
-        if ((*i)->uid == socket->uid)
+        if ((*i)->GetUID() == socket->GetUID())
             this->LinkedSockets.erase(i);
         if (i == this->LinkedSockets.end())
             break;
@@ -50,6 +50,7 @@ bool OutputSocket::isLinked()
         return true;
     }
 }
+
 OutputSocket::OutputSocket(const char *_name, unsigned int _uid) : UIName(_name), uid(_uid) {}
 
 OutputSocket::OutputSocket(std::string &_name, unsigned int _uid) : UIName(_name), uid(_uid) {}

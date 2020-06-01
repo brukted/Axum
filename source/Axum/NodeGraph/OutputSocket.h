@@ -16,13 +16,18 @@ class InputSocket;
 
 class OutputSocket
 {
+protected:
+	/**
+	 * @brief Unique identifer of this socket in the parent nodes output sockets.
+	 * 
+	 */
+	unsigned int uid;
+
 public:
 	std::vector<InputSocket *> LinkedSockets;
+
 	Node *ParentNode;
-	/**
-	 * unique id 
-	**/
-	unsigned int uid;
+
 	/**
 	 *Name of the node to be displayed on ui
 	 **/
@@ -42,6 +47,8 @@ public:
 	void UnlinkFrom(InputSocket *);
 
 	bool isLinked();
+
+	inline unsigned int GetUID() { return uid; };
 };
 
 #endif //_OUTPUTSOCKET_H

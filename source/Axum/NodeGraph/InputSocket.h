@@ -14,13 +14,18 @@ class OutputSocket;
 
 class InputSocket
 {
+protected:
+	/**
+	 * @brief Unique identifer of this socket.
+	 * 
+	 */
+	unsigned int uid;
+
 public:
 	OutputSocket *LinkedSocket = nullptr;
+
 	Node *ParentNode = nullptr;
-	/**
-	 * unique id 
-	**/
-	unsigned int uid;
+
 	/**
 	 *Name of the node to be displayed on ui
 	 **/
@@ -34,6 +39,8 @@ public:
 	void Unlink();
 
 	bool isLinked();
+
+	inline unsigned int GetUID() { return uid; };
 };
 
 #endif //_INPUTSOCKET_H
