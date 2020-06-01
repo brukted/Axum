@@ -15,11 +15,13 @@
  * @param UUID
  * @return *Resource
  */
-Resource &Package::GetResource(unsigned int uid)
+Resource &Package::GetResource(unsigned int _uid)
 {
     for (auto &var : this->Resources)
     {
-        if (var.uid == uid)
+        if (var.uid == _uid)
             return var;
     }
+    AX_LOG_CORE_ERROR("Package {0} is requested non-existenet resourece uid : {0:d}", name.GetValue(), _uid)
+    throw "Resource doesn't exist";
 }

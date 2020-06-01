@@ -26,6 +26,8 @@ Param &ParamCollection::GetParameter(unsigned int _uid)
         if (param->getUid() == _uid)
             return *param;
     }
+    AX_LOG_CORE_ERROR("Parameter collection name : {},uid {0:d} is requested a non-existent parameter uid : {0:d} ", name, uid, _uid)
+    throw "Parameter doesn't exist";
 }
 
 Param &ParamCollection::GetParameter(std::string &_name)
@@ -35,6 +37,8 @@ Param &ParamCollection::GetParameter(std::string &_name)
         if ((_name.compare(param->getName().c_str())) == 0)
             return *param;
     }
+    AX_LOG_CORE_ERROR("Parameter collection name : {},uid {0:d} is requested a non-existent parameter named {} ", name, uid, _name)
+    throw "Parameter doesn't exist";
 }
 Param &ParamCollection::GetParameter(const char *_name)
 {
@@ -43,6 +47,8 @@ Param &ParamCollection::GetParameter(const char *_name)
         if ((param->getName().compare(_name)) == 0)
             return *param;
     }
+    AX_LOG_CORE_ERROR("Parameter collection name : {},uid {0:d} is requested a non-existent parameter named {} ", name, uid, _name)
+    throw "Parameter doesn't exist";
 }
 /**
  * @param Parameter

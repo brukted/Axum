@@ -53,7 +53,7 @@ GLint MaterialOutSocket::GetGlFormat(ImageFormat format)
             return GL_RGB32F;
             break;
         default:
-            AX_LOG_CORE_CRITICAL("Unkown format type")
+            AX_LOG_CORE_CRITICAL("Unkown color or normal format type: {0:d}", (int)format)
             break;
         }
         break;
@@ -73,14 +73,15 @@ GLint MaterialOutSocket::GetGlFormat(ImageFormat format)
             return GL_R32F;
             break;
         default:
-            AX_LOG_CORE_CRITICAL("Unkown format type")
+            AX_LOG_CORE_CRITICAL("Unkown grayscale format type: {0:d}", (int)format)
             break;
         }
         break;
     default:
-        AX_LOG_CORE_CRITICAL("Unkown channel type")
+        AX_LOG_CORE_CRITICAL("Unkown channel type : {0:d}", (int)channel)
         return GL_RGB8;
     }
+    return GL_RGB8;
 }
 
 GLuint MaterialOutSocket::GetGPUTexture()

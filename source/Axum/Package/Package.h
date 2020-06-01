@@ -32,7 +32,7 @@ public:
 	 * @param uid Unique identifier of the resource.
 	 * @return Resource& reference to the resource by uid.
 	 */
-	Resource &GetResource(unsigned int uid);
+	Resource &GetResource(unsigned int _uid);
 
 private:
 	template <class Archive>

@@ -12,6 +12,7 @@
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/vector.hpp"
 #include "boost/serialization/version.hpp"
+#include "Log.h"
 
 class ParamCollection : public Param
 {
