@@ -13,6 +13,8 @@ private:
     Param *parameter;
 
 public:
+    ProxyParam(unsigned int _uid, Param *_parameter);
+
     virtual ParamUI GetEditUI() override;
 
     virtual ParamUI GetDisplayUI() override;
