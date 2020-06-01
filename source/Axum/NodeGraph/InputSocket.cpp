@@ -11,10 +11,7 @@
  * Generic Input Socket.Defines common and basic aspects of all input socket types.
  */
 
-/**
- * @param *Socket
- */
-void InputSocket::LinkTo(OutputSocket *socket)
+void InputSocket::HalfLink(OutputSocket *socket)
 {
     this->LinkedSocket = socket;
 }

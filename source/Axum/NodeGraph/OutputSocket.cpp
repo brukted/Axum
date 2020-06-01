@@ -12,11 +12,14 @@
  */
 
 /**
- * @param *Socket
+ * @brief Links the socket on both end
+ * 
+ * @param socket Destination(end) socket
  */
 void OutputSocket::LinkTo(InputSocket *socket)
 {
     this->LinkedSockets.push_back(socket);
+    socket->HalfLink(this);
 }
 
 void OutputSocket::UnlinkFrom(unsigned int uid)

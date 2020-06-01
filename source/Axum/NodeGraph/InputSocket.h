@@ -14,12 +14,20 @@ class OutputSocket;
 
 class InputSocket
 {
+	friend class OutputSocket;
+
 protected:
 	/**
 	 * @brief Unique identifer of this socket.
 	 * 
 	 */
 	unsigned int uid;
+	/**
+	 * @brief Creates one sided link with @param socket
+	 * 
+	 *@param *socket Source socket of the link
+ 	**/
+	void HalfLink(OutputSocket *socket);
 
 public:
 	OutputSocket *LinkedSocket = nullptr;
@@ -27,14 +35,9 @@ public:
 	Node *ParentNode = nullptr;
 
 	/**
-	 *Name of the node to be displayed on ui
+	 *@brief Name of the node to be displayed on ui
 	 **/
 	std::string UIName;
-
-	/**
- * @param *Socket
- */
-	void LinkTo(OutputSocket *);
 
 	void Unlink();
 

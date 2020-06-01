@@ -19,6 +19,7 @@
 #include "boost/serialization/vector.hpp"
 #include "boost/serialization/list.hpp"
 #include "Log.h"
+#include "../Utils/Serialization/Connection.h"
 
 class Graph : public Resource
 {
@@ -56,6 +57,18 @@ private:
 		ar &boost::serialization::base_object<Resource>(*this);
 		ar &uid;
 		ar &mNodes;
+		std::vector<Connection> connections;
+		for (auto *node : mNodes)
+		{
+			for (auto *OutSock : node.mOutputSockets)
+			{
+				for (auto InSock : OutSock.LinkedSockets)
+				{
+					connections.push_back(Connection(node->GetUID(), OutSock->GetUID(), InSock->ParentNode->GetUID(), InSock->GetUID()));
+				}
+			}
+		}
+		ar &connections;
 	}
 
 	template <class Archive>
@@ -64,6 +77,13 @@ private:
 		ar &boost::serialization::base_object<Resource>(*this);
 		ar &uid;
 		ar &mNodes;
+		std::vector<Connection> connections;
+		ar &connections;
+		for (auto &con : connections)
+		{
+			auto destSoc = GetNode(con.ToNode()).GetInputSocket(con.ToSocket);
+			GetNode(con.FromNode).GetOutputSocket(con.FromSocket).LinkTo(destSoc);
+		}
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
