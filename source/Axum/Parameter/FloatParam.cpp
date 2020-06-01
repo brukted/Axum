@@ -17,8 +17,8 @@ float FloatParam::GetValue() const
    return this->value;
 }
 
-void FloatParam::SetValue(float value)
+void FloatParam::SetValue(float _value)
 {
-   this->value = value;
+   this->value = _value;
    this->OnValueChanged.emit();
 }

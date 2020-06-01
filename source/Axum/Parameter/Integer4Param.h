@@ -26,7 +26,7 @@ public:
 
 	std::array<int, 4> GetValue() const;
 
-	void SetValue(std::array<int, 4>);
+	void SetValue(std::array<int, 4> _value);
 
 private:
 	template <class Archive>

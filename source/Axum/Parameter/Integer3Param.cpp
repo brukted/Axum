@@ -17,8 +17,8 @@ std::array<int, 3> Integer3Param::GetValue() const
    return this->value;
 }
 
-void Integer3Param::SetValue(std::array<int, 3> value)
+void Integer3Param::SetValue(std::array<int, 3> _value)
 {
-   this->value = value;
+   this->value = _value;
    this->OnValueChanged.emit();
 }

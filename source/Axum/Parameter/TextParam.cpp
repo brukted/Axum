@@ -17,13 +17,13 @@ std::string &TextParam::GetValue()
 	return this->value;
 }
 
-void TextParam::SetValue(std::string &value)
+void TextParam::SetValue(std::string &_value)
 {
-	this->value = value;
+	this->value = _value;
 }
 
-void TextParam::setValue(const char *name)
+void TextParam::setValue(const char *_name)
 {
-	this->value.assign(name);
+	this->value.assign(_name);
 	this->OnValueChanged.emit();
 }

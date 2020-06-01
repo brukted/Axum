@@ -42,7 +42,7 @@ public:
  */
 	void LinkTo(InputSocket *);
 
-	void UnlinkFrom(unsigned int uid);
+	void UnlinkFrom(unsigned int _uid);
 
 	void UnlinkFrom(InputSocket *);
 

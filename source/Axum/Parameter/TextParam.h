@@ -27,9 +27,9 @@ public:
 
 	std::string &GetValue();
 
-	void SetValue(std::string &value);
+	void SetValue(std::string &_value);
 
-	void setValue(const char *name);
+	void setValue(const char *_name);
 
 private:
 	template <class Archive>

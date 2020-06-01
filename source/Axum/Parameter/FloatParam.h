@@ -25,7 +25,7 @@ public:
 
 	float GetValue() const;
 
-	void SetValue(float value);
+	void SetValue(float _value);
 
 private:
 	template <class Archive>

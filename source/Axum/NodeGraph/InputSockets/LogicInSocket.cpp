@@ -14,7 +14,7 @@ DataType LogicInSocket::GetType() const
     return type;
 }
 
-void LogicInSocket::SetType(DataType type)
+void LogicInSocket::SetType(DataType _type)
 {
-    type = type;
+    type = _type;
 }

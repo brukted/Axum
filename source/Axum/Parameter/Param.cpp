@@ -43,14 +43,14 @@ std::string &Param::getName()
     return name;
 }
 
-void Param::setName(std::string &name)
+void Param::setName(std::string &_name)
 {
-    this->name = name;
+    this->name = _name;
 }
 
-void Param::setName(const char *name)
+void Param::setName(const char *_name)
 {
-    this->name.assign(name);
+    this->name.assign(_name);
 }
 
 unsigned int Param::getUid()

@@ -17,8 +17,8 @@ std::array<float, 2> Float2Param::GetValue() const
    return this->value;
 }
 
-void Float2Param::SetValue(std::array<float, 2> value)
+void Float2Param::SetValue(std::array<float, 2> _value)
 {
-   this->value = value;
+   this->value = _value;
    this->OnValueChanged.emit();
 }

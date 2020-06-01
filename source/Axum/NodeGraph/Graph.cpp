@@ -11,32 +11,26 @@
 
 Graph::Graph(unsigned int _uid) : uid(_uid) {}
 
-/**
- * @brief Searchs for the node with the specified uid.
- * 
- * @param identifier unique identifier of the node. 
- * @return Node& reference to the node with uid is identifer. 
- */
-Node &Graph::GetNode(unsigned int identifier)
+Node &Graph::GetNode(unsigned int _uid)
 {
-    auto i = std::find_if(mNodes.begin(), mNodes.end(), [&](const Node &val) { return val.GetUID() == uid; });
+    auto i = std::find_if(mNodes.begin(), mNodes.end(), [&](const Node &val) { return val.GetUID() == _uid; });
     if (i != std::end(mNodes))
         return *i;
     else
     {
-        AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = {0:d} .", uid));
+        AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = {0:d} .", _uid));
         throw "Node with the specified identifer does not exist.";
     }
 }
 
-std::list<Node>::iterator Graph::GetNodeIterator(unsigned int uid)
+std::list<Node>::iterator Graph::GetNodeIterator(unsigned int _uid)
 {
-    auto i = std::find_if(mNodes.begin(), mNodes.end(), [&](const Node &val) { return val.GetUID() == uid; });
+    auto i = std::find_if(mNodes.begin(), mNodes.end(), [&](const Node &val) { return val.GetUID() == _uid; });
     if (i != std::end(mNodes))
         return i;
     else
     {
-        AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = {0:d} .", uid));
+        AX_LOG_CORE_CRITICAL(fmt::format("Tried to get node that doesn't exist uid = {0:d} .", _uid));
         throw "Node with the specified identifer does not exist.";
     }
 }
@@ -46,10 +40,10 @@ void Graph::AddNode(Node n)
     Graph::mNodes.push_back(std::move(n));
 }
 
-void Graph::DeleteNode(unsigned int uid)
+void Graph::DeleteNode(unsigned int _uid)
 {
 
-    mNodes.erase(Graph::GetNodeIterator(uid));
+    mNodes.erase(Graph::GetNodeIterator(_uid));
 }
 
 std::vector<Node *> Graph::transverse()

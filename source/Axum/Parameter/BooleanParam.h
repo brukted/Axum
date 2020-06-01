@@ -23,7 +23,7 @@ public:
 
 	bool GetValue() const;
 
-	void SetValue(bool value);
+	void SetValue(bool _value);
 
 private:
 	template <class Archive>

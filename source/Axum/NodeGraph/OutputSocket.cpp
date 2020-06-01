@@ -22,11 +22,11 @@ void OutputSocket::LinkTo(InputSocket *socket)
     socket->HalfLink(this);
 }
 
-void OutputSocket::UnlinkFrom(unsigned int uid)
+void OutputSocket::UnlinkFrom(unsigned int _uid)
 {
     for (auto i = this->LinkedSockets.begin(); i < this->LinkedSockets.end(); i++)
     {
-        if ((*i)->GetUID() == uid)
+        if ((*i)->GetUID() == _uid)
             this->LinkedSockets.erase(i);
     }
 }

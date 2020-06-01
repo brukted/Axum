@@ -18,8 +18,8 @@ std::array<int, 2> Integer2Param::GetValue() const
    return this->value;
 }
 
-void Integer2Param::SetValue(std::array<int, 2> value)
+void Integer2Param::SetValue(std::array<int, 2> _value)
 {
-   this->value = value;
+   this->value = _value;
    this->OnValueChanged.emit();
 }

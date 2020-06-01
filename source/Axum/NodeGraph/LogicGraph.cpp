@@ -177,7 +177,7 @@ std::shared_ptr<std::string> LogicGraph::compileGL()
     int last1 = 0, last2 = -1;
     auto GenerateName = [&last1, &last2]() {
         //* if  the last secondary character is the last possible then proceed to the next first character
-        if ((last2 + 1) >= secondaryVariableLetters.size())
+        if ((int)(last2 + 1) >= (int)secondaryVariableLetters.size())
         {
             ++last1;
             last2 = -1;

@@ -30,7 +30,7 @@ private:
 public:
     DataType GetType() const;
 
-    void SetType(DataType type);
+    void SetType(DataType _type);
 };
 
 #endif //_LOGICSOCKET_H_

@@ -33,15 +33,18 @@ public:
 	Graph(unsigned int _uid);
 
 	/**
- 	* @param Identifier
- 	*/
-	Node &GetNode(unsigned int identifier);
+	 * @brief Get the Node object
+	 * 
+	 * @param int 
+	 * @return Node& 
+	 */
+	Node &GetNode(unsigned int _uid);
 
-	std::list<Node>::iterator GetNodeIterator(unsigned int uid);
+	std::list<Node>::iterator GetNodeIterator(unsigned int _uid);
 
 	void AddNode(Node n);
 
-	void DeleteNode(unsigned int uid);
+	void DeleteNode(unsigned int _uid);
 
 	/**
 	 * @brief Transverses the node graph into a sequence.

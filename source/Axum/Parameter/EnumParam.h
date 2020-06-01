@@ -26,7 +26,7 @@ public:
 	 * @param _uid unique identifer for the parameter
 	 * @param value default value of the parameter
 	 */
-	EnumParam(unsigned int _uid, std::string &name, std::map<int, std::string> _enums, int value);
+	EnumParam(unsigned int _uid, std::string &_name, std::map<int, std::string> _enums, int _value);
 
 	/**
 	 * @brief Construct a new Enum Param object
@@ -35,11 +35,13 @@ public:
 	 * @param _uid unique identifer for the parameter
 	 * @param value default value of the parameter
 	 */
-	EnumParam(unsigned int _uid, const char *name, std::map<int, std::string> _enums, int value);
+	EnumParam(unsigned int _uid, const char *_name, std::map<int, std::string> _enums, int _value);
 
 private:
 	EnumParam(){};
+
 	std::map<int, std::string> enums;
+	
 	int value;
 
 public:

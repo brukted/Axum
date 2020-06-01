@@ -36,11 +36,11 @@ void Node::Invalidate()
  * @param IdName
  * @return OutputSocket
  */
-OutputSocket &Node::GetOutputSocket(unsigned int uid)
+OutputSocket &Node::GetOutputSocket(unsigned int _uid)
 {
     for (auto &var : this->mOutputSockets)
     {
-        if (var.GetUID() == uid)
+        if (var.GetUID() == _uid)
             return var;
     }
 }
@@ -49,11 +49,11 @@ OutputSocket &Node::GetOutputSocket(unsigned int uid)
  * @param IdName
  * @return InputSocket
  */
-InputSocket &Node::GetInputSocket(unsigned int uid)
+InputSocket &Node::GetInputSocket(unsigned int _uid)
 {
     for (auto &var : this->mInputSockets)
     {
-        if (var.GetUID() == uid)
+        if (var.GetUID() == _uid)
             return var;
     }
 }

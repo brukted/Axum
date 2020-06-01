@@ -38,11 +38,11 @@ public:
  * @return a pointer to a sub parameter
  * 
  */
-	Param &GetParameter(unsigned int uid);
+	Param &GetParameter(unsigned int _uid);
 
-	Param &GetParameter(std::string &name);
+	Param &GetParameter(std::string &_name);
 
-	Param &GetParameter(const char *name);
+	Param &GetParameter(const char *_name);
 	/**
  * @param Parameter
  */

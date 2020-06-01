@@ -17,8 +17,8 @@ bool BooleanParam::GetValue() const
     return this->value;
 }
 
-void BooleanParam::SetValue(bool value)
+void BooleanParam::SetValue(bool _value)
 {
-    this->value = value;
+    this->value = _value;
     this->OnValueChanged.emit();
 }

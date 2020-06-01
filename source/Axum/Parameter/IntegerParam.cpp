@@ -18,8 +18,8 @@ int IntegerParam::GetValue() const
     return this->value;
 }
 
-void IntegerParam::SetValue(int value)
+void IntegerParam::SetValue(int _value)
 {
-    this->value = value;
+    this->value = _value;
     this->OnValueChanged.emit();
 }

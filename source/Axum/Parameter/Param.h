@@ -42,11 +42,11 @@ protected:
 public:
 	sigc::signal<void> OnValueChanged;
 
-	Param(unsigned int uid);
+	Param(unsigned int _uid);
 
-	Param(unsigned int uid, std::string &_name);
+	Param(unsigned int _uid, std::string &_name);
 
-	Param(unsigned int uid, const char *_name);
+	Param(unsigned int _uid, const char *_name);
 
 	Param(std::string &_name);
 
@@ -61,9 +61,9 @@ public:
 
 	std::string &getName();
 
-	void setName(std::string &name);
+	void setName(std::string &_name);
 
-	void setName(const char *name);
+	void setName(const char *_name);
 
 	unsigned int getUid();
 

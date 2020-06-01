@@ -17,8 +17,8 @@ std::array<float, 3> Float3Param::GetValue() const
    return this->value;
 }
 
-void Float3Param::SetValue(std::array<float, 3> value)
+void Float3Param::SetValue(std::array<float, 3> _value)
 {
-   this->value = value;
+   this->value = _value;
    this->OnValueChanged.emit();
 }

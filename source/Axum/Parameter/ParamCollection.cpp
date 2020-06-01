@@ -19,28 +19,28 @@ ParamCollection::ParamCollection(unsigned int _uid, std::string &_name) : Param(
  * @param id
  * @return *Param
  */
-Param &ParamCollection::GetParameter(unsigned int uid)
+Param &ParamCollection::GetParameter(unsigned int _uid)
 {
     for (auto &param : this->Params)
     {
-        if (param->getUid() == uid)
+        if (param->getUid() == _uid)
             return *param;
     }
 }
 
-Param &ParamCollection::GetParameter(std::string &name)
+Param &ParamCollection::GetParameter(std::string &_name)
 {
     for (auto &param : this->Params)
     {
-        if ((name.compare(param->getName().c_str())) == 0)
+        if ((_name.compare(param->getName().c_str())) == 0)
             return *param;
     }
 }
-Param &ParamCollection::GetParameter(const char *name)
+Param &ParamCollection::GetParameter(const char *_name)
 {
     for (auto &param : this->Params)
     {
-        if ((param->getName().compare(name)) == 0)
+        if ((param->getName().compare(_name)) == 0)
             return *param;
     }
 }

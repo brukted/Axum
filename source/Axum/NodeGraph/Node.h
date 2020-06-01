@@ -30,7 +30,7 @@ class Node
 	friend class Graph;
 
 public:
-	Node(unsigned int uid);
+	Node(unsigned int _uid);
 	bool isVisited = false;
 	ParamCollection mNodeParams;
 	/**
@@ -63,12 +63,12 @@ public:
 	/**
  * @param uid unique identifier of the socket
  */
-	OutputSocket &GetOutputSocket(unsigned int uid);
+	OutputSocket &GetOutputSocket(unsigned int _uid);
 
 	/**
  * @param uid
  */
-	InputSocket &GetInputSocket(unsigned int uid);
+	InputSocket &GetInputSocket(unsigned int _uid);
 
 	std::vector<OutputSocket> &GetOutputSockets();
 

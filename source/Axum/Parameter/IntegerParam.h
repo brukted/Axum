@@ -25,7 +25,7 @@ public:
 
 	int GetValue() const;
 
-	void SetValue(int value);
+	void SetValue(int _value);
 
 private:
 	template <class Archive>
