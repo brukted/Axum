@@ -9,6 +9,7 @@
 class Connection
 {
 public:
+	Connection(unsigned int _FromNode, unsigned int _FromSocket, unsigned int _ToNode, unsigned int _ToSocket);
 	/**
  * UID of the source node
  */
