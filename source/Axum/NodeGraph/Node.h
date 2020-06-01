@@ -127,7 +127,7 @@ public:
 		this->NeedUpdate = _NeedUpdate;
 	}
 
-	bool GetUID() const
+	unsigned int GetUID() const
 	{
 		return uid;
 	}
