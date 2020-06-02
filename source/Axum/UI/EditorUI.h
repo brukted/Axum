@@ -7,7 +7,7 @@
 #define _EDITORUI_H
 
 #include <string>
-#include "../Editor/Editor.h"
+#include "../Editors/Editor.h"
 #include "DockablePanel.h"
 
 class EditorUI : public DockablePanel

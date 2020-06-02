@@ -6,7 +6,7 @@
 #ifndef _OUTLINER_H
 #define _OUTLINER_H
 
-#include "../Editor.h"
+#include "../Editors/Editor.h"
 
 class Outliner : public Editor
 {

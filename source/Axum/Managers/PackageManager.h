@@ -10,7 +10,7 @@
 #include <fstream>
 #include "boost/archive/text_iarchive.hpp"
 #include "boost/archive/text_oarchive.hpp"
-#include "../Package/Package.h"
+#include "../Resources/Package.h"
 #include "gtkmm-3.0/gtkmm.h"
 #include <list>
 #include <boost/filesystem.hpp>

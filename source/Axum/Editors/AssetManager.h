@@ -7,7 +7,7 @@
 #define _ASSETMANAGER_H_
 
 #include <string>
-#include "../Editor.h"
+#include "../Editors/Editor.h"
 
 class AssetManager : public Editor
 {

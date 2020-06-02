@@ -8,7 +8,7 @@
 
 #include "PreferenceManager.h"
 #include "boost/circular_buffer.hpp"
-#include "../Operators/Operator.h"
+#include "../Editors/Operators/Operator.h"
 
 //a special iterator for RecentOpreations
 typedef boost::circular_buffer<Operator>::iterator uiterator;

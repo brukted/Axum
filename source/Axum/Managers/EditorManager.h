@@ -7,7 +7,7 @@
 #define _EDITORMANAGER_H
 
 #include <vector>
-#include "../Editor/Editor.h"
+#include "../Editors/Editor.h"
 
 class EditorManager
 {

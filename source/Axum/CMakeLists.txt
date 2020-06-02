@@ -76,6 +76,7 @@ list(APPEND sources
     MApplication.cpp
     Addon/Addon.h
     Addon/Addon.cpp
+    #Bakery tools
     Bakery/Baker.h
     Bakery/Baker.cpp
     Bakery/BakerParams.h
@@ -84,6 +85,7 @@ list(APPEND sources
     Bakery/Bakery.cpp
     Bakery/BakeryParams.h
     Bakery/BakeryParams.cpp
+    #3d View port rendering utilities
     Draw/RenderEngine.h
     Draw/RenderEngine.cpp
     Draw/RenderEngineParams.h
@@ -93,24 +95,27 @@ list(APPEND sources
     Draw/Engines/GLEngine.h
     Draw/Engines/GLEngine.cpp
     #Editor
-    Editor/Editor.h
-    Editor/Editor.cpp
-    Editor/Editors/ParameterEditor.h
-    Editor/Editors/ParameterEditor.cpp
-    Editor/Editors/GraphEditor.h
-    Editor/Editors/GraphEditor.cpp
-    Editor/Editors/MaterialGraphEditor.h
-    Editor/Editors/MaterialGraphEditor.cpp
-    Editor/Editors/Outliner.h
-    Editor/Editors/Outliner.cpp
-    Editor/Editors/2DView.h
-    Editor/Editors/2DView.cpp
-    Editor/Editors/3DView.h
-    Editor/Editors/3DView.cpp
-    Editor/Editors/AssetManager.h
-    Editor/Editors/AssetManager.cpp
-    Editor/Editors/FunGraphEditor.h
-    Editor/Editors/FunGraphEditor.cpp
+    Editors/Editor.h
+    Editors/Editor.cpp
+    Editors/ParameterEditor.h
+    Editors/ParameterEditor.cpp
+    Editors/GraphEditor.h
+    Editors/GraphEditor.cpp
+    Editors/MaterialGraphEditor.h
+    Editors/MaterialGraphEditor.cpp
+    Editors/Outliner.h
+    Editors/Outliner.cpp
+    Editors/2DView.h
+    Editors/2DView.cpp
+    Editors/3DView.h
+    Editors/3DView.cpp
+    Editors/AssetManager.h
+    Editors/AssetManager.cpp
+    Editors/FunGraphEditor.h
+    Editors/FunGraphEditor.cpp
+    Editors/Operators/Operator.h
+    Editors/Operators/Operator.cpp
+    #Managers
     Managers/AddonManager.h
     Managers/AddonManager.cpp
     Managers/BakeryManager.h
@@ -127,6 +132,7 @@ list(APPEND sources
     Managers/UndoManager.cpp
     Managers/WindowManager.h
     Managers/WindowManager.cpp
+    #Node Graph
     NodeGraph/LogicGraph.h
     NodeGraph/LogicGraph.cpp
     NodeGraph/Graph.h
@@ -160,10 +166,7 @@ list(APPEND sources
     NodeGraph/OutputSockets/LogicOutSocket.cpp
     NodeGraph/OutputSockets/MaterialOutSocket.h
     NodeGraph/OutputSockets/MaterialOutSocket.cpp
-    Operators/Operator.h
-    Operators/Operator.cpp
-    Package/Package.h
-    Package/Package.cpp
+    #Parameters
     Parameter/BooleanParam.h
     Parameter/BooleanParam.cpp
     Parameter/EnumParam.h
@@ -192,6 +195,7 @@ list(APPEND sources
     Parameter/ProxyParam.cpp
     Parameter/TextParam.h
     Parameter/TextParam.cpp
+    #Resource types
     Resources/ImageTexture.h
     Resources/ImageTexture.cpp
     Resources/Folder.h
@@ -204,6 +208,8 @@ list(APPEND sources
     Resources/Scene.cpp
     Resources/VectorGraphics.h
     Resources/VectorGraphics.cpp
+    Resources/Package.h
+    Resources/Package.cpp
     #UI Elements
     UI/DockablePanel.h
     UI/DockablePanel.cpp

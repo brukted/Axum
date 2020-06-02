@@ -6,7 +6,7 @@
 #ifndef _PARAMETEREDITOR_H
 #define _PARAMETEREDITOR_H
 
-#include "../Editor.h"
+#include "../Editors/Editor.h"
 #include "../../Parameter/Param.h"
 
 class ParameterEditor : public Editor
