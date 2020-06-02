@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#include "Explorer.h"
+#include "Outliner.h"
 
 /**
- * Explorer implementation
+ * Outliner implementation
  */

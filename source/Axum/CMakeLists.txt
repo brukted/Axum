@@ -101,8 +101,8 @@ list(APPEND sources
     Editor/Editors/GraphEditor.cpp
     Editor/Editors/MaterialGraphEditor.h
     Editor/Editors/MaterialGraphEditor.cpp
-    Editor/Editors/Explorer.h
-    Editor/Editors/Explorer.cpp
+    Editor/Editors/Outliner.h
+    Editor/Editors/Outliner.cpp
     Editor/Editors/2DView.h
     Editor/Editors/2DView.cpp
     Editor/Editors/3DView.h
