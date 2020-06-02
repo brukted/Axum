@@ -99,8 +99,6 @@ list(APPEND sources
     Editors/Editor.cpp
     Editors/ParameterEditor.h
     Editors/ParameterEditor.cpp
-    Editors/GraphEditor.h
-    Editors/GraphEditor.cpp
     Editors/MaterialGraphEditor.h
     Editors/MaterialGraphEditor.cpp
     Editors/Outliner.h
@@ -111,8 +109,8 @@ list(APPEND sources
     Editors/3DView.cpp
     Editors/AssetManager.h
     Editors/AssetManager.cpp
-    Editors/FunGraphEditor.h
-    Editors/FunGraphEditor.cpp
+    Editors/LogicGraphEditor.h
+    Editors/LogicGraphEditor.cpp
     Editors/Operators/Operator.h
     Editors/Operators/Operator.cpp
     #Managers

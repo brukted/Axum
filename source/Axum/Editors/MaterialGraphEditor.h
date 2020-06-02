@@ -6,9 +6,9 @@
 #ifndef _MATERIALGRAPHEDITOR_H
 #define _MATERIALGRAPHEDITOR_H
 
-#include "GraphEditor.h"
+#include "Editor.h"
 
-class MaterialGraphEditor : public GraphEditor
+class MaterialGraphEditor : public Editor
 {
 };
 
