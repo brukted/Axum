@@ -6,11 +6,13 @@
 #ifndef _OPERATOR_H
 #define _OPERATOR_H
 
+#include <string>
+
 class Operator
 {
 public:
-	char16_t Name;
-	char16_t IdName;
+	std::string Name;
+	std::string IdName;
 
 	virtual void Excute();
 
