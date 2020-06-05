@@ -88,10 +88,6 @@ list(APPEND sources
     #3d View port rendering utilities
     Draw/RenderEngine.h
     Draw/RenderEngine.cpp
-    Draw/RenderEngineParams.h
-    Draw/RenderEngineParams.cpp
-    Draw/CameraParams.h
-    Draw/CameraParams.cpp
     Draw/Engines/GLEngine.h
     Draw/Engines/GLEngine.cpp
     #Editor

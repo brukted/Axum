@@ -47,7 +47,7 @@ void RenderEngine::UpdateMaterial()
 /**
  * @param *CameraParms
  */
-void RenderEngine::UpdateCamera(CameraParams *CameraParms)
+void RenderEngine::UpdateCamera(ParamCollection *CameraParms)
 {
 }
 

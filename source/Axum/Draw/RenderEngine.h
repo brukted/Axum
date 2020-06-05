@@ -6,8 +6,7 @@
 #ifndef _RENDERENGINE_H
 #define _RENDERENGINE_H
 
-#include "RenderEngineParams.h"
-#include "CameraParams.h"
+#include "../Parameter/ParamCollection.h"
 #include "../Resources/Scene.h"
 
 class RenderEngine
@@ -21,8 +20,8 @@ public:
 	/**
  	* Parameters of the render engine.
  	*/
-	RenderEngineParams mEngineParms;
-	CameraParams mCameraParms;
+	ParamCollection mEngineParms;
+	ParamCollection mCameraParms;
 
 	/**
  * Starts rendering.Consider allocating  resources here if you deallocate memory on stop.
@@ -50,7 +49,7 @@ public:
 	/**
  * @param *CameraParms
  */
-	virtual void UpdateCamera(CameraParams *CameraParms);
+	virtual void UpdateCamera(ParamCollection *CameraParms);
 
 	/**
  * The 3d view has been resized so update your framebuffer.
