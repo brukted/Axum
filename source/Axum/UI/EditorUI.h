@@ -8,9 +8,8 @@
 
 #include <string>
 #include "../Editors/Editor.h"
-#include "DockablePanel.h"
 
-class EditorUI : public DockablePanel
+class EditorUI
 {
 public:
 	Editor *editor = nullptr;

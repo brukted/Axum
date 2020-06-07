@@ -207,8 +207,6 @@ list(APPEND sources
     Resources/Package.h
     Resources/Package.cpp
     #UI Elements
-    UI/DockablePanel.h
-    UI/DockablePanel.cpp
     UI/EditorUI.h
     UI/EditorUI.cpp
     UI/MainWindow.h
