@@ -9,6 +9,10 @@
 #include <vector>
 #include "../Draw/RenderEngine.h"
 
+/**
+ * @class RenderManager Manages available render engines.
+ * 
+ */
 class RenderManager
 {
 public:

@@ -54,7 +54,8 @@ private:
 		else
 		{
 			/**
-			 * @brief Path replaced internal dependency uri with proper path eg: AX://test.pkg -> "$resourcesPath"/packages/test.pkg
+			 * @brief formattedPath Path with replaced internal dependency uri 
+			 * with proper path eg: AX://test.pkg -> $resourcesPath/packages/test.pkg
 			 * 
 			 */
 			std::string formattedPath = mPath;
@@ -64,6 +65,7 @@ private:
 			std::ifstream ifs(std::move(formattedPath));
 			boost::archive::text_iarchive ia(ifs);
 			ia >> *this;
+			this->resourceType = ResourceType::Linked;
 		}
 	}
 	BOOST_SERIALIZATION_SPLIT_MEMBER()

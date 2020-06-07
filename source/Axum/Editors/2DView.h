@@ -28,6 +28,8 @@ public:
  * @param *texture
  */
   void Display(ImageTexture *texture);
+
+  void Update();
 };
 
 #endif //_2DVIEW_H

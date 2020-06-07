@@ -12,18 +12,33 @@
 
 class _3DView : public Editor
 {
+private:
+  /**
+   * @brief Pointer to the current active scene.
+   * 
+   */
+  Scene *scene;
+
 public:
-   /**
- * @param *graph
- */
-   void Display(MaterialGraph *graph);
+  /**
+   * @brief Displays the scene with the graph's material.
+   * 
+   * @param graph 
+   */
+  void Display(MaterialGraph *graph);
 
-   /**
- * @param *scene
- */
-   void UpdateScene(Scene *scene);
+  /**
+   * @brief Changes the current active scene to @param scene
+   * 
+   * @param scene 
+   */
+  void UpdateScene(Scene *scene);
 
-   void Update();
+  /**
+   * @brief Renders the scene with the update
+   * 
+   */
+  void Update();
 };
 
 #endif //_3DVIEW_H

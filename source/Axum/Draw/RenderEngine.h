@@ -8,6 +8,7 @@
 
 #include "../Parameter/ParamCollection.h"
 #include "../Resources/Scene.h"
+#include <string>
 
 class RenderEngine
 {
@@ -15,8 +16,8 @@ public:
 	/**
  	* Name diplayed in the ui.
  	*/
-	char Name;
-	char IdName;
+	std::string Name;
+	std::string idName;
 	/**
  	* Parameters of the render engine.
  	*/

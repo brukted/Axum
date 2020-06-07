@@ -30,6 +30,13 @@ public:
   ImageTexture(std::string &path, PathType _pathType = PathType::Absolute);
 
   /**
+   * @brief Construct a new embedded Image Texture from a file at @a path
+   * 
+   * @param path path to the image
+   */
+  ImageTexture(std::string &path);
+
+  /**
    * @brief Construct a new Image Texture with solid color
    * 
    * @param _width width of the generated texture 

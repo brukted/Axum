@@ -32,3 +32,16 @@ ImageTexture::ImageTexture(unsigned int _width, unsigned int _height, unsigned c
         data[i + 3] = color[3];
     }
 }
+
+ImageTexture::ImageTexture(std::string &path)
+{
+    auto input = OIIO::ImageInput::open(path);
+    auto specs = input->spec();
+    width = (unsigned int)specs.width;
+    height = (unsigned int)specs.height;
+    channels = specs.nchannels;
+    data = std::vector<unsigned char>(width * height * channels);
+    input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
+    input->close();
+    this->resourceType = ResourceType::Embedded;
+}
