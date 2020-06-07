@@ -28,13 +28,22 @@ message(STATUS "${XML_OUT}")
 # 
 
 find_package(PkgConfig REQUIRED QUIET)
+
+if (NOT PkgConfig_FOUND )
+   message(STATUS "${target} skipped: PkgConfig  not found")
+    return()
+else()
+    message(STATUS "${target} : PkgConfig found")
+endif()
+
 find_package(Boost 1.72.0 REQUIRED COMPONENTS filesystem serialization)
-find_package(GTKMM)
+pkg_search_module (GTKMM REQUIRED IMPORTED_TARGET gtkmm-3.0)
 pkg_search_module (SPD_LOG REQUIRED IMPORTED_TARGET spdlog)
 pkg_search_module (EPOXY REQUIRED IMPORTED_TARGET libepoxy epoxy)
 pkg_search_module (LIB_SIGNAL REQUIRED IMPORTED_TARGET sigc++-3.0)
 pkg_search_module (OIIO REQUIRED IMPORTED_TARGET OpenImageIO>=2.1)
 pkg_search_module (FMT REQUIRED IMPORTED_TARGET fmt>=6.2)
+pkg_search_module (GDLMM REQUIRED IMPORTED_TARGET gdlmm-3.0)
 
 # 
 # Executable name and options
@@ -44,13 +53,6 @@ pkg_search_module (FMT REQUIRED IMPORTED_TARGET fmt>=6.2)
 set(target Axum)
 
 # Exit here if required dependencies are not met
-if (NOT PkgConfig_FOUND )
-   message(STATUS "${target} skipped: PkgConfig  not found")
-    return()
-else()
-    message(STATUS "${target} : PkgConfig found")
-endif()
-
 if (NOT BOOST_FOUND )
    message(STATUS "${target} skipped: Boost  not found")
     return()
@@ -340,10 +342,11 @@ target_link_libraries(${target}
     Boost::filesystem
     Boost::serialization
     PkgConfig::SPD_LOG
-    GTKMM
+    PkgConfig::GTKMM
     PkgConfig::EPOXY
     PkgConfig::LIB_SIGNAL
     PkgConfig::OIIO
+    PkgConfig::GDLMM
 )
 
 
