@@ -16,3 +16,7 @@
 void ParameterEditorUI::BindParm(Param *param)
 {
 }
+
+ParameterEditorUI::ParameterEditorUI() : EditorUI("Parameter Editor", "Parameter Editor")
+{
+}

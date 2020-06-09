@@ -8,3 +8,7 @@
 /**
  * MatGraphEditorUI implementation
  */
+
+MatGraphEditorUI::MatGraphEditorUI() : EditorUI("Material editor", "Material graph editor")
+{
+}

@@ -8,21 +8,30 @@
 
 #include <string>
 #include "../Editors/Editor.h"
+#include <gdlmm.h>
+#include <gtkmm.h>
 
-class EditorUI
+/**
+ * @class EditorUI Editor ui provides common functionalities for editors
+ * such as docking and title bar.
+ * 
+ */
+class EditorUI : public Gdl::DockItem
 {
+protected:
+	Gtk::Fixed space;
+
 public:
 	Editor *editor = nullptr;
 
-	/**
- * Returns a pointer to Gtk container where more UI can be added.
- */
-	void GetSpace();
+	EditorUI();
+
+	EditorUI(std::string name, std::string longname);
 
 	/**
- * @param title
- */
-	void SetTitle(std::string title);
+	 * @brief Returns a reference to Gtk container where more UI can be added.
+ 	*/
+	Gtk::Fixed &GetSpace();
 
 	void SetIcon();
 };

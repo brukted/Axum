@@ -3,13 +3,15 @@
  * @author Bruk Tedla
  */
 
-#ifndef _MATGRAPHEDITORUI_H
-#define _MATGRAPHEDITORUI_H
+#ifndef _MAT_GRAPH_EDITOR_UI_H
+#define _MAT_GRAPH_EDITOR_UI_H
 
-#include "GraphEditorUI.h"
+#include "../EditorUI.h"
 
-class MatGraphEditorUI : public GraphEditorUI
+class MatGraphEditorUI : public EditorUI
 {
+public:
+    MatGraphEditorUI();
 };
 
-#endif //_MATGRAPHEDITORUI_H
+#endif //_MAT_GRAPH_EDITOR_UI_H

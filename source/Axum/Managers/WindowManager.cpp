@@ -32,4 +32,5 @@ void WindowManager::ShowMainWindow()
     this->MainWin = win;
     this->app->add_window(*win);
     this->MainWin->present();
+    this->MainWin->set_title("Axum");
 }

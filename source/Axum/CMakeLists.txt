@@ -220,14 +220,12 @@ list(APPEND sources
     UI/EditorUIs/2DViewUI.cpp
     UI/EditorUIs/3DViewUI.h
     UI/EditorUIs/3DViewUI.cpp
-    UI/EditorUIs/ExplorerUI.h
-    UI/EditorUIs/ExplorerUI.cpp
-    UI/EditorUIs/FunGraphEditorUI.h
-    UI/EditorUIs/FunGraphEditorUI.cpp
-    UI/EditorUIs/GraphEditorUI.h
-    UI/EditorUIs/GraphEditorUI.cpp
-    UI/EditorUIs/LibraryUI.h
-    UI/EditorUIs/LibraryUI.cpp
+    UI/EditorUIs/OutlinerUI.h
+    UI/EditorUIs/OutlinerUI.cpp
+    UI/EditorUIs/LogicGraphEditorUI.h
+    UI/EditorUIs/LogicGraphEditorUI.cpp
+    UI/EditorUIs/AssetManagerUI.h
+    UI/EditorUIs/AssetManagerUI.cpp
     UI/EditorUIs/MatGraphEditorUI.h
     UI/EditorUIs/MatGraphEditorUI.cpp
     UI/EditorUIs/ParameterEditorUI.h

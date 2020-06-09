@@ -10,6 +10,8 @@
 
 class _3DViewUI : public EditorUI
 {
+public:
+    _3DViewUI();
 };
 
 #endif //_3DVIEWUI_H

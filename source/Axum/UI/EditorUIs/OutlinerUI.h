@@ -3,17 +3,17 @@
  * @author Bruk Tedla
  */
 
-#ifndef _EXPLORERUI_H
-#define _EXPLORERUI_H
+#ifndef _OUTLINER_UI_H
+#define _OUTLINER_UI_H
 
 #include <vector>
 #include "../EditorUI.h"
 #include "../Widgets/ExplorerItemUI.h"
 
-class ExplorerUI : public EditorUI
+class OutlinerUI : public EditorUI
 {
 public:
-	std::vector<ExplorerItemUI> Items;
+	OutlinerUI();
 };
 
-#endif //_EXPLORERUI_H
+#endif //_OUTLINER_UI_H

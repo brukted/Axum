@@ -10,6 +10,8 @@
 
 class _2DViewUI : public EditorUI
 {
+public:
+_2DViewUI();
 };
 
 #endif //_2DVIEWUI_H

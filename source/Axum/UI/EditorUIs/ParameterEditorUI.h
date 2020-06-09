@@ -14,6 +14,7 @@ class ParameterEditorUI : public EditorUI
 {
 public:
 	ParamUI mParamUI;
+	ParameterEditorUI();
 
 	/**
  * Builds the appropirate ui for the parameter collection.
