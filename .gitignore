@@ -20,7 +20,7 @@ art/*
 *.a
 
 # Build dir
-build*
+build
 debug_build
 release_build
 /bin
