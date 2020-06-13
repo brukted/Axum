@@ -56,7 +56,7 @@ public:
 	/**
 	 * @brief Rebuilds thumbnail for all asset items.
 	 * 
-	 * @param root root of the asset items. Should be directory type.
+	 * @param _root root of the asset items. Should be directory type.
 	 * 
 	 */
 	static void RebuildCache(AssetItem &_root);
@@ -84,7 +84,7 @@ public:
 	void reload();
 
 	/**
-	 * @brief Recursively searchs all assets in the @param parent and adds them to it.
+	 * @brief Recursively searchs all assets in the @a parent and adds them to it.
 	 * 
 	 * @param parent Directory to search assets in
 	 */

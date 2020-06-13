@@ -23,9 +23,9 @@ protected:
 	 */
 	unsigned int uid;
 	/**
-	 * @brief Creates one sided link with @param socket
+	 * @brief Creates one sided link with @a socket
 	 * 
-	 *@param *socket Source socket of the link
+	 *@param socket Source socket of the link
  	**/
 	void HalfLink(OutputSocket *socket);
 

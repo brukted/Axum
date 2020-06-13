@@ -38,9 +38,11 @@ public:
 	OutputSocket(const char *_name, unsigned int _uid);
 
 	/**
- * @param *Socket
- */
-	void LinkTo(InputSocket *);
+	 * @brief Links this socket to @a socket two way.
+	 * 
+	 * @param socket Socket to link to
+	 */
+	void LinkTo(InputSocket *socket);
 
 	void UnlinkFrom(unsigned int _uid);
 

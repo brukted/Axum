@@ -81,10 +81,10 @@ public:
         return this->tree.get<T>(path, defaultValue);
     }
     /**
-     * @brief Returns a preference at @param path.Returns zero sized vector if the parameter doesn't exist.
+     * @brief Returns a preference at @a path. Returns zero sized vector if the parameter doesn't exist.
      * 
      *@param path relative path to put the preference e.g: 3dview.HDRIpaths
-     *@param return array of values of the preference
+     *@return array of values of the preference.
     **/
     template <typename T>
     std::vector<T> getPreferenceArray(std::string path)

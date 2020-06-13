@@ -79,14 +79,14 @@ public:
 	void setPath(char const *);
 
 	/**
-	 * @brief Makes the path type to relative and the path relative to @param pkgPath.
+	 * @brief Makes the path type to relative and the path relative to @a pkgPath.
 	 * This method has no effect if the resource is embedded.
 	 * 
 	 * @param pkgPath Absolute path of the package this resource is located 
 	 */
 	void makeRelative(std::string &pkgPath);
 
-	/** @brief Makes the path type to absolute and the path absolute to @param pkgPath.
+	/** @brief Makes the path type to absolute and the path absolute to @a pkgPath.
 	 * This method has no effect if the resource is embedded.
 	 * 
 	 * @param pkgPath Absolute path of the package this resource is located 

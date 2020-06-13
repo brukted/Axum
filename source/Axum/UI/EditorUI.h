@@ -12,7 +12,7 @@
 #include <gtkmm.h>
 
 /**
- * @class EditorUI Editor ui provides common functionalities for editors
+ * @brief EditorUI Editor ui provides common functionalities for editors
  * such as docking and title bar.
  * 
  */

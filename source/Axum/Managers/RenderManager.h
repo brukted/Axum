@@ -10,7 +10,7 @@
 #include "../Draw/RenderEngine.h"
 
 /**
- * @class RenderManager Manages available render engines.
+ * @brief RenderManager Manages available render engines.
  * 
  */
 class RenderManager

@@ -62,13 +62,19 @@ public:
 	void Invalidate();
 
 	/**
- * @param uid unique identifier of the socket
- */
+	 * @brief Get the output socket with the uid = @a _uid
+	 * 
+	 * @param _uid uid of the socket to find 
+	 * @return OutputSocket& reference to the socket with uid = @a _uid
+	 */
 	OutputSocket &GetOutputSocket(unsigned int _uid);
 
 	/**
- * @param uid
- */
+	 * @brief Get the Input Socket with the specified uid.
+	 * 
+	 * @param _uid uid of the socket to find.
+	 * @return InputSocket& 
+	 */
 	InputSocket &GetInputSocket(unsigned int _uid);
 
 	std::vector<OutputSocket> &GetOutputSockets();

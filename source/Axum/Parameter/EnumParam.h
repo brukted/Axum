@@ -22,18 +22,20 @@ public:
 	/**
 	 * @brief Construct a new Enum Param object
 	 * 
-	 * @param _enums 
-	 * @param _uid unique identifer for the parameter
-	 * @param value default value of the parameter
+	 * @param _uid Unique id of the parameter.
+	 * @param _name Name of the parameter.
+	 * @param _enums Map of possible values.
+	 * @param _value Default value for the parameter.
 	 */
 	EnumParam(unsigned int _uid, std::string &_name, std::map<int, std::string> _enums, int _value);
 
 	/**
 	 * @brief Construct a new Enum Param object
 	 * 
-	 * @param _enums 
-	 * @param _uid unique identifer for the parameter
-	 * @param value default value of the parameter
+	 * @param _uid Unique id of the parameter.
+	 * @param _name Name of the parameter.
+	 * @param _enums Map of possible values.
+	 * @param _value Default value for the parameter.
 	 */
 	EnumParam(unsigned int _uid, const char *_name, std::map<int, std::string> _enums, int _value);
 

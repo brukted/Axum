@@ -22,17 +22,17 @@ public:
  * @brief Get the Header Part string.
  * 
  * @param code Source code output.
- * @param GraphParams Parameters of the parent graph.
+ * @param generator Functor to the variable name generator of the graph.
  */
-  virtual void getHeaderPart(std::shared_ptr<std::string> &code, std::function<std::string()>);
+  virtual void getHeaderPart(std::shared_ptr<std::string> &code, std::function<std::string()> generator);
 
   /**
  * @brief Concrete function nodes add their specific code to the source code here.
  * 
  * @param code Source code output.
- * @param GraphParams Paramaters of the parent graph.
+ * @param generator Functor to the variable name generator of the graph.
  */
-  virtual void getFunctionPart(std::shared_ptr<std::string> &code, std::function<std::string()>);
+  virtual void getFunctionPart(std::shared_ptr<std::string> &code, std::function<std::string()> generator);
 };
 
 #endif //_LOGIC_NODE_H_

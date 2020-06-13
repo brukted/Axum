@@ -35,7 +35,9 @@ public:
 	ParamCollection(unsigned int _uid, std::string &_name);
 
 	/**
- * @param uid unique identifer of the parameter
+ * 
+ * 
+ * @param _uid unique identifer of the parameter
  * @return a pointer to a sub parameter
  * 
  */
@@ -45,7 +47,7 @@ public:
 
 	Param &GetParameter(const char *_name);
 	/**
- * @param Parameter
+ * @param parameter
  */
 	void AddParameter(Param *parameter);
 

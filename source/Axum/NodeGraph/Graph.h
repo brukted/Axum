@@ -33,10 +33,10 @@ public:
 	Graph(unsigned int _uid);
 
 	/**
-	 * @brief Get the Node object
+	 * @brief Get the Node with uid = @a _uid
 	 * 
-	 * @param int 
-	 * @return Node& 
+	 * @param _uid uid of the node to find 
+	 * @return Node& reference to the node with uid = @a _uid
 	 */
 	Node &GetNode(unsigned int _uid);
 

@@ -29,7 +29,7 @@ public:
 	/**
 	 * @brief Get the Resource with the specified uid.
 	 * 
-	 * @param uid Unique identifier of the resource.
+	 * @param _uid Unique identifier of the resource.
 	 * @return Resource& reference to the resource by uid.
 	 */
 	Resource &GetResource(unsigned int _uid);
