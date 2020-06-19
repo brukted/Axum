@@ -7,6 +7,9 @@
 
 /**
  * GraphUI implementation
- * 
- * A ui representation of a graph this is build at runtime from the graph and is not serilized.
+ *
+ * A ui representation of a graph this is build at runtime from the graph and is
+ * not serilized.
  */
+
+namespace Axum::UI::Widget {}

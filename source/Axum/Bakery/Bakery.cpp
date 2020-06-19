@@ -9,16 +9,16 @@
  * Bakery implementation
  */
 
+namespace Axum::Bakery {
+
 /**
  * Calls bake on all bakers.
  */
-void Bakery::Bake()
-{
-}
+void Bakery::Bake() {}
 
 /**
  * @param baker
  */
-void Bakery::AddBaker(Baker baker)
-{
-}
+void Bakery::AddBaker(Baker baker) {}
+
+} // namespace Axum::Bakery

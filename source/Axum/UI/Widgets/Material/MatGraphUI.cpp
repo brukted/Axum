@@ -8,3 +8,5 @@
 /**
  * MatGraphUI implementation
  */
+
+namespace Axum::UI::Widget {}

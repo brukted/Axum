@@ -8,3 +8,5 @@
 /**
  * OutputSocketUI implementation
  */
+
+namespace Axum::UI::Widget {}

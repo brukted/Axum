@@ -6,45 +6,45 @@
 #ifndef _RENDERMANAGER_H
 #define _RENDERMANAGER_H
 
-#include <vector>
 #include "../Draw/RenderEngine.h"
+#include <vector>
+
+namespace Axum::Manager {
 
 /**
  * @brief RenderManager Manages available render engines.
- * 
+ *
  */
-class RenderManager
-{
+class RenderManager {
 public:
-	static RenderManager &getInstance()
-	{
-		static RenderManager instance;
-		return instance;
-	}
+  static RenderManager &getInstance() {
+    static RenderManager instance;
+    return instance;
+  }
 
 private:
-	RenderManager(){};
+  RenderManager(){};
 
 public:
-	RenderManager(RenderManager const &) = delete;
-	void operator=(RenderManager const &) = delete;
+  RenderManager(RenderManager const &) = delete;
+  void operator=(RenderManager const &) = delete;
 
-	RenderEngine *CurrentEngine;
-	std::vector<RenderEngine> mRenderEngines;
+  Draw::RenderEngine *CurrentEngine;
+  std::vector<Draw::RenderEngine> mRenderEngines;
 
-	void Startup();
+  void Startup();
 
-	void Shutdown();
+  void Shutdown();
 
-	/**
- * @param engine
- */
-	void SetRenderEngine(RenderEngine *engine);
+  /**
+   * @param engine
+   */
+  void SetRenderEngine(Draw::RenderEngine *engine);
 
-	/**
- * @param engine
- */
-	void RegisterEngine(RenderEngine engine);
+  /**
+   * @param engine
+   */
+  void RegisterEngine(Draw::RenderEngine engine);
 };
-
+} // namespace Axum::Manager
 #endif //_RENDERMANAGER_H

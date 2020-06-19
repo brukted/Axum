@@ -8,12 +8,21 @@
 
 #include "../../NodeGraph/OutputSocket.h"
 
-class OutputSocket;
+namespace NodeGraph = Axum::NodeGraph;
 
-class OutputSocketUI
-{
+namespace Axum {
+
+namespace NodeGraph {
+class OutputSocket;
+}
+
+namespace UI::Widget {
+
+class OutputSocketUI {
 public:
-	OutputSocket *Socket;
+  NodeGraph::OutputSocket *Socket;
 };
 
+} // namespace UI::Widget
+} // namespace Axum
 #endif //_OUTPUTSOCKETUI_H

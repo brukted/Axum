@@ -6,42 +6,43 @@
 #ifndef _WINDOWMANAGER_H
 #define _WINDOWMANAGER_H
 
+#include "UI/MainWindow.h"
+#include <gtkmm.h>
 #include <vector>
-#include "../UI/Window.h"
-#include "../UI/MainWindow.h"
 
-class WindowManager
-{
+namespace Axum::Manager {
+
+namespace UI = Axum::UI;
+
+class WindowManager {
 public:
-	static WindowManager &getInstance(Gtk::Application *app = nullptr)
-	{
-		static WindowManager instance;
-		if (app != nullptr)
-			instance.app = app;
-		return instance;
-	}
-	Gtk::Application *app;
+  static WindowManager &getInstance(Gtk::Application *app = nullptr) {
+    static WindowManager instance;
+    if (app != nullptr)
+      instance.app = app;
+    return instance;
+  }
+  Gtk::Application *app;
 
 private:
-	WindowManager(){};
+  WindowManager(){};
 
 public:
-	WindowManager(WindowManager const &) = delete;
-	void operator=(WindowManager const &) = delete;
-	/**
- * @param window
- */
-	void AddWindow(Window window);
+  WindowManager(WindowManager const &) = delete;
+  void operator=(WindowManager const &) = delete;
+  /**
+   * @param window
+   */
+  void AddWindow(Gtk::Window window);
 
-	void Startup();
+  void Startup();
 
-	void Shutdown();
+  void Shutdown();
 
-	void ShowMainWindow();
+  void AddShowMainWindow();
 
 private:
-	std::vector<Window> windows;
-	MainWindow *MainWin;
+  std::vector<Gtk::Window *> windows;
 };
-
+} // namespace Axum::Manager
 #endif //_WINDOWMANAGER_H

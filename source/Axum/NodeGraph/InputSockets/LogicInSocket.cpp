@@ -9,12 +9,9 @@
  * LogicInSocket implementation
  */
 
-DataType LogicInSocket::GetType() const
-{
-    return type;
-}
+namespace Axum::NodeGraph::Logic {
 
-void LogicInSocket::SetType(DataType _type)
-{
-    type = _type;
-}
+DataType LogicInSocket::GetType() const { return type; }
+
+void LogicInSocket::SetType(DataType _type) { type = _type; }
+} // namespace Axum::NodeGraph::Logic

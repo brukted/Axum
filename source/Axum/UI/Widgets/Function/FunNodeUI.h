@@ -8,8 +8,9 @@
 
 #include "../NodeUI.h"
 
-class FunNodeUI : public NodeUI
-{
-};
+namespace Axum::UI::Widget {
 
+class FunNodeUI : public NodeUI {};
+
+} // namespace Axum::UI::Widget
 #endif //_FUNNODEUI_H

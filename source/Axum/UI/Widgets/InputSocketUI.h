@@ -6,14 +6,17 @@
 #ifndef _INPUTSOCKETUI_H
 #define _INPUTSOCKETUI_H
 
-#include "../../NodeGraph/InputSocket.h"
-
+namespace Axum {
+namespace NodeGraph {
 class InputSocket;
+}
+namespace UI::Widget {
 
-class InputSocketUI
-{
+class InputSocketUI {
 public:
-	InputSocket *Socket;
+  Axum::NodeGraph::InputSocket *Socket;
 };
 
+} // namespace UI::Widget
+} // namespace Axum
 #endif //_INPUTSOCKETUI_H

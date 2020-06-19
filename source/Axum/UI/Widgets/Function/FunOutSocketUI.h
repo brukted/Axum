@@ -8,8 +8,9 @@
 
 #include "../OutputSocketUI.h"
 
-class FunOutSocketUI : public OutputSocketUI
-{
-};
+namespace Axum::UI::Widget {
 
+class FunOutSocketUI : public OutputSocketUI {};
+
+} // namespace Axum::UI::Widget
 #endif //_FUNOUTSOCKETUI_H

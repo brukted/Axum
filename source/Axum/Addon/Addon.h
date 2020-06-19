@@ -8,9 +8,16 @@
 
 #include <string>
 
-class Addon
+namespace Axum
 {
-    std::string name;
-};
+    namespace Addon
+    {
+
+        class Addon
+        {
+            std::string name;
+        };
+    } // namespace Addon
+} // namespace Axum
 
 #endif //_ADDON_H

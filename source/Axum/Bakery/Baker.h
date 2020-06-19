@@ -5,22 +5,23 @@
 
 #ifndef _BAKER_H
 #define _BAKER_H
+#include "Parameter/ParamCollection.h"
 
-#include "BakerParams.h"
-#include "BakeryParams.h"
+namespace Axum {
+namespace Bakery {
 
-class Baker
-{
+class Baker {
 public:
-	/**
- * The list of the baker's personal parameters.
- */
-	BakerParams mParams;
+  /**
+   * The list of the baker's personal parameters.
+   */
+  Parameter::ParamCollection mParams;
 
-	/**
- * @param *BakeryParms
- */
-	void bake(BakeryParams *BakeryParms);
+  /**
+   * @param *BakeryParms
+   */
+  void bake(Parameter::ParamCollection *BakeryParms);
 };
-
+} // namespace Bakery
+} // namespace Axum
 #endif //_BAKER_H

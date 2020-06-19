@@ -9,10 +9,11 @@
 #include "../InputSocket.h"
 #include "../Material.h"
 
+namespace Axum::NodeGraph::Material{
 class MaterialInSocket : public InputSocket
 {
 public:
 	Channel channel = Channel::Color;
 };
-
+}
 #endif //_MATERIALINSOCKET_H

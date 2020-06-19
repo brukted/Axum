@@ -6,84 +6,78 @@
 #ifndef _PARAM_H
 #define _PARAM_H
 
-#include <string>
-#include <vector>
 #include "../UI/Widgets/ParamUI.h"
 #include "boost/serialization/access.hpp"
-#include "boost/serialization/string.hpp"
 #include "boost/serialization/split_member.hpp"
+#include "boost/serialization/string.hpp"
 #include "boost/serialization/vector.hpp"
 #include "boost/serialization/version.hpp"
 #include "sigc++/sigc++.h"
+#include <string>
+#include <vector>
 
-enum UIType
-{
-	Slider,
-	Angle,
-	Color
-};
-class Param
-{
-	friend class boost::serialization::access;
+namespace Axum {
+namespace Parameter {
+
+enum UIType { Slider, Angle, Color };
+class Param {
+  friend class boost::serialization::access;
 
 protected:
-	/**
-	 * @brief Construct a new Param object with uid is equal to 0.
-	 * Don't use if it's going to be added to Param Collection.
-	 * 
-	 */
-	Param(){};
+  /**
+   * @brief Construct a new Param object with uid is equal to 0.
+   * Don't use if it's going to be added to Param Collection.
+   *
+   */
+  Param(){};
 
-	std::string name;
-	unsigned int uid;
-	UIType mUIType;
-	std::vector<UIType> SupportedTypes = std::vector<UIType>(5);
+  std::string name;
+  unsigned int uid;
+  UIType mUIType;
+  std::vector<UIType> SupportedTypes = std::vector<UIType>(5);
 
 public:
-	sigc::signal<void> OnValueChanged;
+  sigc::signal<void> OnValueChanged;
 
-	Param(unsigned int _uid);
+  Param(unsigned int _uid);
 
-	Param(unsigned int _uid, std::string &_name);
+  Param(unsigned int _uid, std::string &_name);
 
-	Param(unsigned int _uid, const char *_name);
+  Param(unsigned int _uid, const char *_name);
 
-	Param(std::string &_name);
+  Param(std::string &_name);
 
-	Param(const char *_name);
+  Param(const char *_name);
 
-	/**
- * Displays the data to the ui.
- */
-	virtual ParamUI GetEditUI();
+  virtual void DrawEdit(UI::Widget::ParamUI *ui);
 
-	virtual ParamUI GetDisplayUI();
+  virtual void DrawDisplay(UI::Widget::ParamUI *ui);
 
-	std::string &getName();
+  std::string &getName();
 
-	void setName(std::string &_name);
+  void setName(std::string &_name);
 
-	void setName(const char *_name);
+  void setName(const char *_name);
 
-	unsigned int getUid();
+  unsigned int getUid();
 
 private:
-	template <class Archive>
-	void save(Archive &ar, const unsigned int version) const
-	{
-		ar &uid;
-		ar &name;
-		ar &mUIType;
-	}
+  template <class Archive>
+  void save(Archive &ar, const unsigned int version) const {
+    ar &uid;
+    ar &name;
+    ar &mUIType;
+  }
 
-	template <class Archive>
-	void load(Archive &ar, const unsigned int version)
-	{
-		ar &uid;
-		ar &name;
-		ar &mUIType;
-	}
-	BOOST_SERIALIZATION_SPLIT_MEMBER()
+  template <class Archive> void load(Archive &ar, const unsigned int version) {
+    ar &uid;
+    ar &name;
+    ar &mUIType;
+  }
+  BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
-BOOST_CLASS_VERSION(Param, 1)
+
+} // namespace Parameter
+} // namespace Axum
+BOOST_CLASS_VERSION(Axum::Parameter::Param, 1)
 #endif //_PARAM_H

@@ -8,3 +8,5 @@
 /**
  * FunInSocketUI implementation
  */
+
+namespace Axum::UI::Widget {}

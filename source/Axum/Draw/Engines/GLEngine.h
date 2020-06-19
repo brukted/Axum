@@ -8,8 +8,10 @@
 
 #include "../RenderEngine.h"
 
-class GLEngine : public RenderEngine
-{
-};
+namespace Axum {
+namespace Draw {
+class GLEngine : public RenderEngine {};
+} // namespace Draw
+} // namespace Axum
 
 #endif //_GLENGINE_H

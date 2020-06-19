@@ -8,3 +8,5 @@
 /**
  * NodeLinkUI implementation
  */
+
+namespace Axum::UI::Widget {}

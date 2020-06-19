@@ -9,14 +9,12 @@
  * AddonManager implementation
  */
 
-void AddonManager::Refresh()
-{
-}
+namespace Axum::Manager {
 
-void AddonManager::Startup()
-{
-}
+void AddonManager::Refresh() {}
 
-void AddonManager::Shutdown()
-{
-}
+void AddonManager::Startup() {}
+
+void AddonManager::Shutdown() {}
+
+} // namespace Axum::Manager

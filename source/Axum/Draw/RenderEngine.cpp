@@ -7,55 +7,47 @@
 
 /**
  * RenderEngine implementation
- * 
+ *
  * Base class for all types of renderers(whether ray tracing or real time)
  */
 
+namespace Axum::Draw {
+
 /**
- * Starts rendering.Consider allocating  resources here if you deallocate memory on stop.
+ * Starts rendering.Consider allocating  resources here if you deallocate memory
+ * on stop.
  */
-void RenderEngine::Start()
-{
-}
+void RenderEngine::Start() {}
 
 /**
  * Draws the render to the 3d view.
  */
-void RenderEngine::Display()
-{
-}
+void RenderEngine::Display() {}
 
 /**
- * Stop rendering also consider freeing memory if the renderer is resource heavy.
+ * Stop rendering also consider freeing memory if the renderer is resource
+ * heavy.
  */
-void RenderEngine::Stop()
-{
-}
+void RenderEngine::Stop() {}
 
 /**
  * Called when the scene is changed so update the renderer's scene too.
  * @param *Scene
  */
-void RenderEngine::UpdateScene(Scene *Scene)
-{
-}
+void RenderEngine::UpdateScene(Scene *Scene) {}
 
-void RenderEngine::UpdateMaterial()
-{
-}
+void RenderEngine::UpdateMaterial() {}
 
 /**
  * @param *CameraParms
  */
-void RenderEngine::UpdateCamera(ParamCollection *CameraParms)
-{
-}
+void RenderEngine::UpdateCamera(ParamCollection *CameraParms) {}
 
 /**
  * The 3d view has been resized so update your framebuffer.
  * @param Width
  * @param Height
  */
-void RenderEngine::Resize(int Width, int Height)
-{
-}
+void RenderEngine::Resize(int Width, int Height) {}
+
+} // namespace Axum::Draw

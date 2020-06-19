@@ -11,37 +11,39 @@
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/version.hpp"
 
-class IntegerParam : public Param
-{
-	friend class boost::serialization::access;
+namespace Axum {
+namespace Parameter {
+
+class IntegerParam : public Param {
+  friend class boost::serialization::access;
 
 private:
-	int value;
+  int value;
 
 public:
-	IntegerParam(unsigned int _uid, std::string &_name, int _value);
+  IntegerParam(unsigned int _uid, std::string &_name, int _value);
 
-	IntegerParam(unsigned int _uid, const char *_name, int _value);
+  IntegerParam(unsigned int _uid, const char *_name, int _value);
 
-	int GetValue() const;
+  int GetValue() const;
 
-	void SetValue(int _value);
+  void SetValue(int _value);
 
 private:
-	template <class Archive>
-	void save(Archive &ar, const unsigned int version) const
-	{
-		ar &boost::serialization::base_object<Param>(*this);
-		ar &value;
-	}
+  template <class Archive>
+  void save(Archive &ar, const unsigned int version) const {
+    ar &boost::serialization::base_object<Param>(*this);
+    ar &value;
+  }
 
-	template <class Archive>
-	void load(Archive &ar, const unsigned int version)
-	{
-		ar &boost::serialization::base_object<Param>(*this);
-		ar &value;
-	}
-	BOOST_SERIALIZATION_SPLIT_MEMBER()
+  template <class Archive> void load(Archive &ar, const unsigned int version) {
+    ar &boost::serialization::base_object<Param>(*this);
+    ar &value;
+  }
+  BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
-BOOST_CLASS_VERSION(IntegerParam, 1)
+
+} // namespace Parameter
+} // namespace Axum
+BOOST_CLASS_VERSION(Axum::Parameter::IntegerParam, 1)
 #endif //_INTEGERPARAM_H

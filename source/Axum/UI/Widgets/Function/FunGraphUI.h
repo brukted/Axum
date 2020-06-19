@@ -8,8 +8,9 @@
 
 #include "../GraphUI.h"
 
-class FunGraphUI : public GraphUI
-{
-};
+namespace Axum::UI::Widget {
 
+class FunGraphUI : public GraphUI {};
+
+} // namespace Axum::UI::Widget
 #endif //_FUNNODETREEUI_H

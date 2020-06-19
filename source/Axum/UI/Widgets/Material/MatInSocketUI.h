@@ -8,8 +8,11 @@
 
 #include "../InputSocketUI.h"
 
+namespace Axum::UI::Widget{
+
 class MatInSocketUI : public InputSocketUI
 {
 };
 
+}
 #endif //_MATINSOCKETUI_H

@@ -9,10 +9,13 @@
 #include "MaterialNode.h"
 #include "../MaterialGraph.h"
 
+namespace Axum::NodeGraph::Material{
+
 class MaterialGraphInstanceNode : public MaterialNode
 {
 public:
 	MaterialGraph *Graph;
 };
 
+}
 #endif //_MATERIALGRAPHINSTANCENODE_H

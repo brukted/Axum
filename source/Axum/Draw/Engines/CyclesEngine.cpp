@@ -8,3 +8,5 @@
 /**
  * CyclesEngine implementation
  */
+
+namespace Axum::Draw{}

@@ -8,8 +8,12 @@
 
 #include "../RenderEngine.h"
 
-class CyclesEngine : public RenderEngine
-{
-};
+namespace Axum {
+namespace Draw {
+
+class CyclesEngine : public RenderEngine {};
+
+} // namespace Draw
+} // namespace Axum
 
 #endif //_CYCLESENGINE_H

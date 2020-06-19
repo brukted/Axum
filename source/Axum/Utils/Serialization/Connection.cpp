@@ -11,6 +11,8 @@
  * Serializable representation of links between nodes.
  */
 
+using namespace Axum::Utils;
+
 Connection::Connection(unsigned int _FromNode, unsigned int _FromSocket, unsigned int _ToNode, unsigned int _ToSocket)
 {
     FromNode = _FromNode;

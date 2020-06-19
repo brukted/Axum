@@ -9,27 +9,25 @@
  * EnumParam implementation
  */
 
-EnumParam::EnumParam(unsigned int _uid, std::string &_name, std::map<int, std::string> _enums, int _value) : enums(_enums), value(_value), Param(_name) {}
+namespace Axum::Parameter {
 
-EnumParam::EnumParam(unsigned int _uid, const char *_name, std::map<int, std::string> _enums, int _value) : enums(_enums), value(_value), Param(_name) {}
+EnumParam::EnumParam(unsigned int _uid, std::string &_name,
+                     std::map<int, std::string> _enums, int _value)
+    : enums(_enums), value(_value), Param(_name) {}
 
-int EnumParam::SetValue() const
-{
-	return this->value;
+EnumParam::EnumParam(unsigned int _uid, const char *_name,
+                     std::map<int, std::string> _enums, int _value)
+    : enums(_enums), value(_value), Param(_name) {}
+
+int EnumParam::SetValue() const { return this->value; }
+
+int EnumParam::GetValue() const { return value; }
+
+void EnumParam::SetValue(int key) {
+  this->value = key;
+  this->OnValueChanged.emit();
 }
 
-int EnumParam::GetValue() const
-{
-	return value;
-}
+std::string &EnumParam::ToString(int key) { return this->enums[key]; }
 
-void EnumParam::SetValue(int key)
-{
-	this->value = key;
-	this->OnValueChanged.emit();
-}
-
-std::string &EnumParam::ToString(int key)
-{
-	return this->enums[key];
-}
+} // namespace Axum::Parameter

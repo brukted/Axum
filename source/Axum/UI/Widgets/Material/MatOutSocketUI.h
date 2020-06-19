@@ -8,8 +8,9 @@
 
 #include "../OutputSocketUI.h"
 
-class MatOutSocketUI : public OutputSocketUI
-{
-};
+namespace Axum::UI::Widget {
 
+class MatOutSocketUI : public OutputSocketUI {};
+
+} // namespace Axum::UI::Widget
 #endif //_MATOUTSOCKETUI_H

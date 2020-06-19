@@ -6,30 +6,31 @@
 #ifndef _MAPPLICATION_H
 #define _MAPPLICATION_H
 
-#include "gtkmm-3.0/gtkmm.h"
-#include "UI/SplashWindow.h"
-#include "Managers/PreferenceManager.h"
-#include "Managers/UndoManager.h"
-#include "Managers/PackageManager.h"
-#include "Managers/RenderManager.h"
-#include "Managers/BakeryManager.h"
-#include "Managers/EditorManager.h"
-#include "Managers/WindowManager.h"
 #include "Managers/AddonManager.h"
+#include "Managers/PackageManager.h"
+#include "Managers/PreferenceManager.h"
+#include "Managers/RenderManager.h"
+#include "Managers/UndoManager.h"
+#include "Managers/WindowManager.h"
+#include "UI/SplashWindow.h"
+#include <gtkmm.h>
 
-class MApplication : public Gtk::Application
-{
+namespace Axum {
+
+class MApplication : public Gtk::Application {
 protected:
-	MApplication();
+  MApplication();
 
 public:
-	constexpr static const unsigned int ApplicationVersion[3] = {1, 0, 0};
-	static Glib::RefPtr<MApplication> create();
-	~MApplication();
+  constexpr static const unsigned int ApplicationVersion[3] = {1, 0, 0};
+  static Glib::RefPtr<MApplication> create();
+  ~MApplication();
 
 protected:
-	void on_activate() override;
-	void on_open(const Gio::Application::type_vec_files &files, const Glib::ustring &hint) override;
+  void on_activate() override;
+  void on_open(const Gio::Application::type_vec_files &files,
+               const Glib::ustring &hint) override;
 };
+} // namespace Axum
 
 #endif //_MAPPLICATION_H

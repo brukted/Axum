@@ -1,5 +1,7 @@
 #include "GUIInfo.h"
 
+using namespace Axum::Utils;
+
 GUIInfo::GUIInfo() {}
 
 GUIInfo::GUIInfo(float x, float y, bool _isHidden)

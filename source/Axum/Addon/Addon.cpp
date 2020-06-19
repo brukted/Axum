@@ -8,3 +8,5 @@
 /**
  * Addon implementation
  */
+
+using namespace Axum::Addon;

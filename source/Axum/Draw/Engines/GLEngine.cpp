@@ -8,3 +8,5 @@
 /**
  * GLEngine implementation
  */
+
+namespace Axum::Draw{}

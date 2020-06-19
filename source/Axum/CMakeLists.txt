@@ -56,43 +56,16 @@ list(APPEND sources
     #Bakery tools
     Bakery/Baker.h
     Bakery/Baker.cpp
-    Bakery/BakerParams.h
-    Bakery/BakerParams.cpp
     Bakery/Bakery.h
     Bakery/Bakery.cpp
-    Bakery/BakeryParams.h
-    Bakery/BakeryParams.cpp
     #3d View port rendering utilities
     Draw/RenderEngine.h
     Draw/RenderEngine.cpp
     Draw/Engines/GLEngine.h
     Draw/Engines/GLEngine.cpp
-    #Editor
-    Editors/Editor.h
-    Editors/Editor.cpp
-    Editors/ParameterEditor.h
-    Editors/ParameterEditor.cpp
-    Editors/MaterialGraphEditor.h
-    Editors/MaterialGraphEditor.cpp
-    Editors/Outliner.h
-    Editors/Outliner.cpp
-    Editors/2DView.h
-    Editors/2DView.cpp
-    Editors/3DView.h
-    Editors/3DView.cpp
-    Editors/AssetManager.h
-    Editors/AssetManager.cpp
-    Editors/LogicGraphEditor.h
-    Editors/LogicGraphEditor.cpp
-    Editors/Operators/Operator.h
-    Editors/Operators/Operator.cpp
     #Managers
     Managers/AddonManager.h
     Managers/AddonManager.cpp
-    Managers/BakeryManager.h
-    Managers/BakeryManager.cpp
-    Managers/EditorManager.h
-    Managers/EditorManager.cpp
     Managers/PackageManager.h
     Managers/PackageManager.cpp
     Managers/PreferenceManager.h
@@ -103,6 +76,9 @@ list(APPEND sources
     Managers/UndoManager.cpp
     Managers/WindowManager.h
     Managers/WindowManager.cpp
+    #Operators
+    Operators/operator.h
+    Operators/operator.cpp
     #Node Graph
     NodeGraph/LogicGraph.h
     NodeGraph/LogicGraph.cpp
@@ -167,47 +143,43 @@ list(APPEND sources
     Parameter/TextParam.h
     Parameter/TextParam.cpp
     #Resource types
-    Resources/ImageTexture.h
-    Resources/ImageTexture.cpp
-    Resources/Folder.h
-    Resources/Folder.cpp
-    Resources/Font.h
-    Resources/Font.cpp
-    Resources/Resource.h
-    Resources/Resource.cpp
-    Resources/Scene.h
-    Resources/Scene.cpp
-    Resources/VectorGraphics.h
-    Resources/VectorGraphics.cpp
-    Resources/Package.h
-    Resources/Package.cpp
+    ResourceTypes/ImageTexture.h
+    ResourceTypes/ImageTexture.cpp
+    ResourceTypes/Folder.h
+    ResourceTypes/Folder.cpp
+    ResourceTypes/Font.h
+    ResourceTypes/Font.cpp
+    ResourceTypes/Resource.h
+    ResourceTypes/Resource.cpp
+    ResourceTypes/Scene.h
+    ResourceTypes/Scene.cpp
+    ResourceTypes/VectorGraphics.h
+    ResourceTypes/VectorGraphics.cpp
+    ResourceTypes/Package.h
+    ResourceTypes/Package.cpp
     #UI Elements
-    UI/EditorUI.h
-    UI/EditorUI.cpp
     UI/MainWindow.h
     UI/MainWindow.cpp
     UI/SplashWindow.h
     UI/SplashWindow.cpp
-    UI/Window.h
-    UI/Window.cpp
     #Editor UI classes
-    UI/EditorUIs/2DViewUI.h
-    UI/EditorUIs/2DViewUI.cpp
-    UI/EditorUIs/3DViewUI.h
-    UI/EditorUIs/3DViewUI.cpp
-    UI/EditorUIs/OutlinerUI.h
-    UI/EditorUIs/OutlinerUI.cpp
-    UI/EditorUIs/LogicGraphEditorUI.h
-    UI/EditorUIs/LogicGraphEditorUI.cpp
-    UI/EditorUIs/AssetManagerUI.h
-    UI/EditorUIs/AssetManagerUI.cpp
-    UI/EditorUIs/MatGraphEditorUI.h
-    UI/EditorUIs/MatGraphEditorUI.cpp
-    UI/EditorUIs/ParameterEditorUI.h
-    UI/EditorUIs/ParameterEditorUI.cpp
+    UI/Editors/Editor.h
+    UI/Editors/Editor.cpp
+    UI/Editors/TextureViewer/TextureViewer.h
+    UI/Editors/TextureViewer/TextureViewer.cpp
+    UI/Editors/Viewport/Viewport.h
+    UI/Editors/Viewport/Viewport.cpp
+    UI/Editors/Outliner/Outliner.h
+    UI/Editors/Outliner/Outliner.cpp
+    UI/Editors/LogicEditor/LogicEditor.h
+    UI/Editors/LogicEditor/LogicEditor.cpp
+    UI/Editors/AssetManager/AssetManager.h
+    UI/Editors/AssetManager/AssetManager.cpp
+    UI/Editors/MaterialEditor/MaterialEditor.h
+    UI/Editors/MaterialEditor/MaterialEditor.cpp
+    UI/Editors/ParameterEditor/ParameterEditor.h
+    UI/Editors/ParameterEditor/ParameterEditor.cpp
     #Widgets
-    UI/Widgets/ExplorerItemUI.h
-    UI/Widgets/ExplorerItemUI.cpp
     UI/Widgets/GraphUI.h
     UI/Widgets/GraphUI.cpp
     UI/Widgets/InputSocketUI.h
@@ -251,8 +223,8 @@ list(APPEND sources
     Utils/Log/Log.h
     Utils/Log/Log.cpp
     #Runtime path utilities
-    Utils/pathUtils.h
-    Utils/pathUtils.cpp
+    Utils/PathUtils/PathUtils.h
+    Utils/PathUtils/PathUtils.cpp
 )
 
 if(OPTION_WITH_CYCLES)
@@ -295,9 +267,10 @@ target_include_directories(${target}
     PRIVATE
     ${DEFAULT_INCLUDE_DIRECTORIES}
     ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
     ${PROJECT_BINARY_DIR}/source/include
     Utils/Log
-    Utils
+    Utils/PathUtils
 )
 
 
@@ -349,6 +322,11 @@ target_link_libraries(${target}
     ${DEFAULT_LINKER_OPTIONS}
 )
 
+#
+# Dependencies
+#
+
+add_dependencies(${target} Resources)
 
 #
 # Target Health

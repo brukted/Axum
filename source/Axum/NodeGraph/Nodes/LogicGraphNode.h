@@ -8,8 +8,8 @@
 
 #include "LogicNode.h"
 
-class LogicGraphNode : public LogicNode
-{
-};
+namespace Axum::NodeGraph::Logic {
+class LogicGraphNode : public LogicNode {};
+} // namespace Axum::NodeGraph::Logic
 
 #endif //_LOGIC_GRAPH_NODE_H

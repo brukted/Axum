@@ -6,46 +6,47 @@
 #ifndef _TEXTPARAM_H
 #define _TEXTPARAM_H
 
-#include <string>
 #include "Param.h"
 #include "boost/serialization/access.hpp"
 #include "boost/serialization/split_member.hpp"
 #include "boost/serialization/string.hpp"
 #include "boost/serialization/version.hpp"
+#include <string>
 
-class TextParam : public Param
-{
-	friend class boost::serialization::access;
+namespace Axum {
+namespace Parameter {
+
+class TextParam : public Param {
+  friend class boost::serialization::access;
 
 private:
-	std::string value;
+  std::string value;
 
 public:
-	TextParam(unsigned int _uid, std::string &_name, std::string &_value);
+  TextParam(unsigned int _uid, std::string &_name, std::string &_value);
 
-	TextParam(unsigned int _uid, const char *_name, const char *_value);
+  TextParam(unsigned int _uid, const char *_name, const char *_value);
 
-	std::string &GetValue();
+  std::string &GetValue();
 
-	void SetValue(std::string &_value);
+  void SetValue(std::string &_value);
 
-	void setValue(const char *_name);
+  void setValue(const char *_name);
 
 private:
-	template <class Archive>
-	void save(Archive &ar, const unsigned int version) const
-	{
-		ar &boost::serialization::base_object<Param>(*this);
-		ar &value;
-	}
+  template <class Archive>
+  void save(Archive &ar, const unsigned int version) const {
+    ar &boost::serialization::base_object<Param>(*this);
+    ar &value;
+  }
 
-	template <class Archive>
-	void load(Archive &ar, const unsigned int version)
-	{
-		ar &boost::serialization::base_object<Param>(*this);
-		ar &value;
-	}
-	BOOST_SERIALIZATION_SPLIT_MEMBER()
+  template <class Archive> void load(Archive &ar, const unsigned int version) {
+    ar &boost::serialization::base_object<Param>(*this);
+    ar &value;
+  }
+  BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
-BOOST_CLASS_VERSION(TextParam, 1)
+} // namespace Parameter
+} // namespace Axum
+BOOST_CLASS_VERSION(Axum::Parameter::TextParam, 1)
 #endif //_TEXTPARAM_H

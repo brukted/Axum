@@ -8,3 +8,5 @@
 /**
  * FunNodeLinkUI implementation
  */
+
+namespace Axum::UI::Widget {}

@@ -8,3 +8,5 @@
 /**
  * MatInSocketUI implementation
  */
+
+namespace Axum::UI::Widget {}

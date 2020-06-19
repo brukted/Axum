@@ -6,25 +6,27 @@
 #ifndef _BAKERY_H
 #define _BAKERY_H
 
-#include <vector>
-#include "BakerParams.h"
 #include "Baker.h"
+#include "Parameter/ParamCollection.h"
+#include <vector>
 
-class Bakery
-{
+namespace Axum::Bakery {
+
+class Bakery {
 public:
-	BakeryParams Parms;
-	std::vector<Baker> Bakers;
+  Parameter::ParamCollection Parms;
+  std::vector<Baker> Bakers;
 
-	/**
- * Calls bake on all bakers.
- */
-	void Bake();
+  /**
+   * Calls bake on all bakers.
+   */
+  void Bake();
 
-	/**
- * @param baker
- */
-	void AddBaker(Baker baker);
+  /**
+   * @param baker
+   */
+  void AddBaker(Baker baker);
 };
 
+} // namespace Axum
 #endif //_BAKERY_H

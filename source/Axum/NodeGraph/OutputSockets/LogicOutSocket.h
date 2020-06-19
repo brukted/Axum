@@ -6,23 +6,24 @@
 #ifndef _LOGICOUTSOCKET_H
 #define _LOGICOUTSOCKET_H
 
-#include "../OutputSocket.h"
 #include "../InputSockets/LogicInSocket.h"
+#include "../OutputSocket.h"
 
-class LogicOutSocket : public OutputSocket
-{
+namespace Axum::NodeGraph::Logic {
+
+class LogicOutSocket : public OutputSocket {
 private:
-    /**
-     * @brief Name of the variable output is stored in 
-     * 
-     */
-    std::string variableName{"  ", 2};
-    DataType type = DataType::int1;
+  /**
+   * @brief Name of the variable output is stored in
+   *
+   */
+  std::string variableName{"  ", 2};
+  DataType type = DataType::int1;
 
 public:
-    DataType GetType() const;
+  DataType GetType() const;
 
-    void SetType(DataType type);
+  void SetType(DataType type);
 };
-
+} // namespace Axum::NodeGraph::Logic
 #endif //_LOGICOUTSOCKET_H

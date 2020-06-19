@@ -8,8 +8,9 @@
 
 #include "../NodeLinkUI.h"
 
-class MatNodeLinkUI : public NodeLinkUI
-{
-};
+namespace Axum::UI::Widget {
 
+class MatNodeLinkUI : public NodeLinkUI {};
+
+} // namespace Axum::UI::Widget
 #endif //_MATNODELINKUI_H

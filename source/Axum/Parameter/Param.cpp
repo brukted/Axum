@@ -7,9 +7,12 @@
 
 /**
  * Param implementation
- * 
- * GUI editable attribute of an object.Holds the data and method to show the attribute to the user.
+ *
+ * GUI editable attribute of an object.Holds the data and method to show the
+ * attribute to the user.
  */
+
+namespace Axum::Parameter {
 
 Param::Param(unsigned int _uid) : uid(_uid) {}
 
@@ -21,39 +24,16 @@ Param::Param(std::string &_name) : name(_name) {}
 
 Param::Param(const char *_name) : name(_name) {}
 
-/**
- * Displays the data to the ui.
- * @return ParamUI
- */
-ParamUI Param::GetEditUI()
-{
-    return (ParamUI());
-}
+void Param::DrawEdit(UI::Widget::ParamUI *ui) {}
 
-/**
- * @return ParamUI
- */
-ParamUI Param::GetDisplayUI()
-{
-    return ParamUI();
-}
+void Param::DrawDisplay(UI::Widget::ParamUI *ui) {}
 
-std::string &Param::getName()
-{
-    return name;
-}
+std::string &Param::getName() { return name; }
 
-void Param::setName(std::string &_name)
-{
-    this->name = _name;
-}
+void Param::setName(std::string &_name) { this->name = _name; }
 
-void Param::setName(const char *_name)
-{
-    this->name.assign(_name);
-}
+void Param::setName(const char *_name) { this->name.assign(_name); }
 
-unsigned int Param::getUid()
-{
-    return uid;
-}
+unsigned int Param::getUid() { return uid; }
+
+} // namespace Axum::Parameter

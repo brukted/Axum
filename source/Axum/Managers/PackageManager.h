@@ -6,49 +6,49 @@
 #ifndef _PACKAGEMANAGER_H
 #define _PACKAGEMANAGER_H
 
-#include <string>
-#include <fstream>
+#include "../ResourceTypes/Package.h"
+#include "Log.h"
 #include "boost/archive/text_iarchive.hpp"
 #include "boost/archive/text_oarchive.hpp"
-#include "../Resources/Package.h"
 #include "gtkmm-3.0/gtkmm.h"
-#include <list>
 #include <boost/filesystem.hpp>
-#include "Log.h"
+#include <fstream>
+#include <list>
+#include <string>
 
-class PackageManager
-{
+namespace Axum::Manager {
+
+class PackageManager {
 public:
-	static PackageManager &getInstance()
-	{
-		static PackageManager instance;
-		return instance;
-	}
+  static PackageManager &getInstance() {
+    static PackageManager instance;
+    return instance;
+  }
 
 private:
-	PackageManager(){};
+  PackageManager(){};
 
 public:
-	PackageManager(PackageManager const &) = delete;
-	void operator=(PackageManager const &) = delete;
+  PackageManager(PackageManager const &) = delete;
+  void operator=(PackageManager const &) = delete;
 
-	std::list<Package> mPackages;
+  std::list<ResourceType::Package> mPackages;
 
-	void Startup() noexcept;
+  void Startup() noexcept;
 
-	void Shutdown() noexcept;
-	/**
-	 * @brief Loads the package at the specified path.This is blocking call.
-	 * 
-	 * @param Path 
-	 */
-	void LoadPackage(std::string &Path);
-	/**
- * @param file
- */
-	void LoadPackage(const Glib::RefPtr<Gio::File> &file);
+  void Shutdown() noexcept;
+  /**
+   * @brief Loads the package at the specified path.This is blocking call.
+   *
+   * @param Path
+   */
+  void LoadPackage(std::string &Path);
+  /**
+   * @param file
+   */
+  void LoadPackage(const Glib::RefPtr<Gio::File> &file);
 
-	void SavePackage(Package &pkg);
+  void SavePackage(ResourceType::Package &pkg);
 };
-
+} // namespace Axum::Manager
 #endif //_PACKAGEMANAGER_H

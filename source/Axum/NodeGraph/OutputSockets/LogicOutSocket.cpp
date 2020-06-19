@@ -9,12 +9,9 @@
  * LogicOutSocket implementation
  */
 
-DataType LogicOutSocket::GetType() const
-{
-    return type;
-}
+namespace Axum::NodeGraph::Logic {
 
-void LogicOutSocket::SetType(DataType type)
-{
-    type = type;
-}
+DataType LogicOutSocket::GetType() const { return type; }
+
+void LogicOutSocket::SetType(DataType type) { type = type; }
+} // namespace Axum::NodeGraph::Logic

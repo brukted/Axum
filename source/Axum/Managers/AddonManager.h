@@ -6,32 +6,34 @@
 #ifndef _ADDONMANAGER_H
 #define _ADDONMANAGER_H
 
-#include <vector>
 #include "../Addon/Addon.h"
+#include <vector>
 
-class AddonManager
-{
+namespace Addon = Axum::Addon;
+
+namespace Axum::Manager {
+
+class AddonManager {
 public:
-	static AddonManager &getInstance()
-	{
-		static AddonManager instance;
-		return instance;
-	}
+  static AddonManager &getInstance() {
+    static AddonManager instance;
+    return instance;
+  }
 
 private:
-	AddonManager(){};
+  AddonManager(){};
 
 public:
-	AddonManager(AddonManager const &) = delete;
-	void operator=(AddonManager const &) = delete;
+  AddonManager(AddonManager const &) = delete;
+  void operator=(AddonManager const &) = delete;
 
-	std::vector<Addon> Addons;
+  std::vector<Addon::Addon> Addons;
 
-	void Startup();
+  void Startup();
 
-	void Shutdown();
+  void Shutdown();
 
-	void Refresh();
+  void Refresh();
 };
-
+} // namespace Axum::Manager
 #endif //_ADDONMANAGER_H

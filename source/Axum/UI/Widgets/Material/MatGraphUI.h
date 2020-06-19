@@ -8,8 +8,9 @@
 
 #include "../GraphUI.h"
 
-class MatGraphUI : public GraphUI
-{
-};
+namespace Axum::UI::Widget {
 
+class MatGraphUI : public GraphUI {};
+
+} // namespace Axum::UI::Widget
 #endif //_MATGRAPHUI_H

@@ -3,47 +3,52 @@
  * @author Bruk Tedla
  */
 
-#ifndef _INPUTSOCKET_H
-#define _INPUTSOCKET_H
-#include <string>
+#ifndef _INPUT_SOCKET_H
+#define _INPUT_SOCKET_H
+
 #include "Node.h"
 #include "OutputSocket.h"
+#include <string>
+
+namespace Axum {
+namespace NodeGraph {
 
 class Node;
 class OutputSocket;
 
-class InputSocket
-{
-	friend class OutputSocket;
+class InputSocket {
+  friend class OutputSocket;
 
 protected:
-	/**
-	 * @brief Unique identifer of this socket.
-	 * 
-	 */
-	unsigned int uid;
-	/**
-	 * @brief Creates one sided link with @a socket
-	 * 
-	 *@param socket Source socket of the link
- 	**/
-	void HalfLink(OutputSocket *socket);
+  /**
+   * @brief Unique identifer of this socket.
+   *
+   */
+  unsigned int uid;
+  /**
+   * @brief Creates one sided link with @a socket
+   *
+   *@param socket Source socket of the link
+   **/
+  void HalfLink(OutputSocket *socket);
 
 public:
-	OutputSocket *LinkedSocket = nullptr;
+  OutputSocket *LinkedSocket = nullptr;
 
-	Node *ParentNode = nullptr;
+  Node *ParentNode = nullptr;
 
-	/**
-	 *@brief Name of the node to be displayed on ui
-	 **/
-	std::string UIName;
+  /**
+   *@brief Name of the node to be displayed on ui
+   **/
+  std::string UIName;
 
-	void Unlink();
+  void Unlink();
 
-	bool isLinked();
+  bool isLinked();
 
-	inline unsigned int GetUID() { return uid; };
+  inline unsigned int GetUID() { return uid; };
 };
 
-#endif //_INPUTSOCKET_H
+} // namespace NodeGraph
+} // namespace Axum
+#endif //_INPUT_SOCKET_H

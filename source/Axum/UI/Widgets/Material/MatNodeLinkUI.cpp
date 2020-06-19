@@ -8,3 +8,5 @@
 /**
  * MatNodeLinkUI implementation
  */
+
+namespace Axum::UI::Widget {}
