@@ -18,9 +18,11 @@ namespace Axum::NodeGraph::Material {
 
 class MaterialOutSocket : public OutputSocket {
 private:
-  /**Id of the texture on gpu used for live preview execution
+  /**
+   * @brief Id of the texture on gpu used for live preview execution
    * exists only if setup cache is called it is 0 if not initalized
-   **/
+   *
+   */
   GLuint GTextureId = 0;
   Channel channel{Channel::Color};
 
