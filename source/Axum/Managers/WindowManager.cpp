@@ -14,9 +14,6 @@
 
 namespace Axum::Manager {
 
-/**
- * @param window
- */
 void WindowManager::AddWindow(Gtk::Window window) {}
 
 void WindowManager::Startup() {}

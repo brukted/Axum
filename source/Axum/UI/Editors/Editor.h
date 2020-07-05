@@ -15,8 +15,8 @@ namespace UI {
 namespace Editor {
 
 /**
- * @brief Editor Editor ui provides common functionalities for editors
- * such as docking and title bar.
+ * @brief Editor Base class for all editors. Provides common functionalities for
+ * editors such as docking and title bar.
  *
  */
 class Editor : public Gdl::DockItem {
