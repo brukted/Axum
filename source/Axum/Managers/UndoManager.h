@@ -13,7 +13,7 @@
 namespace Axum::Manager {
 
 // a special iterator for RecentOpreations
-typedef boost::circular_buffer<Operator>::iterator uiterator;
+typedef boost::circular_buffer<Operator::Operator>::iterator uiterator;
 class UndoManager {
 public:
   static UndoManager &getInstance() {
@@ -26,7 +26,7 @@ private:
   /**
    * Circular Array to contain recent actions.
    */
-  boost::circular_buffer<Operator> RecentOperations;
+  boost::circular_buffer<Axum::Operator::Operator> RecentOperations;
   /**
    * Position of the last operation.
    */
@@ -42,7 +42,7 @@ public:
   /**
    * @param mOperator
    */
-  void AddOperation(Operator mOperator);
+  void AddOperation(Operator::Operator mOperator);
 
   void Undo();
 

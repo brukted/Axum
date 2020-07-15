@@ -5,12 +5,16 @@
 
 #include "Operator.h"
 
+namespace Axum::Operator {
+
 /**
  * Operator implementation
  */
 
-void Operator::Excute() {}
+void Operator::Execute() {}
 
 void Operator::Undo() {}
 
 void Operator::Redo() {}
+
+} // namespace Axum::Operator

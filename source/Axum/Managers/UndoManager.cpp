@@ -5,6 +5,7 @@
 
 #include "UndoManager.h"
 
+
 /**
  * UndoManager implementation
  */
@@ -14,7 +15,7 @@ namespace Axum::Manager {
 /**
  * @param mOperator
  */
-void UndoManager::AddOperation(Operator mOperator) {
+void UndoManager::AddOperation(Operator::Operator mOperator) {
   if (this->RecentOperations.size() == 0) {
     // append the operator at the end of the list
     this->RecentOperations.push_back(mOperator);
@@ -80,7 +81,7 @@ void UndoManager::Redo() {
 void UndoManager::Startup() {
   int undoSteps = PreferenceManager::getInstance().getPreference<int>(
       "system.undo_steps", 50);
-  this->RecentOperations = boost::circular_buffer<Operator>(undoSteps);
+  this->RecentOperations = boost::circular_buffer<Operator::Operator>(undoSteps);
 }
 
 void UndoManager::Shutdown() {}
