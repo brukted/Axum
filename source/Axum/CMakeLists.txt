@@ -15,7 +15,6 @@ find_package(Boost 1.72.0 REQUIRED COMPONENTS filesystem serialization)
 pkg_search_module (GTKMM REQUIRED IMPORTED_TARGET gtkmm-3.0)
 pkg_search_module (SPD_LOG REQUIRED IMPORTED_TARGET spdlog)
 pkg_search_module (EPOXY REQUIRED IMPORTED_TARGET libepoxy epoxy)
-pkg_search_module (LIB_SIGNAL REQUIRED IMPORTED_TARGET sigc++-3.0)
 pkg_search_module (OIIO REQUIRED IMPORTED_TARGET OpenImageIO>=2.1)
 pkg_search_module (FMT REQUIRED IMPORTED_TARGET fmt>=6.2)
 pkg_search_module (GDLMM REQUIRED IMPORTED_TARGET gdlmm-3.0)
@@ -287,7 +286,6 @@ target_link_libraries(${target}
     PkgConfig::SPD_LOG
     PkgConfig::GTKMM
     PkgConfig::EPOXY
-    PkgConfig::LIB_SIGNAL
     PkgConfig::OIIO
     PkgConfig::GDLMM
 )
