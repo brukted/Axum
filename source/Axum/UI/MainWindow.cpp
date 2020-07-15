@@ -15,5 +15,7 @@ MainWindow::MainWindow() {
   this->set_position(Gtk::WindowPosition::WIN_POS_CENTER);
   this->set_size_request(960, 540);
   maximize();
+  add(dock);
+  show_all();
 }
 }

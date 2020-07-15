@@ -1,6 +1,7 @@
 #include "Log.h"
 #include "MApplication.h"
 #include "PathUtils.h"
+#include <gdlmm.h>
 #include <gtkmm.h>
 
 using namespace Axum::Utils;
@@ -8,6 +9,7 @@ using namespace Axum::Utils;
 void load_resources();
 
 int main(int argc, char *argv[]) {
+  Gdl::init();
   PathUtils::getPaths(argv[0]);
   Log::getInstance().Startup();
   load_resources();

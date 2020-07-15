@@ -7,17 +7,22 @@
 #define _MAINWINDOW_H
 
 #include "Editors/Outliner/Outliner.h"
+#include "gdlmm.h"
 #include "gtkmm.h"
 
 namespace Axum::UI::Window {
 /**
- * @brief MainWindow main window provides a functionality to open a full fledged
+ * @brief MainWindow provides a functionality to open a full fledged
  * window which supports docking. Main window is also the only window type that
  * can contain @a Editor.
  *
  */
 class MainWindow : public Gtk::ApplicationWindow {
 protected:
+  Gdl::Dock dock;
+  Glib::RefPtr<Gdl::DockMaster> master = dock.get_master();
+  Glib::RefPtr<Gdl::DockLayout> layout = Gdl::DockLayout::create(dock);
+
 public:
   MainWindow();
 };
