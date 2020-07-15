@@ -22,7 +22,6 @@ protected:
   MApplication();
 
 public:
-  constexpr static const unsigned int ApplicationVersion[3] = {1, 0, 0};
   static Glib::RefPtr<MApplication> create();
   ~MApplication();
 

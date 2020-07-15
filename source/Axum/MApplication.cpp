@@ -19,19 +19,20 @@ Glib::RefPtr<MApplication> MApplication::create() {
 }
 
 MApplication::~MApplication() {
-  // TODO: Currently shutdown sequence is  a reverse of startup sequence
-  // consider adjusting the order.
   AX_LOG_EDITOR_TRACE("Shutting down Window manager")
   Manager::WindowManager::getInstance(this).Shutdown();
 
-  AX_LOG_EDITOR_TRACE("Shutting down PackageManager")
+  AX_LOG_EDITOR_TRACE("Shutting down Render manager")
   Manager::RenderManager::getInstance().Shutdown();
 
-  AX_LOG_EDITOR_TRACE("Shutting down PackageManager")
+  AX_LOG_EDITOR_TRACE("Shutting down Package manager")
   Manager::PackageManager::getInstance().Shutdown();
 
-  AX_LOG_EDITOR_TRACE("Shutting down UndoManager")
+  AX_LOG_EDITOR_TRACE("Shutting down Undo manager")
   Manager::UndoManager::getInstance().Shutdown();
+
+  AX_LOG_EDITOR_TRACE("Shutting down Addon manager")
+  Manager::AddonManager::getInstance().Shutdown();
 
   AX_LOG_EDITOR_TRACE("Shutting down Preference manager")
   Manager::PreferenceManager::getInstance().Shutdown();
