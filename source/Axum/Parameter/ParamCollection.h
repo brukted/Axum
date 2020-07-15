@@ -48,9 +48,7 @@ public:
   Param &GetParameter(std::string &_name);
 
   Param &GetParameter(const char *_name);
-  /**
-   * @param parameter
-   */
+
   void AddParameter(Param *parameter);
 
   unsigned int GenerateUid();

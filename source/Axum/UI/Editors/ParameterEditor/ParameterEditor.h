@@ -19,10 +19,10 @@ public:
   ParameterEditor();
 
   /**
-   * Builds the appropirate ui for the parameter collection.
-   * @param *param
+   * Displays @a param in UI.
+   * @param *param Parameter to display.
    */
-  void BindParm(Parameter::Param *param);
+  static void BindParam(Parameter::Param *param);
 };
 
 } // namespace Editor

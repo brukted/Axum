@@ -9,7 +9,8 @@
  * ImageTexture implementation
  */
 
-using namespace Axum::ResourceType;
+namespace Axum {
+namespace ResourceType {
 
 ImageTexture::ImageTexture(std::string &path, PathType _pathType)
     : Resource(ResourceType::Linked, path.c_str(), _pathType) {

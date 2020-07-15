@@ -54,7 +54,7 @@ namespace Axum
       /**
       * @brief Constructs all paths on platform dependent manner
       * 
-      * @param argv0 path of the excutable includeing filename and extansion
+      * @param argv0 path of the excutable including filename and extansion
       */
       static void getPaths(char *argv0);
     };

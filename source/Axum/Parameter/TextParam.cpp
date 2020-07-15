@@ -19,9 +19,12 @@ TextParam::TextParam(unsigned int _uid, const char *_name, const char *_value)
 
 std::string &TextParam::GetValue() { return this->value; }
 
-void TextParam::SetValue(std::string &_value) { this->value = _value; }
+void TextParam::SetValue(std::string &_value) {
+  this->value = _value;
+  this->OnValueChanged.emit();
+}
 
-void TextParam::setValue(const char *_name) {
+void TextParam::SetValue(const char *_name) {
   this->value.assign(_name);
   this->OnValueChanged.emit();
 }

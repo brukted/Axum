@@ -23,6 +23,7 @@ public:
     return instance;
   }
   Gtk::Application *app;
+  Gtk::Window *MainWin;
 
 private:
   WindowManager(){};

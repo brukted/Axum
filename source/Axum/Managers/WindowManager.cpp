@@ -21,11 +21,11 @@ void WindowManager::Startup() {}
 void WindowManager::Shutdown() {}
 
 void WindowManager::AddShowMainWindow() {
-  windows.push_back(new UI::Window::MainWindow());
-  auto MainWin = windows.at(0);
-  this->app->add_window(*MainWin);
-  MainWin->present();
+  MainWin = new UI::Window::MainWindow();
+  windows.push_back(MainWin);
+  app->add_window(*MainWin);
   MainWin->set_title("Axum");
+  MainWin->present();
 }
 
 } // namespace Axum::Manager

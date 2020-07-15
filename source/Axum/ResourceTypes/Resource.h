@@ -44,20 +44,22 @@ public:
   unsigned int uid;
 
   /**
-   * @brief Location of the resource including the filename and extension.
+   * @brief Location of the resource including the filename and extension,if it
+   * is linked type.
    *
    */
-  std::string mPath;
+  std::string Path;
   ParamCollection mParams;
   ParamCollection attributes{mParams.GenerateUid(), "Attributes"};
-  TextParam name{attributes.GenerateUid(), "Name", "unknown"};
+  TextParam name{attributes.GenerateUid(), "Name", "Untitled"};
   TextParam description{attributes.GenerateUid(), "Description", ""};
-  TextParam category{attributes.GenerateUid(), "category", ""};
+  TextParam category{attributes.GenerateUid(), "Category", ""};
   TextParam label{attributes.GenerateUid(), "Label", ""};
   TextParam author{attributes.GenerateUid(), "Author", ""};
   TextParam authorUrl{attributes.GenerateUid(), "Author URL", ""};
   TextParam tags{attributes.GenerateUid(), "Tags", ""};
-  BooleanParam showInManager{attributes.GenerateUid(), "Show in library", true};
+  BooleanParam showInManager{attributes.GenerateUid(), "Show in asset manager",
+                             true};
   EnumParam pathType{
       attributes.GenerateUid(), "Path type",
       std::map<int, std::string>{{PathType::Relative, "Relative"},
@@ -102,13 +104,13 @@ public:
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
-    ar &resourceType, &uid, &mPath, &name, &description, &category, &label,
+    ar &resourceType, &uid, &Path, &name, &description, &category, &label,
         &author, &authorUrl, &tags, &showInManager, &pathType;
     ar &mParams, &attributes;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
-    ar &resourceType, &uid, &mPath, &name, &description, &category, &label,
+    ar &resourceType, &uid, &Path, &name, &description, &category, &label,
         &author, &authorUrl, &tags, &showInManager, &pathType;
     ar &mParams, &attributes;
   }

@@ -8,8 +8,6 @@
 /**
  * Param implementation
  *
- * GUI editable attribute of an object.Holds the data and method to show the
- * attribute to the user.
  */
 
 namespace Axum::Parameter {
@@ -30,10 +28,10 @@ void Param::DrawDisplay(UI::Widget::ParamUI *ui) {}
 
 std::string &Param::getName() { return name; }
 
-void Param::setName(std::string &_name) { this->name = _name; }
+void Param::SetName(std::string &_name) { this->name = _name; }
 
-void Param::setName(const char *_name) { this->name.assign(_name); }
+void Param::SetName(const char *_name) { this->name.assign(_name); }
 
-unsigned int Param::getUid() { return uid; }
+unsigned int Param::GetUID() { return uid; }
 
 } // namespace Axum::Parameter

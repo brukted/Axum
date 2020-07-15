@@ -11,7 +11,7 @@
 
 namespace Axum::UI::Editor {
 
-void ParameterEditor::BindParm(Parameter::Param *param) {}
+void ParameterEditor::BindParam(Parameter::Param *param) {}
 
 ParameterEditor::ParameterEditor()
     : Editor("Parameter Editor", "Parameter Editor") {}

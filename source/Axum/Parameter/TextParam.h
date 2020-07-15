@@ -31,7 +31,7 @@ public:
 
   void SetValue(std::string &_value);
 
-  void setValue(const char *_name);
+  void SetValue(const char *_name);
 
 private:
   template <class Archive>

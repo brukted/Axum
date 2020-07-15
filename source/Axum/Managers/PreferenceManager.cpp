@@ -18,11 +18,11 @@ void PreferenceManager::Startup() {
 }
 
 void PreferenceManager::Shutdown() {
-  AX_LOG_EDITOR_TRACE("Writing preferences to {}", preferencesPath)
   save();
 }
 
 void PreferenceManager::save() {
+  AX_LOG_EDITOR_TRACE("Saving preferences to {}", preferencesPath)
   std::ofstream ofs{preferencesPath};
   pt::write_json(ofs, this->tree);
 }
@@ -32,12 +32,10 @@ void PreferenceManager::load() {
     std::ifstream ifs{preferencesPath};
     pt::read_json(ifs, this->tree);
   }
-  // handle exception that will be thrown if the file does not exist
-  // set the property tree to blank tree
   catch (boost::property_tree::json_parser_error e) {
     // TODO: Initialize ptree to default preferences as this will happen on the
     // very first run.
-    AX_LOG_EDITOR_ERROR("Can't load preferences.")
+    AX_LOG_EDITOR_ERROR("Can't load preferences.\n {}",e.what())
     this->tree = pt::ptree();
   }
 }

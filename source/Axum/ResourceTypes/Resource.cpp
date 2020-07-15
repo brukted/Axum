@@ -9,12 +9,12 @@
  * Resource implementation
  */
 
-using namespace Axum::ResourceType;
+namespace Axum::ResourceType {
 
 Resource::Resource(ResourceType _resourceType, const char *_path,
                    PathType _pathType) {
   resourceType = _resourceType;
-  mPath.assign(_path);
+  Path.assign(_path);
   pathType.SetValue(_pathType);
   attributes.AddParameter(&name);
   attributes.AddParameter(&description);
@@ -28,21 +28,17 @@ Resource::Resource(ResourceType _resourceType, const char *_path,
   mParams.AddParameter(&attributes);
 }
 
-/**
- * Opens the resource in the appropriate editor.
- */
 void Resource::Open() {}
 
 void Resource::DrawExplorer(void *ui) {}
 
 void Resource::makeAbsolute(std::string &pkgPath) {
   if (resourceType == ResourceType::Linked) {
-
     // get absolute path and set it to path
     boost::filesystem::path pkg(pkgPath);
-    boost::filesystem::path currentPath(mPath);
+    boost::filesystem::path currentPath(Path);
     auto absolute = boost::filesystem::absolute(currentPath, pkg.parent_path());
-    mPath.assign(absolute.string());
+    Path.assign(absolute.string());
     // Set the path type in parameters to absolute
     pathType.SetValue(PathType::Absolute);
   }
@@ -54,12 +50,11 @@ void Resource::makeRelative(std::string &pkgPath) {
   if (resourceType == ResourceType::Linked) {
     // get relative path and set it to path
     boost::filesystem::path pkg(pkgPath);
-    boost::filesystem::path currentPath(mPath);
+    boost::filesystem::path currentPath(Path);
     auto relative = boost::filesystem::relative(currentPath, pkg.parent_path());
-    mPath.assign(relative.string());
+    Path.assign(relative.string());
     // Set the path type in parameters to relative
     pathType.SetValue(PathType::Relative);
   }
 }
-
-void Resource::setPath(char const *path) { mPath.assign(path); }
+} // namespace Axum::ResourceType

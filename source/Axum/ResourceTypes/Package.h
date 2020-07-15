@@ -6,16 +6,16 @@
 #ifndef _PACKAGE_H
 #define _PACKAGE_H
 
-#include "../NodeGraph/Graph.h"
-#include "../ResourceTypes/Resource.h"
+#include "NodeGraph/Graph.h"
+#include "ResourceTypes/Resource.h"
 #include "PathUtils.h"
-#include "boost/archive/text_iarchive.hpp"
-#include "boost/serialization/access.hpp"
-#include "boost/serialization/base_object.hpp"
-#include "boost/serialization/list.hpp"
-#include "boost/serialization/split_member.hpp"
-#include "boost/serialization/vector.hpp"
-#include "boost/serialization/version.hpp"
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/base_object.hpp>
+#include <boost/serialization/list.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/version.hpp>
 #include <fstream>
 #include <vector>
 
@@ -29,12 +29,12 @@ public:
   std::list<Resource> Resources;
 
   /**
-   * @brief Get the Resource with the specified uid.
+   * @brief Find a resource with the specified uid.
    *
    * @param _uid Unique identifier of the resource.
    * @return Resource& reference to the resource by uid.
    */
-  Resource &GetResource(unsigned int _uid);
+  Resource &FindResource(unsigned int _uid);
 
 private:
   template <class Archive>
@@ -50,11 +50,11 @@ private:
       ar &Resources;
     } else {
       /**
-       * @brief formattedPath Path with replaced internal dependency uri
-       * with proper path eg: AX://test.pkg -> $resourcesPath/packages/test.pkg
+       * @brief formattedPath is a path with replaced internal dependency uri
+       * with proper path eg: AX://test.pkg -> $resourcesPath$/packages/test.pkg
        *
        */
-      std::string formattedPath = mPath;
+      std::string formattedPath = Path;
       std::size_t i = formattedPath.find("AX://");
       if (i != formattedPath.npos)
         formattedPath.replace(i, 5, (Utils::PathUtils::resourcesPath + "/"));

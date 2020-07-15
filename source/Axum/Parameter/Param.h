@@ -19,7 +19,6 @@
 namespace Axum {
 namespace Parameter {
 
-enum UIType { Slider, Angle, Color };
 class Param {
   friend class boost::serialization::access;
 
@@ -30,11 +29,12 @@ protected:
    *
    */
   Param(){};
-
+  /**
+   * @brief UI name of the parameter.
+   *
+   */
   std::string name;
   unsigned int uid;
-  UIType mUIType;
-  std::vector<UIType> SupportedTypes = std::vector<UIType>(5);
 
 public:
   sigc::signal<void> OnValueChanged;
@@ -55,24 +55,30 @@ public:
 
   std::string &getName();
 
-  void setName(std::string &_name);
+  /**
+   * @brief Set the UI name of the parameter.
+   *
+   */
+  void SetName(std::string &_name);
 
-  void setName(const char *_name);
+  /**
+   * @brief Set the UI name of the parameter.
+   *
+   */
+  void SetName(const char *_name);
 
-  unsigned int getUid();
+  unsigned int GetUID();
 
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &uid;
     ar &name;
-    ar &mUIType;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &uid;
     ar &name;
-    ar &mUIType;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

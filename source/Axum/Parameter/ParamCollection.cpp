@@ -25,7 +25,7 @@ ParamCollection::ParamCollection(unsigned int _uid, std::string &_name)
  */
 Param &ParamCollection::GetParameter(unsigned int _uid) {
   for (auto &param : this->Params) {
-    if (param->getUid() == _uid)
+    if (param->GetUID() == _uid)
       return *param;
   }
   AX_LOG_CORE_ERROR("Parameter collection name : {},uid {0:d} is requested a "
@@ -54,9 +54,7 @@ Param &ParamCollection::GetParameter(const char *_name) {
                     name, uid, _name)
   throw "Parameter doesn't exist";
 }
-/**
- * @param Parameter
- */
+
 void ParamCollection::AddParameter(Param *parameter) {
   this->Params.push_back(parameter);
 }
