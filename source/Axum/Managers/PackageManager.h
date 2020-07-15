@@ -51,4 +51,10 @@ public:
   void SavePackage(ResourceType::Package &pkg);
 };
 } // namespace Axum::Manager
+
+/**
+ * @brief Shortcut to the instance of PackageManager.
+ * 
+ */
+#define Package_Manager Axum::Manager::PackageManager::getInstance() 
 #endif //_PACKAGEMANAGER_H

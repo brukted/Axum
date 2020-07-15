@@ -45,4 +45,10 @@ private:
   std::vector<Gtk::Window *> windows;
 };
 } // namespace Axum::Manager
+
+/**
+ * @brief Shortcut to the instance of WindowManager.
+ * 
+ */
+#define Window_Manager Axum::Manager::WindowManager::getInstance() 
 #endif //_WINDOWMANAGER_H

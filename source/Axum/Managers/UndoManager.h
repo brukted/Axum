@@ -54,4 +54,10 @@ public:
 };
 
 } // namespace Axum::Manager
+
+/**
+ * @brief Shortcut to the instance of UndoManager.
+ * 
+ */
+#define Undo_Manager Axum::Manager::UndoManager::getInstance() 
 #endif //_UNDOMANAGER_H

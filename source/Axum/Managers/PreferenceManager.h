@@ -92,4 +92,10 @@ public:
 };
 
 } // namespace Axum::Manager
+
+/**
+ * @brief Shortcut to the instance of PreferenceManager.
+ * 
+ */
+#define Preference_Manager Axum::Manager::PreferenceManager::getInstance() 
 #endif //_PREFERENCEMANAGER_H

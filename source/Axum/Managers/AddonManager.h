@@ -36,4 +36,10 @@ public:
   void Refresh();
 };
 } // namespace Axum::Manager
+
+/**
+ * @brief Shortcut to the instance of AddonManager.
+ *
+ */
+#define Addon_Manager Axum::Manager::AddonManager::getInstance()
 #endif //_ADDONMANAGER_H

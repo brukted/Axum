@@ -47,4 +47,10 @@ public:
   void RegisterEngine(Draw::RenderEngine engine);
 };
 } // namespace Axum::Manager
+
+/**
+ * @brief Shortcut to the instance of RenderManager
+ * 
+ */
+#define Render_Manager Axum::Manager::RenderManager::getInstance() 
 #endif //_RENDERMANAGER_H
