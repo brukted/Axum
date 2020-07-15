@@ -26,9 +26,10 @@ void load_resources() {
   GError *err = NULL;
   std::string rPath = PathUtils::resourcesPath + "/resources.bin";
   GResource *r = g_resource_load(rPath.c_str(), &err);
-  g_resources_register(r);
-  if (err != NULL) {
+  if (r == NULL) {
+    AX_LOG_EDITOR_CRITICAL("Can't load resources.")
     AX_LOG_EDITOR_CRITICAL(err->message)
-    delete err;
+  } else {
+    g_resources_register(r);
   }
 }
