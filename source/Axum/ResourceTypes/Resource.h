@@ -10,12 +10,13 @@
 #include "../Parameter/EnumParam.h"
 #include "../Parameter/ParamCollection.h"
 #include "../Parameter/TextParam.h"
-#include "boost/serialization/access.hpp"
-#include "boost/serialization/split_member.hpp"
-#include "boost/serialization/string.hpp"
-#include "boost/serialization/vector.hpp"
-#include "boost/serialization/version.hpp"
 #include <boost/filesystem.hpp>
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/version.hpp>
+#include <gtkmm.h>
 #include <string>
 
 using namespace Axum::Parameter;
@@ -72,13 +73,23 @@ public:
   virtual void Open();
 
   /**
-   * @brief Draws in the explorer window.
+   * @brief Adds this resource to the tree model for representing in ui mostly
+   * for outliner.
    *
-   * @param ui Pointer to the ui to draw to.
+   * @param row TreeIter to the row assigned to this resource.
+   * @param store Pointer to the tree model.
    */
-  void DrawExplorer(void *ui);
+  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store);
 
-  void setPath(char const *);
+  /**
+   * @brief Add items to @a menu. Called when the resource has to build context
+   * menu in outliner.
+   *
+   * @param menu Pointer to context menu that will be shown in outliner.
+   *
+   * @note Memory management for the menu is handled by outliner.
+   */
+  virtual void OnRowContextMenu(Gtk::Menu *menu);
 
   /**
    * @brief Makes the path type to relative and the path relative to @a pkgPath.

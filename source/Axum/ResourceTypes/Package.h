@@ -8,6 +8,7 @@
 
 #include "NodeGraph/Graph.h"
 #include "ResourceTypes/Resource.h"
+#include "ResourceTypes/Folder.h"
 #include "PathUtils.h"
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/access.hpp>
@@ -26,7 +27,14 @@ class Package : public Resource {
   friend class boost::serialization::access;
 
 public:
+  Package();
+
+  /**
+   * @brief List of resources located in this package.
+   *
+   */
   std::list<Resource> Resources;
+  Axum::ResourceType::Folder root;
 
   /**
    * @brief Find a resource with the specified uid.
@@ -35,6 +43,8 @@ public:
    * @return Resource& reference to the resource by uid.
    */
   Resource &FindResource(unsigned int _uid);
+
+  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
 
 private:
   template <class Archive>

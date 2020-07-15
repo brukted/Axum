@@ -53,6 +53,8 @@ public:
 
   unsigned int width, height;
 
+  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
+
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
@@ -71,7 +73,7 @@ private:
       ar &data;
     } else {
       data = std::vector<unsigned char>(width * height * channels);
-      auto input = OIIO::ImageInput::open(mPath);
+      auto input = OIIO::ImageInput::open(Path);
       if (!input) {
         AX_LOG_CORE_WARN("Can't load linked image texture {0}.", name.getName())
         // TODO: Fill the data with pinky stuff like blender does

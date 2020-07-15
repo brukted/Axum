@@ -50,6 +50,8 @@ class Scene : public Resource {
 public:
   std::vector<Mesh> meshs;
 
+  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
+
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {

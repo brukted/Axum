@@ -10,7 +10,10 @@
 
 namespace Axum {
 namespace ResourceType {
-class VectorGraphics : public Resource {};
+class VectorGraphics : public Resource {
+public:
+  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
+};
 } // namespace ResourceType
 } // namespace Axum
 #endif //_VECTORGRAPHICS_H

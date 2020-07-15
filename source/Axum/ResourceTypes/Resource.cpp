@@ -30,7 +30,15 @@ Resource::Resource(ResourceType _resourceType, const char *_path,
 
 void Resource::Open() {}
 
-void Resource::DrawExplorer(void *ui) {}
+void Resource::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
+  row->set_value(1, name.GetValue());
+  row->set_value(2, uid);
+}
+
+void Resource::OnRowContextMenu(Gtk::Menu *menu) {
+  auto item = new Gtk::MenuItem("Delete");
+  menu->add(*item);
+}
 
 void Resource::makeAbsolute(std::string &pkgPath) {
   if (resourceType == ResourceType::Linked) {

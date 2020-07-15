@@ -9,7 +9,10 @@
 #include "Resource.h"
 namespace Axum {
 namespace ResourceType {
-class Font : public Resource {};
+class Font : public Resource {
+public:
+  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
+};
 } // namespace ResourceType
 } // namespace Axum
 #endif //_FONT_H

@@ -20,19 +20,51 @@ namespace ResourceType {
 class Folder : public Resource {
   friend class boost::serialization::access;
 
+private:
+  std::list<Resource *> Resources;
+  std::list<Folder> SubFolders;
+
 public:
-  std::list<Resource> mResources;
+  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
+  /**
+   * @brief Adds resource to this folder.
+   *
+   * @param resource pointer to the resource to be addded.
+   */
+  void AddResource(Resource *resource);
+  /**
+   * @brief Removes resource from this folder.
+   *
+   * @param resource Pointer to the resource to be removed.
+   *
+   * @note This doesn't delete the resource.If you want to delete, call
+   * DeleteResource from the package instade.
+   */
+  void RemoveResource(Resource *resource);
+  /**
+   * @brief Removes resource from this folder.
+   *
+   * @param _uid uid of the resource to be removed.
+   *
+   * @note This doesn't delete the resource.If you want to delete, call
+   * DeleteResource from the package instade.
+   */
+  void RemoveResource(unsigned int _uid);
+
+  std::list<Folder> &GetSubFolders() { return SubFolders; }
+
+  std::list<Resource *> &GetResources() { return Resources; }
 
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &mResources;
+    ar &Resources, &SubFolders;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &mResources;
+    ar &Resources, &SubFolders;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

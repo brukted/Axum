@@ -13,6 +13,18 @@
 
 namespace Axum {
 namespace ResourceType {
+Package::Package() { root.name.SetValue("root"); }
+
+void Package::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
+  this->Resource::AppendToModel(row, store);
+  for (auto &folder : root.GetSubFolders()) {
+    folder.AppendToModel(store->append(row->children()), store);
+  }
+  for (auto res : root.GetResources()) {
+    res->AppendToModel(store->append(row->children()), store);
+  }
+}
+
 Resource &Package::FindResource(unsigned int _uid) {
   for (auto &var : Resources) {
     if (var.uid == _uid)

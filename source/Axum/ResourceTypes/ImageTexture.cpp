@@ -11,6 +11,9 @@
 
 namespace Axum {
 namespace ResourceType {
+void ImageTexture::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
+  this->Resource::AppendToModel(row, store);
+}
 
 ImageTexture::ImageTexture(std::string &path, PathType _pathType)
     : Resource(ResourceType::Linked, path.c_str(), _pathType) {
@@ -47,3 +50,5 @@ ImageTexture::ImageTexture(std::string &path) {
   input->close();
   this->resourceType = ResourceType::Embedded;
 }
+} // namespace ResourceType
+} // namespace Axum
