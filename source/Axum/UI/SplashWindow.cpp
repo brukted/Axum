@@ -2,7 +2,7 @@
 
 namespace Axum::UI::Window {
 
-SplashWindow::SplashWindow(int width, int height) {
+SplashWindow::SplashWindow(int width, int height):Gtk::Window() {
   this->set_size_request(width, height);
   this->set_decorated(false);
   this->set_resizable(false);
@@ -11,8 +11,9 @@ SplashWindow::SplashWindow(int width, int height) {
   show_all();
   auto img = new Gtk::Image();
   auto bitmap = Gdk::Pixbuf::create_from_resource("/splash.png");
-  bitmap = bitmap->scale_simple(width, height, Gdk::InterpType::INTERP_BILINEAR);
-  img->set_size_request(width,height);
+  bitmap =
+      bitmap->scale_simple(width, height, Gdk::InterpType::INTERP_BILINEAR);
+  img->set_size_request(width, height);
   img->property_pixbuf() = bitmap;
   img->property_expand() = false;
   add(*img);
