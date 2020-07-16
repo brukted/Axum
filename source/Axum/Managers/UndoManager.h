@@ -39,8 +39,11 @@ private:
 public:
   UndoManager(UndoManager const &) = delete;
   void operator=(UndoManager const &) = delete;
+
   /**
-   * @param mOperator
+   * @brief Registers the operation and executes it.
+   *
+   * @param mOperator Operator containing the operation to be executed.
    */
   void AddOperation(Operator::Operator mOperator);
 
@@ -57,7 +60,7 @@ public:
 
 /**
  * @brief Shortcut to the instance of UndoManager.
- * 
+ *
  */
-#define Undo_Manager Axum::Manager::UndoManager::getInstance() 
+#define Undo_Manager Axum::Manager::UndoManager::getInstance()
 #endif //_UNDOMANAGER_H

@@ -8,7 +8,7 @@
 
 #include <string>
 
-namespace Axum::Operator{
+namespace Axum::Operator {
 
 /**
  * @brief Operator holds fields and methods required to do an undoable
@@ -23,23 +23,22 @@ public:
   std::string Name;
 
   /**
-   * @brief Excutes the operation contained in.
+   * @brief Excutes the operation contained in. Only for use in undo manager.
    *
    */
-  virtual void Execute();
+  virtual void Execute() noexcept;
 
   /**
-   * @brief Undoes the operation contained in.
+   * @brief Undoes the operation contained in. Only for use in undo manager.
    *
    */
-  virtual void Undo();
+  virtual void Undo() noexcept;
 
   /**
-   * @brief Redoes the operation contained in and registers this operator in
-   * UndoManager.
+   * @brief Redoes the operation contained in. Only for use in undo manager.
    *
    */
-  virtual void Redo();
+  virtual void Redo() noexcept;
 };
-}
+} // namespace Axum::Operator
 #endif //_OPERATOR_H

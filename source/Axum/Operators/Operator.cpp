@@ -11,10 +11,10 @@ namespace Axum::Operator {
  * Operator implementation
  */
 
-void Operator::Execute() {}
+void Operator::Execute() noexcept {}
 
-void Operator::Undo() {}
+void Operator::Undo() noexcept {}
 
-void Operator::Redo() {}
+void Operator::Redo() noexcept {}
 
 } // namespace Axum::Operator

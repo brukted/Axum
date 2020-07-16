@@ -12,76 +12,74 @@
 
 namespace Axum::Manager {
 
-/**
- * @param mOperator
- */
 void UndoManager::AddOperation(Operator::Operator mOperator) {
-  if (this->RecentOperations.size() == 0) {
+  if (RecentOperations.size() == 0) {
     // append the operator at the end of the list
-    this->RecentOperations.push_back(mOperator);
-    this->nextUndo = this->RecentOperations.begin();
-    this->canUndoFurther = true;
+    RecentOperations.push_back(mOperator);
+    nextUndo = RecentOperations.begin();
+    canUndoFurther = true;
     return;
   }
   // check if there are no redo operation
-  if (this->nextUndo == this->RecentOperations.end()) {
+  if (nextUndo == RecentOperations.end()) {
     // append the operator at the end of the list
-    this->RecentOperations.push_back(mOperator);
+    RecentOperations.push_back(mOperator);
     // check if the list is not full
-    if (++this->nextUndo != this->RecentOperations.begin()) {
+    if (++nextUndo != RecentOperations.begin()) {
       // the list is not full yet so increment the iterator
-      ++this->nextUndo;
+      ++nextUndo;
     }
   }
   // there are redo operations at the front of the next undo
   else {
-    // remove any redoable operations
-    for (uiterator i = this->RecentOperations.end(); i > this->nextUndo; i--) {
-      this->RecentOperations.pop_back();
+    // removes any redoable operations
+    for (uiterator i = RecentOperations.end(); i > nextUndo; i--) {
+      RecentOperations.pop_back();
     }
-    // append the operator at the end of the list
-    this->RecentOperations.push_back(mOperator);
-    // increment the iterator
-    ++this->nextUndo;
+    // appends the operator at the end of the list
+    RecentOperations.push_back(mOperator);
+    // increments the iterator
+    ++nextUndo;
   }
+  RecentOperations.back().Execute();
   // now there is undoable operation
-  this->canUndoFurther = true;
+  canUndoFurther = true;
 }
 
 void UndoManager::Undo() {
-  // check if next undo is the first operation
-  if (this->nextUndo == this->RecentOperations.begin()) {
+  // checks if next undo is the first operation
+  if (nextUndo == RecentOperations.begin()) {
     // nextundo is the first operation so check if we have not undone it already
-    if (this->canUndoFurther) {
+    if (canUndoFurther) {
       // we haven't undone it so undo
-      (*this->nextUndo).Undo();
+      (*nextUndo).Undo();
       // set canundo false so we don't undo it any more
-      this->canUndoFurther = false;
+      canUndoFurther = false;
     }
   }
   // nextUndo is not the first operation so there are precedding operations
   else {
-    // undo the operation
-    (*this->nextUndo).Undo();
-    // decrement the iterator
-    --this->nextUndo;
+    // undoes the operation
+    (*nextUndo).Undo();
+    // decrements the iterator
+    --nextUndo;
   }
 }
 
 void UndoManager::Redo() {
-  // check if there are redoable opreations
-  if (this->nextUndo != this->RecentOperations.end()) {
-    // increment nextUndo so it is now the next redoable operation
-    ++this->nextUndo;
-    // redo
-    (*this->nextUndo).Redo();
+  // checks if there are redoable opreations
+  if (nextUndo != RecentOperations.end()) {
+    // increments nextUndo so it is now the next redoable operation
+    ++nextUndo;
+    // redos
+    (*nextUndo).Redo();
   }
 }
 
 void UndoManager::Startup() {
-  int undoSteps = PreferenceManager::getInstance().getPreference<int>(
+  int undoSteps = Preference_Manager.getPreference<int>(
       "system.undo_steps", 50);
-  this->RecentOperations = boost::circular_buffer<Operator::Operator>(undoSteps);
+  RecentOperations = boost::circular_buffer<Operator::Operator>(undoSteps);
 }
 
 void UndoManager::Shutdown() {}
