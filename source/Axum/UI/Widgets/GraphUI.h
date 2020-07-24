@@ -13,13 +13,11 @@
 
 namespace Axum::UI::Widget {
 
-namespace ng = Axum::NodeGraph;
-
 class GraphUI {
 public:
   std::vector<NodeUI> UINodes;
   std::vector<NodeLinkUI> UILinks;
-  ng::Graph *mGraph;
+  NodeGraph::Graph *mGraph;
 };
 
 } // namespace Axum::UI::Widget

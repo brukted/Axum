@@ -9,4 +9,4 @@
  * Addon implementation
  */
 
-using namespace Axum::Addon;
+namespace Axum::Addon {}

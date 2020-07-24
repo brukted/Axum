@@ -33,6 +33,7 @@ Resource &Package::FindResource(unsigned int _uid) {
   AX_LOG_CORE_ERROR(
       "Package {0} is requested non-existenet resourece uid : {0:d}",
       name.GetValue(), _uid)
+  throw std::runtime_error("Resource doesn't exist");
 }
 
 } // namespace ResourceType

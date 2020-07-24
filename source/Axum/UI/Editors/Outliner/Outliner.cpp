@@ -38,13 +38,10 @@ Outliner::Outliner() : Editor("Outliner", "Outliner") {
   tree.append_column(iconCol);
   tree.append_column(resourcesCol);
   tree.set_headers_visible(false);
-  tree.set_hexpand();
-  auto item = new Gtk::MenuItem();
-  item->set_label("New Package");
   rootBox.add(tree);
   space.add(rootBox);
   // TODO: The signal handlers don't necessary need to be a member function
-  // consider making them static,if that will result better performance or
+  // consider making them static, if that will result better performance or
   // simpler code.
   signal_button_press_event().connect(sigc::mem_fun(*this, &OnButtonPress));
   signal_key_press_event().connect(sigc::mem_fun(*this, &OnKeyPress));

@@ -25,13 +25,16 @@ int main(int argc, char *argv[]) {
  *
  */
 void load_resources() {
+  AX_LOG_EDITOR_DEBUG("Loading resource.")
   GError *err = NULL;
   std::string rPath = PathUtils::resourcesPath + "/resources.bin";
   GResource *r = g_resource_load(rPath.c_str(), &err);
   if (r == NULL) {
     AX_LOG_EDITOR_CRITICAL("Can't load resources.")
     AX_LOG_EDITOR_CRITICAL(err->message)
+    return;
   } else {
     g_resources_register(r);
   }
+  AX_LOG_EDITOR_DEBUG("Finshed loading resource.")
 }

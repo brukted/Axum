@@ -10,61 +10,58 @@
 #include "../ResourceTypes/Scene.h"
 #include <string>
 
-using namespace Axum::Parameter;
-using namespace Axum::ResourceType;
-
 namespace Axum {
 namespace Draw {
 
 class RenderEngine {
 public:
   /**
-   * Name diplayed in the ui.
+   * @brief Name diplayed in the ui.
    */
   std::string Name;
   std::string idName;
   /**
-   * Parameters of the render engine.
+   * @brief Parameters of the render engine.
    */
-  ParamCollection mEngineParms;
-  ParamCollection mCameraParms;
+  Parameter::ParamCollection mEngineParms;
+  Parameter::ParamCollection mCameraParms;
 
   /**
-   * Starts rendering.Consider allocating  resources here if you deallocate
+   * @brief Starts rendering. Consider allocating  resources here if you deallocate
    * memory on stop.
    */
   virtual void Start();
 
   /**
-   * Draws the render to the 3d view.
+   * @brief Draws the render to the OpenGL viewport.
    */
   virtual void Display();
 
   /**
-   * Stop rendering also consider freeing memory if the renderer is resource
+   * @brief Stop rendering also consider freeing memory if the renderer is resource
    * heavy.
    */
   virtual void Stop();
 
   /**
-   * Called when the scene is changed so update the renderer's scene too.
+   * @brief Called when the scene is changed so update the renderer's scene too.
    * @param *Scene
    */
-  virtual void UpdateScene(Scene *Scene);
+  virtual void UpdateScene(ResourceType::Scene *Scene);
 
   virtual void UpdateMaterial();
 
   /**
-   * @brief called when camera parameters are changed as fov.
+   * @brief Called when camera parameters are changed as fov.
    *
    * @param CameraParms
    */
-  virtual void UpdateCamera(ParamCollection *CameraParms);
+  virtual void UpdateCamera(Parameter::ParamCollection *CameraParms);
 
   /**
-   * The 3d view has been resized so update your framebuffer.
-   * @param Width The new width of the 3d view
-   * @param Height The new height of the 3d view
+   * @brief Called when the viewport is resized.
+   * @param Width The new width of the viewport.
+   * @param Height The new height of the viewport.
    */
   virtual void Resize(int Width, int Height);
 };

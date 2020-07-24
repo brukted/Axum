@@ -14,7 +14,7 @@ namespace Axum::Operator {
  * @brief Operator holds fields and methods required to do an undoable
  * operatation. Operations that are needed to be undoable should be derived from
  * @a Operator, override Execute (),Undo() and Redo() and register in
- * @a UndoManager after execution.
+ * @a UndoManager to execute.
  *
  */
 class Operator {

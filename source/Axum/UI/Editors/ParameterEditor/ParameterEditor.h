@@ -8,7 +8,6 @@
 
 #include "../Editor.h"
 #include "Parameter/Param.h"
-#include "UI/Widgets/ParamUI.h"
 
 namespace Axum::UI {
 namespace Editor {

@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#ifndef _ASSETMANAGER_H_
-#define _ASSETMANAGER_H_
+#ifndef _ASSET_MANAGER_H_
+#define _ASSET_MANAGER_H_
 
 #include "../Editor.h"
 #include "Log.h"
@@ -12,8 +12,6 @@
 #include <boost/algorithm/string.hpp>
 #include <filesystem>
 #include <string>
-
-using namespace Axum::Utils;
 
 namespace Axum::UI {
 namespace Editor {
@@ -73,7 +71,7 @@ public:
 
 class AssetManager : public Editor {
 public:
-  std::string assetsPath = PathUtils::resourcesPath + std::string{"\assets"};
+  std::string assetsPath = Utils::PathUtils::resourcesPath + std::string{"\assets"};
 
   AssetItem root{AssetItem::Type::DIRECTORY, std::string{"Catagories"},
                  assetsPath};
@@ -87,11 +85,11 @@ public:
   /**
    * @brief Recursively searchs all assets in the @a parent and adds them to it.
    *
-   * @param parent Directory to search assets in
+   * @param parent Directory to search assets in.
    */
   void discoverAssets(AssetItem &parent);
 };
 
 } // namespace Editor
 } // namespace Axum::UI
-#endif //_ASSETMANAGER_H_
+#endif //_ASSET_MANAGER_H_

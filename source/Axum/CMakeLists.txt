@@ -189,8 +189,6 @@ list(APPEND sources
     UI/Widgets/NodeUI.cpp
     UI/Widgets/OutputSocketUI.h
     UI/Widgets/OutputSocketUI.cpp
-    UI/Widgets/ParamUI.h
-    UI/Widgets/ParamUI.cpp
     #Function Graph Related UI elements
     UI/Widgets/Function/FunGraphUI.h
     UI/Widgets/Function/FunGraphUI.cpp

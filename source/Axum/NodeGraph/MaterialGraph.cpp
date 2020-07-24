@@ -9,7 +9,8 @@
  * MaterialGraph implementation
  */
 
-using namespace Axum::NodeGraph::Material;
+namespace Axum {
+namespace NodeGraph::Material {
 
 MaterialGraph::MaterialGraph(unsigned int _uid) : Graph(_uid) {
   size.AddParameter(&width);
@@ -38,3 +39,6 @@ void MaterialGraph::Process() {
     static_cast<MaterialNode *>(n)->Excute();
   }
 }
+
+} // namespace NodeGraph::Material
+} // namespace Axum

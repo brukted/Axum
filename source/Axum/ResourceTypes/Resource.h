@@ -19,7 +19,6 @@
 #include <gtkmm.h>
 #include <string>
 
-using namespace Axum::Parameter;
 
 namespace Axum {
 namespace ResourceType {
@@ -50,18 +49,18 @@ public:
    *
    */
   std::string Path;
-  ParamCollection mParams;
-  ParamCollection attributes{mParams.GenerateUid(), "Attributes"};
-  TextParam name{attributes.GenerateUid(), "Name", "Untitled"};
-  TextParam description{attributes.GenerateUid(), "Description", ""};
-  TextParam category{attributes.GenerateUid(), "Category", ""};
-  TextParam label{attributes.GenerateUid(), "Label", ""};
-  TextParam author{attributes.GenerateUid(), "Author", ""};
-  TextParam authorUrl{attributes.GenerateUid(), "Author URL", ""};
-  TextParam tags{attributes.GenerateUid(), "Tags", ""};
-  BooleanParam showInManager{attributes.GenerateUid(), "Show in asset manager",
+  Parameter::ParamCollection mParams;
+  Parameter::ParamCollection attributes{mParams.GenerateUid(), "Attributes"};
+  Parameter::TextParam name{attributes.GenerateUid(), "Name", "Untitled"};
+  Parameter::TextParam description{attributes.GenerateUid(), "Description", ""};
+  Parameter::TextParam category{attributes.GenerateUid(), "Category", ""};
+  Parameter::TextParam label{attributes.GenerateUid(), "Label", ""};
+  Parameter::TextParam author{attributes.GenerateUid(), "Author", ""};
+  Parameter::TextParam authorUrl{attributes.GenerateUid(), "Author URL", ""};
+  Parameter::TextParam tags{attributes.GenerateUid(), "Tags", ""};
+  Parameter::BooleanParam showInManager{attributes.GenerateUid(), "Show in asset manager",
                              true};
-  EnumParam pathType{
+  Parameter::EnumParam pathType{
       attributes.GenerateUid(), "Path type",
       std::map<int, std::string>{{PathType::Relative, "Relative"},
                                  {PathType::Absolute, "Absolute"}},
