@@ -7,10 +7,10 @@
 #define _TEXTPARAM_H
 
 #include "Param.h"
-#include "boost/serialization/access.hpp"
-#include "boost/serialization/split_member.hpp"
-#include "boost/serialization/string.hpp"
-#include "boost/serialization/version.hpp"
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/version.hpp>
 #include <string>
 
 namespace Axum {
@@ -23,15 +23,28 @@ private:
   std::string value;
 
 public:
-  TextParam(unsigned int _uid, std::string &_name, std::string &_value);
+  TextParam(std::string ID, std::string &_name, std::string &_value);
 
-  TextParam(unsigned int _uid, const char *_name, const char *_value);
+  TextParam(std::string ID, const char *_name, const char *_value);
 
   std::string &GetValue();
 
+  /**
+   * @brief Set the value of the parameter.
+   *
+   * @param _value New value.
+   */
   void SetValue(std::string &_value);
 
-  void SetValue(const char *_name);
+  /**
+   * @brief Set the value of the parameter.
+   *
+   * @param _value New value.
+   */
+  void SetValue(const char *_value);
+
+protected:
+  virtual Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>
@@ -44,6 +57,7 @@ private:
     ar &boost::serialization::base_object<Param>(*this);
     ar &value;
   }
+
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
 } // namespace Parameter

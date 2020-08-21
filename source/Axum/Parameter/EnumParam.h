@@ -20,29 +20,6 @@ namespace Parameter {
 class EnumParam : public Param {
   friend class boost::serialization::access;
 
-public:
-  /**
-   * @brief Construct a new Enum Param object
-   *
-   * @param _uid Unique id of the parameter.
-   * @param _name Name of the parameter.
-   * @param _enums Map of possible values.
-   * @param _value Default value for the parameter.
-   */
-  EnumParam(unsigned int _uid, std::string &_name,
-            std::map<int, std::string> _enums, int _value);
-
-  /**
-   * @brief Construct a new Enum Param object
-   *
-   * @param _uid Unique id of the parameter.
-   * @param _name Name of the parameter.
-   * @param _enums Map of possible values.
-   * @param _value Default value for the parameter.
-   */
-  EnumParam(unsigned int _uid, const char *_name,
-            std::map<int, std::string> _enums, int _value);
-
 private:
   EnumParam(){};
 
@@ -51,6 +28,28 @@ private:
   int value;
 
 public:
+  /**
+   * @brief Construct a new Enum Param object
+   *
+   * @param ID ID of the parameter.
+   * @param _name Name of the parameter.
+   * @param _enums Map of possible values.
+   * @param _value Default value for the parameter.
+   */
+  EnumParam(std::string ID, std::string &_name,
+            std::map<int, std::string> _enums, int _value);
+
+  /**
+   * @brief Construct a new Enum Param object
+   *
+   * @param ID ID of the parameter.
+   * @param _name Name of the parameter.
+   * @param _enums Map of possible values.
+   * @param _value Default value for the parameter.
+   */
+  EnumParam(std::string ID, const char *_name,
+            std::map<int, std::string> _enums, int _value);
+
   int SetValue() const;
 
   int GetValue() const;
@@ -58,6 +57,9 @@ public:
   void SetValue(int key);
 
   std::string &ToString(int key);
+
+protected:
+  virtual Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>

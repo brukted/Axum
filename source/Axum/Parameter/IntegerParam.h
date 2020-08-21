@@ -21,13 +21,15 @@ private:
   int value;
 
 public:
-  IntegerParam(unsigned int _uid, std::string &_name, int _value);
+  IntegerParam(std::string ID, std::string &_name, int _value);
 
-  IntegerParam(unsigned int _uid, const char *_name, int _value);
+  IntegerParam(std::string ID, const char *_name, int _value);
 
   int GetValue() const;
 
   void SetValue(int _value);
+
+  Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>

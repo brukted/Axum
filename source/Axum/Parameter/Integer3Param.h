@@ -22,15 +22,18 @@ private:
   std::array<int, 3> value;
 
 public:
-  Integer3Param(unsigned int _uid, std::string &_name,
+  Integer3Param(std::string ID, std::string &_name,
                 std::array<int, 3> _value);
 
-  Integer3Param(unsigned int _uid, const char *_name,
+  Integer3Param(std::string ID, const char *_name,
                 std::array<int, 3> _value);
 
   std::array<int, 3> GetValue() const;
 
   void SetValue(std::array<int, 3> _value);
+
+protected:
+  virtual Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>

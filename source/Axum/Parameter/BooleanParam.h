@@ -19,13 +19,16 @@ private:
   bool value;
 
 public:
-  BooleanParam(unsigned int _uid, std::string &_name, bool _value);
+  BooleanParam(std::string ID, std::string &_name, bool _value);
 
-  BooleanParam(unsigned int _uid, const char *_name, bool _value);
+  BooleanParam(std::string ID, const char *_name, bool _value);
 
   bool GetValue() const;
 
   void SetValue(bool _value);
+
+protected:
+  virtual Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>

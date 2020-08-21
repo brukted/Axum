@@ -11,13 +11,13 @@
 
 namespace Axum::Parameter {
 
-Float2Param::Float2Param(unsigned int _uid, std::string &_name,
+Float2Param::Float2Param(std::string ID, std::string &_name,
                          std::array<float, 2> _value)
-    : value(_value), Param(_uid, _name) {}
+    : value(_value), Param(ID, _name,"") {}
 
-Float2Param::Float2Param(unsigned int _uid, const char *_name,
+Float2Param::Float2Param(std::string ID, const char *_name,
                          std::array<float, 2> _value)
-    : value(_value), Param(_uid, _name) {}
+    : value(_value), Param(ID, _name,"") {}
 
 std::array<float, 2> Float2Param::GetValue() const { return this->value; }
 
@@ -25,5 +25,7 @@ void Float2Param::SetValue(std::array<float, 2> _value) {
   this->value = _value;
   this->OnValueChanged.emit();
 }
+
+Gtk::Widget *Float2Param::DrawDisplay() { return new Gtk::Box(); }
 
 } // namespace Axum::Parameter

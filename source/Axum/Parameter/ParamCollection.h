@@ -8,10 +8,11 @@
 
 #include "Log.h"
 #include "Param.h"
-#include "boost/serialization/access.hpp"
-#include "boost/serialization/split_member.hpp"
-#include "boost/serialization/vector.hpp"
-#include "boost/serialization/version.hpp"
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/version.hpp>
+#include <stdarg.h>
 #include <vector>
 
 namespace Axum {
@@ -21,50 +22,66 @@ class ParamCollection : public Param {
   friend class boost::serialization::access;
 
 protected:
-  std::vector<Param *> Params;
-  unsigned int lastUid = 0;
-
-public:
-  /**
-   * @brief Construct a new Param Collection object
-   *  use only for root parameter
-   *
-   */
   ParamCollection(){};
 
-  ParamCollection(unsigned int _uid, const char *_name);
+public:
+  std::vector<Param> Params;
+  ParamCollection(std::string ID, const char *_name,
+                  std::initializer_list<Param> params);
 
-  ParamCollection(unsigned int _uid, std::string &_name);
+  ParamCollection(std::string ID, std::string &_name,
+                  std::initializer_list<Param> params);
 
   /**
+   *@brief Finds a parameter.
    *
-   *
-   * @param _uid unique identifer of the parameter
-   * @return a pointer to a sub parameter
+   * @param ID ID of the parameter.
+   * @return Param& Reference to the parameter if found.
    *
    */
-  Param &GetParameter(unsigned int _uid);
+  Param &FindParameter(std::string &ID);
 
-  Param &GetParameter(std::string &_name);
+  /**
+   *@brief Finds a parameter.
+   *
+   * @param ID ID of the parameter.
+   * @return Param& Reference to the parameter if found.
+   *
+   */
+  Param &FindParameter(const char *ID);
 
-  Param &GetParameter(const char *_name);
+  /**
+   *@brief Finds a parameter and cast it to T type. Note: static cast is used to
+   *cast.
+   *
+   * @param ID ID of the parameter.
+   * @return T& Reference to the parameter if found.
+   *
+   */
+  template <typename T> T &FindParameter(std::string &ID) {
+    return static_cast<T>(FindParameter(ID));
+  }
 
-  void AddParameter(Param *parameter);
+  /**
+   * @brief Dynamically add paramter to the collection
+   *
+   * @param parameter
+   */
+  void AddParameter(Param parameter);
 
-  unsigned int GenerateUid();
+protected:
+  virtual Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &boost::serialization::base_object<Param>(*this);
     ar &Params;
-    ar &lastUid;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &boost::serialization::base_object<Param>(*this);
     ar &Params;
-    ar &lastUid;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

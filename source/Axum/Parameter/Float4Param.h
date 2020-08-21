@@ -22,15 +22,18 @@ private:
   std::array<float, 4> value;
 
 public:
-  Float4Param(unsigned int _uid, std::string &_name,
+  Float4Param(std::string ID, std::string &_name,
               std::array<float, 4> _value);
 
-  Float4Param(unsigned int _uid, const char *_name,
+  Float4Param(std::string ID, const char *_name,
               std::array<float, 4> _value);
 
   std::array<float, 4> GetValue() const;
 
   void SetValue(std::array<float, 4> _value);
+
+protected:
+  virtual Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>

@@ -13,52 +13,56 @@
 
 namespace Axum::Parameter {
 
-ParamCollection::ParamCollection(unsigned int _uid, const char *_name)
-    : Param(_uid, _name) {}
+ParamCollection::ParamCollection(std::string ID, const char *_name,
+                                 std::initializer_list<Param> params = {})
+    : Param(ID, _name,"") {
+  Params = params;
+}
 
-ParamCollection::ParamCollection(unsigned int _uid, std::string &_name)
-    : Param(_uid, _name) {}
+ParamCollection::ParamCollection(std::string ID, std::string &_name,
+                                 std::initializer_list<Param> params = {})
+    : Param(ID, _name,"") {
+  Params = params;
+}
 
-/**
- * @param id
- * @return *Param
- */
-Param &ParamCollection::GetParameter(unsigned int _uid) {
+Param &ParamCollection::FindParameter(std::string &ID) {
   for (auto &param : this->Params) {
-    if (param->GetUID() == _uid)
-      return *param;
+    if ((param.ID == ID))
+      return param;
   }
-  AX_LOG_CORE_ERROR("Parameter collection name : {},uid {0:d} is requested a "
-                    "non-existent parameter uid : {0:d} ",
-                    name, uid, _uid)
+  AX_LOG_CORE_ERROR("Parameter collection ID : {} is requested a "
+                    "non-existent parameter ID: {} .",
+                    this->ID, ID)
   throw "Parameter doesn't exist";
 }
 
-Param &ParamCollection::GetParameter(std::string &_name) {
+Param &ParamCollection::FindParameter(const char * ID) {
   for (auto &param : this->Params) {
-    if ((_name.compare(param->getName().c_str())) == 0)
-      return *param;
+    if (strcmp(param.ID.c_str(),ID) == 0)
+      return param;
   }
-  AX_LOG_CORE_ERROR("Parameter collection name : {},uid {0:d} is requested a "
-                    "non-existent parameter named {} ",
-                    name, uid, _name)
-  throw "Parameter doesn't exist";
-}
-Param &ParamCollection::GetParameter(const char *_name) {
-  for (auto &param : this->Params) {
-    if ((param->getName().compare(_name)) == 0)
-      return *param;
-  }
-  AX_LOG_CORE_ERROR("Parameter collection name : {},uid {0:d} is requested a "
-                    "non-existent parameter named {} ",
-                    name, uid, _name)
+  AX_LOG_CORE_ERROR("Parameter collection ID : {} is requested a "
+                    "non-existent parameter ID: {} .",
+                    this->ID, ID)
   throw "Parameter doesn't exist";
 }
 
-void ParamCollection::AddParameter(Param *parameter) {
-  this->Params.push_back(parameter);
+void ParamCollection::AddParameter(Param parameter) {
+  Params.push_back(parameter);
 }
 
-unsigned int ParamCollection::GenerateUid() { return ++lastUid; }
-
+Gtk::Widget *ParamCollection::DrawDisplay() {
+  AX_LOG_EDITOR_DEBUG("Drawing display widget for Param Collection {}", ID)
+  auto box = new Gtk::Box();
+  for (auto &param : Params) {
+    AX_LOG_EDITOR_DEBUG("Drawing display widget for Param  {}", param.ID)
+    auto widget = param.Draw();
+    box->pack_end(*widget);
+    AX_LOG_EDITOR_DEBUG("Finished Drawing display widget for Param {}",
+                        param.ID)
+  }
+  AX_LOG_EDITOR_DEBUG("Finished Drawing display widget for Param Collection {}",
+                      ID)
+  return box;
+}
 } // namespace Axum::Parameter

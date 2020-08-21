@@ -12,26 +12,19 @@
 
 namespace Axum::Parameter {
 
-Param::Param(unsigned int _uid) : uid(_uid) {}
+Param::Param(std::string ID, const std::string &_name,std::string group = "") : ID(ID), name(_name),Group(group) {}
 
-Param::Param(unsigned int _uid, std::string &_name) : uid(_uid), name(_name) {}
+Param::Param(std::string ID, const char *_name,std::string group = "") : ID(ID), name(_name),Group(group) {}
 
-Param::Param(unsigned int _uid, const char *_name) : uid(_uid), name(_name) {}
+Gtk::Widget *Param::Draw() {
+  if (IsEditMode)
+    return DrawEdit();
+  else
+    return DrawDisplay();
+}
 
-Param::Param(std::string &_name) : name(_name) {}
+Gtk::Widget *Param::DrawDisplay() { return new Gtk::Box(); }
 
-Param::Param(const char *_name) : name(_name) {}
-
-void Param::DrawEdit(UI::Widget::ParamUI *ui) {}
-
-void Param::DrawDisplay(UI::Widget::ParamUI *ui) {}
-
-std::string &Param::getName() { return name; }
-
-void Param::SetName(std::string &_name) { this->name = _name; }
-
-void Param::SetName(const char *_name) { this->name.assign(_name); }
-
-unsigned int Param::GetUID() { return uid; }
+Gtk::Widget *Param::DrawEdit() { return new Gtk::Box(); }
 
 } // namespace Axum::Parameter

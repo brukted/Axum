@@ -10,12 +10,17 @@
  */
 
 namespace Axum::Parameter {
+  Gtk::Widget* IntegerParam::DrawDisplay() 
+  {
+    return new Gtk::Box();
+  }
 
-IntegerParam::IntegerParam(unsigned int _uid, std::string &_name, int _value)
-    : value(_value), Param(_uid, _name) {}
 
-IntegerParam::IntegerParam(unsigned int _uid, const char *_name, int _value)
-    : value(_value), Param(_uid, _name) {}
+IntegerParam::IntegerParam(std::string ID, std::string &_name, int _value)
+    : value(_value), Param(ID, _name,"") {}
+
+IntegerParam::IntegerParam(std::string ID, const char *_name, int _value)
+    : value(_value), Param(ID, _name,"") {}
 
 int IntegerParam::GetValue() const { return this->value; }
 

@@ -7,7 +7,7 @@ namespace Axum {
 namespace Parameter {
 
 /**
- * @brief A parameter that provides access to another parameter
+ * @brief A parameter that provides access to another parameter.
  *
  */
 class ProxyParam : public Param {
@@ -15,18 +15,19 @@ private:
   Param *parameter;
 
 public:
-  ProxyParam(unsigned int _uid, Param *_parameter);
-
-  virtual void DrawEdit(UI::Widget::ParamUI *ui) override;
-
-  virtual void DrawDisplay(UI::Widget::ParamUI *ui) override;
+  ProxyParam(std::string ID, Param *_parameter);
 
   /**
-   * @brief Get the underlying parameter
+   * @brief Get the underlying parameter.
    *
-   * @return Param& a reference to the underlying object
+   * @return Param& a reference to the underlying parameter.
    */
   Param &GetParam();
+
+protected:
+  virtual Gtk::Widget *DrawEdit() override;
+
+  virtual Gtk::Widget *DrawDisplay() override;
 };
 } // namespace Parameter
 } // namespace Axum

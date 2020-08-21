@@ -22,15 +22,18 @@ private:
   std::array<int, 4> value;
 
 public:
-  Integer4Param(unsigned int _uid, std::string &_name,
+  Integer4Param(std::string ID, std::string &_name,
                 std::array<int, 4> _value);
 
-  Integer4Param(unsigned int _uid, const char *_name,
+  Integer4Param(std::string ID, const char *_name,
                 std::array<int, 4> _value);
 
   std::array<int, 4> GetValue() const;
 
   void SetValue(std::array<int, 4> _value);
+
+protected:
+  virtual Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>

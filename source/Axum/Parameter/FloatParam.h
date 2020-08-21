@@ -7,9 +7,10 @@
 #define _FLOATPARAM_H
 
 #include "Param.h"
-#include "boost/serialization/access.hpp"
-#include "boost/serialization/split_member.hpp"
-#include "boost/serialization/version.hpp"
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/version.hpp>
+#include <string>
 
 namespace Axum {
 namespace Parameter {
@@ -21,13 +22,16 @@ private:
   float value;
 
 public:
-  FloatParam(unsigned int _uid, std::string &_name, float _value);
+  FloatParam(std::string ID, std::string &_name, float _value);
 
-  FloatParam(unsigned int _uid, const char *_name, float _value);
+  FloatParam(std::string ID, const char *_name, float _value);
 
   float GetValue() const;
 
   void SetValue(float _value);
+
+protected:
+  virtual Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>

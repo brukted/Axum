@@ -6,21 +6,26 @@
 #ifndef _PARAM_H
 #define _PARAM_H
 
-#include "../UI/Widgets/ParamUI.h"
-#include "boost/serialization/access.hpp"
-#include "boost/serialization/split_member.hpp"
-#include "boost/serialization/string.hpp"
-#include "boost/serialization/vector.hpp"
-#include "boost/serialization/version.hpp"
-#include "sigc++/sigc++.h"
+#include "Log.h"
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/array.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/version.hpp>
+#include <gtkmm-3.0/gtkmm.h>
+#include <sigc++/sigc++.h>
 #include <string>
 #include <vector>
 
 namespace Axum {
 namespace Parameter {
 
+class ProxyParam;
+
 class Param {
   friend class boost::serialization::access;
+  friend class ProxyParam;
 
 protected:
   /**
@@ -29,56 +34,46 @@ protected:
    *
    */
   Param(){};
+
+public:
+  std::string ID;
   /**
-   * @brief UI name of the parameter.
+   * @brief UI name of the parameter. This is not guaranteed to be always the
+   * same as It is localized. Use ID instead.
    *
    */
   std::string name;
-  unsigned int uid;
-
-public:
+  std::string Group;
+  bool IsEditMode = false;
+  /**
+   * @brief Identifier of the parameter for programming and logging purpose.
+   *
+   */
   sigc::signal<void> OnValueChanged;
 
-  Param(unsigned int _uid);
+  Param(std::string ID, const std::string &_name, std::string group);
 
-  Param(unsigned int _uid, std::string &_name);
-
-  Param(unsigned int _uid, const char *_name);
-
-  Param(std::string &_name);
-
-  Param(const char *_name);
-
-  virtual void DrawEdit(UI::Widget::ParamUI *ui);
-
-  virtual void DrawDisplay(UI::Widget::ParamUI *ui);
-
-  std::string &getName();
+  Param(std::string ID, const char *_name, std::string group);
 
   /**
-   * @brief Set the UI name of the parameter.
+   * @brief Constructs a Gtk widget that can be used to display the param in UI.
    *
+   * @return Gtk::Widget*
    */
-  void SetName(std::string &_name);
+  Gtk::Widget *Draw();
 
-  /**
-   * @brief Set the UI name of the parameter.
-   *
-   */
-  void SetName(const char *_name);
-
-  unsigned int GetUID();
+protected:
+  virtual Gtk::Widget *DrawDisplay();
+  virtual Gtk::Widget *DrawEdit();
 
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
-    ar &uid;
-    ar &name;
+    ar &ID, &name, &IsEditMode, &Group;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
-    ar &uid;
-    ar &name;
+    ar &ID, &name, &IsEditMode, &Group;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

@@ -22,15 +22,18 @@ private:
   std::array<int, 2> value;
 
 public:
-  Integer2Param(unsigned int _uid, std::string &_name,
+  Integer2Param(std::string ID, std::string &_name,
                 std::array<int, 2> _value);
 
-  Integer2Param(unsigned int _uid, const char *_name,
+  Integer2Param(std::string ID, const char *_name,
                 std::array<int, 2> _value);
 
   std::array<int, 2> GetValue() const;
 
   void SetValue(std::array<int, 2> _value);
+
+protected:
+  virtual Gtk::Widget *DrawDisplay() override;
 
 private:
   template <class Archive>
