@@ -6,15 +6,12 @@
 #ifndef _MATERIALNODE_H
 #define _MATERIALNODE_H
 
-#include "../../Parameter/EnumParam.h"
-#include "../../Parameter/Float2Param.h"
-#include "../../Parameter/Integer2Param.h"
-#include "../../Parameter/IntegerParam.h"
 #include "../InputSockets/MaterialInSocket.h"
 #include "../Material.h"
 #include "../Node.h"
 #include "../OutputSockets/MaterialOutSocket.h"
-#include "boost/serialization/base_object.hpp"
+#include "Parameter/Parameter.h"
+#include <boost/serialization/base_object.hpp>
 
 namespace Axum::NodeGraph::Material {
 
@@ -32,13 +29,14 @@ class MaterialNode : public Node {
   friend class boost::serialization::access;
 
 public:
-  Parameter::ParamCollection common{mNodeParams.GenerateUid(), "Common"};
-  Parameter::ParamCollection size{common.GenerateUid(), "Size"};
-  Parameter::EnumParam width{size.GenerateUid(), "Width", outputSizes, 1024};
-  Parameter::EnumParam height{size.GenerateUid(), "Height", outputSizes, 1024};
-  Parameter::EnumParam imageFormat{common.GenerateUid(), "Image format",
-                                   imageFormats, ImageFormat::EIGHT_BIT};
-  Parameter::IntegerParam seed{common.GenerateUid(), "Random seed", 0};
+  Parameter::EnumParam width{"MATERIAL_NODE_COMMON_WIDTH", "Width", outputSizes,
+                             1024};
+  Parameter::EnumParam height{"MATERIAL_NODE_COMMON_HEIGHT", "Height",
+                              outputSizes, 1024};
+  Parameter::EnumParam imageFormat{"MATERIAL_NODE_COMMON_FORMAT",
+                                   "Image format", imageFormats,
+                                   ImageFormat::EIGHT_BIT};
+  Parameter::IntegerParam seed{"MATERIAL_NODE_COMMON_SEED", "Random seed", 0};
 
   /**
    * @brief Don't use it.Construct a new Material Node object.
@@ -74,16 +72,16 @@ public:
    */
   void ExcuteForward();
 
+  LIST_PARAMETERS(&width, &height, &imageFormat, &seed)
+
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &width, &height, &imageFormat, &seed;
-    ar &size, &common;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &width, &height, &imageFormat, &seed;
-    ar &size, &common;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

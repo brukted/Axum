@@ -6,21 +6,17 @@
 #ifndef _NODE_H
 #define _NODE_H
 
-#include "../Parameter/ParamCollection.h"
-#include "../UI/Widgets/NodeUI.h"
-#include "../Utils/Serialization/GUIInfo.h"
+#include "Utils/Serialization/GUIInfo.h"
 #include "InputSocket.h"
 #include "Log.h"
 #include "OutputSocket.h"
-#include "boost/serialization/access.hpp"
-#include "boost/serialization/array.hpp"
-#include "boost/serialization/split_member.hpp"
-#include "boost/serialization/vector.hpp"
-#include "boost/serialization/version.hpp"
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/array.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/version.hpp>
 #include <string>
 #include <vector>
-
-namespace Widget = Axum::UI::Widget;
 
 namespace Axum {
 namespace NodeGraph {
@@ -36,7 +32,6 @@ class Node {
 public:
   Node(unsigned int _uid);
   bool isVisited = false;
-  Parameter::ParamCollection mNodeParams;
   /**
    * Contains the GUI information of the node
    **/
@@ -84,19 +79,15 @@ public:
 
   std::vector<InputSocket> &GetInputSockets();
 
-  virtual void Draw(void *ui);
-
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &uid;
-    ar &mNodeParams;
     ar &mGUIInfo;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &uid;
-    ar &mNodeParams;
     ar &mGUIInfo;
   }
   /**

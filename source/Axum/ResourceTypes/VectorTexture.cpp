@@ -3,15 +3,15 @@
  * @author Bruk Tedla
  */
 
-#include "VectorGraphics.h"
+#include "VectorTexture.h"
 
 /**
- * VectorGraphics implementation
+ * VectorTexture implementation
  */
 
 namespace Axum {
 namespace ResourceType {
-void VectorGraphics::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
+void VectorTexture::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
     this->Resource::AppendToModel(row,store);
 }
 } // namespace ResourceType

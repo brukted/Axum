@@ -6,13 +6,10 @@
 #ifndef _MATERIALGRAPH_H
 #define _MATERIALGRAPH_H
 
-#include "../../Parameter/EnumParam.h"
-#include "../../Parameter/Float2Param.h"
-#include "../../Parameter/Integer2Param.h"
-#include "../../Parameter/IntegerParam.h"
 #include "Graph.h"
 #include "Material.h"
 #include "Nodes/MaterialNode.h"
+#include "Parameter/Parameter.h"
 
 namespace Axum {
 namespace NodeGraph::Material {
@@ -20,16 +17,15 @@ class MaterialGraph : public Graph {
   friend class boost::serialization::access;
 
 public:
-  Parameter::ParamCollection defaultParams{mParams.GenerateUid(),
-                                           "Default Parameters"};
-  Parameter::ParamCollection size{defaultParams.GenerateUid(), "Size"};
-  Parameter::EnumParam width{size.GenerateUid(), "Width", outputSizes, 1024};
-  Parameter::EnumParam height{size.GenerateUid(), "Height", outputSizes, 1024};
-  Parameter::EnumParam imageFormat{defaultParams.GenerateUid(), "Image format",
+  Parameter::EnumParam width{"MATERIAL_DEFAULT_WIDTH", "Width", outputSizes,
+                             1024};
+  Parameter::EnumParam height{"MATERIAL_DEFAULT_HEIGHT", "Height", outputSizes,
+                              1024};
+  Parameter::EnumParam imageFormat{"MATERIAL_DEFAULT_FORMAT", "Image format",
                                    imageFormats, ImageFormat::EIGHT_BIT};
-  Parameter::IntegerParam seed{defaultParams.GenerateUid(), "Random seed", 0};
-  Parameter::ParamCollection exposedParams{mParams.GenerateUid(),
-                                           "Exposed Parameters"};
+  Parameter::IntegerParam seed{"MATERIAL_DEFAULT_SEED", "Random seed", 0};
+  Parameter::ParamCollection exposedParams{
+      "MATERIAL_DEFAULT_EXPOSED_PARAMETRS", "Exposed Parameters", {}};
 
   MaterialGraph(unsigned int _uid);
 
@@ -39,18 +35,19 @@ public:
 
   void Process();
 
+  ADD_PARAMTERS(Resource, &width, &height, &imageFormat, &seed,
+                &exposedParams)
+
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &boost::serialization::base_object<Graph>(*this);
-    ar &size, &width, &height, &imageFormat, &seed;
-    ar &defaultParams, &size, &exposedParams;
+    ar &width, &height, &imageFormat, &seed, &exposedParams;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &boost::serialization::base_object<Graph>(*this);
-    ar &size, &width, &height, &imageFormat, &seed;
-    ar &defaultParams, &size, &exposedParams;
+    ar &width, &height, &imageFormat, &seed, &exposedParams;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

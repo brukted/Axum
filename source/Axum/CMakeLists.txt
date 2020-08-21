@@ -152,8 +152,8 @@ list(APPEND sources
     ResourceTypes/Resource.cpp
     ResourceTypes/Scene.h
     ResourceTypes/Scene.cpp
-    ResourceTypes/VectorGraphics.h
-    ResourceTypes/VectorGraphics.cpp
+    ResourceTypes/VectorTexture.h
+    ResourceTypes/VectorTexture.cpp
     ResourceTypes/Package.h
     ResourceTypes/Package.cpp
     #UI Elements

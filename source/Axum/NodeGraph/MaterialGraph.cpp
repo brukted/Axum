@@ -12,14 +12,7 @@
 namespace Axum {
 namespace NodeGraph::Material {
 
-MaterialGraph::MaterialGraph(unsigned int _uid) : Graph(_uid) {
-  size.AddParameter(&width);
-  size.AddParameter(&height);
-  defaultParams.AddParameter(&size);
-  defaultParams.AddParameter(&imageFormat);
-  defaultParams.AddParameter(&seed);
-  mParams.AddParameter(&defaultParams);
-}
+MaterialGraph::MaterialGraph(unsigned int _uid) : Graph(_uid) {}
 
 void MaterialGraph::SetupCache() {
   for (auto &n : mNodes) {

@@ -61,11 +61,6 @@ InputSocket &Node::GetInputSocket(unsigned int _uid) {
   throw "Input socket doesn't exist";
 }
 
-/**
- * @return NodeUI
- */
-void Node::Draw(void *ui) {}
-
 std::vector<OutputSocket> &Node::GetOutputSockets() {
   return Node::mOutputSockets;
 }

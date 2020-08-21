@@ -1,3 +1,8 @@
+/**
+ * Project Material Lab
+ * @author Bruk Tedla
+ */
+
 #ifndef _MATERIAL_H_
 #define _MATERIAL_H_
 

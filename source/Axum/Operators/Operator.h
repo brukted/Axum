@@ -23,7 +23,7 @@ public:
   std::string Name;
 
   /**
-   * @brief Excutes the operation contained in. Only for use in undo manager.
+   * @brief Excutes the operation contained in.
    *
    */
   virtual void Execute() noexcept;

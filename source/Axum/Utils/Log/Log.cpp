@@ -22,7 +22,7 @@ void Log::Startup() {
 // Release build
 #else
   Log::sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(
-      PathUtils::Synced + "log.txt");
+      PathUtils::userPathS + "/logs/log.txt");
   spdlog::set_level(spdlog::level::info);
   Log::sink->set_level(spdlog::level::info);
   Log::addonLogger = std::make_shared<spdlog::logger>("Addon", Log::sink);

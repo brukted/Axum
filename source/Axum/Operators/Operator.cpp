@@ -15,6 +15,6 @@ void Operator::Execute() noexcept {}
 
 void Operator::Undo() noexcept {}
 
-void Operator::Redo() noexcept {}
+void Operator::Redo() noexcept { Execute(); }
 
 } // namespace Axum::Operator

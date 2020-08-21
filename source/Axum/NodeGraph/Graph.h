@@ -6,16 +6,16 @@
 #ifndef _GRAPH_H
 #define _GRAPH_H
 
-#include "../ResourceTypes/Resource.h"
-#include "../Utils/Serialization/Connection.h"
+#include "ResourceTypes/Resource.h"
+#include "Utils/Serialization/Connection.h"
 #include "Log.h"
 #include "Node.h"
-#include "boost/serialization/access.hpp"
-#include "boost/serialization/base_object.hpp"
-#include "boost/serialization/list.hpp"
-#include "boost/serialization/split_member.hpp"
-#include "boost/serialization/vector.hpp"
-#include "boost/serialization/version.hpp"
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/base_object.hpp>
+#include <boost/serialization/list.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/version.hpp>
 #include <deque>
 #include <list>
 #include <memory>

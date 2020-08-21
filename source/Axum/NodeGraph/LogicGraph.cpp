@@ -66,6 +66,7 @@ std::shared_ptr<std::string> LogicGraph::compileGL() {
   std::shared_ptr<std::string> code = std::make_shared<std::string>();
   std::vector<Node *> nodes = transverse();
   std::string &functionName = name.GetValue();
+  functionName= functionName.replace(functionName.begin(),functionName.end(),' ','_');
   //* 65 - 90 A - Z 97 -122 a - z 48 - 57 0 - 9
   int last1 = 0, last2 = -1;
   auto GenerateName = [&last1, &last2]() {

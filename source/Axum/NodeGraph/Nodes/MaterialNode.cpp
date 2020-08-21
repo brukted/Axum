@@ -15,14 +15,7 @@ namespace Axum::NodeGraph::Material {
 
 MaterialNode::MaterialNode() {}
 
-MaterialNode::MaterialNode(unsigned int _uid) : Node(_uid) {
-  size.AddParameter(&width);
-  size.AddParameter(&height);
-  common.AddParameter(&size);
-  common.AddParameter(&imageFormat);
-  common.AddParameter(&seed);
-  mNodeParams.AddParameter(&common);
-}
+MaterialNode::MaterialNode(unsigned int _uid) : Node(_uid) {}
 
 void MaterialNode::SetupCache() {
   for (auto &socket : mOutputSockets) {
