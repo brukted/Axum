@@ -15,6 +15,7 @@ namespace Axum {
 namespace Parameter {
 
 class BooleanParam : public Param {
+  friend class boost::serialization::access;
 private:
   bool value;
 

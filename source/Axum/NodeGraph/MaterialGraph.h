@@ -27,7 +27,6 @@ public:
   Parameter::ParamCollection exposedParams{
       "MATERIAL_DEFAULT_EXPOSED_PARAMETRS", "Exposed Parameters", {}};
 
-  MaterialGraph(unsigned int _uid);
 
   void SetupCache();
 

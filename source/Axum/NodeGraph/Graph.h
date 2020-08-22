@@ -32,7 +32,7 @@ protected:
   unsigned int uid;
 
 public:
-  Graph(unsigned int _uid);
+  Graph(){};
 
   /**
    * @brief Get the Node with uid = @a _uid

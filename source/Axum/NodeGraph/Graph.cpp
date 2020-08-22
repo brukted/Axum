@@ -11,8 +11,6 @@
 
 namespace Axum::NodeGraph {
 
-Graph::Graph(unsigned int _uid) : uid(_uid) {}
-
 Node &Graph::GetNode(unsigned int _uid) {
   auto i = std::find_if(mNodes.begin(), mNodes.end(),
                         [&](const Node &val) { return val.GetUID() == _uid; });

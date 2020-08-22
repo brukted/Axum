@@ -38,15 +38,15 @@ Outliner::Outliner() : Editor("Outliner", "Outliner") {
   tree.append_column(iconCol);
   tree.append_column(resourcesCol);
   tree.set_headers_visible(false);
-  rootBox.add(tree);
+  rootBox.pack_end(tree, true, true);
   space.add(rootBox);
-  // TODO: The signal handlers don't necessary need to be a member function
+  // @note The signal handlers don't necessary need to be a member function
   // consider making them static, if that will result better performance or
   // simpler code.
   signal_button_press_event().connect(sigc::mem_fun(*this, &OnButtonPress));
   signal_key_press_event().connect(sigc::mem_fun(*this, &OnKeyPress));
   signal_key_release_event().connect(sigc::mem_fun(*this, &OnKeyRelease));
-  tree.signal_button_press_event().connect(
+  rootBox.signal_button_press_event().connect(
       sigc::mem_fun(*this, &OnButtonPressTree));
   tree.get_selection()->signal_changed().connect_notify(
       sigc::mem_fun(*this, &OnSelectionChangedTree));
@@ -105,6 +105,9 @@ void Outliner::OpenPackage() {
   Glib::RefPtr<Gtk::FileChooserNative> dialog = Gtk::FileChooserNative::create(
       "Please choose a package",
       Gtk::FileChooserAction::FILE_CHOOSER_ACTION_OPEN, "Open", "Cancel");
+  auto filter = Gtk::FileFilter::create();
+  filter->add_pattern("*.axpkg");
+  dialog->add_filter(filter);
   dialog->set_transient_for(*Manager::WindowManager::getInstance().MainWin);
   int result = dialog->run();
   switch (result) {
@@ -112,6 +115,7 @@ void Outliner::OpenPackage() {
   case Gtk::RESPONSE_OK:
     for (auto file : dialog->get_files()) {
       Package_Manager.LoadPackage(file->get_path());
+      UpdateItems();
     }
     break;
   case Gtk::RESPONSE_CANCEL:
@@ -128,42 +132,23 @@ void Outliner::ShowRowContextMenu(GdkEvent *evt) {
   AX_LOG_EDITOR_DEBUG("Showing row context menu.")
   if (RowContextMenu != nullptr)
     delete RowContextMenu;
-  RowContextMenu = new Gtk::Menu();
-  auto Pkg = tree.get_selection()->get_selected();
-  if (Pkg == nullptr) {
-    AX_LOG_EDITOR_DEBUG("null selection.")
+  auto Res = tree.get_selection()->get_selected();
+  if (Res == nullptr)
     return;
-  }
-  //* Checks if the selected row is a package
-  if (Pkg->parent() == nullptr) {
-    auto PkgUid = Pkg->get_value<unsigned int>(columns.uid);
-    Package_Manager.FindPackage(PkgUid).OnRowContextMenu(RowContextMenu);
-  } else {
-    while (Pkg->parent() != nullptr) {
-      Pkg = Pkg->parent();
-    }
-    auto PkgUid = Pkg->get_value<unsigned int>(columns.uid);
-    auto ResUid = tree.get_selection()->get_selected()->get_value<unsigned int>(
-        columns.uid);
-    AX_LOG_EDITOR_DEBUG("Package uid {0:d}", PkgUid)
-    AX_LOG_EDITOR_DEBUG("Resource uid {0:d}", ResUid)
-    Package_Manager.FindPackage(PkgUid).FindResource(ResUid).OnRowContextMenu(
-        RowContextMenu);
-  }
+  auto ResPtr = Res->get_value<ResourceType::Resource *>(columns.pointer);
+  RowContextMenu = new UI::Widget::OutlinerContextMenu(*ResPtr);
   RowContextMenu->show_all();
   RowContextMenu->popup_at_pointer(evt);
 }
 
 void Outliner::OnSelectionChangedTree() {
-  auto Pkg = tree.get_selection()->get_selected();
-  //* Checks if the selected row is a package
-  if (Pkg->parent() == nullptr) {
-    auto PkgUid = Pkg->get_value<unsigned int>(columns.uid);
-    ParameterEditor::BindParam(&Package_Manager.FindPackage(PkgUid).mParams);
-  } else {
-    while (Pkg->parent() != nullptr) {
-      Pkg = Pkg->parent();
-    }
-  }
+  if (tree.get_selection()->get_mode() != Gtk::SELECTION_SINGLE)
+    return;
+  auto Res = tree.get_selection()->get_selected();
+  if (Res == nullptr)
+    return;
+  auto ResPtr = Res->get_value<ResourceType::Resource *>(columns.pointer);
+  ParameterEditor::BindParams(ResPtr->Params());
 }
+
 } // namespace Axum::UI::Editor

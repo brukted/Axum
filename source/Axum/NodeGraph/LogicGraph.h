@@ -29,6 +29,9 @@ private:
   LogicNode *output = nullptr;
 
 public:
+  
+  LogicGraph(){};
+
   /**
    * @brief Compiles the function graph and return as glsl shader
    * with a function with the graph's name.

@@ -52,22 +52,38 @@ public:
    */
   void LoadPackage(const Glib::RefPtr<Gio::File> file);
 
-  void SavePackage(ResourceType::Package &pkg);
+  void SavePackage(ResourceType::Package &Pkg, std::string Path = "");
+
+  /**
+   * @brief Remove the package from opened packages list.
+   * 
+   * @param uid UID of the package to remove.
+   *
+   * @warning This doesn't check if the package is opened in editors.
+   */
+  void ClosePackage(unsigned int uid);
+  
+  /**
+   * @brief Remove the package from opened packages list.
+   * 
+   * @param Pkg Package to remove.
+   * 
+   * @warning This doesn't check if the package is opened in editors.
+   */
+  void ClosePackage(ResourceType::Package &Pkg);
 
   /**
    * @brief Create new package.
    *
-   * @param _name Name of the package.
+   * @param Name Name of the package.
    */
-  void CreatePackage(std::string _name = "Untitled");
+  void CreatePackage(std::string Name = "Untitled");
 
-  ResourceType::Package& FindPackage(unsigned int uid);
+  ResourceType::Package &FindPackage(unsigned int uid);
 };
 } // namespace Axum::Manager
 
-/**
- * @brief Shortcut to the instance of PackageManager.
- * 
- */
-#define Package_Manager Axum::Manager::PackageManager::getInstance() 
+/// Shortcut to the instance of PackageManager.
+#define Package_Manager Axum::Manager::PackageManager::getInstance()
+
 #endif //_PACKAGEMANAGER_H

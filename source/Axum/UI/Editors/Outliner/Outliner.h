@@ -11,6 +11,8 @@
 #include "Log.h"
 #include "Managers/PackageManager.h"
 #include "Managers/WindowManager.h"
+#include "ResourceTypes/Resource.h"
+#include "UI/Widgets/OutlinerContextMenu.h"
 #include <gtkmm.h>
 #include <string>
 #include <vector>
@@ -18,17 +20,21 @@
 namespace Axum::UI {
 namespace Editor {
 
+/// @TODO : Replace the uid column with pointer to the resource that way we
+/// don't have to search the item in the package heirarchy everytime we want to
+/// reference it.
+
 class Outliner : public Editor {
 private:
   class Columns : public Gtk::TreeModel::ColumnRecord {
   public:
     Gtk::TreeModelColumn<Glib::RefPtr<Gdk::Pixbuf>> icon;
     Gtk::TreeModelColumn<std::string> name;
-    Gtk::TreeModelColumn<unsigned int> uid;
+    Gtk::TreeModelColumn<ResourceType::Resource *> pointer;
     Columns() {
       add(icon);
       add(name);
-      add(uid);
+      add(pointer);
     }
   };
   Gtk::Box rootBox{Gtk::ORIENTATION_VERTICAL};
@@ -39,8 +45,8 @@ private:
   Gtk::TreeViewColumn iconCol{"", iconCellRenderer};
   Gtk::CellRendererText textCellRenderer;
   Gtk::TreeViewColumn resourcesCol{"", textCellRenderer};
-  Gtk::Menu *MainContextMenu;
-  Gtk::Menu *RowContextMenu;
+  Gtk::Menu *MainContextMenu = nullptr;
+  Gtk::Menu *RowContextMenu = nullptr;
   Glib::RefPtr<Gtk::UIManager> mUIManager;
   Glib::RefPtr<Gtk::ActionGroup> mActionGroup;
 

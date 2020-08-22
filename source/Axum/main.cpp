@@ -1,8 +1,14 @@
+
 #include "Log.h"
 #include "MApplication.h"
 #include "PathUtils.h"
 #include <gdlmm.h>
 #include <gtkmm.h>
+/**
+ * Dummy placeholder macro for internationalization with gettext. Will be
+ *replaced with #include <glibmm/i18n.h> in future for true internationalization.
+ **/
+#define _(text) text
 
 using namespace Axum::Utils;
 

@@ -12,8 +12,6 @@
 namespace Axum {
 namespace NodeGraph::Material {
 
-MaterialGraph::MaterialGraph(unsigned int _uid) : Graph(_uid) {}
-
 void MaterialGraph::SetupCache() {
   for (auto &n : mNodes) {
     static_cast<MaterialNode &>(n).SetupCache();
