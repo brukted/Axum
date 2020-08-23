@@ -78,6 +78,8 @@ list(APPEND sources
     #Operators
     Operators/operator.h
     Operators/operator.cpp
+    Operators/ResourceOperators/AddNewImgTexOP.h
+    Operators/ResourceOperators/AddNewImgTexOP.cpp
     #Node Graph
     NodeGraph/LogicGraph.h
     NodeGraph/LogicGraph.cpp

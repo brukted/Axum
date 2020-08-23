@@ -7,6 +7,7 @@
 #define _OPERATOR_H
 
 #include <string>
+#include <memory>
 
 namespace Axum::Operator {
 

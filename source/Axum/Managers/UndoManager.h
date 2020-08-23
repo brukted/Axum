@@ -9,11 +9,13 @@
 #include "Operators/Operator.h"
 #include "PreferenceManager.h"
 #include "boost/circular_buffer.hpp"
+#include <memory>
 
 namespace Axum::Manager {
 
 // a special iterator for RecentOpreations
-typedef boost::circular_buffer<Operator::Operator>::iterator uiterator;
+typedef boost::circular_buffer<
+    std::shared_ptr<Axum::Operator::Operator>>::iterator uiterator;
 class UndoManager {
 public:
   static UndoManager &getInstance() {
@@ -26,7 +28,7 @@ private:
   /**
    * Circular Array to contain recent actions.
    */
-  boost::circular_buffer<Axum::Operator::Operator> RecentOperations;
+  boost::circular_buffer<std::shared_ptr<Operator::Operator>> RecentOperations;
   /**
    * Position of the last operation.
    */
@@ -41,11 +43,11 @@ public:
   void operator=(UndoManager const &) = delete;
 
   /**
-   * @brief Registers the operation and executes it.
+   * @brief Registers the operation.
    *
-   * @param mOperator Operator containing the operation to be executed.
+   * @param mOperator Operator containing the operation.
    */
-  void AddOperation(Operator::Operator mOperator);
+  void AddOperation(std::shared_ptr<Operator::Operator> mOperator);
 
   void Undo();
 

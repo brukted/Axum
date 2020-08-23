@@ -5,14 +5,13 @@
 
 #include "UndoManager.h"
 
-
 /**
  * UndoManager implementation
  */
 
 namespace Axum::Manager {
 
-void UndoManager::AddOperation(Operator::Operator mOperator) {
+void UndoManager::AddOperation(std::shared_ptr<Operator::Operator> mOperator) {
   if (RecentOperations.size() == 0) {
     // append the operator at the end of the list
     RecentOperations.push_back(mOperator);
@@ -21,7 +20,7 @@ void UndoManager::AddOperation(Operator::Operator mOperator) {
     return;
   }
   // check if there are no redo operation
-  if (nextUndo == RecentOperations.end()) {
+  if (nextUndo == (RecentOperations.end() - 1)) {
     // append the operator at the end of the list
     RecentOperations.push_back(mOperator);
     // check if the list is not full
@@ -32,7 +31,7 @@ void UndoManager::AddOperation(Operator::Operator mOperator) {
   }
   // there are redo operations at the front of the next undo
   else {
-    // removes any redoable operations
+    // remove any redoable operations
     for (uiterator i = RecentOperations.end(); i > nextUndo; i--) {
       RecentOperations.pop_back();
     }
@@ -41,7 +40,6 @@ void UndoManager::AddOperation(Operator::Operator mOperator) {
     // increments the iterator
     ++nextUndo;
   }
-  RecentOperations.back().Execute();
   // now there is undoable operation
   canUndoFurther = true;
 }
@@ -52,7 +50,7 @@ void UndoManager::Undo() {
     // nextundo is the first operation so check if we have not undone it already
     if (canUndoFurther) {
       // we haven't undone it so undo
-      (*nextUndo).Undo();
+      (*nextUndo)->Undo();
       // set canundo false so we don't undo it any more
       canUndoFurther = false;
     }
@@ -60,7 +58,7 @@ void UndoManager::Undo() {
   // nextUndo is not the first operation so there are precedding operations
   else {
     // undoes the operation
-    (*nextUndo).Undo();
+    (*nextUndo)->Undo();
     // decrements the iterator
     --nextUndo;
   }
@@ -68,18 +66,18 @@ void UndoManager::Undo() {
 
 void UndoManager::Redo() {
   // checks if there are redoable opreations
-  if (nextUndo != RecentOperations.end()) {
-    // increments nextUndo so it is now the next redoable operation
-    ++nextUndo;
-    // redos
-    (*nextUndo).Redo();
+  if (nextUndo != (RecentOperations.end() - 1)) {
+    auto OP = std::make_shared<Operator::Operator>(**nextUndo);
+    OP->Redo();
+    AddOperation(std::move(OP));
   }
 }
 
 void UndoManager::Startup() {
-  int undoSteps = Preference_Manager.getPreference<int>(
-      "system.undo_steps", 50);
-  RecentOperations = boost::circular_buffer<Operator::Operator>(undoSteps);
+  int undoSteps =
+      Preference_Manager.getPreference<int>("system.undo_steps", 50);
+  RecentOperations =
+      boost::circular_buffer<std::shared_ptr<Operator::Operator>>(undoSteps);
 }
 
 void UndoManager::Shutdown() {}
