@@ -221,6 +221,9 @@ list(APPEND sources
     #Logging Utilities
     Utils/Log/Log.h
     Utils/Log/Log.cpp
+    #Custom assertion Utilities
+    Utils/Assert/Assert.h
+    Utils/Assert/Assert.cpp
     #Runtime path utilities
     Utils/PathUtils/PathUtils.h
     Utils/PathUtils/PathUtils.cpp
