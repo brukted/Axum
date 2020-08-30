@@ -15,6 +15,8 @@
 
 namespace Axum {
 namespace ResourceType {
+Scene::Scene() { this->type = Type::Scene; }
+
 void Scene::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
   this->Resource::AppendToModel(row, store);
 }

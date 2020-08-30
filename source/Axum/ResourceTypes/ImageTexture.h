@@ -12,6 +12,7 @@
 #include <OpenImageIO/imageio.h>
 #include <algorithm>
 #include <boost/serialization/base_object.hpp>
+#include <boost/serialization/vector.hpp>
 #include <fmt/format.h>
 #include <vector>
 
@@ -22,6 +23,7 @@ class ImageTexture : public Resource {
   friend class boost::serialization::access;
 
 public:
+  ImageTexture() = default;
   /**
    * @brief Construct a new linked Image Texture object
    *
@@ -51,7 +53,7 @@ public:
 
   int channels;
 
-  unsigned int width, height;
+  int width, height;
 
   virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
 
@@ -59,23 +61,24 @@ private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &boost::serialization::base_object<Resource>(*this);
-    if (this->resourceType == ResourceType::Embedded) {
+    if (!isLinked) {
       ar &data;
     }
-    ar &channels, &width, &height;
+    ar &channels &width &height;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &channels, &width, &height;
+    ar &channels &width &height;
     //* If the texture is embedded load data otherwise load from file
-    if (this->resourceType == ResourceType::Embedded) {
+    if (!isLinked) {
       ar &data;
     } else {
       data = std::vector<unsigned char>(width * height * channels);
       auto input = OIIO::ImageInput::open(Path);
       if (!input) {
-        AX_LOG_CORE_WARN("Can't load linked image texture {0}.", name.getName())
+        AX_LOG_CORE_WARN("Can't load linked image texture {0}.",
+                         name.GetValue())
         // TODO: Fill the data with pinky stuff like blender does
         std::fill(data.begin(), data.end(), 125);
       } else {

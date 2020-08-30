@@ -11,7 +11,7 @@
 
 namespace Axum::UI::Editor {
 sigc::signal<void(Parameter::Param &)> ParameterEditor::OnBindParam;
-sigc::signal<void(std::list<Parameter::Param *>)> ParameterEditor::OnBindParams;
+sigc::signal<void(std::vector<Parameter::Param *>)> ParameterEditor::OnBindParams;
 sigc::signal<void()> ParameterEditor::OnUnbind;
 
 void ParameterEditor::OnBindParameter(Parameter::Param &param) {
@@ -21,11 +21,11 @@ void ParameterEditor::OnBindParameter(Parameter::Param &param) {
   this->show_all();
 }
 
-void ParameterEditor::OnBindParameters(std::list<Parameter::Param *> params) {
+void ParameterEditor::OnBindParameters(std::vector<Parameter::Param *> params) {
   OnUnbind_();
   auto ParamUIList = new Gtk::Box(Gtk::ORIENTATION_VERTICAL);
   for (auto param : params) {
-    ParamUIList->pack_end(*param->Draw());
+    ParamUIList->add(*param->Draw());
   }
   box.pack_end(*ParamUIList);
   this->show_all();
@@ -35,7 +35,7 @@ void ParameterEditor::BindParam(Parameter::Param &param) {
   OnBindParam.emit(param);
 }
 
-void ParameterEditor::BindParams(std::list<Parameter::Param *> params) {
+void ParameterEditor::BindParams(std::vector<Parameter::Param *> params) {
   OnBindParams.emit(params);
 }
 

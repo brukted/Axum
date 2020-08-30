@@ -130,24 +130,62 @@ void Outliner::OpenPackage() {
 
 void Outliner::ShowRowContextMenu(GdkEvent *evt) {
   AX_LOG_EDITOR_DEBUG("Showing row context menu.")
-  if (RowContextMenu != nullptr)
-    delete RowContextMenu;
   auto Res = tree.get_selection()->get_selected();
   if (Res == nullptr)
     return;
   auto ResPtr = Res->get_value<ResourceType::Resource *>(columns.pointer);
-  RowContextMenu = new UI::Widget::OutlinerContextMenu(*ResPtr);
-  RowContextMenu->show_all();
-  RowContextMenu->popup_at_pointer(evt);
+  switch (ResPtr->type) {
+  case ResourceType::Resource::Type::Package:
+    RowContextMenu = UI::Widget::OutlinerContextMenu(
+        static_cast<ResourceType::Package *>(ResPtr));
+    break;
+  case ResourceType::Resource::Type::Folder:
+    RowContextMenu = UI::Widget::OutlinerContextMenu(
+        static_cast<ResourceType::Folder *>(ResPtr));
+    break;
+  case ResourceType::Resource::Type::Font:
+    RowContextMenu = UI::Widget::OutlinerContextMenu(
+        static_cast<ResourceType::Font *>(ResPtr));
+    break;
+  case ResourceType::Resource::Type::ImageTexture:
+    RowContextMenu = UI::Widget::OutlinerContextMenu(
+        static_cast<ResourceType::ImageTexture *>(ResPtr));
+    break;
+  case ResourceType::Resource::Type::Scene:
+    RowContextMenu = UI::Widget::OutlinerContextMenu(
+        static_cast<ResourceType::Scene *>(ResPtr));
+    break;
+  case ResourceType::Resource::Type::VectorTexture:
+    RowContextMenu = UI::Widget::OutlinerContextMenu(
+        static_cast<ResourceType::VectorTexture *>(ResPtr));
+    break;
+  case ResourceType::Resource::Type::MaterialGraph:
+    RowContextMenu = UI::Widget::OutlinerContextMenu(
+        static_cast<NodeGraph::Material::MaterialGraph *>(ResPtr));
+    break;
+  case ResourceType::Resource::Type::LogicGraph:
+    RowContextMenu = UI::Widget::OutlinerContextMenu(
+        static_cast<NodeGraph::Logic::LogicGraph *>(ResPtr));
+    break;
+  case ResourceType::Resource::Type::Generic:
+    AX_LOG_EDITOR_WARN("Generic resource type in outliner.")
+    return;
+  default:
+    AX_LOG_EDITOR_WARN("Unkown resource type in outliner.")
+    return;
+  }
+  RowContextMenu.show_all();
+  RowContextMenu.popup_at_pointer(evt);
 }
 
 void Outliner::OnSelectionChangedTree() {
   if (tree.get_selection()->get_mode() != Gtk::SELECTION_SINGLE)
     return;
-  auto Res = tree.get_selection()->get_selected();
-  if (Res == nullptr)
+  auto row = tree.get_selection()->get_selected();
+  if (row == nullptr)
     return;
-  auto ResPtr = Res->get_value<ResourceType::Resource *>(columns.pointer);
+  ResourceType::Resource *ResPtr;
+  row->get_value(2, ResPtr);
   ParameterEditor::BindParams(ResPtr->Params());
 }
 

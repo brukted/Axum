@@ -11,8 +11,11 @@
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/split_free.hpp>
+#include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
 #include <list>
+#include <vector>
+#define _(text) text
 
 namespace Axum {
 namespace ResourceType {
@@ -23,33 +26,90 @@ class Folder : public Resource {
 private:
   std::list<Resource *> Resources;
   std::list<Folder> SubFolders;
+  unsigned int LastUID = 0;
 
 public:
+  Folder();
+
+  /**
+   * @brief Pointer to the parent folder. nullptr if this is the root folder.
+   *
+   */
+  Folder *parent = nullptr;
+
   virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
+
   /**
    * @brief Adds resource to this folder.
    *
    * @param resource pointer to the resource to be addded.
    */
   void AddResource(Resource *resource);
+
   /**
-   * @brief Removes resource from this folder.
+   * @brief Add sub  folder to this folder.
+   *
+   * @param folder folder.
+   *
+   * @return Folder& Reference to the folder added in SubFolders.
+   */
+  Folder &AddFolder(Folder folder);
+
+  /**
+   * @brief Removes resource from this folder's heirarchy.
    *
    * @param resource Pointer to the resource to be removed.
    *
-   * @note This doesn't delete the resource.If you want to delete, call
-   * DeleteResource from the package instade.
+   * @return Folder* Pointer to the folder that was containing the resource.
+   * nullptr If the resource was not contained in the heirarchy.
+   *
+   * @warning This doesn't delete the resource.If you want to delete the
+   * resource, call RemoveResource from the package instade.
    */
-  void RemoveResource(Resource *resource);
+  Folder *RemoveResource(Resource &resource);
+
   /**
-   * @brief Removes resource from this folder.
+   * @brief Removes resource from this folder's heirarchy.
    *
    * @param _uid uid of the resource to be removed.
    *
-   * @note This doesn't delete the resource.If you want to delete, call
-   * DeleteResource from the package instade.
+   * @return Folder* Pointer to the folder that was containing the resource.
+   * nullptr If the resource was not contained in the heirarchy.
+   *
+   * @warning This doesn't delete the resource.If you want to delete the
+   * resource, call RemoveResource from the package instade.
    */
-  void RemoveResource(unsigned int _uid);
+  Folder *RemoveResource(unsigned int _uid);
+
+  /**
+   * @brief Removes folder from sub folders.
+   *
+   * @param folder Reference to the folder to be removed.
+   *
+   * @warning This doesn't delete resources contained in the sub folder.If you
+   * want to delete the resource call remove resource from the package.
+   */
+  void RemoveFolder(Folder &folder);
+
+  /**
+   * @brief Removes folder from sub folders.
+   *
+   * @param _uid uid of the folder to be removed.
+   *
+   * @warning This doesn't delete resources contained in the sub folder.If you
+   * want to delete the resource call remove resource from the package.
+   *
+   */
+  void RemoveFolder(unsigned int _uid);
+
+  /**
+   * @brief Find folder.
+   *
+   * @param _uid uid of the folder.
+   *
+   * @return Folder& Reference to the folder.
+   */
+  Folder &FindFolder(unsigned int _uid);
 
   std::list<Folder> &GetSubFolders() { return SubFolders; }
 
@@ -59,12 +119,12 @@ private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &Resources, &SubFolders;
+    ar &Resources &SubFolders &LastUID;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &Resources, &SubFolders;
+    ar &Resources &SubFolders &LastUID;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

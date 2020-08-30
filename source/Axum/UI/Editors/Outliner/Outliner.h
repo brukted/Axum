@@ -46,7 +46,7 @@ private:
   Gtk::CellRendererText textCellRenderer;
   Gtk::TreeViewColumn resourcesCol{"", textCellRenderer};
   Gtk::Menu *MainContextMenu = nullptr;
-  Gtk::Menu *RowContextMenu = nullptr;
+  Gtk::Menu RowContextMenu;
   Glib::RefPtr<Gtk::UIManager> mUIManager;
   Glib::RefPtr<Gtk::ActionGroup> mActionGroup;
 

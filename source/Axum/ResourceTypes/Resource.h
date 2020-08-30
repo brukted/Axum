@@ -6,10 +6,7 @@
 #ifndef _RESOURCE_H
 #define _RESOURCE_H
 
-#include "../Parameter/BooleanParam.h"
-#include "../Parameter/EnumParam.h"
-#include "../Parameter/ParamCollection.h"
-#include "../Parameter/TextParam.h"
+#include "Parameter/Parameter.h"
 #include <boost/filesystem.hpp>
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/split_member.hpp>
@@ -18,30 +15,35 @@
 #include <boost/serialization/version.hpp>
 #include <gtkmm.h>
 #include <string>
-
+#define _(text) text
 
 namespace Axum {
 namespace ResourceType {
+class Package;
+
+// @TODO Remove AppendToModel from resource and write it in outliner to remove
+// ui logic from the model
 class Resource {
   friend class boost::serialization::access;
 
 public:
-  enum ResourceType { Linked, Embedded };
-  enum PathType { Relative, Absolute };
+  enum class Type {
+    Generic,
+    Folder,
+    Font,
+    ImageTexture,
+    Package,
+    Scene,
+    VectorTexture,
+    MaterialGraph,
+    LogicGraph
+  };
+  enum PathType { Relative, Absolute, dummy1, dummy2 };
 
-  /**
-   * @brief Construct a new Resource object
-   *
-   * @param _resourceType type of the resource embedded or linked deafult is
-   * embedded
-   * @param _path path to the resource if linked
-   * @param _pathType path type of the resource if linked
-   */
-  Resource(ResourceType _resourceType = ResourceType::Embedded,
-           const char *_path = "", PathType _pathType = PathType::Absolute);
-
-  ResourceType resourceType;
-  unsigned int uid;
+  unsigned int uid = 0;
+  bool isLinked = false;
+  Type type = Type::Generic;
+  Package *package = nullptr;
 
   /**
    * @brief Location of the resource including the filename and extension,if it
@@ -49,27 +51,26 @@ public:
    *
    */
   std::string Path;
-  Parameter::ParamCollection mParams;
-  Parameter::ParamCollection attributes{mParams.GenerateUid(), "Attributes"};
-  Parameter::TextParam name{attributes.GenerateUid(), "Name", "Untitled"};
-  Parameter::TextParam description{attributes.GenerateUid(), "Description", ""};
-  Parameter::TextParam category{attributes.GenerateUid(), "Category", ""};
-  Parameter::TextParam label{attributes.GenerateUid(), "Label", ""};
-  Parameter::TextParam author{attributes.GenerateUid(), "Author", ""};
-  Parameter::TextParam authorUrl{attributes.GenerateUid(), "Author URL", ""};
-  Parameter::TextParam tags{attributes.GenerateUid(), "Tags", ""};
-  Parameter::BooleanParam showInManager{attributes.GenerateUid(), "Show in asset manager",
-                             true};
+  Parameter::TextParam name{"RESOURCE_ATTRIBUTES_NAME", _("Name"),
+                            _("Untitled Resource")};
+  Parameter::TextParam description{"RESOURCE_ATTRIBUTES_DESCRIPTION",
+                                   _("Description"), ""};
+  Parameter::TextParam category{"RESOURCE_ATTRIBUTES_CATEGORY", _("Category"),
+                                ""};
+  Parameter::TextParam label{"RESOURCE_ATTRIBUTES_LABEL", _("Label"), ""};
+  Parameter::TextParam author{"RESOURCE_ATTRIBUTES_AUTHOR", _("Author"), ""};
+  Parameter::TextParam authorUrl{"RESOURCE_ATTRIBUTES_URL", _("Author URL"),
+                                 ""};
+  Parameter::TextParam tags{"RESOURCE_ATTRIBUTES_TAGS", _("Tags"), ""};
+  Parameter::BooleanParam showInManager{"RESOURCE_ATTRIBUTES_SHOW_IN_MANAGER",
+                                        _("Show in asset manager"), true};
   Parameter::EnumParam pathType{
-      attributes.GenerateUid(), "Path type",
-      std::map<int, std::string>{{PathType::Relative, "Relative"},
-                                 {PathType::Absolute, "Absolute"}},
+      "RESOURCE_ATTRIBUTES_PATH_TYPE", _("Path type"),
+      std::map<int, std::string>{{(int)PathType::Relative, _("Relative")},
+                                 {(int)PathType::Absolute, _("Absolute")}},
       PathType::Absolute};
 
-  /**
-   * @brief Opens the resource in the appropriate editor.
-   */
-  virtual void Open();
+  Resource();
 
   /**
    * @brief Adds this resource to the tree model for representing in ui mostly
@@ -79,16 +80,6 @@ public:
    * @param store Pointer to the tree model.
    */
   virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store);
-
-  /**
-   * @brief Add items to @a menu. Called when the resource has to build context
-   * menu in outliner.
-   *
-   * @param menu Pointer to context menu that will be shown in outliner.
-   *
-   * @note Memory management for the menu is handled by outliner.
-   */
-  virtual void OnRowContextMenu(Gtk::Menu *menu);
 
   /**
    * @brief Makes the path type to relative and the path relative to @a pkgPath.
@@ -105,24 +96,19 @@ public:
    */
   void makeAbsolute(std::string &pkgPath);
 
-  /**
-   * @brief Reloads the resource if linked type
-   *
-   */
-  void virtual Reload();
+  LIST_PARAMETERS(&name, &description, &category, &label, &author, &authorUrl,
+                  &pathType, &showInManager)
 
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
-    ar &resourceType, &uid, &Path, &name, &description, &category, &label,
-        &author, &authorUrl, &tags, &showInManager, &pathType;
-    ar &mParams, &attributes;
+    ar &isLinked &uid &Path &name &description &category &label &author
+        &authorUrl &tags &showInManager &pathType;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
-    ar &resourceType, &uid, &Path, &name, &description, &category, &label,
-        &author, &authorUrl, &tags, &showInManager, &pathType;
-    ar &mParams, &attributes;
+    ar &isLinked &uid &Path &name &description &category &label &author
+        &authorUrl &tags &showInManager &pathType;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

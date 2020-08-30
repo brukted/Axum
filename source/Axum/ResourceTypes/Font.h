@@ -11,6 +11,7 @@ namespace Axum {
 namespace ResourceType {
 class Font : public Resource {
 public:
+  Font();
   virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
 };
 } // namespace ResourceType

@@ -7,22 +7,28 @@
 #define _SCENE_H
 
 #include "Resource.h"
-#include "boost/serialization/access.hpp"
-#include "boost/serialization/array.hpp"
-#include "boost/serialization/base_object.hpp"
-#include "boost/serialization/split_member.hpp"
-#include "boost/serialization/vector.hpp"
-#include "boost/serialization/version.hpp"
+#include <array>
+#include <boost/serialization/access.hpp>
+#include <boost/serialization/array.hpp>
+#include <boost/serialization/base_object.hpp>
+#include <boost/serialization/split_member.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/version.hpp>
 #include <vector>
+
 namespace Axum {
 namespace ResourceType {
 class Mesh {
+  friend class boost::serialization::access;
+
 public:
-  std::vector<float[3]> Vertices;
-  std::vector<float[3]> Normals;
+  std::vector<std::array<float, 3>> Vertices;
+  std::vector<std::array<float, 3>> Normals;
   std::vector<unsigned int> Indices;
   std::vector<Mesh> SubMeshs;
   int MaterialId;
+
+  Mesh(){};
 
 private:
   bool NeedUpdate = true;
@@ -48,6 +54,7 @@ class Scene : public Resource {
   friend class boost::serialization::access;
 
 public:
+  Scene();
   std::vector<Mesh> meshs;
 
   virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;

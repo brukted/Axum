@@ -36,27 +36,16 @@ public:
    * @param _enums Map of possible values.
    * @param _value Default value for the parameter.
    */
-  EnumParam(std::string ID, std::string &_name,
-            std::map<int, std::string> _enums, int _value);
+  EnumParam(std::string ID, std::string _name,
+            std::map<int, std::string> _enums, int _value = 0);
 
-  /**
-   * @brief Construct a new Enum Param object
-   *
-   * @param ID ID of the parameter.
-   * @param _name Name of the parameter.
-   * @param _enums Map of possible values.
-   * @param _value Default value for the parameter.
-   */
-  EnumParam(std::string ID, const char *_name,
-            std::map<int, std::string> _enums, int _value);
+  ///int GetValue() const{ return value; };
+  
+  int GetValue() { return value; };
 
-  int SetValue() const;
+  void SetValue(int const key);
 
-  int GetValue() const;
-
-  void SetValue(int key);
-
-  std::string &ToString(int key);
+  std::string &ToString(int const key);
 
 protected:
   virtual Gtk::Widget *DrawDisplay() override;

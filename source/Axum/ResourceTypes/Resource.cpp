@@ -4,44 +4,24 @@
  */
 
 #include "Resource.h"
+#include "UI/Editors/Outliner/Outliner.h"
 
 /**
  * Resource implementation
  */
 
 namespace Axum::ResourceType {
-
-Resource::Resource(ResourceType _resourceType, const char *_path,
-                   PathType _pathType) {
-  resourceType = _resourceType;
-  Path.assign(_path);
-  pathType.SetValue(_pathType);
-  attributes.AddParameter(&name);
-  attributes.AddParameter(&description);
-  attributes.AddParameter(&category);
-  attributes.AddParameter(&label);
-  attributes.AddParameter(&author);
-  attributes.AddParameter(&authorUrl);
-  attributes.AddParameter(&tags);
-  attributes.AddParameter(&showInManager);
-  attributes.AddParameter(&pathType);
-  mParams.AddParameter(&attributes);
-}
-
-void Resource::Open() {}
+Resource::Resource() {}
 
 void Resource::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
   row->set_value(1, name.GetValue());
-  row->set_value(2, uid);
-}
-
-void Resource::OnRowContextMenu(Gtk::Menu *menu) {
-  auto item = new Gtk::MenuItem("Delete");
-  menu->add(*item);
+  row->set_value<ResourceType::Resource *>(2, this);
+  name.OnValueChanged.connect(
+      [this, row]() { row->set_value(1, name.GetValue()); });
 }
 
 void Resource::makeAbsolute(std::string &pkgPath) {
-  if (resourceType == ResourceType::Linked) {
+  if (isLinked) {
     // get absolute path and set it to path
     boost::filesystem::path pkg(pkgPath);
     boost::filesystem::path currentPath(Path);
@@ -52,10 +32,8 @@ void Resource::makeAbsolute(std::string &pkgPath) {
   }
 }
 
-void Resource::Reload() {}
-
 void Resource::makeRelative(std::string &pkgPath) {
-  if (resourceType == ResourceType::Linked) {
+  if (isLinked) {
     // get relative path and set it to path
     boost::filesystem::path pkg(pkgPath);
     boost::filesystem::path currentPath(Path);

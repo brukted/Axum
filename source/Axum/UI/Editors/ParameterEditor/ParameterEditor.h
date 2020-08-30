@@ -10,6 +10,7 @@
 #include "Log.h"
 #include "Parameter/Param.h"
 #include <list>
+#include <vector>
 
 namespace Axum::UI {
 namespace Editor {
@@ -17,11 +18,11 @@ namespace Editor {
 class ParameterEditor : public Editor {
 private:
   static sigc::signal<void(Parameter::Param &)> OnBindParam;
-  static sigc::signal<void(std::list<Parameter::Param *>)> OnBindParams;
+  static sigc::signal<void(std::vector<Parameter::Param *>)> OnBindParams;
   static sigc::signal<void()> OnUnbind;
   Gtk::Box box;
   void OnBindParameter(Parameter::Param &param);
-  void OnBindParameters(std::list<Parameter::Param *> params);
+  void OnBindParameters(std::vector<Parameter::Param *> params);
   void OnUnbind_();
 
 public:
@@ -37,7 +38,7 @@ public:
    * Displays @a param in UI.
    * @param *param Parameter to display.
    */
-  static void BindParams(std::list<Parameter::Param *> params);
+  static void BindParams(std::vector<Parameter::Param *> params);
 
   /**
    * @brief Unbinds whatever parameter is bound.

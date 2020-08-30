@@ -13,10 +13,14 @@ namespace Axum {
 namespace ResourceType {
 void ImageTexture::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
   this->Resource::AppendToModel(row, store);
+  return;
 }
 
-ImageTexture::ImageTexture(std::string &path, PathType _pathType)
-    : Resource(ResourceType::Linked, path.c_str(), _pathType) {
+ImageTexture::ImageTexture(std::string &path, PathType _pathType) : Resource() {
+  this->type = Type::ImageTexture;
+  this->Path = path;
+  isLinked = true;
+  this->pathType.SetValue((int)_pathType);
   auto input = OIIO::ImageInput::open(path);
   auto specs = input->spec();
   width = (unsigned int)specs.width;
@@ -29,7 +33,9 @@ ImageTexture::ImageTexture(std::string &path, PathType _pathType)
 
 ImageTexture::ImageTexture(unsigned int _width, unsigned int _height,
                            unsigned char color[4])
-    : Resource(ResourceType::Embedded) {
+    : Resource() {
+  this->type = Type::ImageTexture;
+  isLinked = false;
   data = std::vector<unsigned char>(_width * _height * 4);
   for (size_t i = 0; i < data.size(); i += 4) {
     data[i] = color[0];
@@ -40,6 +46,7 @@ ImageTexture::ImageTexture(unsigned int _width, unsigned int _height,
 }
 
 ImageTexture::ImageTexture(std::string &path) {
+  this->type = Type::ImageTexture;
   auto input = OIIO::ImageInput::open(path);
   auto specs = input->spec();
   width = (unsigned int)specs.width;
@@ -48,7 +55,7 @@ ImageTexture::ImageTexture(std::string &path) {
   data = std::vector<unsigned char>(width * height * channels);
   input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
   input->close();
-  this->resourceType = ResourceType::Embedded;
+  isLinked = false;
 }
 } // namespace ResourceType
 } // namespace Axum

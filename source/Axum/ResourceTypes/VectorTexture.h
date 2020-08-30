@@ -12,6 +12,7 @@ namespace Axum {
 namespace ResourceType {
 class VectorTexture : public Resource {
 public:
+  VectorTexture();
   virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
 };
 } // namespace ResourceType
