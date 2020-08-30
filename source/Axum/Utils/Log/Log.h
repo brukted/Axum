@@ -1,13 +1,21 @@
+/**
+ * Project Material Lab
+ * @author Bruk Tedla
+ */
+
 #ifndef LOG_H
 #define LOG_H
 
 #define FMT_HEADER_ONLY
 
 #include "PathUtils.h"
-#include "spdlog/logger.h"
-#include "spdlog/sinks/basic_file_sink.h"
-#include "spdlog/sinks/stdout_color_sinks.h"
-#include "spdlog/spdlog.h"
+#include <chrono>
+#include <fmt/chrono.h>
+#include <fmt/format.h>
+#include <spdlog/logger.h>
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/spdlog.h>
 
 namespace Axum {
 namespace Utils {

@@ -21,8 +21,10 @@ void Log::Startup() {
 
 // Release build
 #else
+  std::time_t t = std::time(nullptr);
   Log::sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(
-      PathUtils::userPathS + "/logs/log.txt");
+      PathUtils::userPathS +
+      fmt::format("/logs/{:%Y_%m_%d-%H_%M_%S} log.txt", fmt::localtime(t)));
   spdlog::set_level(spdlog::level::info);
   Log::sink->set_level(spdlog::level::info);
   Log::addonLogger = std::make_shared<spdlog::logger>("Addon", Log::sink);
