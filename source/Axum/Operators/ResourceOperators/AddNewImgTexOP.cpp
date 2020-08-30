@@ -15,16 +15,14 @@ AddNewImgTexOP::AddNewImgTexOP(ResourceType::Package &pkg,
 }
 
 void AddNewImgTexOP::Execute() noexcept {
-  ResourceType::Folder& folder = Pkg.GetRootFolder();
-  for (int i = 1; i < FolderHierarchy.size(); i++)
-  {
+  ResourceType::Folder &folder = Pkg.GetRootFolder();
+  for (int i = 1; i < FolderHierarchy.size(); i++) {
     folder = folder.FindFolder(FolderHierarchy[i]);
   }
-  
-  auto &res = 
-      Pkg.AddResource(ResourceType::ImageTexture(width, height, color.data()),&folder);
-  resource = static_cast<ResourceType::ImageTexture *>(&res);
-  resource->name.SetValue(TextureName);
+
+  auto &res = Pkg.AddImageTexture(
+      ResourceType::ImageTexture(width, height, color.data()), &folder);
+  res.name.SetValue(TextureName);
 }
 
 void AddNewImgTexOP::Undo() noexcept {}

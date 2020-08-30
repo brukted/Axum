@@ -13,13 +13,16 @@
 namespace Axum {
 namespace Utils {
 class GUIInfo {
+  friend class boost::serialization::access;
+
 public:
   float X = 0;
   float Y = 0;
   bool isHidden = false;
-  // serialization
+  GUIInfo(float x, float y, bool _isHidden);
+  GUIInfo(){};
+  
 private:
-  friend class boost::serialization::access;
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &X;
@@ -32,8 +35,6 @@ private:
     ar &isHidden;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
-public:
-  GUIInfo(float x, float y, bool _isHidden);
 };
 } // namespace Utils
 } // namespace Axum

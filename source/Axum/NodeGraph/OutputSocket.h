@@ -17,22 +17,19 @@ class Node;
 class InputSocket;
 
 class OutputSocket {
-protected:
+
+public:
+  Node *ParentNode;
   /**
    * @brief Unique identifer of this socket in the parent nodes output sockets.
    *
    */
   unsigned int uid;
-
-public:
-  std::vector<InputSocket *> LinkedSockets;
-
-  Node *ParentNode;
-
   /**
    *Name of the node to be displayed on ui
    **/
   std::string UIName;
+  std::vector<InputSocket *> LinkedSockets;
 
   OutputSocket(std::string &_name, unsigned int _uid);
 

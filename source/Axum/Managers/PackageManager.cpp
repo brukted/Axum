@@ -19,7 +19,7 @@ void PackageManager::LoadPackage(std::string Path) {
   if (ifs.good()) {
     try {
       boost::archive::text_iarchive ia(ifs);
-      Packages.push_back(ResourceType::Package());
+      Packages.push_back(ResourceType::Package(0));
       ia >> Packages.back();
       Packages.back().Path = Path;
       Packages.back().uid = ++LastUID;

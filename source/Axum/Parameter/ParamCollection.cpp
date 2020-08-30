@@ -14,13 +14,13 @@
 namespace Axum::Parameter {
 
 ParamCollection::ParamCollection(std::string ID, const char *_name,
-                                 std::initializer_list<Param> params = {})
+                                 std::list<Param> params)
     : Param(ID, _name,"") {
   Params = params;
 }
 
 ParamCollection::ParamCollection(std::string ID, std::string &_name,
-                                 std::initializer_list<Param> params = {})
+                                 std::list<Param> params)
     : Param(ID, _name,"") {
   Params = params;
 }

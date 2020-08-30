@@ -30,7 +30,7 @@ private:
 
 public:
   
-  LogicGraph(){};
+  LogicGraph();
 
   /**
    * @brief Compiles the function graph and return as glsl shader

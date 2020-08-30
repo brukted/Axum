@@ -11,6 +11,11 @@
 
 namespace Axum::NodeGraph::Logic {
 
+LogicGraph::LogicGraph() {
+  name.SetValue(_("Untitled Logic Graph"));
+  this->type = Type::LogicGraph;
+}
+
 std::array<char, 52> LogicGraph::firstVariableLetters{
     {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
      'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -66,7 +71,8 @@ std::shared_ptr<std::string> LogicGraph::compileGL() {
   std::shared_ptr<std::string> code = std::make_shared<std::string>();
   std::vector<Node *> nodes = transverse();
   std::string &functionName = name.GetValue();
-  functionName= functionName.replace(functionName.begin(),functionName.end(),' ','_');
+  functionName =
+      functionName.replace(functionName.begin(), functionName.end(), ' ', '_');
   //* 65 - 90 A - Z 97 -122 a - z 48 - 57 0 - 9
   int last1 = 0, last2 = -1;
   auto GenerateName = [&last1, &last2]() {

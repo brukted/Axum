@@ -6,10 +6,10 @@
 #ifndef _GRAPH_H
 #define _GRAPH_H
 
-#include "ResourceTypes/Resource.h"
-#include "Utils/Serialization/Connection.h"
 #include "Log.h"
 #include "Node.h"
+#include "ResourceTypes/Resource.h"
+#include "Utils/Serialization/Connection.h"
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/list.hpp>
@@ -29,7 +29,6 @@ class Graph : public ResourceType::Resource {
 
 protected:
   std::list<Node> mNodes;
-  unsigned int uid;
 
 public:
   Graph(){};
@@ -62,11 +61,11 @@ private:
     ar &uid;
     ar &mNodes;
     std::vector<Utils::Connection> connections;
-    for (auto *node : mNodes) {
-      for (auto *OutSock : node.mOutputSockets) {
+    for (Node const &node : mNodes) {
+      for (OutputSocket const &OutSock : node.mOutputSockets) {
         for (auto InSock : OutSock.LinkedSockets) {
           connections.push_back(Utils::Connection(
-              node->GetUID(), OutSock->GetUID(), InSock->ParentNode->GetUID(),
+              node.uid, OutSock.uid, InSock->ParentNode->uid,
               InSock->GetUID()));
         }
       }
@@ -81,8 +80,8 @@ private:
     std::vector<Utils::Connection> connections;
     ar &connections;
     for (auto &con : connections) {
-      auto destSoc = GetNode(con.ToNode()).GetInputSocket(con.ToSocket);
-      GetNode(con.FromNode).GetOutputSocket(con.FromSocket).LinkTo(destSoc);
+      auto destSoc = GetNode(con.ToNode).GetInputSocket(con.ToSocket);
+      GetNode(con.FromNode).GetOutputSocket(con.FromSocket).LinkTo(&destSoc);
     }
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()

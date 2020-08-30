@@ -36,6 +36,10 @@ protected:
   Param(){};
 
 public:
+  /**
+   * @brief Identifier of the parameter for programming and logging purpose.
+   *
+   */
   std::string ID;
   /**
    * @brief UI name of the parameter. This is not guaranteed to be always the
@@ -45,10 +49,6 @@ public:
   std::string name;
   std::string Group;
   bool IsEditMode = false;
-  /**
-   * @brief Identifier of the parameter for programming and logging purpose.
-   *
-   */
   sigc::signal<void> OnValueChanged;
 
   Param(std::string ID, const std::string &_name, std::string group);
@@ -69,11 +69,11 @@ protected:
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
-    ar &ID, &name, &IsEditMode, &Group;
+    ar &ID &name &IsEditMode &Group;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
-    ar &ID, &name, &IsEditMode, &Group;
+    ar &ID &name &IsEditMode &Group;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

@@ -7,6 +7,8 @@
 #define _CONNECTION_H
 
 #include <boost/serialization/access.hpp>
+#include <boost/serialization/serialization.hpp>
+#include <boost/serialization/split_member.hpp>
 #include <boost/serialization/version.hpp>
 
 namespace Axum {
@@ -15,6 +17,7 @@ class Connection {
   friend class boost::serialization::access;
 
 public:
+  Connection(){};
   Connection(unsigned int _FromNode, unsigned int _FromSocket,
              unsigned int _ToNode, unsigned int _ToSocket);
   /**
@@ -40,13 +43,16 @@ public:
 
 private:
   template <class Archive>
-  void serialize(Archive &ar, const unsigned int version) const {
-    ar &FromNode;
-    ar &FromSocket;
-    ar &ToNode;
-    ar &ToSocket;
+  void save(Archive &ar, const unsigned int version) const {
+    ar &FromNode &FromSocket &ToNode &ToSocket;
   }
+
+  template <class Archive> void load(Archive &ar, const unsigned int version) {
+    ar &FromNode &FromSocket &ToNode &ToSocket;
+  }
+  BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
 } // namespace Utils
 } // namespace Axum
+BOOST_CLASS_VERSION(Axum::Utils::Connection, 1)
 #endif //_CONNECTION_H

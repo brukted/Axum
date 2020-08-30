@@ -9,11 +9,12 @@
 #include "Log.h"
 #include "Param.h"
 #include <boost/serialization/access.hpp>
+#include <boost/serialization/list.hpp>
 #include <boost/serialization/split_member.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
+#include <list>
 #include <stdarg.h>
-#include <vector>
 
 namespace Axum {
 namespace Parameter {
@@ -25,12 +26,12 @@ protected:
   ParamCollection(){};
 
 public:
-  std::vector<Param> Params;
+  std::list<Param> Params;
   ParamCollection(std::string ID, const char *_name,
-                  std::initializer_list<Param> params);
+                  std::list<Param> params = {});
 
   ParamCollection(std::string ID, std::string &_name,
-                  std::initializer_list<Param> params);
+                  std::list<Param> params = {});
 
   /**
    *@brief Finds a parameter.

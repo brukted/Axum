@@ -6,10 +6,10 @@
 #ifndef _NODE_H
 #define _NODE_H
 
-#include "Utils/Serialization/GUIInfo.h"
 #include "InputSocket.h"
 #include "Log.h"
 #include "OutputSocket.h"
+#include "Utils/Serialization/GUIInfo.h"
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/array.hpp>
 #include <boost/serialization/split_member.hpp>
@@ -35,9 +35,13 @@ public:
   /**
    * Contains the GUI information of the node
    **/
-  Utils::GUIInfo mGUIInfo();
+  Utils::GUIInfo mGUIInfo;
   // Pointer to parent graph
   Graph *parentGraph = nullptr;
+  /**
+   * Unique identifer of the node in the graph
+   **/
+  unsigned int uid;
 
 protected:
   Node();
@@ -48,10 +52,6 @@ protected:
   std::vector<InputSocket> mInputSockets;
   std::vector<OutputSocket> mOutputSockets;
   bool NeedUpdate = true;
-  /**
-   * Unique identifer of the node in the graph
-   **/
-  unsigned int uid;
 
 public:
   /**

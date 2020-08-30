@@ -50,9 +50,9 @@ bool OutputSocket::isLinked() {
 }
 
 OutputSocket::OutputSocket(const char *_name, unsigned int _uid)
-    : UIName(_name), uid(_uid) {}
+    : uid(_uid), UIName(_name) {}
 
 OutputSocket::OutputSocket(std::string &_name, unsigned int _uid)
-    : UIName(_name), uid(_uid) {}
+    : uid(_uid), UIName(_name) {}
 
 } // namespace Axum::NodeGraph

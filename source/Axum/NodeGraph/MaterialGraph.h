@@ -10,6 +10,7 @@
 #include "Material.h"
 #include "Nodes/MaterialNode.h"
 #include "Parameter/Parameter.h"
+#define _(text) text
 
 namespace Axum {
 namespace NodeGraph::Material {
@@ -24,9 +25,11 @@ public:
   Parameter::EnumParam imageFormat{"MATERIAL_DEFAULT_FORMAT", "Image format",
                                    imageFormats, ImageFormat::EIGHT_BIT};
   Parameter::IntegerParam seed{"MATERIAL_DEFAULT_SEED", "Random seed", 0};
-  Parameter::ParamCollection exposedParams{
-      "MATERIAL_DEFAULT_EXPOSED_PARAMETRS", "Exposed Parameters", {}};
+  Parameter::ParamCollection
+      exposedParams{"MATERIAL_DEFAULT_EXPOSED_PARAMETERS",
+                    "Exposed Parameters"};
 
+  MaterialGraph();
 
   void SetupCache();
 
@@ -34,9 +37,8 @@ public:
 
   void Process();
 
-  ADD_PARAMTERS(Resource, &width, &height, &imageFormat, &seed,
-                &exposedParams)
-
+  ADD_PARAMTERS(Axum::ResourceType::Resource, &width, &height, &imageFormat,
+                &seed, &exposedParams)
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
@@ -50,6 +52,7 @@ private:
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
+
 } // namespace NodeGraph::Material
 } // namespace Axum
 BOOST_CLASS_VERSION(Axum::NodeGraph::Material::MaterialGraph, 1)

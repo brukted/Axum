@@ -12,6 +12,11 @@
 namespace Axum {
 namespace NodeGraph::Material {
 
+MaterialGraph::MaterialGraph() {
+  name.SetValue(_("Untitled Material Graph"));
+  this->type = Type::MaterialGraph;
+}
+
 void MaterialGraph::SetupCache() {
   for (auto &n : mNodes) {
     static_cast<MaterialNode &>(n).SetupCache();
