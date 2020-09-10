@@ -1,8 +1,16 @@
 # Unwanted files
 art/*
 *.DS_Store
-.vscode/*
 *.clangtidy
+
+#External project download
+.external/
+
+#Visual studio code workspace
+.vscode/*
+
+# Visual Studio 2019 cache/options directory
+.vs/
 
 # Compiled Object files
 *.slo
