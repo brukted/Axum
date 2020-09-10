@@ -88,7 +88,7 @@ public:
   ImageTexture &AddImageTexture(ImageTexture texture, Folder *folder = nullptr);
 
   /**
-   * @brief Add vectorteexture to the package.
+   * @brief Add vector texture to the package.
    *
    * @param texture Vector texture to add.
    * @param folder Folder to add the resource to.
@@ -159,6 +159,8 @@ public:
    * @return Folder&
    */
   Folder &GetRootFolder();
+
+  Package &operator=(const Package &pkg) = default;
 
   /**
    * @brief Construct a copy. Update pointers in folders & resources.

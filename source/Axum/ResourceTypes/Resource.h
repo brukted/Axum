@@ -38,7 +38,7 @@ public:
     MaterialGraph,
     LogicGraph
   };
-  enum PathType { Relative, Absolute, dummy1, dummy2 };
+  enum PathType { Relative, Absolute};
 
   unsigned int uid = 0;
   bool isLinked = false;

@@ -16,7 +16,7 @@ namespace Draw {
 class RenderEngine {
 public:
   /**
-   * @brief Name diplayed in the ui.
+   * @brief Name displayed in the ui.
    */
   std::string Name;
   std::string idName;
@@ -27,19 +27,19 @@ public:
   Parameter::ParamCollection mCameraParms;
 
   /**
-   * @brief Starts rendering. Consider allocating  resources here if you deallocate
-   * memory on stop.
+   * @brief Starts rendering. Consider allocating  resources here if you
+   * deallocate memory on stop.
    */
   virtual void Start();
 
   /**
-   * @brief Draws the render to the OpenGL viewport.
+   * @brief Draws the render to the OpenGL view port.
    */
   virtual void Display();
 
   /**
-   * @brief Stop rendering also consider freeing memory if the renderer is resource
-   * heavy.
+   * @brief Stop rendering also consider freeing memory if the renderer is
+   * resource heavy.
    */
   virtual void Stop();
 
@@ -59,9 +59,9 @@ public:
   virtual void UpdateCamera(Parameter::ParamCollection *CameraParms);
 
   /**
-   * @brief Called when the viewport is resized.
-   * @param Width The new width of the viewport.
-   * @param Height The new height of the viewport.
+   * @brief Called when the view port is resized.
+   * @param Width The new width of the view port.
+   * @param Height The new height of the view port.
    */
   virtual void Resize(int Width, int Height);
 };

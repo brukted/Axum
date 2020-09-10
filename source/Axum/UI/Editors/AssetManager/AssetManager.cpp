@@ -68,7 +68,7 @@ void AssetManager::discoverAssets(AssetItem &parent) {
                                             p.path().filename().string(),
                                             p.path().string()));
       } else {
-        AX_LOG_EDITOR_WARN("Unkown asset file type with extension {}.",
+        AX_LOG_EDITOR_WARN("Unknown asset file type with extension {}.",
                            extension)
       }
     }

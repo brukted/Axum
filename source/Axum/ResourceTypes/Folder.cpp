@@ -34,7 +34,7 @@ Folder &Folder::AddFolder(Folder folder) {
 }
 
 Folder *Folder::RemoveResource(Resource &resource) {
-  RemoveResource(resource.uid);
+  return RemoveResource(resource.uid);
 }
 
 Folder *Folder::RemoveResource(unsigned int _uid) {

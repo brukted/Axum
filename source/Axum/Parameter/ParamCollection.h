@@ -64,7 +64,7 @@ public:
   }
 
   /**
-   * @brief Dynamically add paramter to the collection
+   *@brief Dynamically add parameter to the collection
    *
    * @param parameter
    */

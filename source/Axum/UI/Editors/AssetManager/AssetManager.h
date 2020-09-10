@@ -34,7 +34,7 @@ public:
    */
   std::string name{"name"};
   /**
-   * @brief Path to the asset includeing filename and extension.
+   * @brief Path to the asset including filename and extension.
    *
    */
   std::string path;
@@ -71,7 +71,7 @@ public:
 
 class AssetManager : public Editor {
 public:
-  std::string assetsPath = Utils::PathUtils::resourcesPath + std::string{"\assets"};
+  std::string assetsPath = Utils::PathUtils::resourcesPath + std::string{"/assets"};
 
   AssetItem root{AssetItem::Type::DIRECTORY, std::string{"Catagories"},
                  assetsPath};

@@ -13,5 +13,5 @@ namespace Axum::NodeGraph::Logic {
 
 DataType LogicOutSocket::GetType() const { return type; }
 
-void LogicOutSocket::SetType(DataType type) { type = type; }
+void LogicOutSocket::SetType(DataType type) { this->type = type; }
 } // namespace Axum::NodeGraph::Logic

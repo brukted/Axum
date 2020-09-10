@@ -20,7 +20,7 @@ MaterialOutSocket::MaterialOutSocket(const char *_name, unsigned int _uid,
     : channel(_channel), OutputSocket(_name, _uid) {}
 
 void MaterialOutSocket::SetupCache() {
-  auto parent = static_cast<MaterialNode &>(*ParentNode);
+  auto &parent = static_cast<MaterialNode &>(*ParentNode);
   glGenTextures(1, &GTextureId);
   glBindTexture(GL_TEXTURE_2D, GTextureId);
   glTexImage2D(GL_TEXTURE_2D, 0,
