@@ -185,6 +185,7 @@ endif()
 # 
 
 #add_subdirectory(resources)
+add_subdirectory(extern)
 add_subdirectory(source)
 add_subdirectory(docs)
 add_subdirectory(deploy)
