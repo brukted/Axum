@@ -28,9 +28,8 @@ input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
 input->close();*/
 }
 
-ImageTexture::ImageTexture(unsigned int _width, unsigned int _height,
-                           unsigned char color[4])
-    : Resource() {
+ImageTexture::ImageTexture(int _width, int _height, unsigned char color[4])
+    : Resource(), width(_width), height(_height) {
   this->type = Type::ImageTexture;
   isLinked = false;
   data = std::vector<unsigned char>(_width * _height * 4);

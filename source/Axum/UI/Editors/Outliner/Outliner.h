@@ -10,6 +10,7 @@
 #include "../ParameterEditor/ParameterEditor.h"
 #include "Managers/PackageManager.h"
 #include "ResourceTypes/Resource.h"
+#include "UI/Widgets/Dialogs.h"
 #include "Utils/Log/Log.h"
 #include <string>
 #include <vector>
@@ -28,15 +29,14 @@ public:
 
   /**
    * @brief Draws conntext menu for  @a resource
-   * 
-   * @param resource 
+   *
+   * @param resource
    * @return true resource has been deleted
    * @return false resource exists.
    */
   bool showRowContextMenu(ResourceType::Resource *resource);
 
   void mainContextMenu();
-
 };
 
 } // namespace Editor

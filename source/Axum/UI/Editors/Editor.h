@@ -8,6 +8,7 @@
 
 #include <imgui.h>
 #include <string>
+#define _(text) text
 
 namespace Axum {
 namespace UI {

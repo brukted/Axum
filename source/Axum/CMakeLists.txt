@@ -174,10 +174,8 @@ list(APPEND sources
     UI/Widgets/NodeUI.cpp
     UI/Widgets/OutputSocketUI.h
     UI/Widgets/OutputSocketUI.cpp
-    UI/Widgets/OutlinerContextMenu.h    
-    UI/Widgets/OutlinerContextMenu.cpp
-    UI/Widgets/NewImageTextureDialog.h
-    UI/Widgets/NewImageTextureDialog.cpp
+    UI/Widgets/Dialogs.h
+    UI/Widgets/Dialogs.cpp
     #Function Graph Related UI elements
     UI/Widgets/Function/FunGraphUI.h
     UI/Widgets/Function/FunGraphUI.cpp

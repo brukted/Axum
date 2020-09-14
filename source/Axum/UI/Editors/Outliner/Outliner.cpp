@@ -79,18 +79,28 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
     if (resource->type == ResourceType::Resource::Type::Package) {
       auto package = static_cast<ResourceType::Package *>(resource);
       if (ImGui::BeginMenu(_("New"))) {
-        if (ImGui::Selectable(_("Material graph"))) {
+        if (ImGui::Button(_("Material graph"))) {
           package->AddMaterialGraph(NodeGraph::Material::MaterialGraph());
         }
-        if (ImGui::Selectable(_("Logic graph"))) {
+        if (ImGui::Button(_("Logic graph"))) {
           package->AddLogicGraph(NodeGraph::Logic::LogicGraph());
         }
-        if (ImGui::Selectable(_("Image texture"))) {
-          /// @TODO Show Image texture dialog
-          unsigned char color[] = {0, 0, 0, 255};
-          package->AddImageTexture(ResourceType::ImageTexture{512, 512, color});
+        if (ImGui::Button(_("Image texture"))) {
+          ImGui::OpenPopup("Create image texture");
         }
-        if (ImGui::Selectable(_("Folder"))) {
+        {
+          static int width, height = 512;
+          static float colorVec4[4] = {0.4f, 0.7f, 0.0f, 0.5f};
+          static std::string name{"texture"};
+          if (Widget::newImageTextureDialog(name, width, height, colorVec4)) {
+            unsigned char color[] = {colorVec4[0] * 255, colorVec4[1] * 255,
+                                     colorVec4[2] * 255, colorVec4[3] * 255};
+            auto texture = ResourceType::ImageTexture{width, height, color};
+            texture.name.SetValue(name);
+            package->AddImageTexture(std::move(texture));
+          }
+        }
+        if (ImGui::Button(_("Folder"))) {
           package->GetRootFolder().AddFolder(ResourceType::Folder());
         }
         ImGui::EndMenu();
@@ -102,18 +112,18 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
       ImGui::Separator();
       ///   @TODO Disable widgets instade of not adding
       if (resource->Path != "") {
-        if (ImGui::Selectable(_("Reload")))
+        if (ImGui::Button(_("Reload")))
           isDeleted = false; /// @TODO Implement reload for package
-        if (ImGui::Selectable(_("Save")))
+        if (ImGui::Button(_("Save")))
           Package_Manager.SavePackage(*package);
       }
-      if (ImGui::Selectable(_("Save as"))) {
+      if (ImGui::Button(_("Save as"))) {
         /// @TODO Implement save as for package
       }
       ImGui::Separator();
       /// @TODO Implement paste resource for package
-      // ImGui::Selectable(_("Paste"));
-      if (ImGui::Selectable(_("Close"))) {
+      // ImGui::Button(_("Paste"));
+      if (ImGui::Button(_("Close"))) {
         Package_Manager.ClosePackage(package->uid);
         isDeleted = true;
       }
@@ -121,20 +131,29 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
       auto package = resource->package;
       auto folder = static_cast<ResourceType::Folder *>(resource);
       if (ImGui::BeginMenu(_("New"))) {
-        if (ImGui::Selectable(_("Material graph"))) {
+        if (ImGui::Button(_("Material graph"))) {
           package->AddMaterialGraph(NodeGraph::Material::MaterialGraph(),
                                     folder);
         }
-        if (ImGui::Selectable(_("Logic graph"))) {
+        if (ImGui::Button(_("Logic graph"))) {
           package->AddLogicGraph(NodeGraph::Logic::LogicGraph(), folder);
         }
-        if (ImGui::Selectable(_("Image texture"))) {
-          /// @TODO Show Image texture dialog
-          unsigned char color[] = {0, 0, 0, 255};
-          package->AddImageTexture(ResourceType::ImageTexture{512, 512, color},
-                                   folder);
+        if (ImGui::Button(_("Image texture"))) {
+          ImGui::OpenPopup("Create image texture");
         }
-        if (ImGui::Selectable(_("Folder"))) {
+        {
+          static int width, height = 512;
+          static float colorVec4[4] = {0.4f, 0.7f, 0.0f, 0.5f};
+          static std::string name{"texture"};
+          if (Widget::newImageTextureDialog(name, width, height, colorVec4)) {
+            unsigned char color[] = {colorVec4[0] * 255, colorVec4[1] * 255,
+                                     colorVec4[2] * 255, colorVec4[3] * 255};
+            auto texture = ResourceType::ImageTexture{width, height, color};
+            texture.name.SetValue(name);
+            package->AddImageTexture(std::move(texture), folder);
+          }
+        }
+        if (ImGui::Button(_("Folder"))) {
           folder->AddFolder(ResourceType::Folder());
         }
         ImGui::EndMenu();
@@ -145,26 +164,26 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
       }
       ImGui::Separator();
       /// @TODO Implement copy and paste for folder
-      if (ImGui::Selectable(_("Paste"))) {
+      if (ImGui::Button(_("Paste"))) {
       }
-      if (ImGui::Selectable(_("Copy"))) {
+      if (ImGui::Button(_("Copy"))) {
       }
-      if (ImGui::Selectable(_("Delete"))) {
+      if (ImGui::Button(_("Delete"))) {
         folder->parent->RemoveFolder(folder->uid);
         isDeleted = true;
       }
     } else {
       if (!(resource->type == ResourceType::Resource::Type::Font)) {
-        ImGui::Selectable(_("Open"));
+        ImGui::Button(_("Open"));
       }
-      if (ImGui::Selectable(_("Copy"))) {
+      if (ImGui::Button(_("Copy"))) {
       }
-      if (ImGui::Selectable(_("Delete"))) {
+      if (ImGui::Button(_("Delete"))) {
         resource->package->RemoveResource(resource->uid);
         isDeleted = true;
       }
       if (resource->isLinked) {
-        ImGui::Selectable(_("Reload"));
+        ImGui::Button(_("Reload"));
       }
     }
     ImGui::EndPopup();

@@ -46,8 +46,7 @@ public:
    * @param _height height of the generated texture
    * @param color color of the texture
    */
-  ImageTexture(unsigned int _width, unsigned int _height,
-               unsigned char color[4]);
+  ImageTexture(int _width, int _height, unsigned char color[4]);
 
   std::vector<unsigned char> data;
 
@@ -71,17 +70,17 @@ private:
     //* If the texture is embedded load data otherwise load from file
     if (!isLinked) {
       ar &data;
-    } else {/*
-      data = std::vector<unsigned char>(width * height * channels);
-      auto input = OIIO::ImageInput::open(Path);
-      if (!input) {
-        AX_LOG_CORE_WARN("Can't load linked image texture {0}.",
-                         name.GetValue())
-        std::fill(data.begin(), data.end(), 125);
-      } else {
-        input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
-        input->close();
-      }*/
+    } else { /*
+       data = std::vector<unsigned char>(width * height * channels);
+       auto input = OIIO::ImageInput::open(Path);
+       if (!input) {
+         AX_LOG_CORE_WARN("Can't load linked image texture {0}.",
+                          name.GetValue())
+         std::fill(data.begin(), data.end(), 125);
+       } else {
+         input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
+         input->close();
+       }*/
     }
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
