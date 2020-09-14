@@ -14,15 +14,11 @@
 
 namespace Axum::UI::Editor {
 
-Gtk::Fixed &Editor::GetSpace() { return space; }
-
-void Editor::SetIcon() {}
-
-Editor::Editor() : Gdl::DockItem("name", "long name") { this->add(space); }
+Editor::Editor() {}
 
 Editor::Editor(std::string name, std::string longname)
-    : Gdl::DockItem(name, longname) {
-  this->add(space);
-}
+    : name(name), longName(longname) {}
+
+void Editor::draw() { return; }
 
 } // namespace Axum::UI::Editor

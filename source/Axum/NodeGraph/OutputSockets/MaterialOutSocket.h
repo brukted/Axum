@@ -10,9 +10,11 @@
 #include "../Material.h"
 #include "../Nodes/MaterialNode.h"
 #include "../OutputSocket.h"
-#include "Log.h"
-#include <epoxy/gl.h>
+#include "Utils/Log/Log.h"
 #include <exception>
+#include <glbinding/gl/gl.h>
+#include <glbinding/glbinding.h>
+#include <glbinding/gl/types.h>
 
 namespace Axum::NodeGraph::Material {
 
@@ -23,7 +25,7 @@ private:
    * exists only if setup cache is called it is 0 if not initalized
    *
    */
-  GLuint GTextureId = 0;
+  gl::GLuint GTextureId = 0;
   Channel channel{Channel::Color};
 
 public:
@@ -37,13 +39,13 @@ public:
 
   void DeleteCache();
 
-  GLint GetGlFormat(ImageFormat format);
+  gl::GLenum GetGlFormat(ImageFormat format);
   /**
    * @brief Return id of the cached texture on the gpu
    *
    * @return GLuint ID of the texture on the GPU
    */
-  GLuint GetGPUTexture();
+  gl::GLuint GetGPUTexture();
   ~MaterialOutSocket();
 };
 } // namespace Axum::NodeGraph::Material

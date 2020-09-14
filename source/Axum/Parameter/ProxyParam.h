@@ -25,9 +25,9 @@ public:
   Param &GetParam();
 
 protected:
-  virtual Gtk::Widget *DrawEdit() override;
+  virtual void  drawEdit() override;
 
-  virtual Gtk::Widget *DrawDisplay() override;
+  virtual void  drawDisplay() override;
 };
 } // namespace Parameter
 } // namespace Axum

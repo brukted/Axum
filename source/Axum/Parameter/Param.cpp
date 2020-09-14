@@ -12,19 +12,21 @@
 
 namespace Axum::Parameter {
 
-Param::Param(std::string ID, const std::string &_name,std::string group = "") : ID(ID), name(_name),Group(group) {}
+Param::Param(std::string ID, const std::string &_name, std::string group = "")
+    : ID(ID), name(_name), group(group) {}
 
-Param::Param(std::string ID, const char *_name,std::string group = "") : ID(ID), name(_name),Group(group) {}
+Param::Param(std::string ID, const char *_name, std::string group = "")
+    : ID(ID), name(_name), group(group) {}
 
-Gtk::Widget *Param::Draw() {
-  if (IsEditMode)
-    return DrawEdit();
+void Param::draw() {
+  if (isEditMode)
+    return drawEdit();
   else
-    return DrawDisplay();
+    return drawDisplay();
 }
 
-Gtk::Widget *Param::DrawDisplay() { return new Gtk::Box(); }
+void Param::drawDisplay() { return; }
 
-Gtk::Widget *Param::DrawEdit() { return new Gtk::Box(); }
+void Param::drawEdit() { return; }
 
 } // namespace Axum::Parameter

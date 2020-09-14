@@ -8,7 +8,7 @@
 
 #include "Graph.h"
 #include "InputSockets/LogicInSocket.h"
-#include "Log.h"
+#include "Utils/Log/Log.h"
 #include "Nodes/LogicNode.h"
 #include "OutputSockets/LogicOutSocket.h"
 #include "fmt/format.h"

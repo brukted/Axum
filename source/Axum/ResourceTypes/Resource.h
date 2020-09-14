@@ -13,7 +13,6 @@
 #include <boost/serialization/string.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
-#include <gtkmm.h>
 #include <string>
 #define _(text) text
 
@@ -71,15 +70,6 @@ public:
       PathType::Absolute};
 
   Resource();
-
-  /**
-   * @brief Adds this resource to the tree model for representing in ui mostly
-   * for outliner.
-   *
-   * @param row TreeIter to the row assigned to this resource.
-   * @param store Pointer to the tree model.
-   */
-  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store);
 
   /**
    * @brief Makes the path type to relative and the path relative to @a pkgPath.

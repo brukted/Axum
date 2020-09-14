@@ -10,7 +10,7 @@
  */
 
 namespace Axum::Parameter {
-Gtk::Widget *Integer4Param::DrawDisplay() { return new Gtk::Box(); }
+void  Integer4Param::drawDisplay() { return; }
 
 Integer4Param::Integer4Param(std::string ID, std::string &_name,
                              std::array<int, 4> _value)
@@ -24,7 +24,7 @@ std::array<int, 4> Integer4Param::GetValue() const { return this->value; }
 
 void Integer4Param::SetValue(std::array<int, 4> _value) {
   this->value = _value;
-  this->OnValueChanged.emit();
+
 }
 
 } // namespace Axum::Parameter

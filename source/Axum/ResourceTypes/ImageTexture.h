@@ -6,10 +6,10 @@
 #ifndef _IMAGETEXTURE_H_
 #define _IMAGETEXTURE_H_
 
-#include "../NodeGraph/Material.h"
-#include "Log.h"
+#include "NodeGraph/Material.h"
 #include "Resource.h"
-#include <OpenImageIO/imageio.h>
+#include "Utils/Log/Log.h"
+//#include <OpenImageIO/imageio.h>
 #include <algorithm>
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/vector.hpp>
@@ -55,8 +55,6 @@ public:
 
   int width, height;
 
-  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
-
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
@@ -73,18 +71,17 @@ private:
     //* If the texture is embedded load data otherwise load from file
     if (!isLinked) {
       ar &data;
-    } else {
+    } else {/*
       data = std::vector<unsigned char>(width * height * channels);
       auto input = OIIO::ImageInput::open(Path);
       if (!input) {
         AX_LOG_CORE_WARN("Can't load linked image texture {0}.",
                          name.GetValue())
-        // TODO: Fill the data with pinky stuff like blender does
         std::fill(data.begin(), data.end(), 125);
       } else {
         input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
         input->close();
-      }
+      }*/
     }
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()

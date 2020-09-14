@@ -8,8 +8,8 @@
 
 #define PREF_FILE_NAME "preferences.json"
 
-#include "Log.h"
-#include "PathUtils.h"
+#include "Utils/Log/Log.h"
+#include "Utils/PathUtils/PathUtils.h"
 #include "boost/property_tree/json_parser.hpp"
 #include "boost/property_tree/ptree.hpp"
 #include <exception>
@@ -35,8 +35,8 @@ private:
   ~PreferenceManager(){};
 
 public:
-  std::string preferencesPath = fmt::format(
-      "{}{}{}", Axum::Utils::PathUtils::userPathS, "/", PREF_FILE_NAME);
+  std::string preferencesPath =
+      fmt::format("{}/{}", Axum::Utils::PathUtils::userPathS, PREF_FILE_NAME);
 
   PreferenceManager(PreferenceManager const &) = delete;
 
@@ -95,7 +95,7 @@ public:
 
 /**
  * @brief Shortcut to the instance of PreferenceManager.
- * 
+ *
  */
-#define Preference_Manager Axum::Manager::PreferenceManager::getInstance() 
+#define Preference_Manager Axum::Manager::PreferenceManager::getInstance()
 #endif //_PREFERENCEMANAGER_H

@@ -2,22 +2,13 @@
 # External dependencies
 # 
 
-find_package(PkgConfig REQUIRED QUIET)
-
-if (NOT PkgConfig_FOUND )
-   message(STATUS "${target} skipped: PkgConfig  not found")
-    return()
-else()
-    message(STATUS "${target} : PkgConfig found")
-endif()
-
-find_package(Boost 1.72.0 REQUIRED COMPONENTS filesystem serialization)
-pkg_search_module (GTKMM REQUIRED IMPORTED_TARGET gtkmm-3.0)
-pkg_search_module (SPD_LOG REQUIRED IMPORTED_TARGET spdlog)
-pkg_search_module (EPOXY REQUIRED IMPORTED_TARGET libepoxy epoxy)
-pkg_search_module (OIIO REQUIRED IMPORTED_TARGET OpenImageIO>=2.1)
-pkg_search_module (FMT REQUIRED IMPORTED_TARGET fmt>=6.2)
-pkg_search_module (GDLMM REQUIRED IMPORTED_TARGET gdlmm-3.0)
+find_package (Boost 1.72.0 REQUIRED COMPONENTS filesystem serialization)
+find_package (spdlog CONFIG REQUIRED)
+find_package(OpenImageIO REQUIRED)
+find_package(imgui CONFIG REQUIRED)
+find_package(fmt CONFIG REQUIRED)
+find_package(glbinding CONFIG REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
 
 # 
 # Executable name and options
@@ -33,14 +24,6 @@ if (NOT BOOST_FOUND )
 else()
     message(STATUS "${target} : Boost found")
 endif()
-
-if (NOT GTKMM_FOUND )
-   message(STATUS "${target} skipped: Gtkmm  not found")
-    return()
-else()
-    message(STATUS "${target} : Gtkmm found")
-endif()
-
 
 # 
 # Sources
@@ -275,8 +258,6 @@ target_include_directories(${target}
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${PROJECT_BINARY_DIR}/source/include
-    Utils/Log
-    Utils/PathUtils
 )
 
 
@@ -290,11 +271,12 @@ target_link_libraries(${target}
     ${META_PROJECT_NAME}::ABaker
     Boost::filesystem
     Boost::serialization
-    PkgConfig::SPD_LOG
-    PkgConfig::GTKMM
-    PkgConfig::EPOXY
-    PkgConfig::OIIO
-    PkgConfig::GDLMM
+    spdlog::spdlog_header_only
+    imgui::imgui
+    fmt::fmt-header-only
+    glbinding::glbinding
+    glfw
+    OpenImageIO::OpenImageIO
 )
 
 

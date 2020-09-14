@@ -6,7 +6,7 @@
 #ifndef _PARAMCOLLECTION_H
 #define _PARAMCOLLECTION_H
 
-#include "Log.h"
+#include "Utils/Log/Log.h"
 #include "Param.h"
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/list.hpp>
@@ -71,7 +71,7 @@ public:
   void AddParameter(Param parameter);
 
 protected:
-  virtual Gtk::Widget *DrawDisplay() override;
+  virtual void  drawDisplay() override;
 
 private:
   template <class Archive>

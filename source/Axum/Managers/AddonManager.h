@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#ifndef _ADDONMANAGER_H
-#define _ADDONMANAGER_H
+#ifndef _ADDON_MANAGER_H
+#define _ADDON_MANAGER_H
 
 #include "../Addon/Addon.h"
 #include <vector>
@@ -27,7 +27,7 @@ public:
   AddonManager(AddonManager const &) = delete;
   void operator=(AddonManager const &) = delete;
 
-  std::vector<Addon::Addon> Addons;
+  std::vector<Addon::Addon> addons;
 
   void Startup();
 
@@ -42,4 +42,4 @@ public:
  *
  */
 #define Addon_Manager Axum::Manager::AddonManager::getInstance()
-#endif //_ADDONMANAGER_H
+#endif //_ADDON_MANAGER_H

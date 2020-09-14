@@ -6,7 +6,7 @@
 #ifndef _GRAPH_H
 #define _GRAPH_H
 
-#include "Log.h"
+#include "Utils/Log/Log.h"
 #include "Node.h"
 #include "ResourceTypes/Resource.h"
 #include "Utils/Serialization/Connection.h"

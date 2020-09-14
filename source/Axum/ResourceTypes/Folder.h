@@ -37,8 +37,6 @@ public:
    */
   Folder *parent = nullptr;
 
-  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
-
   /**
    * @brief Adds resource to this folder.
    *

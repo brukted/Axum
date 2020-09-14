@@ -6,15 +6,12 @@
 #ifndef SPLASHWINDOW_H
 #define SPLASHWINDOW_H
 
-#include "Log.h"
-#include "PathUtils.h"
-#include "glibmm.h"
-#include "gtkmm.h"
-#include <gio\gio.h>
+#include "Utils/Log/Log.h"
+#include "Utils/PathUtils/PathUtils.h"
 
 namespace Axum::UI::Window {
 
-class SplashWindow : public Gtk::Window {
+class SplashWindow {
 public:
   SplashWindow();
   SplashWindow(int width, int height);

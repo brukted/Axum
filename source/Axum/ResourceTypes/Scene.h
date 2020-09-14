@@ -22,11 +22,11 @@ class Mesh {
   friend class boost::serialization::access;
 
 public:
-  std::vector<std::array<float, 3>> Vertices;
-  std::vector<std::array<float, 3>> Normals;
-  std::vector<unsigned int> Indices;
-  std::vector<Mesh> SubMeshs;
-  int MaterialId;
+  std::vector<std::array<float, 3>> vertices;
+  std::vector<std::array<float, 3>> normals;
+  std::vector<unsigned int> indices;
+  std::vector<Mesh> subMeshs;
+  int materialId;
 
   Mesh(){};
 
@@ -34,18 +34,18 @@ private:
   bool NeedUpdate = true;
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
-    ar &Vertices;
-    ar &Normals;
-    ar &Indices;
-    ar &SubMeshs;
-    ar &MaterialId;
+    ar &vertices;
+    ar &normals;
+    ar &indices;
+    ar &subMeshs;
+    ar &materialId;
   }
   template <class Archive> void load(Archive &ar, const unsigned int version) {
-    ar &Vertices;
-    ar &Normals;
-    ar &Indices;
-    ar &SubMeshs;
-    ar &MaterialId;
+    ar &vertices;
+    ar &normals;
+    ar &indices;
+    ar &subMeshs;
+    ar &materialId;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
@@ -56,8 +56,6 @@ class Scene : public Resource {
 public:
   Scene();
   std::vector<Mesh> meshs;
-
-  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
 
 private:
   template <class Archive>

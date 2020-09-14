@@ -110,16 +110,6 @@ Package::Package(unsigned int _uid, std::string name, bool isLinked,
   root.package = this;
 }
 
-void Package::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
-  this->Resource::AppendToModel(row, store);
-  for (auto &folder : root.GetSubFolders()) {
-    folder.AppendToModel(store->append(row->children()), store);
-  }
-  for (auto res : root.GetResources()) {
-    res->AppendToModel(store->append(row->children()), store);
-  }
-}
-
 Resource &Package::FindResource(unsigned int _uid) {
   for (auto &var : MaterialGraphs) {
     if (var.uid == _uid)
@@ -198,7 +188,8 @@ Folder *Package::RemoveResource(Resource &resource) {
 }
 
 Folder *Package::RemoveResource(unsigned int _uid) {
-  return RemoveResource(FindResource(uid));
+  Resource &resource = this->FindResource(_uid);
+  return RemoveResource(resource);
 }
 
 } // namespace ResourceType

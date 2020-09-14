@@ -6,17 +6,16 @@
 #ifndef _PARAM_H
 #define _PARAM_H
 
-#include "Log.h"
+#include "Utils/Log/Log.h"
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/array.hpp>
 #include <boost/serialization/split_member.hpp>
 #include <boost/serialization/string.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
-#include <gtkmm-3.0/gtkmm.h>
-#include <sigc++/sigc++.h>
 #include <string>
 #include <vector>
+#include <imgui.h>
 
 namespace Axum {
 namespace Parameter {
@@ -47,33 +46,27 @@ public:
    *
    */
   std::string name;
-  std::string Group;
-  bool IsEditMode = false;
-  sigc::signal<void> OnValueChanged;
+  std::string group;
+  bool isEditMode = false;
 
   Param(std::string ID, const std::string &_name, std::string group);
 
   Param(std::string ID, const char *_name, std::string group);
 
-  /**
-   * @brief Constructs a Gtk widget that can be used to display the param in UI.
-   *
-   * @return Gtk::Widget*
-   */
-  Gtk::Widget *Draw();
+  void draw();
 
 protected:
-  virtual Gtk::Widget *DrawDisplay();
-  virtual Gtk::Widget *DrawEdit();
+  virtual void drawDisplay();
+  virtual void drawEdit();
 
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
-    ar &ID &name &IsEditMode &Group;
+    ar &ID &name &isEditMode &group;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
-    ar &ID &name &IsEditMode &Group;
+    ar &ID &name &isEditMode &group;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

@@ -29,7 +29,7 @@ public:
 
   void SetValue(int _value);
 
-  Gtk::Widget *DrawDisplay() override;
+  void  drawDisplay() override;
 
 private:
   template <class Archive>

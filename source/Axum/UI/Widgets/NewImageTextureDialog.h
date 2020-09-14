@@ -6,21 +6,22 @@
 #ifndef __NEWIMAGETEXTUREDIALOG_H__
 #define __NEWIMAGETEXTUREDIALOG_H__
 
-#include <gtkmm.h>
-#include <string>
 #include <array>
+#include <imgui.h>
+#include <string>
 #define _(text) text
 
 namespace Axum::UI::Widget {
 
-class NewImageTextureDialog : public Gtk::Dialog {
+class NewImageTextureDialog {
 private:
-  int *width;
-  int *height;
-  std::array<unsigned char,4> *color;
-  std::string *name;
+  int width;
+  int height;
+  std::array<unsigned char, 4> color;
+  std::string name;
+
 public:
-  NewImageTextureDialog(int *width,int *height,std::array<unsigned char,4> *color,std::string *name);
+  NewImageTextureDialog();
 };
 
 } // namespace Axum::UI::Widget

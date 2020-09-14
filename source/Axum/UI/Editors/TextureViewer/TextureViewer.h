@@ -7,13 +7,18 @@
 #define _TEXTURE_VIEWER_H
 
 #include "../Editor.h"
+#define _(text) text
 
 namespace Axum::UI {
 namespace Editor {
 
 class TextureViewer : public Editor {
+private:
+  float zoom = 1;
+
 public:
   TextureViewer();
+  void draw() override;
 };
 
 } // namespace Editor

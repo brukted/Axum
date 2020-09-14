@@ -11,16 +11,11 @@
 
 namespace Axum {
 
-MApplication::MApplication()
-    : Gtk::Application("com.bruk.tedla.Axum", Gio::APPLICATION_HANDLES_OPEN) {}
-
-Glib::RefPtr<MApplication> MApplication::create() {
-  return Glib::RefPtr<MApplication>(new MApplication());
-}
+MApplication::MApplication() {}
 
 MApplication::~MApplication() {
   AX_LOG_EDITOR_TRACE("Shutting down Window manager")
-  Manager::WindowManager::getInstance(this).Shutdown();
+  Manager::WindowManager::getInstance().Shutdown();
 
   AX_LOG_EDITOR_TRACE("Shutting down Render manager")
   Manager::RenderManager::getInstance().Shutdown();
@@ -38,13 +33,7 @@ MApplication::~MApplication() {
   Manager::PreferenceManager::getInstance().Shutdown();
 }
 
-void MApplication::on_activate() {
-  auto splashScreen = UI::Window::SplashWindow();
-  this->add_window(splashScreen);
-  splashScreen.present();
-  while (gtk_events_pending()) {
-    gtk_main_iteration();
-  }
+void MApplication::activate() {
   // Start the Preference Manager first as it does not depend on anything
   AX_LOG_EDITOR_TRACE("Starting up Preference manager")
   Manager::PreferenceManager::getInstance().Startup();
@@ -59,19 +48,17 @@ void MApplication::on_activate() {
   Manager::RenderManager::getInstance().Startup();
   // Starts the manager and initializes the main window but won't show it
   AX_LOG_EDITOR_TRACE("Starting up Window manager")
-  Manager::WindowManager::getInstance(this).Startup();
+  Manager::WindowManager::getInstance().Startup();
+  Window_Manager.iterate();
   // Addon Manager is started at last because it has reference to all aspects of
   // the software
   AX_LOG_EDITOR_TRACE("Starting up Addon manager")
   Manager::AddonManager::getInstance().Startup();
-  Manager::WindowManager::getInstance().AddShowMainWindow();
 }
 
-void MApplication::on_open(const Gio::Application::type_vec_files &files,
-                           const Glib::ustring &hint) {
-  for (auto f : files) {
-    Manager::PackageManager::getInstance().LoadPackage(f);
-  }
+int MApplication::run() {
+  Window_Manager.mainLoop();
+  return 0;
 }
 
 } // namespace Axum

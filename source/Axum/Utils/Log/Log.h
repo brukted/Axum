@@ -6,9 +6,7 @@
 #ifndef LOG_H
 #define LOG_H
 
-#define FMT_HEADER_ONLY
-
-#include "PathUtils.h"
+#include "../PathUtils/PathUtils.h"
 #include <chrono>
 #include <fmt/chrono.h>
 #include <fmt/format.h>

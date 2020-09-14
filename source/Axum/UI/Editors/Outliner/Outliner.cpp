@@ -10,183 +10,176 @@
  */
 
 namespace Axum::UI::Editor {
-Outliner::Columns Outliner::columns;
-Glib::RefPtr<Gtk::TreeStore> Outliner::store =
-    Gtk::TreeStore::create(Outliner::columns);
 
-Outliner::Outliner() : Editor("Outliner", "Outliner") {
-  mActionGroup = Gtk::ActionGroup::create();
-  mActionGroup->add(Gtk::Action::create("CreatePackage", "Create Package",
-                                        "Creates new package."),
-                    sigc::mem_fun(*this, &CreatePackage));
-  mActionGroup->add(Gtk::Action::create("OpenPackage", "Open Package"),
-                    sigc::mem_fun(*this, &OpenPackage));
-  mUIManager = Gtk::UIManager::create();
-  mUIManager->insert_action_group(mActionGroup);
-  std::string ContextMenuUI{"<ui>"
-                            "<popup name='OutlinerMainPopupMenu'>"
-                            "<menuitem action='CreatePackage'/>"
-                            "<menuitem action='OpenPackage'/>"
-                            "</popup>"
-                            "</ui>"};
-  mUIManager->add_ui_from_string(ContextMenuUI);
-  MainContextMenu = dynamic_cast<Gtk::Menu *>(
-      mUIManager->get_widget("/OutlinerMainPopupMenu"));
-  UpdateItems();
-  iconCol.set_renderer(iconCellRenderer, columns.icon);
-  resourcesCol.set_renderer(textCellRenderer, columns.name);
-  tree.append_column(iconCol);
-  tree.append_column(resourcesCol);
-  tree.set_headers_visible(false);
-  rootBox.pack_end(tree, true, true);
-  space.add(rootBox);
-  // @note The signal handlers don't necessary need to be a member function
-  // consider making them static, if that will result better performance or
-  // simpler code.
-  signal_button_press_event().connect(sigc::mem_fun(*this, &OnButtonPress));
-  signal_key_press_event().connect(sigc::mem_fun(*this, &OnKeyPress));
-  signal_key_release_event().connect(sigc::mem_fun(*this, &OnKeyRelease));
-  rootBox.signal_button_press_event().connect(
-      sigc::mem_fun(*this, &OnButtonPressTree));
-  tree.get_selection()->signal_changed().connect_notify(
-      sigc::mem_fun(*this, &OnSelectionChangedTree));
-  show_all();
-}
+Outliner::Outliner() : Editor("Outliner", "Outliner") {}
 
-void Outliner::UpdateItems() {
-  store->clear();
-  for (auto &pkg : Package_Manager.Packages) {
-    pkg.AppendToModel(store->append(), store.get());
+void Outliner::draw() {
+  if (!ImGui::Begin(_("Outliner"), 0)) {
+    ImGui::End();
+    return;
   }
-}
+  mainContextMenu();
 
-bool Outliner::OnButtonPress(GdkEventButton *evt) {
-  if (evt->button == GDK_BUTTON_SECONDARY) {
-    MainContextMenu->popup_at_pointer((GdkEvent *)evt);
-    return true;
-  }
-  return false;
-}
-
-bool Outliner::OnKeyPress(GdkEventKey *evt) {
-  if (evt->keyval == GDK_KEY_Control_L || evt->keyval == GDK_KEY_Control_R) {
-    tree.get_selection()->set_mode(Gtk::SelectionMode::SELECTION_MULTIPLE);
-    return true;
-  }
-  return false;
-}
-
-bool Outliner::OnKeyRelease(GdkEventKey *evt) {
-  if (evt->keyval == GDK_KEY_Control_L || evt->keyval == GDK_KEY_Control_R) {
-    tree.get_selection()->set_mode(Gtk::SelectionMode::SELECTION_SINGLE);
-    return true;
-  }
-  return false;
-}
-
-bool Outliner::OnButtonPressTree(GdkEventButton *evt) {
-  if (evt->button == GDK_BUTTON_SECONDARY) {
-    if (tree.get_selection()->get_mode() ==
-        Gtk::SelectionMode::SELECTION_SINGLE) {
-      ShowRowContextMenu((GdkEvent *)evt);
-      return true;
+  ///@TODO make the lambdas static
+  auto appendResource = [this](ResourceType::Resource *res) {
+    bool open = ImGui::TreeNode((void *)res, res->name.GetValue().c_str());
+    showRowContextMenu(res);
+    if (open) {
+      if (ImGui::IsItemActivated()) {
+        ParameterEditor::BindParams(res->Params());
+      }
+      ImGui::TreePop();
     }
-    return false;
-  }
-  return false;
-}
+  };
 
-void Outliner::CreatePackage() {
-  Package_Manager.CreatePackage();
-  UpdateItems();
-}
+  std::function<void(ResourceType::Folder *)> appendFolder =
+      [&appendResource, &appendFolder, this](ResourceType::Folder *folder) {
+        bool open =
+            ImGui::TreeNode((void *)folder, folder->name.GetValue().c_str());
+        showRowContextMenu(folder);
+        if (open) {
+          if (ImGui::IsItemActivated()) {
+            ParameterEditor::BindParams(folder->Params());
+          }
+          for (auto &subFolder : folder->GetSubFolders()) {
+            appendFolder(&subFolder);
+          }
+          for (auto resource : folder->GetResources()) {
+            appendResource(resource);
+          }
+          ImGui::TreePop();
+        }
+      };
 
-void Outliner::OpenPackage() {
-  Glib::RefPtr<Gtk::FileChooserNative> dialog = Gtk::FileChooserNative::create(
-      "Please choose a package",
-      Gtk::FileChooserAction::FILE_CHOOSER_ACTION_OPEN, "Open", "Cancel");
-  auto filter = Gtk::FileFilter::create();
-  filter->add_pattern("*.axpkg");
-  dialog->add_filter(filter);
-  dialog->set_transient_for(*Manager::WindowManager::getInstance().MainWin);
-  int result = dialog->run();
-  switch (result) {
-  case Gtk::RESPONSE_ACCEPT:
-  case Gtk::RESPONSE_OK:
-    for (auto file : dialog->get_files()) {
-      Package_Manager.LoadPackage(file->get_path());
-      UpdateItems();
+  for (auto &pkg : Package_Manager.packages) {
+    bool open = ImGui::TreeNode((void *)&pkg, pkg.name.GetValue().c_str());
+    bool isDeleted = showRowContextMenu(&pkg);
+    if (open) {
+      if (ImGui::IsItemActivated()) {
+        ParameterEditor::BindParams(pkg.Params());
+      }
+      for (auto &folder : pkg.GetRootFolder().GetSubFolders()) {
+        appendFolder(&folder);
+      }
+      for (auto *resource : pkg.GetRootFolder().GetResources()) {
+        appendResource(resource);
+      }
+      ImGui::TreePop();
     }
-    break;
-  case Gtk::RESPONSE_CANCEL:
-    break;
-  default:
-    AX_LOG_EDITOR_WARN("Unhandled result code from file chooser dialog in "
-                       "outliner. code = {0:d}",
-                       result)
-    break;
   }
+  ImGui::End();
+
+} // namespace Axum::UI::Editor
+
+void Outliner::openPackage() {}
+
+bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
+  bool isDeleted = false;
+  if (ImGui::BeginPopupContextItem()) {
+    if (resource->type == ResourceType::Resource::Type::Package) {
+      auto package = static_cast<ResourceType::Package *>(resource);
+      if (ImGui::BeginMenu(_("New"))) {
+        if (ImGui::Selectable(_("Material graph"))) {
+          package->AddMaterialGraph(NodeGraph::Material::MaterialGraph());
+        }
+        if (ImGui::Selectable(_("Logic graph"))) {
+          package->AddLogicGraph(NodeGraph::Logic::LogicGraph());
+        }
+        if (ImGui::Selectable(_("Image texture"))) {
+          /// @TODO Show Image texture dialog
+          unsigned char color[] = {0, 0, 0, 255};
+          package->AddImageTexture(ResourceType::ImageTexture{512, 512, color});
+        }
+        if (ImGui::Selectable(_("Folder"))) {
+          package->GetRootFolder().AddFolder(ResourceType::Folder());
+        }
+        ImGui::EndMenu();
+      }
+      if (ImGui::BeginMenu(_("Import"))) {
+        /// @TODO add items to import menu  in  folder and package
+        ImGui::EndMenu();
+      }
+      ImGui::Separator();
+      ///   @TODO Disable widgets instade of not adding
+      if (resource->Path != "") {
+        if (ImGui::Selectable(_("Reload")))
+          isDeleted = false; /// @TODO Implement reload for package
+        if (ImGui::Selectable(_("Save")))
+          Package_Manager.SavePackage(*package);
+      }
+      if (ImGui::Selectable(_("Save as"))) {
+        /// @TODO Implement save as for package
+      }
+      ImGui::Separator();
+      /// @TODO Implement paste resource for package
+      // ImGui::Selectable(_("Paste"));
+      if (ImGui::Selectable(_("Close"))) {
+        Package_Manager.ClosePackage(package->uid);
+        isDeleted = true;
+      }
+    } else if (resource->type == ResourceType::Resource::Type::Folder) {
+      auto package = resource->package;
+      auto folder = static_cast<ResourceType::Folder *>(resource);
+      if (ImGui::BeginMenu(_("New"))) {
+        if (ImGui::Selectable(_("Material graph"))) {
+          package->AddMaterialGraph(NodeGraph::Material::MaterialGraph(),
+                                    folder);
+        }
+        if (ImGui::Selectable(_("Logic graph"))) {
+          package->AddLogicGraph(NodeGraph::Logic::LogicGraph(), folder);
+        }
+        if (ImGui::Selectable(_("Image texture"))) {
+          /// @TODO Show Image texture dialog
+          unsigned char color[] = {0, 0, 0, 255};
+          package->AddImageTexture(ResourceType::ImageTexture{512, 512, color},
+                                   folder);
+        }
+        if (ImGui::Selectable(_("Folder"))) {
+          folder->AddFolder(ResourceType::Folder());
+        }
+        ImGui::EndMenu();
+      }
+      if (ImGui::BeginMenu(_("Import"))) {
+        /// @TODO add items to import menu  in  folder and package
+        ImGui::EndMenu();
+      }
+      ImGui::Separator();
+      /// @TODO Implement copy and paste for folder
+      if (ImGui::Selectable(_("Paste"))) {
+      }
+      if (ImGui::Selectable(_("Copy"))) {
+      }
+      if (ImGui::Selectable(_("Delete"))) {
+        folder->parent->RemoveFolder(folder->uid);
+        isDeleted = true;
+      }
+    } else {
+      if (!(resource->type == ResourceType::Resource::Type::Font)) {
+        ImGui::Selectable(_("Open"));
+      }
+      if (ImGui::Selectable(_("Copy"))) {
+      }
+      if (ImGui::Selectable(_("Delete"))) {
+        resource->package->RemoveResource(resource->uid);
+        isDeleted = true;
+      }
+      if (resource->isLinked) {
+        ImGui::Selectable(_("Reload"));
+      }
+    }
+    ImGui::EndPopup();
+  }
+  return isDeleted;
 }
 
-void Outliner::ShowRowContextMenu(GdkEvent *evt) {
-  AX_LOG_EDITOR_DEBUG("Showing row context menu.")
-  auto Res = tree.get_selection()->get_selected();
-  if (Res == nullptr)
-    return;
-  auto ResPtr = Res->get_value<ResourceType::Resource *>(columns.pointer);
-  switch (ResPtr->type) {
-  case ResourceType::Resource::Type::Package:
-    RowContextMenu = UI::Widget::OutlinerContextMenu(
-        static_cast<ResourceType::Package *>(ResPtr));
-    break;
-  case ResourceType::Resource::Type::Folder:
-    RowContextMenu = UI::Widget::OutlinerContextMenu(
-        static_cast<ResourceType::Folder *>(ResPtr));
-    break;
-  case ResourceType::Resource::Type::Font:
-    RowContextMenu = UI::Widget::OutlinerContextMenu(
-        static_cast<ResourceType::Font *>(ResPtr));
-    break;
-  case ResourceType::Resource::Type::ImageTexture:
-    RowContextMenu = UI::Widget::OutlinerContextMenu(
-        static_cast<ResourceType::ImageTexture *>(ResPtr));
-    break;
-  case ResourceType::Resource::Type::Scene:
-    RowContextMenu = UI::Widget::OutlinerContextMenu(
-        static_cast<ResourceType::Scene *>(ResPtr));
-    break;
-  case ResourceType::Resource::Type::VectorTexture:
-    RowContextMenu = UI::Widget::OutlinerContextMenu(
-        static_cast<ResourceType::VectorTexture *>(ResPtr));
-    break;
-  case ResourceType::Resource::Type::MaterialGraph:
-    RowContextMenu = UI::Widget::OutlinerContextMenu(
-        static_cast<NodeGraph::Material::MaterialGraph *>(ResPtr));
-    break;
-  case ResourceType::Resource::Type::LogicGraph:
-    RowContextMenu = UI::Widget::OutlinerContextMenu(
-        static_cast<NodeGraph::Logic::LogicGraph *>(ResPtr));
-    break;
-  case ResourceType::Resource::Type::Generic:
-    AX_LOG_EDITOR_WARN("Generic resource type in outliner.")
-    return;
-  default:
-    AX_LOG_EDITOR_WARN("Unkown resource type in outliner.")
-    return;
+void Outliner::mainContextMenu() {
+  if (ImGui::BeginPopupContextWindow()) {
+    if (ImGui::Selectable(_("Create Package")))
+      Package_Manager.CreatePackage();
+    if (ImGui::Selectable(_("Open Package")))
+      openPackage();
+    ImGui::EndPopup();
   }
-  RowContextMenu.show_all();
-  RowContextMenu.popup_at_pointer(evt);
-}
-
-void Outliner::OnSelectionChangedTree() {
-  if (tree.get_selection()->get_mode() != Gtk::SELECTION_SINGLE)
-    return;
-  auto row = tree.get_selection()->get_selected();
-  if (row == nullptr)
-    return;
-  ResourceType::Resource *ResPtr;
-  row->get_value(2, ResPtr);
-  ParameterEditor::BindParams(ResPtr->Params());
 }
 
 } // namespace Axum::UI::Editor

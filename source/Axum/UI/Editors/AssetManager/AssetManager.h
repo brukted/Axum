@@ -7,8 +7,8 @@
 #define _ASSET_MANAGER_H_
 
 #include "../Editor.h"
-#include "Log.h"
-#include "PathUtils.h"
+#include "Utils/Log/Log.h"
+#include "Utils/PathUtils/PathUtils.h"
 #include <boost/algorithm/string.hpp>
 #include <filesystem>
 #include <string>
@@ -71,7 +71,8 @@ public:
 
 class AssetManager : public Editor {
 public:
-  std::string assetsPath = Utils::PathUtils::resourcesPath + std::string{"/assets"};
+  std::string assetsPath =
+      Utils::PathUtils::resourcesPath + std::string{"/assets"};
 
   AssetItem root{AssetItem::Type::DIRECTORY, std::string{"Catagories"},
                  assetsPath};

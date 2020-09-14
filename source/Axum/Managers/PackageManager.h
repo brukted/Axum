@@ -6,13 +6,12 @@
 #ifndef _PACKAGEMANAGER_H
 #define _PACKAGEMANAGER_H
 
-#include "Log.h"
+#include "Utils/Log/Log.h"
 #include "ResourceTypes/Package.h"
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/filesystem.hpp>
 #include <fstream>
-#include <gtkmm-3.0/gtkmm.h>
 #include <list>
 #include <string>
 
@@ -33,7 +32,7 @@ public:
   PackageManager(PackageManager const &) = delete;
   void operator=(PackageManager const &) = delete;
 
-  std::list<ResourceType::Package> Packages;
+  std::list<ResourceType::Package> packages;
 
   void Startup() noexcept;
 
@@ -45,12 +44,6 @@ public:
    * @param Path Path to the project file including the file name.
    */
   void LoadPackage(std::string Path);
-
-  /**
-   * @brief Loads the package at the specified path.This is blocking call.
-   *
-   */
-  void LoadPackage(const Glib::RefPtr<Gio::File> file);
 
   void SavePackage(ResourceType::Package &Pkg, std::string Path = "");
 

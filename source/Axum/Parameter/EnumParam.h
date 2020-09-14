@@ -25,7 +25,8 @@ private:
 
   std::map<int, std::string> enums;
 
-  int value;
+  int intValue;
+  std::string strValue;
 
 public:
   /**
@@ -34,32 +35,30 @@ public:
    * @param ID ID of the parameter.
    * @param _name Name of the parameter.
    * @param _enums Map of possible values.
-   * @param _value Default value for the parameter.
+   * @param _value Default intValue for the parameter.
    */
   EnumParam(std::string ID, std::string _name,
             std::map<int, std::string> _enums, int _value = 0);
 
-  ///int GetValue() const{ return value; };
-  
-  int GetValue() { return value; };
+  int GetValue() const { return intValue; };
 
   void SetValue(int const key);
 
   std::string &ToString(int const key);
 
 protected:
-  virtual Gtk::Widget *DrawDisplay() override;
+  virtual void drawDisplay() override;
 
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &boost::serialization::base_object<Param>(*this);
-    ar &value;
+    ar &intValue;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &boost::serialization::base_object<Param>(*this);
-    ar &value;
+    ar &intValue;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

@@ -13,13 +13,6 @@
 namespace Axum::ResourceType {
 Resource::Resource() {}
 
-void Resource::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
-  row->set_value(1, name.GetValue());
-  row->set_value<ResourceType::Resource *>(2, this);
-  name.OnValueChanged.connect(
-      [this, row]() { row->set_value(1, name.GetValue()); });
-}
-
 void Resource::makeAbsolute(std::string &pkgPath) {
   if (isLinked) {
     // get absolute path and set it to path

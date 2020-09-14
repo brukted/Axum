@@ -6,8 +6,7 @@
 #ifndef _Editor_H
 #define _Editor_H
 
-#include <gdlmm.h>
-#include <gtkmm.h>
+#include <imgui.h>
 #include <string>
 
 namespace Axum {
@@ -19,21 +18,16 @@ namespace Editor {
  * editors such as docking and title bar.
  *
  */
-class Editor : public Gdl::DockItem {
+class Editor {
 protected:
-  Gtk::Fixed space;
+  std::string name;
+  std::string longName;
 
 public:
   Editor();
 
   Editor(std::string name, std::string longname);
-
-  /**
-   * @brief Returns a reference to Gtk container where more UI can be added.
-   */
-  Gtk::Fixed &GetSpace();
-
-  void SetIcon();
+  virtual void draw();
 };
 
 } // namespace Editor

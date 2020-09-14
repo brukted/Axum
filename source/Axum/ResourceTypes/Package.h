@@ -8,7 +8,6 @@
 
 #include "NodeGraph/LogicGraph.h"
 #include "NodeGraph/MaterialGraph.h"
-#include "PathUtils.h"
 #include "ResourceTypes/Folder.h"
 #include "ResourceTypes/Font.h"
 #include "ResourceTypes/ImageTexture.h"
@@ -16,6 +15,7 @@
 #include "ResourceTypes/Scene.h"
 #include "ResourceTypes/VectorTexture.h"
 #include "Utils/Assert/Assert.h"
+#include "Utils/PathUtils/PathUtils.h"
 #include <algorithm>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/access.hpp>
@@ -124,8 +124,6 @@ public:
    */
   Package &AddPackage(Package pkg, Folder *folder = nullptr);
 
-  virtual void AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) override;
-
   /**
    * @brief Find a resource with the specified uid.
    *
@@ -186,8 +184,6 @@ public:
     std::for_each(Packages.begin(), Packages.end(), UpdatePackagePtr);
     UpdatePkgForFolder(this->root);
   }
-
-  Package &operator=(const Package &) = default;
 
 private:
   template <class Archive>

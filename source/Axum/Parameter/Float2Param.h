@@ -33,7 +33,7 @@ public:
   void SetValue(std::array<float, 2> _value);
 
 protected:
-  virtual Gtk::Widget *DrawDisplay() override;
+  virtual void  drawDisplay() override;
 
 private:
   template <class Archive>

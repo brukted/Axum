@@ -12,48 +12,32 @@
 namespace Axum::Parameter {
 
 EnumParam::EnumParam(std::string ID, std::string _name,
-                     std::map<int, std::string> _enums, int _value)
+                     std::map<int, std::string> _enums, int intValue)
     : Param(ID, _name, ""), enums(_enums) {
-  this->value = _value;
+  this->intValue = intValue;
+  strValue = ToString(intValue);
 }
 
 void EnumParam::SetValue(int const key) {
-  value = key;
-  OnValueChanged.emit();
+  intValue = key;
+  strValue = ToString(key);
 }
 
 std::string &EnumParam::ToString(int const key) {
   return enums.find(key)->second;
 }
 
-Gtk::Widget *EnumParam::DrawDisplay() {
-  auto box = new Gtk::Box(Gtk::ORIENTATION_HORIZONTAL, 20);
-  auto dropDown = new Gtk::ComboBoxText();
-  auto label = new Gtk::Label(name);
-  box->add(*label);
-  box->add(*dropDown);
-  for (auto const &[key, val] : enums) {
-    dropDown->append(val);
+void EnumParam::drawDisplay() {
+  if (ImGui::BeginCombo(name.c_str(), strValue.c_str())) {
+    for (auto &_enum : enums) {
+      bool isSelected = false;
+      ImGui::Selectable(_enum.second.c_str(), &isSelected);
+      if (isSelected) {
+        SetValue(_enum.first);
+      }
+    }
+    ImGui::EndCombo();
   }
-  int i = 0;
-  for (auto const [key, val] : enums) {
-    if (key == GetValue()) {
-      dropDown->set_active(i);
-      break;
-    }
-    i = 1 + i;
-  }
-  auto &enumsRef = enums;
-  dropDown->signal_changed().connect([this, &enumsRef, dropDown]() {
-    auto it = enumsRef.begin();
-    for (auto i = 0; i < dropDown->get_active_row_number(); i++) {
-      it++;
-    }
-    if (this->GetValue() != it->first) {
-      this->SetValue(it->first);
-    }
-  });
-  label->set_margin_start(20);
-  return box;
 }
+
 } // namespace Axum::Parameter

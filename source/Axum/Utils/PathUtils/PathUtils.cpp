@@ -39,11 +39,11 @@ void PathUtils::getPaths(char *argv0) {
 
 #endif // UNIX
 #endif // APPLE
-  boost::filesystem::path p(userPathS);
-  if (!(boost::filesystem::exists(p.parent_path())))
-    boost::filesystem::create_directory(p.parent_path());
-  if (!(boost::filesystem::exists(p)))
-    boost::filesystem::create_directory(p);
+  boost::filesystem::path path(userPathS);
+  if (!(boost::filesystem::exists(path.parent_path())))
+    boost::filesystem::create_directory(path.parent_path());
+  if (!(boost::filesystem::exists(path)))
+    boost::filesystem::create_directory(path);
 }
 
 } // namespace Axum::Utils

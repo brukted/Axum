@@ -11,24 +11,21 @@
 
 namespace Axum {
 namespace ResourceType {
-void ImageTexture::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
-  this->Resource::AppendToModel(row, store);
-  return;
-}
 
-ImageTexture::ImageTexture(std::string &path, PathType _pathType) : Resource() {
-  this->type = Type::ImageTexture;
-  this->Path = path;
-  isLinked = true;
-  this->pathType.SetValue((int)_pathType);
-  auto input = OIIO::ImageInput::open(path);
-  auto specs = input->spec();
-  width = (unsigned int)specs.width;
-  height = (unsigned int)specs.height;
-  channels = specs.nchannels;
-  data = std::vector<unsigned char>(width * height * channels);
-  input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
-  input->close();
+ImageTexture::ImageTexture(std::string &path, PathType _pathType)
+    : Resource() { /*
+this->type = Type::ImageTexture;
+this->Path = path;
+isLinked = true;
+this->pathType.SetValue((int)_pathType);
+auto input = OIIO::ImageInput::open(path);
+auto specs = input->spec();
+width = (unsigned int)specs.width;
+height = (unsigned int)specs.height;
+channels = specs.nchannels;
+data = std::vector<unsigned char>(width * height * channels);
+input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
+input->close();*/
 }
 
 ImageTexture::ImageTexture(unsigned int _width, unsigned int _height,
@@ -45,17 +42,17 @@ ImageTexture::ImageTexture(unsigned int _width, unsigned int _height,
   }
 }
 
-ImageTexture::ImageTexture(std::string &path) {
-  this->type = Type::ImageTexture;
-  auto input = OIIO::ImageInput::open(path);
-  auto specs = input->spec();
-  width = (unsigned int)specs.width;
-  height = (unsigned int)specs.height;
-  channels = specs.nchannels;
-  data = std::vector<unsigned char>(width * height * channels);
-  input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
-  input->close();
-  isLinked = false;
+ImageTexture::ImageTexture(std::string &path) { /*
+   this->type = Type::ImageTexture;
+   auto input = OIIO::ImageInput::open(path);
+   auto specs = input->spec();
+   width = (unsigned int)specs.width;
+   height = (unsigned int)specs.height;
+   channels = specs.nchannels;
+   data = std::vector<unsigned char>(width * height * channels);
+   input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
+   input->close();
+   isLinked = false;*/
 }
 } // namespace ResourceType
 } // namespace Axum

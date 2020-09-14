@@ -19,20 +19,8 @@ BooleanParam::BooleanParam(std::string ID, const char *_name, bool _value)
 
 bool BooleanParam::GetValue() const { return this->value; }
 
-void BooleanParam::SetValue(bool _value) {
-  this->value = _value;
-  this->OnValueChanged.emit();
-}
+void BooleanParam::SetValue(bool _value) { this->value = _value; }
 
-Gtk::Widget *BooleanParam::DrawDisplay() {
-  auto checkBox = new Gtk::CheckButton(name);
-  checkBox->set_active(GetValue());
-  checkBox->signal_clicked().connect([checkBox, this]() {
-    if (this->GetValue() != checkBox->get_active())
-      this->SetValue(checkBox->get_active());
-  });
-  checkBox->set_margin_start(20);
-  return checkBox;
-}
+void BooleanParam::drawDisplay() { ImGui::Checkbox(name.c_str(), &value); }
 
 } // namespace Axum::Parameter

@@ -69,7 +69,8 @@ std::string LogicGraph::DataTypeToGLSL(DataType d) {
 std::shared_ptr<std::string> LogicGraph::compileGL() {
   // TODO: Find better mechanics to transfer the generator to logic nodes
   std::shared_ptr<std::string> code = std::make_shared<std::string>();
-  std::vector<Node *> nodes = transverse();
+  std::vector<Node *> nodes{};
+  nodes = transverse();
   std::string &functionName = name.GetValue();
   functionName =
       functionName.replace(functionName.begin(), functionName.end(), ' ', '_');

@@ -13,18 +13,18 @@
 
 namespace Axum::Draw {
 
-void RenderEngine::Start() {}
+void RenderEngine::start() {}
 
-void RenderEngine::Display() {}
+void RenderEngine::display() {}
 
-void RenderEngine::Stop() {}
+void RenderEngine::stop() {}
 
-void RenderEngine::UpdateScene(ResourceType::Scene *Scene) {}
+void RenderEngine::updateScene(ResourceType::Scene *Scene) {}
 
-void RenderEngine::UpdateMaterial() {}
+void RenderEngine::updateMaterial() {}
 
-void RenderEngine::UpdateCamera(Parameter::ParamCollection *CameraParms) {}
+void RenderEngine::updateCamera(Parameter::ParamCollection *CameraParms) {}
 
-void RenderEngine::Resize(int Width, int Height) {}
+void RenderEngine::resize(int Width, int Height) {}
 
 } // namespace Axum::Draw

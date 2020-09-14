@@ -63,18 +63,6 @@ Folder *Folder::RemoveResource(unsigned int _uid) {
   return result;
 }
 
-void Folder::AppendToModel(Gtk::TreeIter row, Gtk::TreeStore *store) {
-  this->Resource::AppendToModel(row, store);
-  for (auto res : Resources) {
-    // Creates and passes sub-row to each resources
-    res->AppendToModel(store->append(row->children()), store);
-  }
-  for (auto &folder : SubFolders) {
-    // Creates and passes sub-row to each sub folders
-    folder.AppendToModel(store->append(row->children()), store);
-  }
-}
-
 void Folder::RemoveFolder(unsigned int _uid) {
   SubFolders.remove_if([_uid](Folder &folder) { return _uid == folder.uid; });
 }

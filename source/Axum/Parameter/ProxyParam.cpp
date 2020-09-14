@@ -2,13 +2,13 @@
 
 namespace Axum::Parameter {
 
-Gtk::Widget *ProxyParam::DrawEdit() { return parameter->DrawEdit(); }
+void ProxyParam::drawEdit() { return parameter->drawEdit(); }
 
-Gtk::Widget *ProxyParam::DrawDisplay() { return parameter->DrawDisplay(); }
+void ProxyParam::drawDisplay() { return parameter->drawDisplay(); }
 
 Param &ProxyParam::GetParam() { return *parameter; }
 
 ProxyParam::ProxyParam(std::string ID, Param *_parameter)
-    : parameter(_parameter), Param(ID,_parameter->name,_parameter->Group) {}
+    : parameter(_parameter), Param(ID, _parameter->name, _parameter->group) {}
 
 } // namespace Axum::Parameter

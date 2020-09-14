@@ -19,10 +19,10 @@ void PackageManager::LoadPackage(std::string Path) {
   if (ifs.good()) {
     try {
       boost::archive::text_iarchive ia(ifs);
-      Packages.push_back(ResourceType::Package(0));
-      ia >> Packages.back();
-      Packages.back().Path = Path;
-      Packages.back().uid = ++LastUID;
+      packages.push_back(ResourceType::Package(0));
+      ia >> packages.back();
+      packages.back().Path = Path;
+      packages.back().uid = ++LastUID;
     } catch (const std::exception &e) {
       AX_LOG_EDITOR_ERROR(e.what())
       return;
@@ -36,37 +36,33 @@ void PackageManager::LoadPackage(std::string Path) {
   auto end = std::chrono::steady_clock::now();
   AX_LOG_EDITOR_INFO(
       "Loaded package {0} in {1:d} milliseconds",
-      Packages.back().name.GetValue(),
+      packages.back().name.GetValue(),
       std::chrono::duration_cast<std::chrono::milliseconds>(end - start)
           .count())
 }
 
-void PackageManager::LoadPackage(const Glib::RefPtr<Gio::File> file) {
-  LoadPackage(file->get_path());
-}
-
 void PackageManager::SavePackage(ResourceType::Package &pkg, std::string Path) {
   auto start = std::chrono::steady_clock::now();
-  std::string SaveLocation = "";
+  std::string saveLocation{""};
   if (Path == "") {
     if (pkg.Path != "") {
-      SaveLocation = pkg.Path;
+      saveLocation = pkg.Path;
     } else {
       AX_LOG_EDITOR_WARN(
-          "Package has no path and path is not provided. Can't save a package,")
+          "Package has empty path and path is not provided. Can't save the package.")
       return;
     }
   } else {
-    SaveLocation = Path;
+    saveLocation = Path;
   }
-  std::ofstream ofs(SaveLocation);
+  std::ofstream ofs(saveLocation);
   if (ofs.bad()) {
     AX_LOG_EDITOR_WARN("Bad ofstream whiletrying to save package.")
     return;
   }
   boost::archive::text_oarchive oa(ofs);
   oa << pkg;
-  pkg.Path = SaveLocation;
+  pkg.Path = saveLocation;
   auto end = std::chrono::steady_clock::now();
   AX_LOG_EDITOR_INFO(
       "Saved package {0} in : {1:d} milliseconds", pkg.name.GetValue(),
@@ -79,16 +75,16 @@ void PackageManager::ClosePackage(ResourceType::Package &Pkg) {
 }
 
 void PackageManager::ClosePackage(unsigned int uid) {
-  Packages.remove_if(
+  packages.remove_if(
       [uid](ResourceType::Package &Pkg) { return uid == Pkg.uid; });
 }
 
 void PackageManager::CreatePackage(std::string Name) {
-  Packages.emplace_back(ResourceType::Package(++LastUID, Name));
+  packages.emplace_back(ResourceType::Package(++LastUID, Name));
 }
 
 ResourceType::Package &PackageManager::FindPackage(unsigned int uid) {
-  for (auto &pkg : Packages) {
+  for (auto &pkg : packages) {
     if (pkg.uid == uid) {
       return pkg;
     }

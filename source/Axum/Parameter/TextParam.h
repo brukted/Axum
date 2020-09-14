@@ -11,6 +11,7 @@
 #include <boost/serialization/split_member.hpp>
 #include <boost/serialization/string.hpp>
 #include <boost/serialization/version.hpp>
+#include <imgui_stdlib.h>
 #include <string>
 
 namespace Axum {
@@ -44,7 +45,7 @@ public:
   void SetValue(const char *_value);
 
 protected:
-  virtual Gtk::Widget *DrawDisplay() override;
+  virtual void drawDisplay() override;
 
 private:
   template <class Archive>

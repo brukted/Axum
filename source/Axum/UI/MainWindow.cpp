@@ -5,17 +5,20 @@
 
 #include "MainWindow.h"
 
-namespace Axum::UI::Window {
-
 /**
  * MainWindow implementation
  */
 
-MainWindow::MainWindow() {
-  this->set_position(Gtk::WindowPosition::WIN_POS_CENTER);
-  this->set_size_request(960, 540);
-  maximize();
-  add(dock);
-  show_all();
+namespace Axum::UI {
+void MainWindow::drawMenuBar() {}
+
+MainWindow::MainWindow() {}
+
+void MainWindow::draw() {
+  drawMenuBar();
+  outliner.draw();
+  paramEditor.draw();
+  textureViewer.draw();
 }
-}
+
+} // namespace Axum::UI

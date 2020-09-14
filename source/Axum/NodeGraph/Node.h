@@ -7,7 +7,7 @@
 #define _NODE_H
 
 #include "InputSocket.h"
-#include "Log.h"
+#include "Utils/Log/Log.h"
 #include "OutputSocket.h"
 #include "Utils/Serialization/GUIInfo.h"
 #include <boost/serialization/access.hpp>
@@ -36,7 +36,10 @@ public:
    * Contains the GUI information of the node
    **/
   Utils::GUIInfo mGUIInfo;
-  // Pointer to parent graph
+  /**
+   * @brief Pointer to parent graph
+   * 
+   */
   Graph *parentGraph = nullptr;
   /**
    * Unique identifer of the node in the graph
@@ -49,9 +52,9 @@ protected:
    * Name of the node to be displayed on the ui.
    */
   std::string UIName;
-  std::vector<InputSocket> mInputSockets;
-  std::vector<OutputSocket> mOutputSockets;
-  bool NeedUpdate = true;
+  std::vector<InputSocket> mInputSockets{};
+  std::vector<OutputSocket> mOutputSockets{};
+  bool needUpdate = true;
 
 public:
   /**
@@ -116,9 +119,9 @@ private:
 
   // Getter and setters
 public:
-  bool GetNeedUpdate() const { return NeedUpdate; }
+  bool GetNeedUpdate() const { return needUpdate; }
 
-  void SetNeedUpdate(bool _NeedUpdate) { this->NeedUpdate = _NeedUpdate; }
+  void SetNeedUpdate(bool _NeedUpdate) { this->needUpdate = _NeedUpdate; }
 
   unsigned int GetUID() const { return uid; }
 
