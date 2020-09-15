@@ -7,6 +7,7 @@
 #define _WINDOWMANAGER_H
 
 #include "UI/MainWindow.h"
+#include "UI/Widgets/imnodes/imnodes.h"
 #include "Utils/Log/Log.h"
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
@@ -15,8 +16,7 @@
                           // multiple definition errors.
 #include <GLFW/glfw3.h>
 #include <glbinding/gl/gl.h>
-#include <glbinding/glbinding.h> // Initialize with glbinding::initialize()
-#include <vector>
+#include <glbinding/glbinding.h>
 
 namespace Axum::Manager {
 class WindowManager {

@@ -176,6 +176,8 @@ list(APPEND sources
     UI/Widgets/OutputSocketUI.cpp
     UI/Widgets/Dialogs.h
     UI/Widgets/Dialogs.cpp
+    UI/Widgets/imnodes/imnodes.h
+    UI/Widgets/imnodes/imnodes.cpp
     #Function Graph Related UI elements
     UI/Widgets/Function/FunGraphUI.h
     UI/Widgets/Function/FunGraphUI.cpp
