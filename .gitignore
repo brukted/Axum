@@ -3,6 +3,9 @@ art/*
 *.DS_Store
 *.clangtidy
 
+#ImGui Config file
+imgui.ini
+
 #External project download
 .external/
 
@@ -11,6 +14,7 @@ art/*
 
 # Visual Studio 2019 cache/options directory
 .vs/
+CMakeSettings.json
 
 # Compiled Object files
 *.slo
