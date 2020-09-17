@@ -14,7 +14,7 @@
 #include "Utils/Log/Log.h"
 #include <string>
 #include <vector>
-#define _(text) text
+#include "Utils/Translation/Translation.h"
 
 namespace Axum::UI {
 namespace Editor {

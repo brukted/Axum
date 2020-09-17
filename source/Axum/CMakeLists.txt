@@ -214,6 +214,9 @@ list(APPEND sources
     #Runtime path utilities
     Utils/PathUtils/PathUtils.h
     Utils/PathUtils/PathUtils.cpp
+    #Translation
+    Utils/Translation/Translation.h
+    Utils/Translation/Translation.cpp
 )
 
 if(OPTION_WITH_CYCLES)

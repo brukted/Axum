@@ -7,7 +7,7 @@
 #define _TEXTURE_VIEWER_H
 
 #include "../Editor.h"
-#define _(text) text
+#include "Utils/Translation/Translation.h"
 
 namespace Axum::UI {
 namespace Editor {

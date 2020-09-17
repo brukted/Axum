@@ -10,7 +10,7 @@
 #include <imgui.h>
 #include <imgui_stdlib.h>
 #include <string>
-#define _(text) text
+#include "Utils/Translation/Translation.h"
 
 namespace Axum::UI::Widget {
 

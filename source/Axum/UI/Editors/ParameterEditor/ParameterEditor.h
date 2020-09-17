@@ -11,7 +11,7 @@
 #include "Parameter/Param.h"
 #include <list>
 #include <vector>
-#define _(text) text
+#include "Utils/Translation/Translation.h"
 
 namespace Axum::UI {
 namespace Editor {

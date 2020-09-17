@@ -8,7 +8,7 @@
 
 #include <imgui.h>
 #include <string>
-#define _(text) text
+#include "Utils/Translation/Translation.h"
 
 namespace Axum {
 namespace UI {

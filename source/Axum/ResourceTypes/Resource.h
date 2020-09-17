@@ -14,7 +14,7 @@
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
 #include <string>
-#define _(text) text
+#include "Utils/Translation/Translation.h"
 
 namespace Axum {
 namespace ResourceType {
