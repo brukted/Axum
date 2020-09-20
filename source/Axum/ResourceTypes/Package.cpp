@@ -146,8 +146,8 @@ Resource &Package::FindResource(unsigned int _uid) {
 }
 
 Folder *Package::RemoveResource(Resource &resource) {
-  AX_CORE_ASSERT((resource.type) != ResourceType::Resource::Type::Folder);
-  AX_CORE_ASSERT((resource.type) != ResourceType::Resource::Type::Generic);
+  assert(((resource.type) != ResourceType::Resource::Type::Folder));
+  assert(((resource.type) != ResourceType::Resource::Type::Generic));
   auto resUID = resource.uid;
   switch (resource.type) {
   case ResourceType::Resource::Type::Package: {
