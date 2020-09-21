@@ -10,19 +10,14 @@
  */
 
 namespace Axum::Parameter {
+TextParam::TextParam(std::string_view ID, std::string_view value,
+                     std::string_view name, std::string_view description)
+    : Param(ID, name, description), value(value) {}
 
-void TextParam::drawDisplay() { ImGui::InputText(name.c_str(), &value); }
+void TextParam::drawDisplay() { ImGui::InputText(name.c_str(), &value);}
 
-TextParam::TextParam(std::string ID, std::string &_name, std::string &_value)
-    : value(_value), Param(ID, _name, "") {}
+std::string_view TextParam::getValue() { return value; }
 
-TextParam::TextParam(std::string ID, const char *_name, const char *_value)
-    : value(_value), Param(ID, _name, "") {}
-
-std::string &TextParam::GetValue() { return value; }
-
-void TextParam::SetValue(std::string &_value) { value = _value; }
-
-void TextParam::SetValue(const char *_value) { value.assign(_value); }
+void TextParam::setValue(std::string_view value) { this->value = value; }
 
 } // namespace Axum::Parameter

@@ -11,15 +11,13 @@
 
 namespace Axum::Parameter {
 
-BooleanParam::BooleanParam(std::string ID, std::string &_name, bool _value)
-    : value(_value), Param(ID, _name, "") {}
+BooleanParam::BooleanParam(std::string_view ID, bool value, std::string_view name,
+                           std::string_view description)
+    : Param(ID, name, description), value(value) {}
 
-BooleanParam::BooleanParam(std::string ID, const char *_name, bool _value)
-    : value(_value), Param(ID, _name, "") {}
+bool BooleanParam::getValue() const { return value; }
 
-bool BooleanParam::GetValue() const { return this->value; }
-
-void BooleanParam::SetValue(bool _value) { this->value = _value; }
+void BooleanParam::setValue(bool value) { this->value = value; }
 
 void BooleanParam::drawDisplay() { ImGui::Checkbox(name.c_str(), &value); }
 

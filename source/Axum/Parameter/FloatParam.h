@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#ifndef _FLOATPARAM_H
-#define _FLOATPARAM_H
+#ifndef _AXUM_PARAMETER_FLOAT_PARAM_H
+#define _AXUM_PARAMETER_FLOAT_PARAM_H
 
 #include "Param.h"
 #include <boost/serialization/access.hpp>
@@ -22,16 +22,15 @@ private:
   float value;
 
 public:
-  FloatParam(std::string ID, std::string &_name, float _value);
+  FloatParam(std::string_view ID, float value, std::string_view name = "",
+             std::string_view description = "");
 
-  FloatParam(std::string ID, const char *_name, float _value);
+  float getValue() const;
 
-  float GetValue() const;
-
-  void SetValue(float _value);
+  void setValue(float value);
 
 protected:
-  virtual void  drawDisplay() override;
+  virtual void drawDisplay() override;
 
 private:
   template <class Archive>
@@ -49,4 +48,4 @@ private:
 } // namespace Parameter
 } // namespace Axum
 BOOST_CLASS_VERSION(Axum::Parameter::FloatParam, 1)
-#endif //_FLOATPARAM_H
+#endif //_AXUM_PARAMETER_FLOAT_PARAM_H

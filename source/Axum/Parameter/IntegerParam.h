@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#ifndef _INTEGERPARAM_H
-#define _INTEGERPARAM_H
+#ifndef _AXUM_PARAMETER_INTEGER_PARAM_H
+#define _AXUM_PARAMETER_INTEGER_PARAM_H
 
 #include "Param.h"
 #include "boost/serialization/access.hpp"
@@ -21,15 +21,14 @@ private:
   int value;
 
 public:
-  IntegerParam(std::string ID, std::string &_name, int _value);
+  IntegerParam(std::string_view ID, int value,
+            std::string_view name = "", std::string_view description = "");
 
-  IntegerParam(std::string ID, const char *_name, int _value);
+  int getValue() const;
 
-  int GetValue() const;
+  void setValue(int value);
 
-  void SetValue(int _value);
-
-  void  drawDisplay() override;
+  void drawDisplay() override;
 
 private:
   template <class Archive>
@@ -48,4 +47,4 @@ private:
 } // namespace Parameter
 } // namespace Axum
 BOOST_CLASS_VERSION(Axum::Parameter::IntegerParam, 1)
-#endif //_INTEGERPARAM_H
+#endif //_AXUM_PARAMETER_INTEGER_PARAM_H

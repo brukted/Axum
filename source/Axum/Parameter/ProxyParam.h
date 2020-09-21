@@ -1,5 +1,5 @@
-#ifndef __PROXYPARAM_H__
-#define __PROXYPARAM_H__
+#ifndef _AXUM_PARAMETER_PROXY_PARAM_H__
+#define _AXUM_PARAMETER_PROXY_PARAM_H__
 
 #include "Param.h"
 
@@ -15,7 +15,7 @@ private:
   Param *parameter;
 
 public:
-  ProxyParam(std::string ID, Param *_parameter);
+  ProxyParam(std::string_view ID, Param *_parameter);
 
   /**
    * @brief Get the underlying parameter.
@@ -31,4 +31,4 @@ protected:
 };
 } // namespace Parameter
 } // namespace Axum
-#endif // __PROXYPARAM_H__
+#endif // _AXUM_PARAMETER_PROXY_PARAM_H__

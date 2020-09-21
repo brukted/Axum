@@ -12,14 +12,12 @@
 namespace Axum::Parameter {
 void IntegerParam::drawDisplay() { return; }
 
-IntegerParam::IntegerParam(std::string ID, std::string &_name, int _value)
-    : value(_value), Param(ID, _name, "") {}
+IntegerParam::IntegerParam(std::string_view ID, int value,
+                           std::string_view name, std::string_view description)
+    : Param(ID, name, description), value(value) {}
 
-IntegerParam::IntegerParam(std::string ID, const char *_name, int _value)
-    : value(_value), Param(ID, _name, "") {}
+int IntegerParam::getValue() const { return value; }
 
-int IntegerParam::GetValue() const { return this->value; }
-
-void IntegerParam::SetValue(int _value) { this->value = _value; }
+void IntegerParam::setValue(int value) { this->value = value; }
 
 } // namespace Axum::Parameter

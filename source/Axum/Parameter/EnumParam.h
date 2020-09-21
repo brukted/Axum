@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#ifndef _ENUMPARAM_H
-#define _ENUMPARAM_H
+#ifndef _AXUM_PARAMETER_ENUM_PARAM_H
+#define _AXUM_PARAMETER_ENUM_PARAM_H
 
 #include "Param.h"
 #include "boost/serialization/access.hpp"
@@ -37,14 +37,15 @@ public:
    * @param _enums Map of possible values.
    * @param _value Default intValue for the parameter.
    */
-  EnumParam(std::string ID, std::string _name,
-            std::map<int, std::string> _enums, int _value = 0);
+  EnumParam(std::string_view ID, std::map<int, std::string> enums,
+            int value, std::string_view name = "",
+            std::string_view description = "");
 
-  int GetValue() const { return intValue; };
+  int getValue() const { return intValue; };
 
-  void SetValue(int const key);
+  void setValue(int const key);
 
-  std::string &ToString(int const key);
+  std::string &toString(int const key);
 
 protected:
   virtual void drawDisplay() override;
@@ -65,4 +66,4 @@ private:
 } // namespace Parameter
 } // namespace Axum
 BOOST_CLASS_VERSION(Axum::Parameter::EnumParam, 1)
-#endif //_ENUMPARAM_H
+#endif //_AXUM_PARAMETER_ENUM_PARAM_H

@@ -1,19 +1,16 @@
 #include "BooleanParam.h"
 #include "EnumParam.h"
-#include "Float2Param.h"
-#include "Float3Param.h"
-#include "Float4Param.h"
 #include "FloatParam.h"
-#include "Integer2Param.h"
-#include "Integer3Param.h"
-#include "Integer4Param.h"
+#include "FloatVectorParam.h"
 #include "IntegerParam.h"
+#include "IntegerVectorParam.h"
 #include "Param.h"
 #include "ParamCollection.h"
 #include "ProxyParam.h"
 #include "TextParam.h"
 #include <list>
 #include <vector>
+
 
 /**
  * @brief Adds a method to pass parameters easily by bundling them into a

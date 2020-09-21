@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#ifndef _TEXTPARAM_H
-#define _TEXTPARAM_H
+#ifndef _AXUM_PARAMETER_TEXT_PARAM_H
+#define _AXUM_PARAMETER_TEXT_PARAM_H
 
 #include "Param.h"
 #include <boost/serialization/access.hpp>
@@ -24,25 +24,17 @@ private:
   std::string value;
 
 public:
-  TextParam(std::string ID, std::string &_name, std::string &_value);
+  TextParam(std::string_view ID, std::string_view value,
+            std::string_view name = "", std::string_view description = "");
 
-  TextParam(std::string ID, const char *_name, const char *_value);
-
-  std::string &GetValue();
-
-  /**
-   * @brief Set the value of the parameter.
-   *
-   * @param _value New value.
-   */
-  void SetValue(std::string &_value);
+  std::string_view getValue();
 
   /**
    * @brief Set the value of the parameter.
    *
-   * @param _value New value.
+   * @param value New value.
    */
-  void SetValue(const char *_value);
+  void setValue(std::string_view value);
 
 protected:
   virtual void drawDisplay() override;
@@ -64,4 +56,4 @@ private:
 } // namespace Parameter
 } // namespace Axum
 BOOST_CLASS_VERSION(Axum::Parameter::TextParam, 1)
-#endif //_TEXTPARAM_H
+#endif //_AXUM_PARAMETER_TEXT_PARAM_H

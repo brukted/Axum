@@ -3,35 +3,46 @@
  * @author Bruk Tedla
  */
 
-#ifndef _PARAMCOLLECTION_H
-#define _PARAMCOLLECTION_H
+#ifndef _AXUM_PARAMETER_PARAM_COLLECTION_H
+#define _AXUM_PARAMETER_PARAM_COLLECTION_H
 
-#include "Utils/Log/Log.h"
 #include "Param.h"
+#include "Utils/Log/Log.h"
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/split_member.hpp>
+#include <boost/serialization/unique_ptr.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
+#include <boost/serialization/shared_ptr.hpp>
 #include <list>
-#include <stdarg.h>
+#include <memory>
 
 namespace Axum {
 namespace Parameter {
 
 class ParamCollection : public Param {
+private:
   friend class boost::serialization::access;
 
-protected:
-  ParamCollection(){};
-
 public:
-  std::list<Param> Params;
-  ParamCollection(std::string ID, const char *_name,
-                  std::list<Param> params = {});
+  ParamCollection(){};
+  std::vector<std::shared_ptr<Param>> params;
 
-  ParamCollection(std::string ID, std::string &_name,
-                  std::list<Param> params = {});
+  /**
+   * @brief Construct a new Param Collection object
+   *
+   * @param ID Identifier of the parameter for logging.
+   * @param name Ui name of the parameter
+   * @param params Parameters contained in this collection.
+   * @param description Ui tooltip for the parameter.
+   *
+   * @warning The life time of the parameters contained is managed by this
+   * parameter.Use proxy param if you want to use  the collection as grouping.
+   */
+  ParamCollection(std::string_view ID, std::string_view name = "",
+                  std::vector<Param *> params = {},
+                  std::string_view description = "");
 
   /**
    *@brief Finds a parameter.
@@ -40,16 +51,7 @@ public:
    * @return Param& Reference to the parameter if found.
    *
    */
-  Param &FindParameter(std::string &ID);
-
-  /**
-   *@brief Finds a parameter.
-   *
-   * @param ID ID of the parameter.
-   * @return Param& Reference to the parameter if found.
-   *
-   */
-  Param &FindParameter(const char *ID);
+  Param &findParameter(std::string_view ID);
 
   /**
    *@brief Finds a parameter and cast it to T type. Note: static cast is used to
@@ -59,8 +61,8 @@ public:
    * @return T& Reference to the parameter if found.
    *
    */
-  template <typename T> T &FindParameter(std::string &ID) {
-    return static_cast<T>(FindParameter(ID));
+  template <typename T> T &findParameter(std::string_view ID) {
+    return static_cast<T>(findParameter(ID));
   }
 
   /**
@@ -68,25 +70,25 @@ public:
    *
    * @param parameter
    */
-  void AddParameter(Param parameter);
+  void AddParameter(Param *parameter);
 
 protected:
-  virtual void  drawDisplay() override;
+  virtual void drawDisplay() override;
 
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &boost::serialization::base_object<Param>(*this);
-    ar &Params;
+    ar &params &lastUid;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &boost::serialization::base_object<Param>(*this);
-    ar &Params;
+    ar &params &lastUid;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
 } // namespace Parameter
 } // namespace Axum
 BOOST_CLASS_VERSION(Axum::Parameter::ParamCollection, 1)
-#endif //_PARAMCOLLECTION_H
+#endif //_AXUM_PARAMETER_PARAM_COLLECTION_H

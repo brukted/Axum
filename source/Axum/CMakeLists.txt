@@ -104,20 +104,12 @@ list(
   Parameter/BooleanParam.cpp
   Parameter/EnumParam.h
   Parameter/EnumParam.cpp
-  Parameter/Float2Param.h
-  Parameter/Float2Param.cpp
-  Parameter/Float3Param.h
-  Parameter/Float3Param.cpp
-  Parameter/Float4Param.h
-  Parameter/Float4Param.cpp
+  Parameter/FloatVectorParam.h
+  Parameter/FloatVectorParam.cpp
   Parameter/FloatParam.h
   Parameter/FloatParam.cpp
-  Parameter/Integer2Param.h
-  Parameter/Integer2Param.cpp
-  Parameter/Integer3Param.h
-  Parameter/Integer3Param.cpp
-  Parameter/Integer4Param.h
-  Parameter/Integer4Param.cpp
+  Parameter/IntegerVectorParam.h
+  Parameter/IntegerVectorParam.cpp
   Parameter/IntegerParam.h
   Parameter/IntegerParam.cpp
   Parameter/Param.h
@@ -128,6 +120,8 @@ list(
   Parameter/ProxyParam.cpp
   Parameter/TextParam.h
   Parameter/TextParam.cpp
+  Parameter/ParameterGroup.h
+  Parameter/ParameterGroup.cpp
   # Resource types
   ResourceTypes/ImageTexture.h
   ResourceTypes/ImageTexture.cpp

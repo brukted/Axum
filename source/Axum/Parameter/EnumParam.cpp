@@ -11,19 +11,20 @@
 
 namespace Axum::Parameter {
 
-EnumParam::EnumParam(std::string ID, std::string _name,
-                     std::map<int, std::string> _enums, int intValue)
-    : Param(ID, _name, ""), enums(_enums) {
-  this->intValue = intValue;
-  strValue = ToString(intValue);
+EnumParam::EnumParam(std::string_view ID, std::map<int, std::string> enums,
+                     int value, std::string_view name,
+                     std::string_view description)
+    : Param(ID, name, description), enums(enums) {
+  this->intValue = value;
+  strValue = toString(intValue);
 }
 
-void EnumParam::SetValue(int const key) {
+void EnumParam::setValue(int const key) {
   intValue = key;
-  strValue = ToString(key);
+  strValue = toString(key);
 }
 
-std::string &EnumParam::ToString(int const key) {
+std::string &EnumParam::toString(int const key) {
   return enums.find(key)->second;
 }
 
@@ -33,7 +34,7 @@ void EnumParam::drawDisplay() {
       bool isSelected = false;
       ImGui::Selectable(_enum.second.c_str(), &isSelected);
       if (isSelected) {
-        SetValue(_enum.first);
+        setValue(_enum.first);
       }
     }
     ImGui::EndCombo();

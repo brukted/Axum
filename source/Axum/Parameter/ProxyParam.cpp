@@ -8,7 +8,8 @@ void ProxyParam::drawDisplay() { return parameter->drawDisplay(); }
 
 Param &ProxyParam::GetParam() { return *parameter; }
 
-ProxyParam::ProxyParam(std::string ID, Param *_parameter)
-    : parameter(_parameter), Param(ID, _parameter->name, _parameter->group) {}
+ProxyParam::ProxyParam(std::string_view ID, Param *parameter)
+    : parameter(parameter), Param(ID, parameter->name, parameter->description) {
+}
 
 } // namespace Axum::Parameter

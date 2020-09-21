@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#ifndef _BOOLEANPARAM_H
-#define _BOOLEANPARAM_H
+#ifndef _AXUM_PARAMETER_BOOLEAN_PARAM_H
+#define _AXUM_PARAMETER_BOOLEAN_PARAM_H
 
 #include "Param.h"
 #include "boost/serialization/access.hpp"
@@ -15,21 +15,20 @@ namespace Axum {
 namespace Parameter {
 
 class BooleanParam : public Param {
-  friend class boost::serialization::access;
 private:
+  friend class boost::serialization::access;
   bool value;
 
 public:
-  BooleanParam(std::string ID, std::string &_name, bool _value);
+  BooleanParam(std::string_view ID, bool value = true, std::string_view name = "",
+               std::string_view description = "");
 
-  BooleanParam(std::string ID, const char *_name, bool _value);
+  bool getValue() const;
 
-  bool GetValue() const;
-
-  void SetValue(bool _value);
+  void setValue(bool value);
 
 protected:
-  virtual void  drawDisplay() override;
+  virtual void drawDisplay() override;
 
 private:
   template <class Archive>
@@ -47,4 +46,4 @@ private:
 } // namespace Parameter
 } // namespace Axum
 BOOST_CLASS_VERSION(Axum::Parameter::BooleanParam, 1)
-#endif //_BOOLEANPARAM_H
+#endif //_AXUM_PARAMETER_BOOLEAN_PARAM_H

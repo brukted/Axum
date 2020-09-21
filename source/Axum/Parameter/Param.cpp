@@ -12,11 +12,13 @@
 
 namespace Axum::Parameter {
 
-Param::Param(std::string ID, const std::string &_name, std::string group = "")
-    : ID(ID), name(_name), group(group) {}
-
-Param::Param(std::string ID, const char *_name, std::string group = "")
-    : ID(ID), name(_name), group(group) {}
+Param::Param(std::string_view ID, std::string_view name,
+             std::string_view description)
+    : ID(ID), name(name), description(description) {
+  // name should not be empty for proper ui event handling
+  if (name == "")
+    this->name = ID;
+}
 
 void Param::draw() {
   if (isEditMode)

@@ -3,8 +3,8 @@
  * @author Bruk Tedla
  */
 
-#ifndef _PARAM_H
-#define _PARAM_H
+#ifndef _AXUM_PARAMETER_PARAM_H
+#define _AXUM_PARAMETER_PARAM_H
 
 #include "Utils/Log/Log.h"
 #include <boost/serialization/access.hpp>
@@ -13,9 +13,10 @@
 #include <boost/serialization/string.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
-#include <string>
-#include <vector>
 #include <imgui.h>
+#include <string>
+#include <string_view>
+#include <vector>
 
 namespace Axum {
 namespace Parameter {
@@ -26,15 +27,8 @@ class Param {
   friend class boost::serialization::access;
   friend class ProxyParam;
 
-protected:
-  /**
-   * @brief Construct a new Param object with uid is equal to 0.
-   * Don't use if it's going to be added to Param Collection.
-   *
-   */
-  Param(){};
-
 public:
+  Param(){};
   /**
    * @brief Identifier of the parameter for programming and logging purpose.
    *
@@ -46,12 +40,15 @@ public:
    *
    */
   std::string name;
-  std::string group;
+  /**
+   * @brief Description of the parameter to show as tool tip in ui.
+   *
+   */
+  std::string description;
   bool isEditMode = false;
 
-  Param(std::string ID, const std::string &_name, std::string group);
-
-  Param(std::string ID, const char *_name, std::string group);
+  Param(std::string_view ID, std::string_view name,
+        std::string_view description);
 
   void draw();
 
@@ -62,11 +59,11 @@ protected:
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
-    ar &ID &name &isEditMode &group;
+    ar &ID &name &isEditMode &description;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
-    ar &ID &name &isEditMode &group;
+    ar &ID &name &isEditMode &description;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };
@@ -74,4 +71,4 @@ private:
 } // namespace Parameter
 } // namespace Axum
 BOOST_CLASS_VERSION(Axum::Parameter::Param, 1)
-#endif //_PARAM_H
+#endif //_AXUM_PARAMETER_PARAM_H
