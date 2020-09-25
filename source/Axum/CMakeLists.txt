@@ -9,6 +9,7 @@ find_package(imgui CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(glbinding CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
+find_package(unofficial-nativefiledialog CONFIG REQUIRED)
 
 #
 # Executable name and options
@@ -258,7 +259,8 @@ target_link_libraries(
           fmt::fmt-header-only
           glbinding::glbinding
           glfw
-          OpenImageIO::OpenImageIO)
+          OpenImageIO::OpenImageIO
+          unofficial::nativefiledialog::nfd)
 
 #
 # Compile definitions

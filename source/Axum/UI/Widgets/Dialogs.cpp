@@ -26,5 +26,40 @@ bool newImageTextureDialog(std::string &name, int &width, int &height,
   }
   return response;
 }
+bool nativeFileDialog(std::string &path, FileDialogMode mode,
+                      std::string_view defaultPath, std::string_view filters) {
+  nfdchar_t *nfdPath = nullptr;
+  nfdresult_t result;
+  if (mode == FileDialogMode::SAVE) {
+    result = NFD_SaveDialog(filters.data(), defaultPath.data(), &nfdPath);
+  } else if (mode == FileDialogMode::OPEN) {
+    result = NFD_OpenDialog(filters.data(), defaultPath.data(), &nfdPath);
+  } else {
+    result = NFD_PickFolder(defaultPath.data(), &nfdPath);
+  }
+  if (nfdPath != nullptr) {
+    path.assign(nfdPath);
+    delete[] nfdPath;
+  }
+  switch (result) {
+  case NFD_OKAY:
+    return true;
+    break;
+  case NFD_CANCEL:
+    return false;
+    break;
+  case NFD_ERROR: {
+    auto error = NFD_GetError();
+    AX_LOG_EDITOR_ERROR("File dialog error {}", error);
+    delete[] error;
+    return false;
+    break;
+  }
+  default:
+    AX_LOG_EDITOR_CRITICAL("Unkown result from file dialog")
+    return false;
+    break;
+  }
+}
 
 } // namespace Axum::UI::Widget
