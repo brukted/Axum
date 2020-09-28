@@ -7,7 +7,7 @@
 #define _WINDOWMANAGER_H
 
 #include "UI/MainWindow.h"
-#include "UI/Widgets/imnodes/imnodes.h"
+#include "imnodes.h"
 #include "Utils/Log/Log.h"
 #include <imgui.h>
 #include <imgui_impl_glfw.h>

@@ -173,8 +173,6 @@ list(
   UI/Widgets/OutputSocketUI.cpp
   UI/Widgets/Dialogs.h
   UI/Widgets/Dialogs.cpp
-  UI/Widgets/imnodes/imnodes.h
-  UI/Widgets/imnodes/imnodes.cpp
   # Function Graph Related UI elements
   UI/Widgets/Function/FunGraphUI.h
   UI/Widgets/Function/FunGraphUI.cpp
@@ -256,6 +254,7 @@ target_link_libraries(
           Boost::serialization
           spdlog::spdlog_header_only
           imgui::imgui
+          imnodes
           fmt::fmt-header-only
           glbinding::glbinding
           glfw
@@ -285,6 +284,7 @@ target_link_libraries(${target} PRIVATE ${DEFAULT_LINKER_OPTIONS})
 #
 
 add_dependencies(${target} Resources)
+add_dependencies(${target} imnodes)
 
 #
 # Target Health
