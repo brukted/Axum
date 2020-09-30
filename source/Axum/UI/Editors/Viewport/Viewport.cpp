@@ -11,6 +11,6 @@
 
 namespace Axum::UI::Editor {
 
-Viewport::Viewport() : Editor("Viewport", "Viewport") {}
+Viewport::Viewport() {}
 
 }

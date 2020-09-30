@@ -20,14 +20,12 @@ namespace Editor {
  *
  */
 class Editor {
-protected:
-  std::string name;
-  std::string longName;
-
 public:
   Editor();
-
-  Editor(std::string name, std::string longname);
+  /**
+   * @brief Draws UI using dear imgui.Called every frame.
+   *
+   */
   virtual void draw();
 };
 

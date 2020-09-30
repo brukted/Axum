@@ -11,7 +11,7 @@
 
 namespace Axum::UI::Editor {
 
-Outliner::Outliner() : Editor("Outliner", "Outliner") {}
+Outliner::Outliner() {}
 
 void Outliner::draw() {
   if (!ImGui::Begin(_("Outliner"), 0)) {

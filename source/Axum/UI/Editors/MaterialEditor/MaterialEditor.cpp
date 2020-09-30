@@ -11,7 +11,6 @@
 
 namespace Axum::UI::Editor {
 
-MaterialEditor::MaterialEditor()
-    : Editor("Material editor", "Material graph editor") {}
+MaterialEditor::MaterialEditor() {}
 
 } // namespace Axum::UI::Editor

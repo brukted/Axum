@@ -16,9 +16,6 @@ namespace Axum::UI::Editor {
 
 Editor::Editor() {}
 
-Editor::Editor(std::string name, std::string longname)
-    : name(name), longName(longname) {}
-
 void Editor::draw() { return; }
 
 } // namespace Axum::UI::Editor

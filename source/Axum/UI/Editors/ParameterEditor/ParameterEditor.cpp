@@ -10,6 +10,8 @@
  */
 
 namespace Axum::UI::Editor {
+ParameterEditor::ParameterEditor() {}
+
 std::vector<Parameter::Param *> ParameterEditor::boundParameters;
 
 void ParameterEditor::BindParam(Parameter::Param *param) {
@@ -23,9 +25,6 @@ void ParameterEditor::BindParams(std::vector<Parameter::Param *> params) {
 }
 
 void ParameterEditor::Unbind() { boundParameters.clear(); }
-
-ParameterEditor::ParameterEditor()
-    : Editor("Parameter Editor", "Parameter Editor") {}
 
 void ParameterEditor::draw() {
   ImGui::Begin(_("Parameter Editor"), 0);

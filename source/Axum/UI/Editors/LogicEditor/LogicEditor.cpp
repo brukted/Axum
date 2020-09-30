@@ -11,6 +11,6 @@
 
 namespace Axum::UI::Editor {
 
-LogicEditor::LogicEditor() : Editor("Logic editor", "Logic graph editor") {}
+LogicEditor::LogicEditor() {}
 
 } // namespace Axum::UI::Editor

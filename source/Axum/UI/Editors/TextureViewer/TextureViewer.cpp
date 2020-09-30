@@ -11,7 +11,7 @@
 
 namespace Axum::UI::Editor {
 
-TextureViewer::TextureViewer() : Editor("Texture Viewer", "Texture Viewer") {}
+TextureViewer::TextureViewer() {}
 
 void TextureViewer::draw() {
   if (!ImGui::Begin(_("Texture viewer"))) {
