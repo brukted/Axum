@@ -14,6 +14,7 @@ namespace Editor {
 class Viewport : public Editor {
 public:
   Viewport();
+  void draw() override;
 };
 
 } // namespace Editor

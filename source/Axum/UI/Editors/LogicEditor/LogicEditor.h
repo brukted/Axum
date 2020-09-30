@@ -14,6 +14,7 @@ namespace Editor {
 class LogicEditor : public Editor {
 public:
   LogicEditor();
+  void draw() override;
 };
 
 } // namespace Editor

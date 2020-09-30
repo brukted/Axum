@@ -89,6 +89,8 @@ public:
    * @param parent Directory to search assets in.
    */
   void discoverAssets(AssetItem &parent);
+
+  void draw() override;
 };
 
 } // namespace Editor

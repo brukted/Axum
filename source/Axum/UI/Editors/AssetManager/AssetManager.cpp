@@ -75,4 +75,12 @@ void AssetManager::discoverAssets(AssetItem &parent) {
   }
 }
 
+void AssetManager::draw() {
+  if (!ImGui::Begin(_("Asset Manager"))) {
+    ImGui::End();
+    return;
+  }
+  ImGui::End();
+}
+
 } // namespace Axum::UI::Editor
