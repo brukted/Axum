@@ -7,6 +7,7 @@
 #define _RESOURCE_H
 
 #include "Parameter/Parameter.h"
+#include "Utils/Translation/Translation.h"
 #include <boost/filesystem.hpp>
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/split_member.hpp>
@@ -14,14 +15,11 @@
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
 #include <string>
-#include "Utils/Translation/Translation.h"
 
 namespace Axum {
 namespace ResourceType {
 class Package;
 
-// @TODO Remove AppendToModel from resource and write it in outliner to remove
-// ui logic from the model
 class Resource {
   friend class boost::serialization::access;
 
@@ -37,7 +35,7 @@ public:
     MaterialGraph,
     LogicGraph
   };
-  enum PathType { Relative, Absolute};
+  enum PathType { Relative, Absolute };
 
   unsigned int uid = 0;
   bool isLinked = false;
@@ -50,24 +48,24 @@ public:
    *
    */
   std::string Path;
-  Parameter::TextParam name{"RESOURCE_ATTRIBUTES_NAME", _("Name"),
-                            _("Untitled Resource")};
-  Parameter::TextParam description{"RESOURCE_ATTRIBUTES_DESCRIPTION",
-                                   _("Description"), ""};
-  Parameter::TextParam category{"RESOURCE_ATTRIBUTES_CATEGORY", _("Category"),
-                                ""};
-  Parameter::TextParam label{"RESOURCE_ATTRIBUTES_LABEL", _("Label"), ""};
-  Parameter::TextParam author{"RESOURCE_ATTRIBUTES_AUTHOR", _("Author"), ""};
-  Parameter::TextParam authorUrl{"RESOURCE_ATTRIBUTES_URL", _("Author URL"),
-                                 ""};
-  Parameter::TextParam tags{"RESOURCE_ATTRIBUTES_TAGS", _("Tags"), ""};
+  Parameter::TextParam name{"RESOURCE_ATTRIBUTES_NAME", _("Untitled Resource"),
+                            _("Name")};
+  Parameter::TextParam description{"RESOURCE_ATTRIBUTES_DESCRIPTION", "",
+                                   _("Description")};
+  Parameter::TextParam category{"RESOURCE_ATTRIBUTES_CATEGORY", "",
+                                _("Category")};
+  Parameter::TextParam label{"RESOURCE_ATTRIBUTES_LABEL", "", _("Label")};
+  Parameter::TextParam author{"RESOURCE_ATTRIBUTES_AUTHOR", "", _("Author")};
+  Parameter::TextParam authorUrl{"RESOURCE_ATTRIBUTES_URL", "",
+                                 _("Author URL")};
+  Parameter::TextParam tags{"RESOURCE_ATTRIBUTES_TAGS", "", _("Tags")};
   Parameter::BooleanParam showInManager{"RESOURCE_ATTRIBUTES_SHOW_IN_MANAGER",
-                                        _("Show in asset manager"), true};
+                                        true, _("Show in asset manager"), ""};
   Parameter::EnumParam pathType{
-      "RESOURCE_ATTRIBUTES_PATH_TYPE", _("Path type"),
+      "RESOURCE_ATTRIBUTES_PATH_TYPE",
       std::map<int, std::string>{{(int)PathType::Relative, _("Relative")},
                                  {(int)PathType::Absolute, _("Absolute")}},
-      PathType::Absolute};
+      PathType::Absolute, _("Path type"), ""};
 
   Resource();
 

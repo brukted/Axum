@@ -6,8 +6,8 @@
 #ifndef _PACKAGEMANAGER_H
 #define _PACKAGEMANAGER_H
 
-#include "Utils/Log/Log.h"
 #include "ResourceTypes/Package.h"
+#include "Utils/Log/Log.h"
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/filesystem.hpp>
@@ -49,18 +49,18 @@ public:
 
   /**
    * @brief Remove the package from opened packages list.
-   * 
+   *
    * @param uid UID of the package to remove.
    *
    * @warning This doesn't check if the package is opened in editors.
    */
   void ClosePackage(unsigned int uid);
-  
+
   /**
    * @brief Remove the package from opened packages list.
-   * 
+   *
    * @param Pkg Package to remove.
-   * 
+   *
    * @warning This doesn't check if the package is opened in editors.
    */
   void ClosePackage(ResourceType::Package &Pkg);

@@ -13,7 +13,7 @@
 namespace Axum::Manager {
 
 void PreferenceManager::Startup() {
-  AX_LOG_EDITOR_TRACE("Loading preferences from {}", preferencesPath)
+  AX_LOG_EDITOR_INFO("Loading preferences from {}", preferencesPath)
   load();
 }
 
@@ -22,7 +22,7 @@ void PreferenceManager::Shutdown() {
 }
 
 void PreferenceManager::save() {
-  AX_LOG_EDITOR_TRACE("Saving preferences to {}", preferencesPath)
+  AX_LOG_EDITOR_INFO("Saving preferences to {}", preferencesPath)
   std::ofstream ofs{preferencesPath};
   pt::write_json(ofs, this->tree);
 }

@@ -10,8 +10,8 @@
 
 #include "Utils/Log/Log.h"
 #include "Utils/PathUtils/PathUtils.h"
-#include "boost/property_tree/json_parser.hpp"
-#include "boost/property_tree/ptree.hpp"
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
 #include <exception>
 #include <fmt/format.h>
 #include <fstream>
@@ -52,19 +52,19 @@ public:
 
   /**
    *@param path relative path to put the preference e.g: bakery.useGPU
-   *@param value value of the prefence to put
+   *@param value value of the preference to put
    **/
   template <typename T> void putPreference(std::string path, T value) {
     this->tree.put(path, value);
   }
   /**
    *@param path relative path to put the preference e.g: 3dview.HDRIpaths
-   *@param values values of the prefence to put
+   *@param values values of the preference to put
    **/
   template <typename T>
   void putPreferenceArray(std::string path, std::vector<T> values) {
-    for (const std::string &name : values) {
-      this->tree.add(path + ".item", name);
+    for (const T &value : values) {
+      this->tree.add(path + ".item", value);
     }
   }
   /**

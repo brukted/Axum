@@ -27,7 +27,8 @@ void WindowManager::Startup() {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // 3.2+ only
-  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Required on Mac
+  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,
+                 (int)(gl::GL_TRUE)); // Required on Mac
 #else
   const char *glsl_version = "#version 130";
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -52,11 +53,13 @@ void WindowManager::Startup() {
   imnodes::Initialize();
   ImGuiIO &io = ImGui::GetIO();
   (void)io;
-  io.ConfigFlags |=
-      ImGuiConfigFlags_NavEnableKeyboard; // Enable Keyboard Controls
-  // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad
-  // Controls io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           //
+  // Enable Keyboard Controls
+  io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+  // Enable Gamepad
+  // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+  // Controls
   // Enable Docking
+  // io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
   // io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
   // Enable Multi-Viewport / Platform Windows io.ConfigViewportsNoAutoMerge =
   // true; io.ConfigViewportsNoTaskBarIcon = true;
@@ -88,8 +91,6 @@ void WindowManager::Shutdown() {
 }
 
 void WindowManager::iterate() {
-  ImGuiIO &io = ImGui::GetIO();
-  (void)io;
   static ImVec4 clearColor = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
   // Poll and handle events (inputs, window resize, etc.)
   // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell

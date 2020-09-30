@@ -17,7 +17,7 @@ ImageTexture::ImageTexture(std::string &path, PathType _pathType)
 this->type = Type::ImageTexture;
 this->Path = path;
 isLinked = true;
-this->pathType.SetValue((int)_pathType);
+this->pathType.setValue((int)_pathType);
 auto input = OIIO::ImageInput::open(path);
 auto specs = input->spec();
 width = (unsigned int)specs.width;

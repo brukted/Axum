@@ -7,6 +7,7 @@
 #define _FOLDER_H
 
 #include "Resource.h"
+#include "Utils/Translation/Translation.h"
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/list.hpp>
@@ -15,7 +16,6 @@
 #include <boost/serialization/version.hpp>
 #include <list>
 #include <vector>
-#include "Utils/Translation/Translation.h"
 
 namespace Axum {
 namespace ResourceType {
@@ -24,7 +24,7 @@ class Folder : public Resource {
   friend class boost::serialization::access;
 
 private:
-  std::list<Resource *> Resources;
+  std::vector<Resource *> Resources;
   std::list<Folder> SubFolders;
   unsigned int LastUID = 0;
 
@@ -111,18 +111,27 @@ public:
 
   std::list<Folder> &GetSubFolders() { return SubFolders; }
 
-  std::list<Resource *> &GetResources() { return Resources; }
+  std::vector<Resource *> &GetResources() { return Resources; }
 
 private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &Resources &SubFolders &LastUID;
+    std::vector<unsigned int> resourceIDs;
+    for (auto *resource : Resources) {
+      resourceIDs.push_back(resource->uid);
+    }
+    ar &resourceIDs &SubFolders &LastUID;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &Resources &SubFolders &LastUID;
+    std::vector<unsigned int> resourceIDs;
+    ar &resourceIDs;
+    for (auto id : resourceIDs) {
+      Resources.push_back(&(package->FindResource(id)));
+    }
+    ar &SubFolders &LastUID;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

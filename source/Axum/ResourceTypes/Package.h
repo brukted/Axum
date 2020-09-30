@@ -14,9 +14,10 @@
 #include "ResourceTypes/Resource.h"
 #include "ResourceTypes/Scene.h"
 #include "ResourceTypes/VectorTexture.h"
-#include "Utils/Assert/Assert.h"
 #include "Utils/PathUtils/PathUtils.h"
+#include "Utils/Translation/Translation.h"
 #include <algorithm>
+#include <assert.h>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/base_object.hpp>
@@ -24,8 +25,8 @@
 #include <boost/serialization/split_member.hpp>
 #include <boost/serialization/version.hpp>
 #include <fstream>
+#include <stdlib.h>
 #include <vector>
-#include "Utils/Translation/Translation.h"
 
 namespace Axum {
 namespace ResourceType {
@@ -41,7 +42,7 @@ private:
   std::list<ResourceType::Scene> Scenes;
   std::list<ResourceType::VectorTexture> VectorTextures;
   std::list<ResourceType::Package> Packages;
-  Axum::ResourceType::Folder root;
+  Axum::ResourceType::Folder RootFolder;
   unsigned int LastUID = 0;
 
 public:
@@ -79,7 +80,7 @@ public:
   AddLogicGraph(NodeGraph::Logic::LogicGraph graph, Folder *folder = nullptr);
 
   /**
-   * @brief Add iamge texture to the package.
+   * @brief Add image texture to the package.
    *
    * @param texture Image texture to add.
    * @param folder Folder to add the resource to.
@@ -158,14 +159,49 @@ public:
    */
   Folder &GetRootFolder();
 
-  Package &operator=(const Package &pkg) = default;
-
   /**
-   * @brief Construct a copy. Update pointers in folders & resources.
+   * @warning This is defined only to make std::list work.
    *
    */
+  Package &operator=(const Package &pkg) {
+    AX_LOG_CORE_CRITICAL("Copy operator for package called")
+    assert(false);
+  };
   Package(Package const &rhs) {
-    *this = rhs;
+    AX_LOG_CORE_CRITICAL("Copy operator for package called")
+    assert(false);
+  };
+
+private:
+  template <class Archive>
+  void save(Archive &ar, const unsigned int version) const {
+    ar &boost::serialization::base_object<Resource>(*this);
+    ar &LastUID;
+    if (!isLinked)
+      ar &MaterialGraphs &LogicGraphs &Fonts &ImageTextures &Scenes
+          &VectorTextures &Packages &RootFolder;
+  }
+
+  template <class Archive> void load(Archive &ar, const unsigned int version) {
+    ar &boost::serialization::base_object<Resource>(*this);
+    ar &LastUID;
+    if (!isLinked) {
+      ar &MaterialGraphs &LogicGraphs &Fonts &ImageTextures &Scenes
+          &VectorTextures &Packages &RootFolder;
+    } else {
+      /// @brief formattedPath is a path with replaced internal dependency uri
+      /// with proper path eg: AX://test.pkg ->
+      /// $resourcesPath$/packages/test.pkg
+      std::string formattedPath = Path;
+      std::size_t i = formattedPath.find("AX://");
+      if (i != formattedPath.npos)
+        formattedPath.replace(i, 5, (Utils::PathUtils::resourcesPath + "/"));
+      std::ifstream ifs(std::move(formattedPath));
+      boost::archive::text_iarchive ia(ifs);
+      ia >> *this;
+      isLinked = true;
+    }
+    // Update package pointer for each resources and folders
     std::function<void(Folder &)> UpdatePkgForFolder = [&](Folder &folder) {
       folder.package = this;
       for (auto &subFolder : folder.GetSubFolders()) {
@@ -182,40 +218,7 @@ public:
     std::for_each(VectorTextures.begin(), VectorTextures.end(),
                   UpdatePackagePtr);
     std::for_each(Packages.begin(), Packages.end(), UpdatePackagePtr);
-    UpdatePkgForFolder(this->root);
-  }
-
-private:
-  template <class Archive>
-  void save(Archive &ar, const unsigned int version) const {
-    ar &boost::serialization::base_object<Resource>(*this);
-    ar &LastUID;
-    if (!isLinked)
-      ar &MaterialGraphs &LogicGraphs &Fonts &ImageTextures &Scenes
-          &VectorTextures &Packages &root;
-  }
-
-  template <class Archive> void load(Archive &ar, const unsigned int version) {
-    ar &boost::serialization::base_object<Resource>(*this);
-    ar &LastUID;
-    if (!isLinked) {
-      ar &MaterialGraphs &LogicGraphs &Fonts &ImageTextures &Scenes
-          &VectorTextures &Packages &root;
-    } else {
-      /**
-       * @brief formattedPath is a path with replaced internal dependency uri
-       * with proper path eg: AX://test.pkg -> $resourcesPath$/packages/test.pkg
-       *
-       */
-      std::string formattedPath = Path;
-      std::size_t i = formattedPath.find("AX://");
-      if (i != formattedPath.npos)
-        formattedPath.replace(i, 5, (Utils::PathUtils::resourcesPath + "/"));
-      std::ifstream ifs(std::move(formattedPath));
-      boost::archive::text_iarchive ia(ifs);
-      ia >> *this;
-      isLinked = true;
-    }
+    UpdatePkgForFolder(this->RootFolder);
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

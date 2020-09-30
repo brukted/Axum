@@ -19,53 +19,53 @@ void PackageManager::LoadPackage(std::string Path) {
   if (ifs.good()) {
     try {
       boost::archive::text_iarchive ia(ifs);
-      packages.push_back(ResourceType::Package(0));
+      packages.emplace_back(0);
       ia >> packages.back();
       packages.back().Path = Path;
       packages.back().uid = ++LastUID;
-    } catch (const std::exception &e) {
+    } catch (const boost::archive::archive_exception &e) {
       AX_LOG_EDITOR_ERROR(e.what())
       return;
     }
   } else {
-    AX_LOG_EDITOR_ERROR(
-        "Input file stream is bad maybe the file doesn't exist.")
-    throw "Bad input file stream";
+    AX_LOG_EDITOR_WARN("Input file stream is bad maybe the file doesn't exist.")
+    AX_LOG_EDITOR_WARN("Package loading failed.")
     return;
   }
   auto end = std::chrono::steady_clock::now();
   AX_LOG_EDITOR_INFO(
       "Loaded package {0} in {1:d} milliseconds",
-      packages.back().name.GetValue(),
+      packages.back().name.getValue(),
       std::chrono::duration_cast<std::chrono::milliseconds>(end - start)
           .count())
 }
 
-void PackageManager::SavePackage(ResourceType::Package &pkg, std::string Path) {
+void PackageManager::SavePackage(ResourceType::Package &pkg, std::string path) {
   auto start = std::chrono::steady_clock::now();
-  std::string saveLocation{""};
-  if (Path == "") {
-    if (pkg.Path != "") {
-      saveLocation = pkg.Path;
+  AX_LOG_EDITOR_INFO("Saving package {} uid {} to {}", pkg.name.getValue(),
+                     pkg.uid, path.c_str())
+  if (path.size() == 0) {
+    if (pkg.Path.size() != 0) {
+      path = pkg.Path;
     } else {
-      AX_LOG_EDITOR_WARN(
-          "Package has empty path and path is not provided. Can't save the package.")
+      AX_LOG_EDITOR_WARN("Package has empty path and path is not provided. "
+                         "Can't save the package.")
       return;
     }
-  } else {
-    saveLocation = Path;
   }
-  std::ofstream ofs(saveLocation);
+  std::ofstream ofs(path);
   if (ofs.bad()) {
-    AX_LOG_EDITOR_WARN("Bad ofstream whiletrying to save package.")
+    AX_LOG_EDITOR_WARN("Bad ofstream while trying to save package.")
+    AX_LOG_EDITOR_WARN("Package saving failed")
     return;
   }
   boost::archive::text_oarchive oa(ofs);
   oa << pkg;
-  pkg.Path = saveLocation;
+  pkg.Path = path;
   auto end = std::chrono::steady_clock::now();
   AX_LOG_EDITOR_INFO(
-      "Saved package {0} in : {1:d} milliseconds", pkg.name.GetValue(),
+      "Saved package {0} uid {1} in : {2:d} milliseconds", pkg.name.getValue(),
+      pkg.uid,
       std::chrono::duration_cast<std::chrono::milliseconds>(end - start)
           .count())
 }
@@ -79,8 +79,8 @@ void PackageManager::ClosePackage(unsigned int uid) {
       [uid](ResourceType::Package &Pkg) { return uid == Pkg.uid; });
 }
 
-void PackageManager::CreatePackage(std::string Name) {
-  packages.emplace_back(ResourceType::Package(++LastUID, Name));
+void PackageManager::CreatePackage(std::string name) {
+  packages.emplace_back(++LastUID, name);
 }
 
 ResourceType::Package &PackageManager::FindPackage(unsigned int uid) {

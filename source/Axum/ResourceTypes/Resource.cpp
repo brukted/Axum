@@ -21,7 +21,7 @@ void Resource::makeAbsolute(std::string &pkgPath) {
     auto absolute = boost::filesystem::absolute(currentPath, pkg.parent_path());
     Path.assign(absolute.string());
     // Set the path type in parameters to absolute
-    pathType.SetValue(PathType::Absolute);
+    pathType.setValue(PathType::Absolute);
   }
 }
 
@@ -33,7 +33,7 @@ void Resource::makeRelative(std::string &pkgPath) {
     auto relative = boost::filesystem::relative(currentPath, pkg.parent_path());
     Path.assign(relative.string());
     // Set the path type in parameters to relative
-    pathType.SetValue(PathType::Relative);
+    pathType.setValue(PathType::Relative);
   }
 }
 } // namespace Axum::ResourceType

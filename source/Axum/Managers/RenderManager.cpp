@@ -14,14 +14,8 @@
 
 namespace Axum::Manager{
 
-/**
- * @param *engine
- */
 void RenderManager::SetRenderEngine(Draw::RenderEngine *engine) {}
 
-/**
- * @param engine
- */
 void RenderManager::RegisterEngine(Draw::RenderEngine engine) {}
 
 void RenderManager::Startup() {}

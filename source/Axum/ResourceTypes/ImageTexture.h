@@ -75,7 +75,7 @@ private:
        auto input = OIIO::ImageInput::open(Path);
        if (!input) {
          AX_LOG_CORE_WARN("Can't load linked image texture {0}.",
-                          name.GetValue())
+                          name.getValue())
          std::fill(data.begin(), data.end(), 125);
        } else {
          input->read_image(OIIO::TypeDesc::UINT8, &data[0]);
