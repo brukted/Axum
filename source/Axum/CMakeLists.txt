@@ -80,10 +80,6 @@ list(
   NodeGraph/Node.cpp
   NodeGraph/OutputSocket.h
   NodeGraph/OutputSocket.cpp
-  NodeGraph/InputSockets/LogicInSocket.h
-  NodeGraph/InputSockets/LogicInSocket.cpp
-  NodeGraph/InputSockets/MaterialInSocket.h
-  NodeGraph/InputSockets/MaterialInSocket.cpp
   NodeGraph/Nodes/AtomicNodes.h
   NodeGraph/Nodes/AtomicNodes.cpp
   NodeGraph/Nodes/LogicNode.h
@@ -96,10 +92,6 @@ list(
   NodeGraph/Nodes/MaterialGraphInstanceNode.cpp
   NodeGraph/Nodes/MaterialNode.h
   NodeGraph/Nodes/MaterialNode.cpp
-  NodeGraph/OutputSockets/LogicOutSocket.h
-  NodeGraph/OutputSockets/LogicOutSocket.cpp
-  NodeGraph/OutputSockets/MaterialOutSocket.h
-  NodeGraph/OutputSockets/MaterialOutSocket.cpp
   # Parameters
   Parameter/BooleanParam.h
   Parameter/BooleanParam.cpp
@@ -161,50 +153,11 @@ list(
   UI/Editors/ParameterEditor/ParameterEditor.h
   UI/Editors/ParameterEditor/ParameterEditor.cpp
   # Widgets
-  UI/Widgets/GraphUI.h
-  UI/Widgets/GraphUI.cpp
-  UI/Widgets/InputSocketUI.h
-  UI/Widgets/InputSocketUI.cpp
-  UI/Widgets/NodeLinkUI.h
-  UI/Widgets/NodeLinkUI.cpp
-  UI/Widgets/NodeUI.h
-  UI/Widgets/NodeUI.cpp
-  UI/Widgets/OutputSocketUI.h
-  UI/Widgets/OutputSocketUI.cpp
   UI/Widgets/Dialogs.h
   UI/Widgets/Dialogs.cpp
-  # Function Graph Related UI elements
-  UI/Widgets/Function/FunGraphUI.h
-  UI/Widgets/Function/FunGraphUI.cpp
-  UI/Widgets/Function/FunInSocketUI.h
-  UI/Widgets/Function/FunInSocketUI.cpp
-  UI/Widgets/Function/FunNodeLinkUI.h
-  UI/Widgets/Function/FunNodeLinkUI.cpp
-  UI/Widgets/Function/FunNodeUI.h
-  UI/Widgets/Function/FunNodeUI.cpp
-  UI/Widgets/Function/FunOutSocketUI.h
-  UI/Widgets/Function/FunOutSocketUI.cpp
-  # Material Graph related UI elements
-  UI/Widgets/Material/MatGraphUI.h
-  UI/Widgets/Material/MatGraphUI.cpp
-  UI/Widgets/Material/MatInSocketUI.h
-  UI/Widgets/Material/MatInSocketUI.cpp
-  UI/Widgets/Material/MatNodeLinkUI.h
-  UI/Widgets/Material/MatNodeLinkUI.cpp
-  UI/Widgets/Material/MatNodeUI.h
-  UI/Widgets/Material/MatNodeUI.cpp
-  UI/Widgets/Material/MatOutSocketUI.h
-  UI/Widgets/Material/MatOutSocketUI.cpp
-  # Utilities Serialization Utilities
-  Utils/Serialization/Connection.h
-  Utils/Serialization/Connection.cpp
-  Utils/Serialization/GUIInfo.h
   # Logging Utilities
   Utils/Log/Log.h
   Utils/Log/Log.cpp
-  # Custom assertion Utilities
-  Utils/Assert/Assert.h
-  Utils/Assert/Assert.cpp
   # Runtime path utilities
   Utils/PathUtils/PathUtils.h
   Utils/PathUtils/PathUtils.cpp
