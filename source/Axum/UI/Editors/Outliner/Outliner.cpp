@@ -20,13 +20,17 @@ void Outliner::draw() {
   }
   mainContextMenu();
 
-  ///@TODO make the lambdas static
-  auto appendResource = [this](ResourceType::Resource *res) {
-    bool open = ImGui::TreeNode((void *)res, res->name.GetValue().c_str());
-    showRowContextMenu(res);
+  /// TODO make the lambdas static
+  auto appendResource = [this](ResourceType::Resource *resource) {
+    bool open =
+        ImGui::TreeNode((void *)resource, resource->name.getValue().data());
+    showRowContextMenu(resource);
     if (open) {
       if (ImGui::IsItemActivated()) {
-        ParameterEditor::BindParams(res->Params());
+        ParameterEditor::BindParams(resource->Params());
+      }
+      if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left)) {
+        openResource(resource);
       }
       ImGui::TreePop();
     }
@@ -35,7 +39,7 @@ void Outliner::draw() {
   std::function<void(ResourceType::Folder *)> appendFolder =
       [&appendResource, &appendFolder, this](ResourceType::Folder *folder) {
         bool open =
-            ImGui::TreeNode((void *)folder, folder->name.GetValue().c_str());
+            ImGui::TreeNode((void *)folder, folder->name.getValue().data());
         showRowContextMenu(folder);
         if (open) {
           if (ImGui::IsItemActivated()) {
@@ -52,7 +56,7 @@ void Outliner::draw() {
       };
 
   for (auto &pkg : Package_Manager.packages) {
-    bool open = ImGui::TreeNode((void *)&pkg, pkg.name.GetValue().c_str());
+    bool open = ImGui::TreeNode((void *)&pkg, pkg.name.getValue().data());
     bool isDeleted = showRowContextMenu(&pkg);
     if (open) {
       if (ImGui::IsItemActivated()) {
@@ -68,10 +72,15 @@ void Outliner::draw() {
     }
   }
   ImGui::End();
+}
 
-} // namespace Axum::UI::Editor
-
-void Outliner::openPackage() {}
+void Outliner::openPackage() {
+  std::string path;
+  if (Widget::nativeFileDialog(path, Widget::FileDialogMode::OPEN, "",
+                               "axpkg")) {
+    Package_Manager.LoadPackage(path);
+  }
+}
 
 bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
   bool isDeleted = false;
@@ -80,10 +89,12 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
       auto package = static_cast<ResourceType::Package *>(resource);
       if (ImGui::BeginMenu(_("New"))) {
         if (ImGui::Button(_("Material graph"))) {
-          package->AddMaterialGraph(NodeGraph::Material::MaterialGraph());
+          NodeGraph::Material::MaterialGraph graph;
+          package->AddMaterialGraph(std::move(graph));
         }
         if (ImGui::Button(_("Logic graph"))) {
-          package->AddLogicGraph(NodeGraph::Logic::LogicGraph());
+          NodeGraph::Logic::LogicGraph graph;
+          package->AddLogicGraph(std::move(graph));
         }
         if (ImGui::Button(_("Image texture"))) {
           ImGui::OpenPopup("Create image texture");
@@ -93,10 +104,12 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
           static float colorVec4[4] = {0.4f, 0.7f, 0.0f, 0.5f};
           static std::string name{"texture"};
           if (Widget::newImageTextureDialog(name, width, height, colorVec4)) {
-            unsigned char color[] = {colorVec4[0] * 255, colorVec4[1] * 255,
-                                     colorVec4[2] * 255, colorVec4[3] * 255};
+            unsigned char color[] = {(unsigned char)colorVec4[0] * 255,
+                                     (unsigned char)colorVec4[1] * 255,
+                                     (unsigned char)colorVec4[2] * 255,
+                                     (unsigned char)colorVec4[3] * 255};
             auto texture = ResourceType::ImageTexture{width, height, color};
-            texture.name.SetValue(name);
+            texture.name.setValue(name);
             package->AddImageTexture(std::move(texture));
           }
         }
@@ -106,22 +119,28 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
         ImGui::EndMenu();
       }
       if (ImGui::BeginMenu(_("Import"))) {
-        /// @TODO add items to import menu  in  folder and package
+        /// TODO add items to import menu  in  folder and package
         ImGui::EndMenu();
       }
       ImGui::Separator();
-      ///   @TODO Disable widgets instade of not adding
-      if (resource->Path != "") {
+      ///   TODO Disable widgets instade of not adding
+      if (resource->Path.size() != 0) {
         if (ImGui::Button(_("Reload")))
-          isDeleted = false; /// @TODO Implement reload for package
+          isDeleted = false; /// TODO Implement reload for package
         if (ImGui::Button(_("Save")))
           Package_Manager.SavePackage(*package);
       }
       if (ImGui::Button(_("Save as"))) {
-        /// @TODO Implement save as for package
+        std::string path;
+        if (Widget::nativeFileDialog(path, Widget::FileDialogMode::SAVE,
+                                     package->Path, "axpkg")) {
+          boost::filesystem::path bp(path);
+          bp.replace_extension(".axpkg");
+          Package_Manager.SavePackage(*package, bp.string());
+        }
       }
       ImGui::Separator();
-      /// @TODO Implement paste resource for package
+      /// TODO Implement paste resource for package
       // ImGui::Button(_("Paste"));
       if (ImGui::Button(_("Close"))) {
         Package_Manager.ClosePackage(package->uid);
@@ -132,11 +151,12 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
       auto folder = static_cast<ResourceType::Folder *>(resource);
       if (ImGui::BeginMenu(_("New"))) {
         if (ImGui::Button(_("Material graph"))) {
-          package->AddMaterialGraph(NodeGraph::Material::MaterialGraph(),
-                                    folder);
+          NodeGraph::Material::MaterialGraph graph;
+          package->AddMaterialGraph(std::move(graph), folder);
         }
         if (ImGui::Button(_("Logic graph"))) {
-          package->AddLogicGraph(NodeGraph::Logic::LogicGraph(), folder);
+          NodeGraph::Logic::LogicGraph graph;
+          package->AddLogicGraph(std::move(graph), folder);
         }
         if (ImGui::Button(_("Image texture"))) {
           ImGui::OpenPopup("Create image texture");
@@ -149,7 +169,7 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
             unsigned char color[] = {colorVec4[0] * 255, colorVec4[1] * 255,
                                      colorVec4[2] * 255, colorVec4[3] * 255};
             auto texture = ResourceType::ImageTexture{width, height, color};
-            texture.name.SetValue(name);
+            texture.name.setValue(name);
             package->AddImageTexture(std::move(texture), folder);
           }
         }
@@ -159,11 +179,11 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
         ImGui::EndMenu();
       }
       if (ImGui::BeginMenu(_("Import"))) {
-        /// @TODO add items to import menu  in  folder and package
+        /// TODO add items to import menu  in  folder and package
         ImGui::EndMenu();
       }
       ImGui::Separator();
-      /// @TODO Implement copy and paste for folder
+      /// TODO Implement copy and paste for folder
       if (ImGui::Button(_("Paste"))) {
       }
       if (ImGui::Button(_("Copy"))) {
@@ -174,7 +194,9 @@ bool Outliner::showRowContextMenu(ResourceType::Resource *resource) {
       }
     } else {
       if (!(resource->type == ResourceType::Resource::Type::Font)) {
-        ImGui::Button(_("Open"));
+        if (ImGui::Button(_("Open"))) {
+          openResource(resource);
+        }
       }
       if (ImGui::Button(_("Copy"))) {
       }
@@ -198,6 +220,13 @@ void Outliner::mainContextMenu() {
     if (ImGui::Selectable(_("Open Package")))
       openPackage();
     ImGui::EndPopup();
+  }
+}
+
+void Outliner::openResource(ResourceType::Resource *resource) {
+  if (resource->type == ResourceType::Resource::Type::MaterialGraph) {
+    auto *graph = static_cast<NodeGraph::Material::MaterialGraph *>(resource);
+    MaterialEditor::openGraph(graph);
   }
 }
 
