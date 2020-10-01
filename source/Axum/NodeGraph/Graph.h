@@ -6,46 +6,57 @@
 #ifndef _GRAPH_H
 #define _GRAPH_H
 
-#include "Utils/Log/Log.h"
+#include "Link.h"
 #include "Node.h"
+#include "NodeGraphHelpers.h"
 #include "ResourceTypes/Resource.h"
-#include "Utils/Serialization/Connection.h"
+#include "Utils/Log/Log.h"
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/base_object.hpp>
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/split_member.hpp>
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/unique_ptr.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
-#include <deque>
 #include <list>
 #include <memory>
 #include <vector>
 
 namespace Axum {
+namespace UI::Editor {
+class MaterialEditor;
+};
+
 namespace NodeGraph {
 
 class Graph : public ResourceType::Resource {
   friend class boost::serialization::access;
+  friend class UI::Editor::MaterialEditor;
 
 protected:
-  std::list<Node> mNodes;
+  std::vector<std::unique_ptr<Node>> mNodes;
+  std::vector<Link> links;
+  int lastNodeUID = INT_MIN;
+  int lastSocketUID = INT_MIN;
+  int lastLinkUID = INT_MIN;
 
 public:
   Graph(){};
 
   /**
-   * @brief Get the Node with uid = @a _uid
+   * @brief Get the Node with uid = @a uid
    *
-   * @param _uid uid of the node to find
-   * @return Node& reference to the node with uid = @a _uid
+   * @param uid uid of the node to find
+   * @return Node& reference to the node with uid = @a uid
    */
-  Node &GetNode(unsigned int _uid);
+  Node &GetNode(int uid);
 
-  std::list<Node>::iterator GetNodeIterator(unsigned int _uid);
+  std::vector<std::unique_ptr<Node>> const &getNodes();
 
-  void AddNode(Node n);
+  void AddNode(Node *node);
 
-  void DeleteNode(unsigned int _uid);
+  void DeleteNode(int uid);
 
   /**
    * @brief Transverses the node graph into a sequence.
@@ -58,30 +69,14 @@ private:
   template <class Archive>
   void save(Archive &ar, const unsigned int version) const {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &uid;
-    ar &mNodes;
-    std::vector<Utils::Connection> connections;
-    for (Node const &node : mNodes) {
-      for (OutputSocket const &OutSock : node.mOutputSockets) {
-        for (auto InSock : OutSock.LinkedSockets) {
-          connections.push_back(Utils::Connection(
-              node.uid, OutSock.uid, InSock->ParentNode->uid,
-              InSock->GetUID()));
-        }
-      }
-    }
-    ar &connections;
+    ar &uid &mNodes &links &lastNodeUID &lastSocketUID &lastLinkUID;
   }
 
   template <class Archive> void load(Archive &ar, const unsigned int version) {
     ar &boost::serialization::base_object<Resource>(*this);
-    ar &uid;
-    ar &mNodes;
-    std::vector<Utils::Connection> connections;
-    ar &connections;
-    for (auto &con : connections) {
-      auto destSoc = GetNode(con.ToNode).GetInputSocket(con.ToSocket);
-      GetNode(con.FromNode).GetOutputSocket(con.FromSocket).LinkTo(&destSoc);
+    ar &uid &mNodes &links &lastNodeUID &lastSocketUID &lastLinkUID;
+    for (auto &link : links) {
+      link.fromSocket->LinkTo(link.toSocket);
     }
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()

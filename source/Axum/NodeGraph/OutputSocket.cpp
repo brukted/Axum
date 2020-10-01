@@ -13,46 +13,26 @@
 
 namespace Axum::NodeGraph {
 
-/**
- * @brief
- *
- * @param socket Destination(end) socket
- */
 void OutputSocket::LinkTo(InputSocket *socket) {
-  this->LinkedSockets.push_back(socket);
+  linkedSockets.push_back(socket);
   socket->HalfLink(this);
 }
 
-void OutputSocket::UnlinkFrom(unsigned int _uid) {
-  for (auto i = this->LinkedSockets.begin(); i < this->LinkedSockets.end();
-       i++) {
-    if ((*i)->GetUID() == _uid)
-      this->LinkedSockets.erase(i);
-  }
+void OutputSocket::UnlinkFrom(int SocketUid) {
+  auto it = std::find_if(
+      linkedSockets.begin(), linkedSockets.end(),
+      [SocketUid](InputSocket *socket) { return (socket->uid == SocketUid); });
+  assert(it != linkedSockets.end());
+  (*it)->halfUnlink();
+  linkedSockets.erase(it);
 }
 
-void OutputSocket::UnlinkFrom(InputSocket *socket) {
-  for (auto i = this->LinkedSockets.begin(); i < this->LinkedSockets.end();
-       i++) {
-    if ((*i)->GetUID() == socket->GetUID())
-      this->LinkedSockets.erase(i);
-    if (i == this->LinkedSockets.end())
-      break;
-  }
-}
+void OutputSocket::UnlinkFrom(InputSocket *socket) { UnlinkFrom(socket->uid); }
 
-bool OutputSocket::isLinked() {
-  if (LinkedSockets.size() == 0) {
-    return false;
-  } else {
-    return true;
-  }
-}
+bool OutputSocket::isLinked() { return (linkedSockets.size() != 0); }
 
-OutputSocket::OutputSocket(const char *_name, unsigned int _uid)
-    : uid(_uid), UIName(_name) {}
-
-OutputSocket::OutputSocket(std::string &_name, unsigned int _uid)
-    : uid(_uid), UIName(_name) {}
+OutputSocket::OutputSocket(int uid, Node *parentNode, std::string_view name,
+                           DataType type)
+    : parentNode(parentNode), uid(uid), UIName(name), type(type) {}
 
 } // namespace Axum::NodeGraph

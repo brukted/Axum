@@ -6,12 +6,12 @@
 #ifndef _MATERIALGRAPHINSTANCENODE_H
 #define _MATERIALGRAPHINSTANCENODE_H
 
-#include "MaterialNode.h"
+#include "../Node.h"
 #include "../MaterialGraph.h"
 
 namespace Axum::NodeGraph::Material{
 
-class MaterialGraphInstanceNode : public MaterialNode
+class MaterialGraphInstanceNode : public Node
 {
 public:
 	MaterialGraph *Graph;

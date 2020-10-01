@@ -17,7 +17,7 @@ protected:
   LogicNode();
 
 public:
-  LogicNode(unsigned int);
+  LogicNode(int uid);
 
   /**
    * @brief Get the Header Part string.

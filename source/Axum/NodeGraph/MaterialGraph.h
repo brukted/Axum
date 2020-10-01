@@ -3,14 +3,13 @@
  * @author Bruk Tedla
  */
 
-#ifndef _MATERIALGRAPH_H
-#define _MATERIALGRAPH_H
+#ifndef _MATERIAL_GRAPH_H
+#define _MATERIAL_GRAPH_H
 
 #include "Graph.h"
 #include "Material.h"
-#include "Nodes/MaterialNode.h"
 #include "Parameter/Parameter.h"
-#define _(text) text
+#include "Utils/Translation/Translation.h"
 
 namespace Axum {
 namespace NodeGraph::Material {
@@ -18,24 +17,17 @@ class MaterialGraph : public Graph {
   friend class boost::serialization::access;
 
 public:
-  Parameter::EnumParam width{"MATERIAL_DEFAULT_WIDTH", "Width", outputSizes,
-                             1024};
-  Parameter::EnumParam height{"MATERIAL_DEFAULT_HEIGHT", "Height", outputSizes,
-                              1024};
-  Parameter::EnumParam imageFormat{"MATERIAL_DEFAULT_FORMAT", "Image format",
-                                   imageFormats, ImageFormat::EIGHT_BIT};
-  Parameter::IntegerParam seed{"MATERIAL_DEFAULT_SEED", "Random seed", 0};
-  Parameter::ParamCollection
-      exposedParams{"MATERIAL_DEFAULT_EXPOSED_PARAMETERS",
-                    "Exposed Parameters"};
+  Parameter::EnumParam width{"MATERIAL_DEFAULT_WIDTH", outputSizes, 1024,
+                             "Width"};
+  Parameter::EnumParam height{"MATERIAL_DEFAULT_HEIGHT", outputSizes, 1024,
+                              "Height"};
+  Parameter::EnumParam imageFormat{"MATERIAL_DEFAULT_FORMAT", imageFormats,
+                                   ImageFormat::EIGHT_BIT, "Image format"};
+  Parameter::IntegerParam seed{"MATERIAL_DEFAULT_SEED", 0, "Random seed"};
+  Parameter::ParamCollection exposedParams{
+      "MATERIAL_DEFAULT_EXPOSED_PARAMETERS", "Exposed Parameters"};
 
   MaterialGraph();
-
-  void SetupCache();
-
-  void DeleteCache();
-
-  void Process();
 
   ADD_PARAMTERS(Axum::ResourceType::Resource, &width, &height, &imageFormat,
                 &seed, &exposedParams)
@@ -56,4 +48,4 @@ private:
 } // namespace NodeGraph::Material
 } // namespace Axum
 BOOST_CLASS_VERSION(Axum::NodeGraph::Material::MaterialGraph, 1)
-#endif //_MATERIALGRAPH_H
+#endif //_MATERIAL_GRAPH_H

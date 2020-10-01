@@ -12,56 +12,52 @@
 namespace Axum::NodeGraph::Logic {
 
 LogicGraph::LogicGraph() {
-  name.SetValue(_("Untitled Logic Graph"));
+  name.setValue(_("Untitled Logic Graph"));
   this->type = Type::LogicGraph;
 }
 
-std::array<char, 52> LogicGraph::firstVariableLetters{
+const std::array<char, 52> LogicGraph::firstVariableLetters{
     {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
      'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
      'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
      'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}};
 
-std::array<char, 63> LogicGraph::secondaryVariableLetters{
+const std::array<char, 63> LogicGraph::secondaryVariableLetters{
     {' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B',
      'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
      'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b',
      'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
      'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}};
 
-std::string LogicGraph::DataTypeToGLSL(DataType d) {
-  switch (d) {
-  case DataType::int1:
+std::string LogicGraph::DataTypeToGLSL(DataType type) {
+  switch (type) {
+  case DataType::Int:
     return ("int");
     break;
-  case DataType::int2:
+  case DataType::Int2:
     return ("ivec2");
     break;
-  case DataType::int3:
+  case DataType::Int3:
     return ("ivec3");
     break;
-  case DataType::int4:
+  case DataType::Int4:
     return ("ivec4");
     break;
-  case DataType::float1:
+  case DataType::Float:
     return ("float");
     break;
-  case DataType::float2:
+  case DataType::Float2:
     return ("vec2");
     break;
-  case DataType::float3:
+  case DataType::Float3:
     return ("vec3");
     break;
-  case DataType::float4:
+  case DataType::Float4:
     return ("vec4");
     break;
-  case DataType::text:
-    AX_LOG_CORE_CRITICAL("String type in glsl function graph");
-    return ("void");
-    break;
   default:
-    AX_LOG_CORE_CRITICAL("Unkown type in glsl function graph");
-    return ("void");
+    AX_LOG_CORE_CRITICAL("Unkown type in logic graph");
+    assert(false);
     break;
   }
 }
@@ -71,7 +67,7 @@ std::shared_ptr<std::string> LogicGraph::compileGL() {
   std::shared_ptr<std::string> code = std::make_shared<std::string>();
   std::vector<Node *> nodes{};
   nodes = transverse();
-  std::string &functionName = name.GetValue();
+  std::string functionName = name.getValue().data();
   functionName =
       functionName.replace(functionName.begin(), functionName.end(), ' ', '_');
   //* 65 - 90 A - Z 97 -122 a - z 48 - 57 0 - 9
@@ -94,22 +90,19 @@ std::shared_ptr<std::string> LogicGraph::compileGL() {
   DataType returnType;
 
   {
-    if (output == nullptr) {
+    if (OutputNode == nullptr) {
       AX_LOG_CORE_CRITICAL("Output is not assigned to the function graph")
       return nullptr;
-    } else if (output->GetOutputSockets().size() != 0) {
-      returnType = static_cast<LogicOutSocket &>(output->GetOutputSockets()[0])
-                       .GetType();
-    } else if (output->GetInputSockets().size() != 0) {
-      returnType =
-          static_cast<LogicInSocket &>(output->GetInputSockets()[0]).GetType();
+    } else if (OutputNode->GetOutputSockets().size() != 0) {
+      returnType = OutputNode->GetOutputSockets()[0].type;
+    } else if (OutputNode->GetInputSockets().size() != 0) {
+      returnType = OutputNode->GetInputSockets()[0].type;
     } else {
       AX_LOG_CORE_CRITICAL(
           "Function graph's output node has no input or output socket.")
       return nullptr;
     }
   }
-
   for (Node *node : nodes) {
     static_cast<LogicNode &>(*node).getHeaderPart(code,
                                                   std::function{GenerateName});
@@ -125,8 +118,5 @@ std::shared_ptr<std::string> LogicGraph::compileGL() {
   code->append("}");
   return code;
 }
-
-// TODO: add implementation
-std::shared_ptr<std::string> LogicGraph::compilePy() { return nullptr; }
 
 } // namespace Axum::NodeGraph::Logic

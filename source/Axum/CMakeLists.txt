@@ -92,6 +92,9 @@ list(
   NodeGraph/Nodes/MaterialGraphInstanceNode.cpp
   NodeGraph/Nodes/MaterialNode.h
   NodeGraph/Nodes/MaterialNode.cpp
+  NodeGraph/NodeGraphHelpers.h
+  NodeGraph/Link.h
+  NodeGraph/Link.cpp
   # Parameters
   Parameter/BooleanParam.h
   Parameter/BooleanParam.cpp

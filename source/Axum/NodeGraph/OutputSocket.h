@@ -7,7 +7,11 @@
 #define _OUTPUTSOCKET_H
 
 #include "Node.h"
+#include "NodeGraphHelpers.h"
+#include <boost/serialization/serialization.hpp>
+#include <boost/serialization/vector.hpp>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace Axum {
@@ -19,36 +23,31 @@ class InputSocket;
 class OutputSocket {
 
 public:
-  Node *ParentNode;
-  /**
-   * @brief Unique identifer of this socket in the parent nodes output sockets.
-   *
-   */
-  unsigned int uid;
-  /**
-   *Name of the node to be displayed on ui
-   **/
+  Node *parentNode;
+  int uid = 0;
   std::string UIName;
-  std::vector<InputSocket *> LinkedSockets;
+  DataType type = DataType::None;
+  std::vector<InputSocket *> linkedSockets;
 
-  OutputSocket(std::string &_name, unsigned int _uid);
+  OutputSocket(int uid, Node *parentNode, std::string_view name, DataType type);
 
-  OutputSocket(const char *_name, unsigned int _uid);
+  OutputSocket(){};
 
-  /**
-   * @brief Links this socket to @a socket two way.
-   *
-   * @param socket Socket to link to
-   */
+  // These functions don't affect links in a graph
   void LinkTo(InputSocket *socket);
 
-  void UnlinkFrom(unsigned int _uid);
+  void UnlinkFrom(int uid);
 
-  void UnlinkFrom(InputSocket *);
+  void UnlinkFrom(InputSocket *socket);
 
   bool isLinked();
 
-  inline unsigned int GetUID() { return uid; };
+  inline int GetUID() { return uid; };
+
+  template <class Archive>
+  void serialize(Archive &ar, const unsigned int version) {
+    ar &uid &type;
+  }
 };
 
 } // namespace NodeGraph

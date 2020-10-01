@@ -5,27 +5,16 @@
 
 #include "InputSocket.h"
 
-/**
- * InputSocket implementation
- *
- * Generic Input Socket.Defines common and basic aspects of all input socket
- * types.
- */
-
 namespace Axum::NodeGraph {
 
-void InputSocket::HalfLink(OutputSocket *socket) {
-  this->LinkedSocket = socket;
-}
+void InputSocket::HalfLink(OutputSocket *socket) { linkedSocket = socket; }
 
-void InputSocket::Unlink() { this->LinkedSocket = nullptr; }
+InputSocket::InputSocket(int uid, Node *parentNode, std::string_view uiName,
+                         DataType type)
+    : ParentNode(parentNode), uid(uid), UIName(uiName), type(type) {}
 
-bool InputSocket::isLinked() {
-  if (LinkedSocket == nullptr) {
-    return false;
-  } else {
-    return true;
-  }
-}
+void InputSocket::halfUnlink() { linkedSocket = nullptr; }
+
+bool InputSocket::isLinked() { return linkedSocket != nullptr; }
 
 } // namespace Axum::NodeGraph

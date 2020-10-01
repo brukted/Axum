@@ -18,91 +18,58 @@ namespace Axum::NodeGraph {
 
 Node::Node() {}
 
-Node::Node(unsigned int _uid) : uid(_uid) {}
+Node::Node(const int uid) : uid(uid) {}
 
-/**
- * Invalidate makes the current cache invalid and all  nodes based upon it.
- */
-void Node::Invalidate() {
-  this->SetNeedUpdate(true);
-  // Invalidates each nodes connected to the output sockets
-  for (auto &outSocket : this->mOutputSockets) {
-    for (auto &inSocket : outSocket.LinkedSockets) {
-      inSocket->ParentNode->Invalidate();
-    }
-  }
-}
-
-/**
- * @param IdName
- * @return OutputSocket
- */
-OutputSocket &Node::GetOutputSocket(unsigned int _uid) {
-  for (auto &var : this->mOutputSockets) {
-    if (var.GetUID() == _uid)
-      return var;
+OutputSocket &Node::GetOutputSocket(int _uid) {
+  for (auto &Var : this->OutputSockets) {
+    if (Var.GetUID() == _uid)
+      return Var;
   }
   AX_LOG_CORE_CRITICAL(
       "Requested an output socket that doesn't exist with uid = {0:d}", _uid)
-  throw "Output socket doesn't exist";
+  assert(false && "Output socket doesn't exist");
 }
 
-/**
- * @param IdName
- * @return InputSocket
- */
-InputSocket &Node::GetInputSocket(unsigned int _uid) {
-  for (auto &var : this->mInputSockets) {
-    if (var.GetUID() == _uid)
-      return var;
+InputSocket &Node::GetInputSocket(int _uid) {
+  for (auto &Var : this->InputSockets) {
+    if (Var.GetUID() == _uid)
+      return Var;
   }
   AX_LOG_CORE_CRITICAL(
       "Requested an input socket that doesn't exist with uid = {0:d}", _uid)
-  throw "Input socket doesn't exist";
+  assert(false && "Input socket doesn't exist");
 }
 
-std::vector<OutputSocket> &Node::GetOutputSockets() {
-  return Node::mOutputSockets;
-}
+std::vector<OutputSocket> &Node::GetOutputSockets() { return OutputSockets; }
 
-std::vector<InputSocket> &Node::GetInputSockets() {
-  return Node::mInputSockets;
-}
+std::vector<InputSocket> &Node::GetInputSockets() { return InputSockets; }
 
 bool Node::isInputsVisited() {
-  for (auto &i : mInputSockets) {
-    if (i.LinkedSocket->ParentNode->isVisited == false)
+  for (auto &InSocket : InputSockets) {
+    if (InSocket.linkedSocket->parentNode->isVisited == false)
       return false;
   }
   return true;
 }
 
 bool Node::isEndNode() {
-  // The node has no output socket so return true
-  if (mOutputSockets.size() == 0) {
+  if (OutputSockets.size() == 0) {
     return true;
-  }
-  // The node has output socket so check if they are connected
-  else {
-    for (auto &out : mOutputSockets) {
-      // One of the output sockets has link so return false
-      if (out.isLinked())
+  } else {
+    for (auto &OutSocket : OutputSockets) {
+      if (OutSocket.isLinked())
         return false;
     }
   }
-  // Default
   return true;
 }
 
 bool Node::isStartNode() {
-  // The node has no input sockets so return true
-  if (mInputSockets.size() == 0) {
+  if (InputSockets.size() == 0) {
     return true;
-  }
-  // The node has input socket so check if they has link
-  else {
-    for (auto &in : mInputSockets) {
-      if (in.isLinked())
+  } else {
+    for (auto &InSocket : InputSockets) {
+      if (InSocket.isLinked())
         return false;
     }
   }

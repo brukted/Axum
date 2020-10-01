@@ -7,7 +7,10 @@
 #define _INPUT_SOCKET_H
 
 #include "Node.h"
+#include "NodeGraphHelpers.h"
 #include "OutputSocket.h"
+#include <boost/serialization/serialization.hpp>
+#include <boost/serialization/string.hpp>
 #include <string>
 
 namespace Axum {
@@ -20,33 +23,36 @@ class InputSocket {
   friend class OutputSocket;
 
 protected:
-  /**
-   * @brief Unique identifer of this socket.
-   *
-   */
-  unsigned int uid;
-  /**
-   * @brief Creates one sided link with @a socket
-   *
-   *@param socket Source socket of the link
-   **/
+  // These functions don't affect links in a graph. Also doesn't affect the
+  // linked socket.
   void HalfLink(OutputSocket *socket);
+  void halfUnlink();
 
 public:
-  OutputSocket *LinkedSocket = nullptr;
-
+  // Runtime data  not serialized
+  OutputSocket *linkedSocket = nullptr;
   Node *ParentNode = nullptr;
 
-  /**
-   *@brief Name of the node to be displayed on ui
-   **/
+  /// Unique identifer of this socket.
+  int uid = 0;
+  /// Name of the node to be displayed on ui
   std::string UIName;
+  DataType type = DataType::None;
 
-  void Unlink();
+  InputSocket(int uid, Node *parentNode, std::string_view uiName,
+              DataType type);
+
+  // For serialization  only
+  InputSocket(){};
 
   bool isLinked();
 
-  inline unsigned int GetUID() { return uid; };
+  inline int GetUID() { return uid; };
+
+  template <class Archive>
+  void serialize(Archive &ar, const unsigned int version) {
+    ar &uid &type;
+  }
 };
 
 } // namespace NodeGraph
