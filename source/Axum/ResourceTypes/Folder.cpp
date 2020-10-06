@@ -38,16 +38,15 @@ Folder *Folder::RemoveResource(Resource &resource) {
 }
 
 Folder *Folder::RemoveResource(unsigned int _uid) {
-  ///@brief The folder that was containing the resource.
+  /// The folder that was containing the resource.
   Folder *Result = nullptr;
-  auto InitalSize = Resources.size();
-  std::remove_if(Resources.begin(), Resources.end(),
-                 [_uid](Resource *resource) { return _uid == resource->uid; });
-  /** TODO_cpp20 If the code base changed cpp standard to cpp20 use
-   ElementCount returned by remove_if to check. */
-  // Check if the resource was found and removed
-  if ((InitalSize - Resources.size()) != 0)
+  auto it = std::find_if(
+      Resources.begin(), Resources.end(),
+      [_uid](Resource *resource) { return _uid == resource->uid; });
+  if (it != Resources.end()) {
+    Resources.erase(it);
     return this;
+  }
   // Move down the heirarchy and try to remove the resource
   for (auto &folder : SubFolders) {
     auto fol = folder.RemoveResource(_uid);
