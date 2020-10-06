@@ -60,7 +60,12 @@ void PackageManager::SavePackage(ResourceType::Package &pkg, std::string path) {
     return;
   }
   boost::archive::text_oarchive oa(ofs);
-  oa << pkg;
+  try {
+    oa << pkg;
+  } catch (const boost::archive::archive_exception &e) {
+    AX_LOG_EDITOR_ERROR("Can't save the package {}", e.what())
+    return;
+  }
   pkg.Path = path;
   auto end = std::chrono::steady_clock::now();
   AX_LOG_EDITOR_INFO(
