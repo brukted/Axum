@@ -155,6 +155,8 @@ list(
   UI/Editors/AssetManager/AssetManager.cpp
   UI/Editors/MaterialEditor/MaterialEditor.h
   UI/Editors/MaterialEditor/MaterialEditor.cpp
+  UI/Editors/GraphEditor/GraphEditor.h
+  UI/Editors/GraphEditor/GraphEditor.cpp
   UI/Editors/ParameterEditor/ParameterEditor.h
   UI/Editors/ParameterEditor/ParameterEditor.cpp
   # Widgets

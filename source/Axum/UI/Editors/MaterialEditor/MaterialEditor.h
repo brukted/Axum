@@ -6,15 +6,12 @@
 #ifndef _MATERIAL_EDITOR_H
 #define _MATERIAL_EDITOR_H
 
-#include "../Editor.h"
+#include "../GraphEditor/GraphEditor.h"
 
 namespace Axum::UI {
 namespace Editor {
 
-class MaterialEditor : public Editor {
-public:
-  MaterialEditor();
-};
+class MaterialEditor : public GraphEditor {};
 
 } // namespace Editor
 } // namespace Axum::UI

@@ -6,15 +6,14 @@
 #ifndef _LOGIC_EDITOR_H
 #define _LOGIC_EDITOR_H
 
-#include "../Editor.h"
+#include "../GraphEditor/GraphEditor.h"
 
 namespace Axum::UI {
 namespace Editor {
 
-class LogicEditor : public Editor {
+class LogicEditor : public GraphEditor {
 public:
   LogicEditor();
-  void draw() override;
 };
 
 } // namespace Editor

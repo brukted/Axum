@@ -5,12 +5,6 @@
 
 #include "MaterialEditor.h"
 
-/**
- * MaterialEditor implementation
- */
+using namespace Axum::NodeGraph;
 
-namespace Axum::UI::Editor {
-
-MaterialEditor::MaterialEditor() {}
-
-} // namespace Axum::UI::Editor
+namespace Axum::UI::Editor {} // namespace Axum::UI::Editor
