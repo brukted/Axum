@@ -32,16 +32,15 @@ namespace NodeGraph {
 
 class Graph : public ResourceType::Resource {
   friend class boost::serialization::access;
-  friend class UI::Editor::MaterialEditor;
 
 protected:
   std::vector<std::unique_ptr<Node>> mNodes;
   std::vector<Link> links;
   int lastNodeUID = INT_MIN;
-  int lastSocketUID = INT_MIN;
   int lastLinkUID = INT_MIN;
 
 public:
+  int lastSocketUID = INT_MIN;
   Graph(){};
 
   /**
@@ -50,13 +49,21 @@ public:
    * @param uid uid of the node to find
    * @return Node& reference to the node with uid = @a uid
    */
-  Node &GetNode(int uid);
+  Node &getNode(int uid);
 
   std::vector<std::unique_ptr<Node>> const &getNodes();
 
-  void AddNode(Node *node);
+  std::vector<Link> const &getLinks();
 
-  void DeleteNode(int uid);
+  void addNode(Node *node);
+
+  void deleteNode(int nodeUid);
+
+  void addLink(Link link);
+
+  void deleteLink(int linkId);
+
+  void deleteLink(InputSocket *targetSocket);
 
   /**
    * @brief Transverses the node graph into a sequence.
@@ -77,6 +84,9 @@ private:
     ar &uid &mNodes &links &lastNodeUID &lastSocketUID &lastLinkUID;
     for (auto &link : links) {
       link.fromSocket->LinkTo(link.toSocket);
+    }
+    for (auto &nodePtr : mNodes) {
+      nodePtr->parentGraph = this;
     }
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()

@@ -13,11 +13,8 @@
 namespace Axum::NodeGraph::Logic {
 
 class LogicNode : public Node {
-protected:
-  LogicNode();
-
 public:
-  LogicNode(int uid);
+  LogicNode();
 
   /**
    * @brief Get the Header Part string.

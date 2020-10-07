@@ -15,8 +15,6 @@ namespace Axum::NodeGraph::Logic {
 
 LogicNode::LogicNode() {}
 
-LogicNode::LogicNode(int uid) : Node(uid) {}
-
 void LogicNode::getHeaderPart(std::shared_ptr<std::string> &code,
                               std::function<std::string()> generator) {
   return;

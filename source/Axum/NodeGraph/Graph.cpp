@@ -11,26 +11,70 @@
 
 namespace Axum::NodeGraph {
 
-Node &Graph::GetNode(int _uid) {
-  auto i = std::find_if(
-      mNodes.begin(), mNodes.end(),
-      [&](const std::unique_ptr<Node> &val) { return val->GetUID() == _uid; });
-  if (i != std::end(mNodes))
-    return *(i->get());
-  else {
-    AX_LOG_CORE_ERROR("Tried to get node that doesn't exist uid = {0:d} .",
-                      _uid);
-    throw "Node with the specified identifer does not exist.";
-  }
+Node &Graph::getNode(int nodeUid) {
+  auto i = std::find_if(mNodes.begin(), mNodes.end(),
+                        [nodeUid](const std::unique_ptr<Node> &val) {
+                          return val->uid == nodeUid;
+                        });
+  assert(i != mNodes.end());
+  return *(i->get());
 }
 
 std::vector<std::unique_ptr<Node>> const &Graph::getNodes() { return mNodes; }
 
-void Graph::AddNode(Node *node) {
+std::vector<Link> const &Graph::getLinks() { return links; }
+
+void Graph::addNode(Node *node) {
+  node->uid = ++lastNodeUID;
+  node->parentGraph = this;
   Graph::mNodes.emplace_back(node);
 }
 
-void Graph::DeleteNode(int _uid) {}
+void Graph::deleteNode(int nodeUid) {
+  AX_LOG_EDITOR_DEBUG("Deleting node, uid = {}", nodeUid)
+  auto &node = getNode(nodeUid);
+  for (auto &InSocket : node.GetInputSockets()) {
+    if (InSocket.isLinked())
+      deleteLink(&InSocket);
+  }
+  for (auto &OutSocket : node.GetOutputSockets()) {
+    if (OutSocket.isLinked()) {
+      for (auto *InSocket : OutSocket.linkedSockets) {
+        deleteLink(InSocket);
+      }
+    }
+  }
+  auto it = std::find_if(mNodes.begin(), mNodes.end(),
+                         [nodeUid](const std::unique_ptr<Node> &val) {
+                           return val->uid == nodeUid;
+                         });
+  assert(it != mNodes.end());
+  mNodes.erase(it);
+}
+
+void Graph::addLink(Link link) {
+  link.id = ++(lastLinkUID);
+  links.emplace_back(std::move(link));
+}
+
+void Graph::deleteLink(int LinkId) {
+  auto LinkIt = std::find_if(links.begin(), links.end(), [LinkId](Link &link) {
+    return link.id == LinkId;
+  });
+  assert(LinkIt != links.end());
+  LinkIt->fromSocket->UnlinkFrom(LinkIt->toSocket);
+  links.erase(LinkIt);
+}
+
+void Graph::deleteLink(InputSocket *targetSocket) {
+  auto it =
+      std::find_if(links.begin(), links.end(), [targetSocket](Link &link) {
+        return (link.toSocketUID == targetSocket->uid);
+      });
+  assert(it != links.end());
+  targetSocket->linkedSocket->UnlinkFrom(targetSocket);
+  links.erase(it);
+}
 
 std::vector<Node *> Graph::transverse() {
   // reset all nodes to unvisited

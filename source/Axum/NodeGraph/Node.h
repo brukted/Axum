@@ -9,6 +9,7 @@
 #include "InputSocket.h"
 #include "NodeGraphHelpers.h"
 #include "OutputSocket.h"
+#include "Parameter/Parameter.h"
 #include "Utils/Log/Log.h"
 #include <assert.h>
 #include <boost/serialization/access.hpp>
@@ -16,6 +17,9 @@
 #include <boost/serialization/split_member.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
+#include <imgui.h>
+#include <imgui_stdlib.h>
+#include <imnodes.h>
 #include <string>
 #include <vector>
 
@@ -37,8 +41,8 @@ protected:
   std::vector<OutputSocket> OutputSockets{};
 
 public:
-  Node();
-  Node(const int uid);
+  Node(NodeType type = NodeType::GenericType,
+       NodeSubType SubType = NodeSubType::GenericNode);
   // Name of the node to be displayed on the ui.
   std::string UIName{"Node"};
   std::string description{"Description"};
@@ -51,7 +55,8 @@ public:
   int uid = 0;
 
   /// For easier RTTI
-  int type, subType;
+  NodeType type;
+  NodeSubType subType;
 
   /**
    * @brief Get the output socket with the uid = @a uid
@@ -75,14 +80,17 @@ public:
 
   int GetUID() const { return uid; }
 
+  virtual void draw();
+
+  LIST_PARAMETERS()
+
 private:
-  template <class Archive>
-  void save(Archive &ar, const unsigned int version) const {
-    ar &uiInfo &InputSockets &OutputSockets &uid &parentGraph;
+  template <class Archive> void save(Archive &ar, const unsigned int) const {
+    ar &uiInfo &InputSockets &OutputSockets &uid &type &subType;
   }
 
-  template <class Archive> void load(Archive &ar, const unsigned int version) {
-    ar &uiInfo &InputSockets &OutputSockets &uid &parentGraph;
+  template <class Archive> void load(Archive &ar, const unsigned int) {
+    ar &uiInfo &InputSockets &OutputSockets &uid &type &subType;
     for (auto &InSocket : InputSockets) {
       InSocket.ParentNode = this;
     }
@@ -98,7 +106,7 @@ private:
    */
   bool isInputsVisited();
   /**
-   * @brief Returns whether the node relays on ther nodes output or not.
+   * @brief Returns whether the node relays on other nodes output or not.
    *
    * @return true The node can excute on it's ownself.
    * @return false The node requires other nodes output.
@@ -118,5 +126,5 @@ private:
 };
 } // namespace NodeGraph
 } // namespace Axum
-BOOST_CLASS_VERSION(Axum::NodeGraph::Node, 1)
+BOOST_CLASS_VERSION(Axum::NodeGraph::Node, 0)
 #endif //_AXUM_NODEGRAPH_NODE_H_

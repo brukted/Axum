@@ -82,6 +82,8 @@ list(
   NodeGraph/OutputSocket.cpp
   NodeGraph/Nodes/AtomicNodes.h
   NodeGraph/Nodes/AtomicNodes.cpp
+  NodeGraph/Nodes/CommentNode.h
+  NodeGraph/Nodes/CommentNode.cpp
   NodeGraph/Nodes/LogicNode.h
   NodeGraph/Nodes/LogicNode.cpp
   NodeGraph/Nodes/LogicNodes.h

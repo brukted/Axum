@@ -1,3 +1,8 @@
+/**
+ * Project Material Lab
+ * @author Bruk Tedla
+ */
+
 #ifndef __AXUM_NODE_GRAPH_LINK_H__
 #define __AXUM_NODE_GRAPH_LINK_H__
 
@@ -35,6 +40,9 @@ struct UiInfo {
     ar &xGridPos &yGridPos &isCollapsed;
   };
 };
+
+enum NodeType { GenericType, MaterialType, LogicType };
+enum NodeSubType { GenericNode, Comment, Reroute };
 
 } // namespace Axum::NodeGraph
 #endif // __AXUM_NODE_GRAPH_LINK_H__

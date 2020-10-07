@@ -16,9 +16,7 @@
 
 namespace Axum::NodeGraph {
 
-Node::Node() {}
-
-Node::Node(const int uid) : uid(uid) {}
+Node::Node(NodeType type, NodeSubType SubType) : type(type), subType(SubType) {}
 
 OutputSocket &Node::GetOutputSocket(int _uid) {
   for (auto &Var : this->OutputSockets) {
@@ -43,6 +41,24 @@ InputSocket &Node::GetInputSocket(int _uid) {
 std::vector<OutputSocket> &Node::GetOutputSockets() { return OutputSockets; }
 
 std::vector<InputSocket> &Node::GetInputSockets() { return InputSockets; }
+
+void Node::draw() {
+  imnodes::BeginNode(uid);
+  imnodes::BeginNodeTitleBar();
+  ImGui::TextUnformatted(UIName.c_str());
+  imnodes::EndNodeTitleBar();
+  for (auto &inSocket : InputSockets) {
+    imnodes::BeginInputAttribute(inSocket.uid);
+    ImGui::TextUnformatted(inSocket.UIName.c_str());
+    imnodes::EndInputAttribute();
+  }
+  for (auto &outSocket : OutputSockets) {
+    imnodes::BeginOutputAttribute(outSocket.uid);
+    ImGui::TextUnformatted(outSocket.UIName.c_str());
+    imnodes::EndOutputAttribute();
+  }
+  imnodes::EndNode();
+}
 
 bool Node::isInputsVisited() {
   for (auto &InSocket : InputSockets) {
