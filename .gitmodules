@@ -1,6 +1,3 @@
-[submodule "extern/embed-resource"]
-	path = extern/embed-resource
-	url = https://github.com/brukted/embed-resource.git
 [submodule "extern/imnodes"]
 	path = extern/imnodes
 	url = https://github.com/brukted/imnodes
