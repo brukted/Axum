@@ -15,6 +15,9 @@ configure_file(version.h.in ${CMAKE_CURRENT_BINARY_DIR}/include/${META_PROJECT_N
 set(IDE_FOLDER "")
 add_subdirectory(ABaker)
 
+# Tools
+add_subdirectory(embed-data)
+
 # Material AXUM
 if(OPTION_WITH_AXUM)
     set(IDE_FOLDER "Axum")

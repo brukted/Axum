@@ -243,7 +243,6 @@ target_link_libraries(${target} PRIVATE ${DEFAULT_LINKER_OPTIONS})
 # Dependencies
 #
 
-add_dependencies(${target} Resources)
 add_dependencies(${target} imnodes)
 
 #
