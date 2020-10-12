@@ -21,7 +21,7 @@ public:
   MApplication();
   ~MApplication();
   void activate();
-  int run();
+  void run();
 };
 } // namespace Axum
 

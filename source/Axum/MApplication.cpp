@@ -56,9 +56,8 @@ void MApplication::activate() {
   Manager::AddonManager::getInstance().Startup();
 }
 
-int MApplication::run() {
+void MApplication::run() {
   Window_Manager.mainLoop();
-  return 0;
 }
 
 } // namespace Axum

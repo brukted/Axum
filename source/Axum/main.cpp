@@ -11,5 +11,6 @@ int main(int, char *argv[]) {
   auto app = Axum::MApplication();
   AX_LOG_EDITOR_INFO("Application created.")
   app.activate();
-  return app.run();
+  app.run();
+  return 0;
 }
