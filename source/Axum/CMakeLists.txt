@@ -48,6 +48,9 @@ list(
   Draw/RenderEngine.cpp
   Draw/Engines/GLEngine.h
   Draw/Engines/GLEngine.cpp
+  # IO utils
+  IO/ImageIO.h
+  IO/ImageIO.cpp
   # Managers
   Managers/AddonManager.h
   Managers/AddonManager.cpp
