@@ -191,11 +191,11 @@ private:
     } else {
       /// @brief formattedPath is a path with replaced internal dependency uri
       /// with proper path eg: AX://test.pkg ->
-      /// $resourcesPath$/packages/test.pkg
+      /// $systemResourcesPath$/packages/test.pkg
       std::string formattedPath = Path;
       std::size_t i = formattedPath.find("AX://");
       if (i != formattedPath.npos)
-        formattedPath.replace(i, 5, (Utils::PathUtils::resourcesPath + "/"));
+        formattedPath.replace(i, 5, (Utils::PathUtils::systemResourcesPath + "/"));
       std::ifstream ifs(std::move(formattedPath));
       boost::archive::text_iarchive ia(ifs);
       ia >> *this;

@@ -72,7 +72,7 @@ public:
 class AssetManager : public Editor {
 public:
   std::string assetsPath =
-      Utils::PathUtils::resourcesPath + std::string{"/assets"};
+      Utils::PathUtils::systemResourcesPath + std::string{"/assets"};
 
   AssetItem root{AssetItem::Type::DIRECTORY, std::string{"Catagories"},
                  assetsPath};

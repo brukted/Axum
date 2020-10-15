@@ -21,28 +21,33 @@ namespace Utils {
 
 class PathUtils {
 public:
-  /**
-   * @brief Path to the executable.
-   *
-   */
+  /// @brief Path to the executable.
   static std::string excutablePath;
+
+  /// @brief Path to the executable directory.
+  static std::string excutableDir;
+
   /**
-   * @brief Path to the default resources. On windows it's
+   * @brief Path to the default global resources. On windows it's
    * @excutablePath/../resources
-   *
+   */
+  static std::string systemResourcesPath;
+
+  /**
+   * @brief Path to the user resources. On windows it's
+   * @excutablePath/../resources
    */
   static std::string resourcesPath;
+
   /**
    * @brief Local user specific path of the application. On windows it's
    * %APPDATA%/local/Axum/version .
-   *
    */
   static std::string userPath;
 
   /**
    * @brief Synced user specific path of the application. On windows it's
    * %APPDATA%/roaming/Axum/version .
-   *
    */
   static std::string userPathS;
 

@@ -137,15 +137,15 @@ endif()
 # Installation paths
 if(UNIX AND SYSTEM_DIR_INSTALL)
     # Install into the system (/usr/bin or /usr/local/bin)
-    set(INSTALL_ROOT      "share/${project}")       # /usr/[local]/share/<project>
-    set(INSTALL_CMAKE     "share/${project}/cmake") # /usr/[local]/share/<project>/cmake
-    set(INSTALL_EXAMPLES  "share/${project}")       # /usr/[local]/share/<project>
-    set(INSTALL_DATA      "share/${project}")       # /usr/[local]/share/<project>
+    set(INSTALL_ROOT      "share/${project}/${META_VERSION_MAJOR}.${META_VERSION_MINOR}")       # /usr/[local]/share/<project>/version
+    set(INSTALL_CMAKE     "share/${project}/cmake") # /usr/[local]/share/<project>/version/cmake
+    set(INSTALL_EXAMPLES  "share/${project}/${META_VERSION_MAJOR}.${META_VERSION_MINOR}")       # /usr/[local]/share/<project>/version
+    set(INSTALL_DATA      "share/${project}/${META_VERSION_MAJOR}.${META_VERSION_MINOR}")       # /usr/[local]/share/<project>/version
     set(INSTALL_BIN       "bin")                    # /usr/[local]/bin
     set(INSTALL_SHARED    "lib")                    # /usr/[local]/lib
     set(INSTALL_LIB       "lib")                    # /usr/[local]/lib
     set(INSTALL_INCLUDE   "include")                # /usr/[local]/include
-    set(INSTALL_DOC       "share/doc/${project}")   # /usr/[local]/share/doc/<project>
+    set(INSTALL_DOC       "share/doc/${project}/${META_VERSION_MAJOR}.${META_VERSION_MINOR}")   # /usr/[local]/share/doc/<project>/version
     set(INSTALL_SHORTCUTS "share/applications")     # /usr/[local]/share/applications
     set(INSTALL_ICONS     "share/pixmaps")          # /usr/[local]/share/pixmaps
     set(INSTALL_INIT      "/etc/init")              # /etc/init (upstart init scripts)
