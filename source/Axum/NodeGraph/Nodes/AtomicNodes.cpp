@@ -7,7 +7,8 @@
 
 /**
  * AtomicNodes implementation
-*/
+ */
+namespace Axum::NodeGraph::Material {
 
 /**
  * All atomic nodes are implemented here
@@ -18,7 +19,7 @@
  */
 
 /**
- * TexNode implementation
+ * TextureNode implementation
  */
 
 /**
@@ -26,18 +27,18 @@
  */
 
 /**
- * DirWrapNode implementation
- * 
+ * DirectionalWrapNode implementation
+ *
  * Directional Wrap Node
  */
 
 /**
- * EmNode implementation
+ * EmbossNode implementation
  */
 
 /**
- * GraDynNode implementation
- * 
+ * GradientDynamicNode implementation
+ *
  * Gradient Dynamic Node
  */
 
@@ -46,20 +47,20 @@
  */
 
 /**
- * InColNode implementation
- * 
+ * InputColorNode implementation
+ *
  * Input Color
  */
 
 /**
- * NorNode implementation
- * 
+ * NormalNode implementation
+ *
  * Normal(direction) Node
  */
 
 /**
- * PixProNode implementation
- * 
+ * ShaderNode implementation
+ *
  * Pixel Processor Node
  */
 
@@ -72,7 +73,7 @@
  */
 
 /**
- * UniColNode implementation
+ * SolidColorNode implementation
  */
 
 /**
@@ -80,15 +81,15 @@
  */
 
 /**
- * ChaShufNode implementation
+ * ChannelShuffleNode implementation
  */
 
 /**
- * DirBlurNode implementation
+ * DirectionalBlurNode implementation
  */
 
 /**
- * DisNode implementation
+ * DistanceNode implementation
  */
 
 /**
@@ -96,31 +97,33 @@
  */
 
 /**
- * GradNode implementation
+ * GradientNode implementation
  */
 
 /**
- * InGryNode implementation
- * 
+ * InputGrayscaleNode implementation
+ *
  * Input Grayscale
  */
 
 /**
- * LevNode implementation
+ * LevelsNode implementation
  */
 
 /**
- * OutNode implementation
+ * OutputNode implementation
  */
 
 /**
- * ShaNode implementation
+ * SharpenNode implementation
  */
 
 /**
- * Trans2DNode implementation
+ * Transform2DNode implementation
  */
 
 /**
  * WrapNode implementation
  */
+
+} // namespace Axum::NodeGraph::Material

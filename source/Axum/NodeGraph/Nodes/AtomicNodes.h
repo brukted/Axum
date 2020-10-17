@@ -14,29 +14,30 @@
 namespace Axum::NodeGraph::Material {
 
 class BlurNode : public MaterialNode {};
-class TexNode : public MaterialNode {};
+
+class TextureNode : public MaterialNode {};
 class CurveNode : public MaterialNode {};
-class DirWrapNode : public MaterialNode {};
-class EmNode : public MaterialNode {};
-class GraDynNode : public MaterialNode {};
+class DirectionalWrapNode : public MaterialNode {};
+class EmbossNode : public MaterialNode {};
+class GradientDynamicNode : public MaterialNode {};
 class HSLNode : public MaterialNode {};
-class InColNode : public MaterialNode {};
-class NorNode : public MaterialNode {};
-class PixProNode : public MaterialNode {};
+class InputColorNode : public MaterialNode {};
+class NormalNode : public MaterialNode {};
+class ShaderNode : public MaterialNode {};
 class SVGNode : public MaterialNode {};
 class TextNode : public MaterialNode {};
-class UniColNode : public MaterialNode {};
+class SolidColorNode : public MaterialNode {};
 class BlendNode : public MaterialNode {};
-class ChaShufNode : public MaterialNode {};
-class DirBlurNode : public MaterialNode {};
-class DisNode : public MaterialNode {};
+class ChannelShuffleNode : public MaterialNode {};
+class DirectionalBlurNode : public MaterialNode {};
+class DistanceNode : public MaterialNode {};
 class FxMapNode : public MaterialNode {};
-class GradNode : public MaterialNode {};
-class InGryNode : public MaterialNode {};
-class LevNode : public MaterialNode {};
-class OutNode : public MaterialNode {};
-class ShaNode : public MaterialNode {};
-class Trans2DNode : public MaterialNode {};
+class GradientNode : public MaterialNode {};
+class InputGrayscaleNode : public MaterialNode {};
+class LevelsNode : public MaterialNode {};
+class OutputNode : public MaterialNode {};
+class SharpenNode : public MaterialNode {};
+class Transform2DNode : public MaterialNode {};
 class WrapNode : public MaterialNode {};
 
 } // namespace Axum::NodeGraph::Material
