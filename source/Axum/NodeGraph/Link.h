@@ -36,7 +36,7 @@ struct Link {
     toSocketUID = toSocket->uid;
   };
   template <class Archive>
-  void serialize(Archive &ar, const unsigned int version) {
+  void serialize(Archive &ar, const unsigned int /*version*/) {
     ar &id &fromNode &fromNode &toSocket &fromSocket &fromNodeUID &fromSocketUID
         &toSocketUID &toNodeUID;
   }

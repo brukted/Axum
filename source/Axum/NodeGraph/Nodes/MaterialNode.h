@@ -31,11 +31,12 @@ public:
 
 private:
   template <class Archive>
-  void save(Archive &ar, const unsigned int version) const {
+  void save(Archive &ar, const unsigned int /*version*/) const {
     ar &width, &height, &imageFormat, &seed;
   }
 
-  template <class Archive> void load(Archive &ar, const unsigned int version) {
+  template <class Archive>
+  void load(Archive &ar, const unsigned int /*version*/) {
     ar &width, &height, &imageFormat, &seed;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()

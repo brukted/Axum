@@ -12,14 +12,14 @@
  * engine.
  */
 
-namespace Axum::Manager{
+namespace Axum::Manager {
 
-void RenderManager::SetRenderEngine(Draw::RenderEngine *engine) {}
+void RenderManager::SetRenderEngine(Draw::RenderEngine * /*engine*/) {}
 
-void RenderManager::RegisterEngine(Draw::RenderEngine engine) {}
+void RenderManager::RegisterEngine(Draw::RenderEngine /*engine*/) {}
 
 void RenderManager::Startup() {}
 
 void RenderManager::Shutdown() {}
 
-}
+} // namespace Axum::Manager

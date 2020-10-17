@@ -163,18 +163,18 @@ public:
    * @warning This is defined only to make std::list work.
    *
    */
-  Package &operator=(const Package &pkg) {
+  Package &operator=(const Package & /*pkg*/) {
     AX_LOG_CORE_CRITICAL("Copy operator for package called")
     assert(false);
   };
-  Package(Package const &rhs) {
+  Package(Package const & /*rhs*/) {
     AX_LOG_CORE_CRITICAL("Copy operator for package called")
     assert(false);
   };
 
 private:
   template <class Archive>
-  void save(Archive &ar, const unsigned int version) const {
+  void save(Archive &ar, const unsigned int /*version*/) const {
     ar &boost::serialization::base_object<Resource>(*this);
     ar &LastUID;
     if (!isLinked)
@@ -182,7 +182,8 @@ private:
           &VectorTextures &Packages &RootFolder;
   }
 
-  template <class Archive> void load(Archive &ar, const unsigned int version) {
+  template <class Archive>
+  void load(Archive &ar, const unsigned int /*version*/) {
     ar &boost::serialization::base_object<Resource>(*this);
     ar &LastUID;
     if (!isLinked) {

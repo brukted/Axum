@@ -50,7 +50,7 @@ public:
   inline int GetUID() { return uid; };
 
   template <class Archive>
-  void serialize(Archive &ar, const unsigned int version) {
+  void serialize(Archive &ar, const unsigned int /*version*/) {
     ar &uid &type;
   }
 };

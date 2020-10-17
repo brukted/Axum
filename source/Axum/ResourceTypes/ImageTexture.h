@@ -56,7 +56,7 @@ public:
 
 private:
   template <class Archive>
-  void save(Archive &ar, const unsigned int version) const {
+  void save(Archive &ar, const unsigned int /*version*/) const {
     ar &boost::serialization::base_object<Resource>(*this);
     if (!isLinked) {
       ar &data;
@@ -64,7 +64,8 @@ private:
     ar &channels &width &height;
   }
 
-  template <class Archive> void load(Archive &ar, const unsigned int version) {
+  template <class Archive>
+  void load(Archive &ar, const unsigned int /*version*/) {
     ar &boost::serialization::base_object<Resource>(*this);
     ar &channels &width &height;
     //* If the texture is embedded load data otherwise load from file

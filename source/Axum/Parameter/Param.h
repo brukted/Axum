@@ -58,11 +58,11 @@ protected:
 
 private:
   template <class Archive>
-  void save(Archive &ar, const unsigned int version) const {
+  void save(Archive &ar, const unsigned int /*version*/) const {
     ar &ID &name &isEditMode &description;
   }
 
-  template <class Archive> void load(Archive &ar, const unsigned int version) {
+  template <class Archive> void load(Archive &ar, const unsigned int /*version*/) {
     ar &ID &name &isEditMode &description;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()

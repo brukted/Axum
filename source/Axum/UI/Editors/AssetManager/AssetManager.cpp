@@ -11,7 +11,7 @@
 
 namespace Axum::UI::Editor {
 
-void ThumbnailBuilder::RebuildCache(AssetItem &_root) {
+void ThumbnailBuilder::RebuildCache(AssetItem & /*_root*/) {
   auto start = std::chrono::steady_clock::now();
   AX_LOG_EDITOR_INFO("Started rebuilding thumbnail cache.")
   // TODO:Implement thumbnail rebuild cache
@@ -21,7 +21,7 @@ void ThumbnailBuilder::RebuildCache(AssetItem &_root) {
       std::chrono::duration_cast<std::chrono::seconds>(end - start).count())
 }
 
-void ThumbnailBuilder::GetThumbnail(AssetItem &item) {
+void ThumbnailBuilder::GetThumbnail(AssetItem & /*item*/) {
   // TODO:Implement thumbnail builder
 }
 

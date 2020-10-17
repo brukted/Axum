@@ -85,11 +85,13 @@ public:
   LIST_PARAMETERS()
 
 private:
-  template <class Archive> void save(Archive &ar, const unsigned int) const {
+  template <class Archive>
+  void save(Archive &ar, const unsigned int /*version*/) const {
     ar &uiInfo &InputSockets &OutputSockets &uid &type &subType;
   }
 
-  template <class Archive> void load(Archive &ar, const unsigned int) {
+  template <class Archive>
+  void load(Archive &ar, const unsigned int /*version*/) {
     ar &uiInfo &InputSockets &OutputSockets &uid &type &subType;
     for (auto &InSocket : InputSockets) {
       InSocket.ParentNode = this;

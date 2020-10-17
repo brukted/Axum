@@ -17,6 +17,6 @@ namespace Axum::Bakery {
 /**
  * @param *BakeryParms
  */
-void Baker::bake(Parameter::ParamCollection *BakeryParms) {}
+void Baker::bake(Parameter::ParamCollection * /*BakeryParms*/) {}
 
 } // namespace Axum::Bakery

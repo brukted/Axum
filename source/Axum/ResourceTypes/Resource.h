@@ -89,12 +89,13 @@ public:
 
 private:
   template <class Archive>
-  void save(Archive &ar, const unsigned int version) const {
+  void save(Archive &ar, const unsigned int /*version*/) const {
     ar &isLinked &uid &Path &name &description &category &label &author
         &authorUrl &tags &showInManager &pathType;
   }
 
-  template <class Archive> void load(Archive &ar, const unsigned int version) {
+  template <class Archive>
+  void load(Archive &ar, const unsigned int /*version*/) {
     ar &isLinked &uid &Path &name &description &category &label &author
         &authorUrl &tags &showInManager &pathType;
   }

@@ -33,12 +33,13 @@ public:
                 &seed, &exposedParams)
 private:
   template <class Archive>
-  void save(Archive &ar, const unsigned int version) const {
+  void save(Archive &ar, const unsigned int /*version*/) const {
     ar &boost::serialization::base_object<Graph>(*this);
     ar &width, &height, &imageFormat, &seed, &exposedParams;
   }
 
-  template <class Archive> void load(Archive &ar, const unsigned int version) {
+  template <class Archive>
+  void load(Archive &ar, const unsigned int /*version*/) {
     ar &boost::serialization::base_object<Graph>(*this);
     ar &width, &height, &imageFormat, &seed, &exposedParams;
   }

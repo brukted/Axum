@@ -19,12 +19,12 @@ void RenderEngine::display() {}
 
 void RenderEngine::stop() {}
 
-void RenderEngine::updateScene(ResourceType::Scene *Scene) {}
+void RenderEngine::updateScene(ResourceType::Scene * /*Scene*/) {}
 
 void RenderEngine::updateMaterial() {}
 
-void RenderEngine::updateCamera(Parameter::ParamCollection *CameraParms) {}
+void RenderEngine::updateCamera(Parameter::ParamCollection * /*CameraParms*/) {}
 
-void RenderEngine::resize(int Width, int Height) {}
+void RenderEngine::resize(int /*Width*/, int /*Height*/) {}
 
 } // namespace Axum::Draw
