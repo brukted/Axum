@@ -29,6 +29,8 @@ public:
   std::shared_ptr<spdlog::logger> addonLogger;
   std::shared_ptr<spdlog::logger> editorLogger;
   std::shared_ptr<spdlog::logger> renderLogger;
+  std::shared_ptr<spdlog::logger> glLogger;
+  void logGLErrors(const char *file, int line);
 
   static Log &getInstance() {
     static Log instance;
@@ -45,6 +47,13 @@ public:
 };
 } // namespace Utils
 } // namespace Axum
+
+#ifndef NDEBUG
+#define LOG_GL_ERRORS()                                                        \
+  Axum::Utils::Log::getInstance().logGLErrors(__FILE__, __LINE__);
+#else
+#define LOG_GL_ERRORS()
+#endif
 
 #define AX_LOG_ADDON_TRACE(...)                                                \
   Axum::Utils::Log::getInstance().addonLogger->trace(__VA_ARGS__);
