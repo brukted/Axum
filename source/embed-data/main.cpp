@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
   std::string_view inFile{argv[1]};
   std::string_view outFile{argv[2]};
 
-  long size;
+  uintmax_t size;
 
   std::ifstream ifs{inFile, std::ios_base::binary | std::ios_base::in};
   if (!ifs.is_open()) {
