@@ -90,12 +90,11 @@ public:
   void RemoveFolder(Folder &folder);
 
   /**
-   * @brief Removes folder from sub folders.
+   * @brief Removes folder from sub folders.This doesn't delete resources
+   * contained in the folder.If you want to delete the resource call remove
+   * resource from the package.
    *
    * @param _uid uid of the folder to be removed.
-   *
-   * @warning This doesn't delete resources contained in the sub folder.If you
-   * want to delete the resource call remove resource from the package.
    *
    */
   void RemoveFolder(unsigned int _uid);

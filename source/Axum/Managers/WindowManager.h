@@ -3,20 +3,13 @@
  * @author Bruk Tedla
  */
 
-#ifndef _WINDOWMANAGER_H
-#define _WINDOWMANAGER_H
+#ifndef _AXUM_MANAGERS_WINDOW_MANAGER_H_
+#define _AXUM_MANAGERS_WINDOW_MANAGER_H_
 
 #include "UI/MainWindow.h"
-#include "imnodes.h"
-#include "Utils/Log/Log.h"
-#include <imgui.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
 #define GLFW_INCLUDE_NONE // GLFW including OpenGL headers causes ambiguity or
                           // multiple definition errors.
 #include <GLFW/glfw3.h>
-#include <glbinding/gl/gl.h>
-#include <glbinding/glbinding.h>
 
 namespace Axum::Manager {
 class WindowManager {
@@ -52,4 +45,4 @@ public:
  *
  */
 #define Window_Manager Axum::Manager::WindowManager::getInstance()
-#endif //_WINDOWMANAGER_H
+#endif //_AXUM_MANAGERS_WINDOW_MANAGER_H_

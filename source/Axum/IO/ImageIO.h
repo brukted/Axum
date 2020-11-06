@@ -13,7 +13,7 @@
 namespace Axum::IO {
 
 /**
- * @brief Loads the image at @a filePath to pixles as RGBA 8bit.
+ * @brief Loads the image at @a filePath to @a pixles as RGBA 8bit.
  *
  * @param filePath path to the image
  * @param pixles vector to put the pixles
@@ -24,7 +24,7 @@ std::tuple<int, int> loadImageFromFile(std::string_view filePath,
                                        std::vector<unsigned char> &pixles);
 
 /**
- * @brief Loads the image from memory @a data to pixles as RGBA 8bit.
+ * @brief Loads the image from memory @a data to @a pixles as RGBA 8bit.
  *
  * @param fileName name of the file before it was loaded to memory.
  * @param data pointer to the data at memory.

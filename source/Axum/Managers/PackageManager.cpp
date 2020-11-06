@@ -14,7 +14,7 @@ namespace Axum::Manager {
 
 void PackageManager::LoadPackage(std::string Path) {
   auto start = std::chrono::steady_clock::now();
-  AX_LOG_EDITOR_INFO("Opening a package at {0}", Path)
+  AX_LOG_EDITOR_INFO("Loading a package from {0}", Path)
   std::ifstream ifs(Path);
   if (ifs.good()) {
     try {
@@ -34,7 +34,7 @@ void PackageManager::LoadPackage(std::string Path) {
   }
   auto end = std::chrono::steady_clock::now();
   AX_LOG_EDITOR_INFO(
-      "Loaded package {0} in {1:d} milliseconds",
+      "Loaded package \"{0}\" in {1:d} milliseconds",
       packages.back().name.getValue(),
       std::chrono::duration_cast<std::chrono::milliseconds>(end - start)
           .count())
@@ -42,7 +42,7 @@ void PackageManager::LoadPackage(std::string Path) {
 
 void PackageManager::SavePackage(ResourceType::Package &pkg, std::string path) {
   auto start = std::chrono::steady_clock::now();
-  AX_LOG_EDITOR_INFO("Saving package {} uid {} to {}", pkg.name.getValue(),
+  AX_LOG_EDITOR_INFO("Saving package \"{}\" uid {} to {}", pkg.name.getValue(),
                      pkg.uid, path.c_str())
   if (path.size() == 0) {
     if (pkg.Path.size() != 0) {
@@ -69,8 +69,8 @@ void PackageManager::SavePackage(ResourceType::Package &pkg, std::string path) {
   pkg.Path = path;
   auto end = std::chrono::steady_clock::now();
   AX_LOG_EDITOR_INFO(
-      "Saved package {0} uid {1} in : {2:d} milliseconds", pkg.name.getValue(),
-      pkg.uid,
+      "Saved package \"{0}\" uid {1} in : {2:d} milliseconds",
+      pkg.name.getValue(), pkg.uid,
       std::chrono::duration_cast<std::chrono::milliseconds>(end - start)
           .count())
 }

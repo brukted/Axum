@@ -3,7 +3,14 @@
  * @author Bruk Tedla
  */
 
+#include "Utils/Log/Log.h"
 #include "WindowManager.h"
+#include "imnodes.h"
+#include <glbinding/gl43core/gl.h>
+#include <glbinding/glbinding.h>
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
 /**
  * WindowManager implementation
