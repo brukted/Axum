@@ -22,9 +22,10 @@ FloatVectorParam::FloatVectorParam(std::string_view ID, std::string_view name,
 
 std::vector<float> FloatVectorParam::getValue() const { return value; }
 
-void FloatVectorParam::setValue(std::vector<float> value) {
-  assert((value.size() == size));
-  this->value = value;
+void FloatVectorParam::setValue(std::vector<float> _value) {
+  assert((_value.size() == size));
+  value = _value;
+  valueChanged();
 }
 
 void FloatVectorParam::drawDisplay() { return; }

@@ -22,6 +22,7 @@ EnumParam::EnumParam(std::string_view ID, std::map<int, std::string> enums,
 void EnumParam::setValue(int const key) {
   intValue = key;
   strValue = toString(key);
+  valueChanged();
 }
 
 std::string &EnumParam::toString(int const key) {

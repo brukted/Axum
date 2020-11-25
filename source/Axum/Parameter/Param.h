@@ -13,6 +13,7 @@
 #include <boost/serialization/string.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/version.hpp>
+#include <boost/signals2.hpp>
 #include <imgui.h>
 #include <string>
 #include <string_view>
@@ -28,6 +29,7 @@ class Param {
   friend class ProxyParam;
 
 public:
+  boost::signals2::signal<void()> valueChanged;
   Param(){};
   /**
    * @brief Identifier of the parameter for programming and logging purpose.
@@ -62,7 +64,8 @@ private:
     ar &ID &name &isEditMode &description;
   }
 
-  template <class Archive> void load(Archive &ar, const unsigned int /*version*/) {
+  template <class Archive>
+  void load(Archive &ar, const unsigned int /*version*/) {
     ar &ID &name &isEditMode &description;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()

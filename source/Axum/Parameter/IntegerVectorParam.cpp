@@ -22,9 +22,10 @@ IntegerVectorParam::IntegerVectorParam(std::string_view ID,
 
 std::vector<int> IntegerVectorParam::getValue() const { return value; }
 
-void IntegerVectorParam::setValue(std::vector<int> value) {
-  assert((value.size() == size));
-  this->value = value;
+void IntegerVectorParam::setValue(std::vector<int> _value) {
+  assert((_value.size() == size));
+  value = _value;
+  valueChanged();
 }
 
 void IntegerVectorParam::drawDisplay() { return; }

@@ -18,6 +18,9 @@ IntegerParam::IntegerParam(std::string_view ID, int value,
 
 int IntegerParam::getValue() const { return value; }
 
-void IntegerParam::setValue(int value) { this->value = value; }
+void IntegerParam::setValue(int _value) {
+  value = _value;
+  valueChanged();
+}
 
 } // namespace Axum::Parameter
