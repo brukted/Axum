@@ -129,7 +129,9 @@ private:
     std::vector<unsigned int> resourceIDs;
     ar &resourceIDs;
     for (auto id : resourceIDs) {
-      Resources.push_back(&(package->FindResource(id)));
+      auto &res = package->FindResource(id);
+      res.folder = this;
+      Resources.push_back(&(res));
     }
     ar &SubFolders &LastUID;
   }
