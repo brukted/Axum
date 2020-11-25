@@ -6,18 +6,14 @@
 #ifndef __DIALOGS_H_
 #define __DIALOGS_H_
 
-#include "Utils/Log/Log.h"
-#include "Utils/Translation/Translation.h"
-#include <array>
-#include <imgui.h>
-#include <imgui_stdlib.h>
-#include <nfd.h>
 #include <string>
+#include <string_view>
 
+namespace Axum{
 
-namespace Axum::UI::Widget {
+    namespace  UI::Widget {
 
-bool newImageTextureDialog(std::string &name, int &width, int &height,
+bool newImageTextureDialog(std::string *name, int *width, int *height,
                            float *color);
 
 enum class FileDialogMode { OPEN, SAVE, FOLDER };
@@ -25,5 +21,10 @@ bool nativeFileDialog(std::string &path, FileDialogMode mode,
                       std::string_view defaultPath = "",
                       std::string_view filters = "");
 
+bool importResourceDialog(std::string_view title, std::string &path,
+                          bool *isLinked);
+
+void createPackageDialog();
+    }
 } // namespace Axum::UI::Widget
 #endif // __DIALOGS_H_
