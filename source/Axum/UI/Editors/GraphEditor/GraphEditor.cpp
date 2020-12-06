@@ -27,6 +27,24 @@ void GraphEditor::draw() {
   imnodes::EndNodeEditor();
   checkForNewLinks();
   checkForDestroyedLinks();
+  ImGui::PushID("scrolling_region");
+  if (ImGui::BeginDragDropTarget()) {
+    auto data = ImGui::GetDragDropPayload();
+    if (data->IsDataType("resource")) {
+      ImGui::AcceptDragDropPayload(
+          "resource", ImGuiDragDropFlags_::ImGuiDragDropFlags_None);
+      if (data->IsDelivery()) {
+        ResourceType::Resource *resource =
+            *((ResourceType::Resource **)(data->Data));
+        auto resourceName = resource->name.getValue().data();
+        AX_LOG_EDITOR_DEBUG("Dropped resource \"{}\" on graph editor",
+                            resourceName)
+        onResourceDropped(resource);
+      }
+    }
+    ImGui::EndDragDropTarget();
+  }
+  ImGui::PopID();
   ImGui::End();
 }
 
@@ -64,50 +82,18 @@ void GraphEditor::unlinkInputSocket(NodeGraph::InputSocket *socket) {
   ActiveGraph->deleteLink(socket);
 }
 
-void GraphEditor::drawToolBar() { return; }
-
 void GraphEditor::drawNodes() {
   for (auto &node : ActiveGraph->getNodes()) {
     node->draw();
   }
 }
 
-bool GraphEditor::isLinkValid(const NodeGraph::Link &) { return true; }
-
 void GraphEditor::drawNodeContextMenu(NodeGraph::Node &) {
   ImGui::TextUnformatted("Hello node context menu");
 }
 
-void GraphEditor::drawMainContextMenu(ImVec2 &mousePos) {
-  if (ImGui::BeginMenu(_("Add Node"))) {
-    if (ImGui::Selectable(_("Generic"))) {
-      auto *node = new NodeGraph::Node();
-      node->GetInputSockets().emplace_back(
-          InputSocket(++(ActiveGraph->lastSocketUID), node, "Input Socket",
-                      DataType::Color));
-      node->GetInputSockets().emplace_back(
-          InputSocket(++(ActiveGraph->lastSocketUID), node, "Input Socket2",
-                      DataType::Color));
-      node->GetOutputSockets().emplace_back(
-          OutputSocket(++(ActiveGraph->lastSocketUID), node, "Output Socket",
-                       DataType::Color));
-      node->GetOutputSockets().emplace_back(
-          OutputSocket(++(ActiveGraph->lastSocketUID), node, "Output Socket2",
-                       DataType::Color));
-      ActiveGraph->addNode(node);
-      nodes.emplace(node->uid, node);
-      imnodes::SetNodeScreenSpacePos(node->uid, mousePos);
-      AX_LOG_EDITOR_DEBUG("Added generic node  uid = {}", node->uid)
-    }
-    if (ImGui::Selectable(_("Comment"))) {
-      auto *node = new NodeGraph::CommentNode();
-      ActiveGraph->addNode(node);
-      nodes.emplace(node->uid, node);
-      imnodes::SetNodeScreenSpacePos(node->uid, mousePos);
-      AX_LOG_EDITOR_DEBUG("Added comment node  uid = {}", node->uid)
-    }
-    ImGui::EndMenu();
-  }
+void GraphEditor::drawMainContextMenu(ImVec2 & /*mousePos*/) {
+  ImGui::TextUnformatted("Hello main context menu");
 }
 
 void GraphEditor::drawNodeLinks() {

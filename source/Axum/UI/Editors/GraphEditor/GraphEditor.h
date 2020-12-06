@@ -43,6 +43,8 @@ private:
   bool dectectCycle(NodeGraph::Node *source, NodeGraph::Node *target);
   void bindGraph(NodeGraph::Graph *graph);
   void unlinkInputSocket(NodeGraph::InputSocket *socket);
+
+protected:
   inline void deleteNode(int nodeId) {
     ActiveGraph->deleteNode(nodeId);
     auto nodeIt =
@@ -52,12 +54,15 @@ private:
                      });
     nodes.erase(nodeIt);
   };
-
-protected:
-  virtual void drawToolBar();
-  virtual bool isLinkValid(const NodeGraph::Link &link);
+  inline void addNode(NodeGraph::Node *node) {
+    ActiveGraph->addNode(node);
+    nodes.emplace(node->uid, node);
+  };
+  virtual void drawToolBar(){};
+  virtual bool isLinkValid(const NodeGraph::Link &) { return true; };
   virtual void drawNodeContextMenu(NodeGraph::Node &node);
   virtual void drawMainContextMenu(ImVec2 &mousePos);
+  virtual void onResourceDropped(ResourceType::Resource *){};
 
 public:
   GraphEditor();
