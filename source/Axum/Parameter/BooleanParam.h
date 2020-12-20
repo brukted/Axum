@@ -21,7 +21,7 @@ private:
 
 public:
   BooleanParam(std::string_view ID, bool value = true, std::string_view name = "",
-               std::string_view description = "");
+               std::string_view description = "", std::string_view group = "");
 
   bool getValue() const;
 

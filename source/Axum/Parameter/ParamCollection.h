@@ -42,7 +42,7 @@ public:
    */
   ParamCollection(std::string_view ID, std::string_view name = "",
                   std::vector<Param *> params = {},
-                  std::string_view description = "");
+                  std::string_view description = "", std::string_view group = "");
 
   /**
    *@brief Finds a parameter.

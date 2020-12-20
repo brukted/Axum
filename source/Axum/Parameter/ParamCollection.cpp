@@ -14,8 +14,8 @@
 namespace Axum::Parameter {
 ParamCollection::ParamCollection(std::string_view ID, std::string_view name,
                                  std::vector<Param *> params,
-                                 std::string_view description)
-    : Param(ID, name, description) {
+                                 std::string_view description, std::string_view group)
+    : Param(ID, name, description,group) {
   for (auto *param : params) {
     this->params.emplace_back(param);
   }

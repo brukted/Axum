@@ -23,7 +23,7 @@ private:
 
 public:
   FloatParam(std::string_view ID, float value, std::string_view name = "",
-             std::string_view description = "");
+             std::string_view description = "", std::string_view group = "");
 
   float getValue() const;
 

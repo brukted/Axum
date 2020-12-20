@@ -7,18 +7,22 @@
 #define _PARAMETER_EDITOR_H
 
 #include "../Editor.h"
-#include "Utils/Log/Log.h"
 #include "Parameter/Param.h"
-#include <list>
-#include <vector>
+#include "Utils/Log/Log.h"
 #include "Utils/Translation/Translation.h"
+#include <list>
+#include <string>
+#include <tuple>
+#include <vector>
 
 namespace Axum::UI {
 namespace Editor {
 
 class ParameterEditor : public Editor {
 private:
-  static std::vector<Parameter::Param*> boundParameters;
+  typedef std::tuple<std::string, std::vector<Parameter::Param *>>
+      ParameterGroup;
+  static std::vector<ParameterGroup> boundParameters;
 
 public:
   ParameterEditor();
@@ -30,7 +34,7 @@ public:
    * @param *param Parameter to display.
    */
   static void BindParam(Parameter::Param *param);
-  
+
   /**
    * Displays @a param in UI.
    * @param *param Parameter to display.
@@ -39,12 +43,10 @@ public:
 
   /**
    * @brief Unbinds whatever parameter is bound.
-   * 
+   *
    */
   static void Unbind();
 };
-
-
 
 } // namespace Editor
 } // namespace Axum::UI

@@ -13,8 +13,8 @@ namespace Axum::Parameter {
 void IntegerParam::drawDisplay() { return; }
 
 IntegerParam::IntegerParam(std::string_view ID, int value,
-                           std::string_view name, std::string_view description)
-    : Param(ID, name, description), value(value) {}
+                           std::string_view name, std::string_view description, std::string_view group)
+    : Param(ID, name, description, group), value(value) {}
 
 int IntegerParam::getValue() const { return value; }
 

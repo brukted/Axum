@@ -11,11 +11,11 @@
 
 namespace Axum::Parameter {
 FloatVectorParam::FloatVectorParam(std::string_view ID, std::string_view name,
-                                   std::string_view description, int size,
+                                   std::string_view description, std::string_view group, int size,
                                    std::vector<float> value, Type type,
                                    float uiMin, float uiMax, float hardMin,
                                    float hardMax)
-    : Param(ID, name, description), size(size), type(type), hardMax(hardMax),
+    : Param(ID, name, description,group), size(size), type(type), hardMax(hardMax),
       hardMin(hardMin), uiMin(uiMin), uiMax(uiMax), value(value) {
   assert(value.size() == size);
 }

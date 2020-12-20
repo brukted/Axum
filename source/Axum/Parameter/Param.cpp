@@ -13,8 +13,8 @@
 namespace Axum::Parameter {
 
 Param::Param(std::string_view ID, std::string_view name,
-             std::string_view description)
-    : ID(ID), name(name), description(description) {
+             std::string_view description,std::string_view group)
+    : ID(ID), name(name), description(description),group(group) {
   // name should not be empty for proper ui event handling
   if (name == "")
     this->name = ID;

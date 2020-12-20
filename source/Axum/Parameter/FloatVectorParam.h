@@ -47,7 +47,7 @@ public:
    * @param hardMax The absolute maximum limit.
    */
   FloatVectorParam(std::string_view ID, std::string_view name = "",
-                   std::string_view description = "", int size = 1,
+                   std::string_view description = "", std::string_view group = "", int size = 1,
                    std::vector<float> value = {0}, Type type = Type::NONE,
                    float uiMin = -FLT_MAX, float uiMax = FLT_MAX,
                    float hardMin = -FLT_MAX, float hardMax = FLT_MAX);

@@ -121,8 +121,6 @@ list(
   Parameter/ProxyParam.cpp
   Parameter/TextParam.h
   Parameter/TextParam.cpp
-  Parameter/ParameterGroup.h
-  Parameter/ParameterGroup.cpp
   # Resource types
   ResourceTypes/ImageTexture.h
   ResourceTypes/ImageTexture.cpp

@@ -12,8 +12,8 @@
 namespace Axum::Parameter {
 
 BooleanParam::BooleanParam(std::string_view ID, bool value,
-                           std::string_view name, std::string_view description)
-    : Param(ID, name, description), value(value) {}
+                           std::string_view name, std::string_view description, std::string_view group)
+    : Param(ID, name, description,group), value(value) {}
 
 bool BooleanParam::getValue() const { return value; }
 

@@ -47,10 +47,12 @@ public:
    *
    */
   std::string description;
+  std::string group;
   bool isEditMode = false;
+  bool isCustom = false;
 
   Param(std::string_view ID, std::string_view name,
-        std::string_view description);
+        std::string_view description,std::string_view group);
 
   void draw();
 
@@ -62,11 +64,15 @@ private:
   template <class Archive>
   void save(Archive &ar, const unsigned int /*version*/) const {
     ar &ID &name &isEditMode &description;
+    if(isCustom)
+      ar &group;
   }
 
   template <class Archive>
   void load(Archive &ar, const unsigned int /*version*/) {
     ar &ID &name &isEditMode &description;
+    if(isCustom)
+      ar &group;
   }
   BOOST_SERIALIZATION_SPLIT_MEMBER()
 };

@@ -13,8 +13,8 @@ namespace Axum::Parameter {
 
 EnumParam::EnumParam(std::string_view ID, std::map<int, std::string> enums,
                      int value, std::string_view name,
-                     std::string_view description)
-    : Param(ID, name, description), enums(enums) {
+                     std::string_view description, std::string_view group)
+    : Param(ID, name, description, group), enums(enums) {
   this->intValue = value;
   strValue = toString(intValue);
 }

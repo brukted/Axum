@@ -42,7 +42,7 @@ public:
    * @param hardMax The absolute maximum limit.
    */
   IntegerVectorParam(std::string_view ID, std::string_view name = "",
-                     std::string_view description = "", int size = 1,
+                     std::string_view description = "", std::string_view group = "", int size = 1,
                      std::vector<int> value = {0}, int uiMin = INT_MIN,
                      int uiMax = INT_MAX, int hardMin = INT_MIN,
                      int hardMax = INT_MAX);

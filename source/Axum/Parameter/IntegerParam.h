@@ -22,7 +22,7 @@ private:
 
 public:
   IntegerParam(std::string_view ID, int value,
-            std::string_view name = "", std::string_view description = "");
+            std::string_view name = "", std::string_view description = "", std::string_view group = "");
 
   int getValue() const;
 

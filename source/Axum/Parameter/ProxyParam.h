@@ -15,7 +15,7 @@ private:
   Param *parameter;
 
 public:
-  ProxyParam(std::string_view ID, Param *_parameter);
+  ProxyParam(std::string_view ID, Param *parameter, std::string_view group = "");
 
   /**
    * @brief Get the underlying parameter.

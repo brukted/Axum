@@ -39,7 +39,7 @@ public:
    */
   EnumParam(std::string_view ID, std::map<int, std::string> enums,
             int value, std::string_view name = "",
-            std::string_view description = "");
+            std::string_view description = "", std::string_view group = "");
 
   int getValue() const { return intValue; };
 

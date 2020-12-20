@@ -25,7 +25,7 @@ private:
 
 public:
   TextParam(std::string_view ID, std::string_view value,
-            std::string_view name = "", std::string_view description = "");
+            std::string_view name = "", std::string_view description = "", std::string_view group = "");
 
   std::string_view getValue();
 
@@ -35,6 +35,12 @@ public:
    * @param value New value.
    */
   void setValue(std::string_view value);
+
+  const std::string_view _string_view() const{return value;};
+
+  const std::string& _string() const{return value;};
+
+  void operator =(std::string_view other){setValue(other);};
 
 protected:
   virtual void drawDisplay() override;
